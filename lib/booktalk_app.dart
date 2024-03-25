@@ -1,13 +1,17 @@
 import 'package:booktalk_frontend/pages/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 
+import 'navigation/app_router.dart';
+
 class BookTalkApp extends StatelessWidget {
-  const BookTalkApp({super.key});
+  BookTalkApp({super.key});
+
+  final AppRouter _router = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
+    return MaterialApp.router(
+      routerConfig: _router.config(),
     );
   }
 }
