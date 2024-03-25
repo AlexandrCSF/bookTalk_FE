@@ -19,24 +19,28 @@ class HomePage extends StatelessWidget {
         ProfileTab(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
-        return CupertinoTabBar(
+        return BottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
-          border: Border.all(style: BorderStyle.none),
-          height: 40,
           iconSize: 32,
           backgroundColor: colors.background,
-          activeColor: colors.primary,
-          inactiveColor: colors.outline,
+          selectedItemColor: colors.primary,
+          unselectedItemColor: colors.outline,
+          showUnselectedLabels: false,
+          showSelectedLabels: false,
+          elevation: 0,
           items: [
             BottomNavigationBarItem(
               icon: Icon(MdiIcons.calendarClockOutline),
+              label: 'events',
             ),
             BottomNavigationBarItem(
               icon: Icon(MdiIcons.bookOpenPageVariantOutline),
+              label: 'clubs',
             ),
             BottomNavigationBarItem(
               icon: Icon(MdiIcons.accountCircleOutline),
+              label: 'profile',
             )
           ],
         );

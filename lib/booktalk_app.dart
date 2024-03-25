@@ -1,5 +1,5 @@
-import 'package:booktalk_frontend/pages/home_page/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'navigation/app_router.dart';
 
@@ -28,7 +28,25 @@ class BookTalkApp extends StatelessWidget {
             onInverseSurface: const Color(0xFFFFEDE9),
             error: const Color(0xFFBA1A1A),
             onError: const Color(0xFFFFFFFF),
-          )),
+            brightness: Brightness.light,
+          ),
+        textTheme: TextTheme(
+          bodyMedium: GoogleFonts.inter(
+            fontSize: 22,
+          ),
+          bodySmall: GoogleFonts.inter(
+            fontSize: 16,
+          ),
+          titleMedium: GoogleFonts.inter(
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+          titleSmall: GoogleFonts.inter(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
+      ),
     );
   }
 }
