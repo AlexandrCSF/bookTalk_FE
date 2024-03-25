@@ -10,7 +10,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     return AutoTabsScaffold(
+      backgroundColor: colors.background,
       routes: const [
         MyEventsTab(),
         BookClubListTab(),
@@ -21,8 +23,11 @@ class HomePage extends StatelessWidget {
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
           border: Border.all(style: BorderStyle.none),
-          height: 60,
-          iconSize: 30,
+          height: 40,
+          iconSize: 32,
+          backgroundColor: colors.background,
+          activeColor: colors.primary,
+          inactiveColor: colors.outline,
           items: [
             BottomNavigationBarItem(
               icon: Icon(MdiIcons.calendarClockOutline),
