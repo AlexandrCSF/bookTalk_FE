@@ -49,6 +49,10 @@ class BookTalkApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
+          headlineMedium: GoogleFonts.inter(
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
         ),
       ),
     );

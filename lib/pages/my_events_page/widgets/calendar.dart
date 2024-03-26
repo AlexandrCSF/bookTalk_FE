@@ -34,7 +34,7 @@ class Calendar extends StatelessWidget {
             CalendarFormat.month: 'month',
           },
           headerStyle: HeaderStyle(
-            titleTextStyle: text.titleSmall!.copyWith(color: colors.primary),
+            titleTextStyle: text.headlineMedium!.copyWith(color: colors.primary),
             leftChevronIcon: Icon(MdiIcons.arrowLeft, color: colors.primary,),
             rightChevronIcon: Icon(MdiIcons.arrowRight, color: colors.primary,),
           ),

@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import 'widgets/search_field.dart';
+
 @RoutePage()
 class BookClubListPage extends StatelessWidget {
   const BookClubListPage({super.key});
@@ -15,6 +17,7 @@ class BookClubListPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: colors.background,
+          title: const SearchField(),
           bottom: TabBar(
             indicatorColor: colors.primary,
             isScrollable: true,
