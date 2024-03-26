@@ -8,33 +8,34 @@ class SearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    return SizedBox(
-      height: 40,
-      child: TextField(
-        decoration: InputDecoration(
-          fillColor: colors.onInverseSurface,
-          filled: true,
-          prefixIcon: Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Icon(
-              MdiIcons.magnify,
-              color: colors.onBackground,
-            ),
+    return TextField(
+      style: text.bodySmall?.copyWith(color: colors.onBackground),
+      decoration: InputDecoration(
+        isDense: true,
+        contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+        fillColor: colors.onInverseSurface,
+        filled: true,
+        prefixIcon: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Icon(
+            MdiIcons.magnify,
+            color: colors.onBackground,
+            size: 20,
           ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 2,
-              color: colors.inversePrimary,
-            ),
-            borderRadius: BorderRadius.circular(32),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            width: 2,
+            color: colors.inversePrimary,
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 2,
-              color: colors.inversePrimary,
-            ),
-            borderRadius: BorderRadius.circular(32),
+          borderRadius: BorderRadius.circular(32),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            width: 2,
+            color: colors.inversePrimary,
           ),
+          borderRadius: BorderRadius.circular(32),
         ),
       ),
     );
