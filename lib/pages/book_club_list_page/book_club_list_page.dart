@@ -7,8 +7,48 @@ class BookClubListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("book club list"),
-    );;
+    final colors = Theme.of(context).colorScheme;
+    final text = Theme.of(context).textTheme;
+    return DefaultTabController(
+      length: 3,
+      initialIndex: 1,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: colors.background,
+          bottom: TabBar(
+            indicatorColor: colors.primary,
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
+            tabs: [
+              Tab(
+                child: Text(
+                  'Я участник',
+                  style: text.bodySmall!.copyWith(color: colors.primary, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Tab(
+                child: Text(
+                  'Рекомендации',
+                  style: text.bodySmall!.copyWith(color: colors.primary, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Tab(
+                child: Text(
+                  'Я управляю',
+                  style: text.bodySmall!.copyWith(color: colors.primary, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
+        ),
+        body: const TabBarView(
+          children: [
+            Center(child: Text('я участник')),
+            Center(child: Text('рекомендации')),
+            Center(child: Text('я управляю')),
+          ],
+        ),
+      ),
+    );
   }
 }

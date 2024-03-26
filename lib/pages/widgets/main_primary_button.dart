@@ -28,7 +28,7 @@ class MainPrimaryButton extends StatelessWidget {
           children: [
             Text(
               label,
-              style: text.bodyMedium!.copyWith(fontWeight: FontWeight.bold, color: colors.onPrimary),
+              style: text.titleSmall!.copyWith(color: colors.onPrimary),
             ),
             Container(
               width: 40,

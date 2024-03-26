@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
           elevation: 0,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(MdiIcons.calendarClockOutline),
+              icon: Icon(MdiIcons.calendarClock),
               label: 'events',
             ),
             BottomNavigationBarItem(

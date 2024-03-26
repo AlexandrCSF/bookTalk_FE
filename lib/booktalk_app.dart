@@ -12,6 +12,7 @@ class BookTalkApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: _router.config(),
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
@@ -31,8 +32,11 @@ class BookTalkApp extends StatelessWidget {
             brightness: Brightness.light,
           ),
         textTheme: TextTheme(
+          bodyLarge: GoogleFonts.inter(
+            fontSize: 20,
+          ),
           bodyMedium: GoogleFonts.inter(
-            fontSize: 22,
+            fontSize: 18,
           ),
           bodySmall: GoogleFonts.inter(
             fontSize: 16,

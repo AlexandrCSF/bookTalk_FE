@@ -10,7 +10,7 @@ class Calendar extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
     return Card(
-      color: colors.surface,
+      surfaceTintColor: colors.surface,
       elevation: 5.0,
       shape: RoundedRectangleBorder(
         borderRadius: const BorderRadius.all(Radius.circular(32)),
