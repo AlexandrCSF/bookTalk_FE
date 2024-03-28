@@ -1,5 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 
+import '../pages/discussion_list_page/discussion_list_page.dart';
+import '../pages/discussion_page/discussion_page.dart';
+import '../pages/event_list_page/event_list_page.dart';
+import '../pages/book_club_page/book_club_page.dart';
 import '../pages/book_club_list_page/book_club_list_page.dart';
 import '../pages/my_events_page/my_events_page.dart';
 import '../pages/profile_page/profile_page.dart';
@@ -35,6 +39,22 @@ class AppRouter extends _$AppRouter {
                   path: 'book-club-list',
                   initial: true,
                   page: BookClubListRoute.page,
+                  children: [
+                    AutoRoute(
+                      path: 'book-club:id',
+                      initial: true,
+                      page: BookClubRoute.page,
+                      children: [
+                        AutoRoute(
+                          page: EventListRoute.page,
+                        ),
+                        AutoRoute(
+                          page: DiscussionListRoute.page,
+                          children: [AutoRoute(page: DiscussionRoute.page)],
+                        ),
+                      ],
+                    )
+                  ],
                 ),
               ],
             ),

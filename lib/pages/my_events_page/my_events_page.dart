@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/pages/book_club_list_page/book_club_list_page.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
+import '../../navigation/app_router.dart';
 import 'widgets/info_text.dart';
 import 'widgets/calendar.dart';
 
@@ -24,7 +26,8 @@ class MyEventsPage extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(right: 20.0, left: 20.0, top: 5.0, bottom: 10.0),
+        padding: const EdgeInsets.only(
+            right: 20.0, left: 20.0, top: 5.0, bottom: 10.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -33,7 +36,13 @@ class MyEventsPage extends StatelessWidget {
               regularText: 'Чтобы просматривать мероприятия, нужно ',
               boldText: 'войти или зарегистрироваться',
             ),
-            MainPrimaryButton(label: 'Авторизоваться', icon: MdiIcons.arrowRight)
+            MainPrimaryButton(
+              label: 'Авторизоваться',
+              icon: MdiIcons.arrowRight,
+              onTap: () {
+                context.navigateTo(const BookClubListTab(children: [ BookClubListRoute() ]));
+              },
+            )
           ],
         ),
       ),

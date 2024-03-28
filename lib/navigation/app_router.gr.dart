@@ -27,6 +27,30 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const BookClubListTabPage(),
       );
     },
+    BookClubRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const BookClubPage(),
+      );
+    },
+    DiscussionListRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DiscussionListPage(),
+      );
+    },
+    DiscussionRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DiscussionPage(),
+      );
+    },
+    EventListRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const EventListPage(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -84,6 +108,62 @@ class BookClubListTab extends PageRouteInfo<void> {
         );
 
   static const String name = 'BookClubListTab';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [BookClubPage]
+class BookClubRoute extends PageRouteInfo<void> {
+  const BookClubRoute({List<PageRouteInfo>? children})
+      : super(
+          BookClubRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'BookClubRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [DiscussionListPage]
+class DiscussionListRoute extends PageRouteInfo<void> {
+  const DiscussionListRoute({List<PageRouteInfo>? children})
+      : super(
+          DiscussionListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DiscussionListRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [DiscussionPage]
+class DiscussionRoute extends PageRouteInfo<void> {
+  const DiscussionRoute({List<PageRouteInfo>? children})
+      : super(
+          DiscussionRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DiscussionRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EventListPage]
+class EventListRoute extends PageRouteInfo<void> {
+  const EventListRoute({List<PageRouteInfo>? children})
+      : super(
+          EventListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EventListRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
