@@ -22,7 +22,7 @@ class MyEventsPage extends StatelessWidget {
         elevation: 0,
         title: Text(
           'Мероприятия',
-          style: text.titleSmall?.copyWith(color: colors.primary),
+          style: text.headlineLarge?.copyWith(color: colors.primary),
         ),
       ),
       body: Padding(

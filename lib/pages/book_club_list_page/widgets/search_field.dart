@@ -9,7 +9,7 @@ class SearchField extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
     return TextField(
-      style: text.bodySmall?.copyWith(color: colors.onBackground),
+      style: text.bodyMedium?.copyWith(color: colors.onBackground),
       decoration: InputDecoration(
         isDense: true,
         contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 0),

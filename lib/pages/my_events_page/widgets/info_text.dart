@@ -19,11 +19,11 @@ class InfoText extends StatelessWidget {
         TextSpan(text: regularText),
         TextSpan(
           text: boldText,
-          style: text.bodyMedium!.copyWith(fontWeight: FontWeight.bold)
+          style: text.headlineMedium!.copyWith()
         )
       ]),
       textAlign: TextAlign.center,
-      style: text.bodyMedium!.copyWith(color: colors.onBackground),
+      style: text.headlineSmall!.copyWith(color: colors.onBackground),
     );
   }
 }

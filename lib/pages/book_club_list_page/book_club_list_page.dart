@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/pages/book_club_list_page/tabs/recommendations.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/search_field.dart';
@@ -26,19 +27,19 @@ class BookClubListPage extends StatelessWidget {
               Tab(
                 child: Text(
                   'Я участник',
-                  style: text.bodySmall!.copyWith(color: colors.primary, fontWeight: FontWeight.bold),
+                  style: text.headlineMedium!.copyWith(color: colors.primary, fontWeight: FontWeight.bold),
                 ),
               ),
               Tab(
                 child: Text(
                   'Рекомендации',
-                  style: text.bodySmall!.copyWith(color: colors.primary, fontWeight: FontWeight.bold),
+                  style: text.headlineMedium!.copyWith(color: colors.primary, fontWeight: FontWeight.bold),
                 ),
               ),
               Tab(
                 child: Text(
                   'Я управляю',
-                  style: text.bodySmall!.copyWith(color: colors.primary, fontWeight: FontWeight.bold),
+                  style: text.headlineMedium!.copyWith(color: colors.primary, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -47,7 +48,7 @@ class BookClubListPage extends StatelessWidget {
         body: const TabBarView(
           children: [
             Center(child: Text('я участник')),
-            Center(child: Text('рекомендации')),
+            Recommendations(),
             Center(child: Text('я управляю')),
           ],
         ),

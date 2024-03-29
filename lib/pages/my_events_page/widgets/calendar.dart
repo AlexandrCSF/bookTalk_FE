@@ -34,22 +34,22 @@ class Calendar extends StatelessWidget {
             CalendarFormat.month: 'month',
           },
           headerStyle: HeaderStyle(
-            titleTextStyle: text.headlineMedium!.copyWith(color: colors.primary),
+            titleTextStyle: text.headlineLarge!.copyWith(color: colors.primary),
             leftChevronIcon: Icon(MdiIcons.arrowLeft, color: colors.primary,),
             rightChevronIcon: Icon(MdiIcons.arrowRight, color: colors.primary,),
           ),
           daysOfWeekStyle: DaysOfWeekStyle(
-            weekdayStyle: text.bodySmall!.copyWith(fontWeight: FontWeight.bold, color: colors.primary,),
-            weekendStyle: text.bodySmall!.copyWith(fontWeight: FontWeight.bold, color: colors.error,),
+            weekdayStyle: text.headlineMedium!.copyWith(color: colors.primary,),
+            weekendStyle: text.headlineMedium!.copyWith(color: colors.error,),
           ),
           calendarStyle: CalendarStyle(
-            weekendTextStyle: text.bodySmall!.copyWith(fontWeight: FontWeight.bold, color: colors.error,),
-            defaultTextStyle: text.bodySmall!.copyWith(fontWeight: FontWeight.bold, color: colors.primary,),
+            weekendTextStyle: text.headlineMedium!.copyWith(color: colors.error,),
+            defaultTextStyle: text.headlineMedium!.copyWith(color: colors.primary,),
             todayDecoration: BoxDecoration(
               color: colors.primary,
               shape: BoxShape.circle,
             ),
-            outsideTextStyle: text.bodySmall!.copyWith(fontWeight: FontWeight.w200, color: colors.outline,),
+            outsideTextStyle: text.headlineSmall!.copyWith(fontWeight: FontWeight.w200, color: colors.outline,),
           ),
         ),
       ),

@@ -50,7 +50,11 @@ class AppRouter extends _$AppRouter {
                         ),
                         AutoRoute(
                           page: DiscussionListRoute.page,
-                          children: [AutoRoute(page: DiscussionRoute.page)],
+                          children: [
+                            AutoRoute(
+                              page: DiscussionRoute.page,
+                            )
+                          ],
                         ),
                       ],
                     )
