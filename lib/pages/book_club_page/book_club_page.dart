@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class BookClubPage extends StatelessWidget {
-  const BookClubPage({super.key});
+  final int id;
+
+  const BookClubPage({
+    super.key,
+    @PathParam('id') this.id = 1,
+  });
 
   @override
   Widget build(BuildContext context) {

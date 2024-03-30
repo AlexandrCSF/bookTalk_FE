@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 
 import '../pages/discussion_list_page/discussion_list_page.dart';
 import '../pages/discussion_page/discussion_page.dart';

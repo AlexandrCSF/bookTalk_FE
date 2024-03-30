@@ -28,9 +28,19 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     BookClubRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<BookClubRouteArgs>(
+          orElse: () => BookClubRouteArgs(
+                  id: pathParams.getInt(
+                'id',
+                1,
+              )));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const BookClubPage(),
+        child: BookClubPage(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     DiscussionListRoute.name: (routeData) {
@@ -114,16 +124,41 @@ class BookClubListTab extends PageRouteInfo<void> {
 
 /// generated route for
 /// [BookClubPage]
-class BookClubRoute extends PageRouteInfo<void> {
-  const BookClubRoute({List<PageRouteInfo>? children})
-      : super(
+class BookClubRoute extends PageRouteInfo<BookClubRouteArgs> {
+  BookClubRoute({
+    Key? key,
+    int id = 1,
+    List<PageRouteInfo>? children,
+  }) : super(
           BookClubRoute.name,
+          args: BookClubRouteArgs(
+            key: key,
+            id: id,
+          ),
+          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
   static const String name = 'BookClubRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<BookClubRouteArgs> page =
+      PageInfo<BookClubRouteArgs>(name);
+}
+
+class BookClubRouteArgs {
+  const BookClubRouteArgs({
+    this.key,
+    this.id = 1,
+  });
+
+  final Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'BookClubRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for
