@@ -1,14 +1,19 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/authorization_page/authorization_page.dart';
+import '../pages/create_club_page/create_club_page.dart';
 import '../pages/discussion_list_page/discussion_list_page.dart';
 import '../pages/discussion_page/discussion_page.dart';
+import '../pages/edit_profile_page/edit_profile_page.dart';
 import '../pages/event_list_page/event_list_page.dart';
 import '../pages/book_club_page/book_club_page.dart';
 import '../pages/book_club_list_page/book_club_list_page.dart';
+import '../pages/interests_page/interests_page.dart';
 import '../pages/my_events_page/my_events_page.dart';
 import '../pages/profile_page/profile_page.dart';
 import '../pages/home_page/home_page.dart';
+import '../pages/registration_page/registration_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -43,16 +48,18 @@ class AppRouter extends _$AppRouter {
                   children: [
                     AutoRoute(
                       path: 'book-club:id',
-                      initial: true,
                       page: BookClubRoute.page,
                       children: [
                         AutoRoute(
+                          path: 'event-list',
                           page: EventListRoute.page,
                         ),
                         AutoRoute(
+                          path: 'discussion-list',
                           page: DiscussionListRoute.page,
                           children: [
                             AutoRoute(
+                              path: 'discussion:id',
                               page: DiscussionRoute.page,
                             )
                           ],
@@ -71,6 +78,22 @@ class AppRouter extends _$AppRouter {
                   path: 'profile',
                   initial: true,
                   page: ProfileRoute.page,
+                  children: [
+                    AutoRoute(
+                      path: 'create-club',
+                      page: CreateClubRoute.page,
+                    ),
+                    AutoRoute(
+                      path: 'edit-profile',
+                      page: EditProfileRoute.page,
+                      children: [
+                        AutoRoute(
+                          path: 'interests',
+                          page: InterestsRoute.page,
+                        )
+                      ],
+                    ),
+                  ],
                 )
               ],
             )

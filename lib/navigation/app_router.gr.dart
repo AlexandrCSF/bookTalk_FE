@@ -15,6 +15,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AuthorizationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AuthorizationPage(),
+      );
+    },
     BookClubListRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -43,6 +49,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    CreateClubRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CreateClubPage(),
+      );
+    },
     DiscussionListRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -55,6 +67,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const DiscussionPage(),
       );
     },
+    EditProfileRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const EditProfilePage(),
+      );
+    },
     EventListRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -65,6 +83,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const HomePage(),
+      );
+    },
+    InterestsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const InterestsPage(),
       );
     },
     MyEventsRoute.name: (routeData) {
@@ -91,7 +115,27 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ProfileTabPage(),
       );
     },
+    RegistrationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RegistrationPage(),
+      );
+    },
   };
+}
+
+/// generated route for
+/// [AuthorizationPage]
+class AuthorizationRoute extends PageRouteInfo<void> {
+  const AuthorizationRoute({List<PageRouteInfo>? children})
+      : super(
+          AuthorizationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AuthorizationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -162,6 +206,20 @@ class BookClubRouteArgs {
 }
 
 /// generated route for
+/// [CreateClubPage]
+class CreateClubRoute extends PageRouteInfo<void> {
+  const CreateClubRoute({List<PageRouteInfo>? children})
+      : super(
+          CreateClubRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CreateClubRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [DiscussionListPage]
 class DiscussionListRoute extends PageRouteInfo<void> {
   const DiscussionListRoute({List<PageRouteInfo>? children})
@@ -190,6 +248,20 @@ class DiscussionRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [EditProfilePage]
+class EditProfileRoute extends PageRouteInfo<void> {
+  const EditProfileRoute({List<PageRouteInfo>? children})
+      : super(
+          EditProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EditProfileRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [EventListPage]
 class EventListRoute extends PageRouteInfo<void> {
   const EventListRoute({List<PageRouteInfo>? children})
@@ -213,6 +285,20 @@ class HomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [InterestsPage]
+class InterestsRoute extends PageRouteInfo<void> {
+  const InterestsRoute({List<PageRouteInfo>? children})
+      : super(
+          InterestsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'InterestsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -269,6 +355,20 @@ class ProfileTab extends PageRouteInfo<void> {
         );
 
   static const String name = 'ProfileTab';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RegistrationPage]
+class RegistrationRoute extends PageRouteInfo<void> {
+  const RegistrationRoute({List<PageRouteInfo>? children})
+      : super(
+          RegistrationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RegistrationRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
