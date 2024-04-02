@@ -37,12 +37,12 @@ class DiscussionPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CircleAvatar(
-                          radius: 20,
+                          radius: 30,
                           backgroundImage:
                               Image.asset('lib/images/5_3.jpg').image,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
+                          padding: const EdgeInsets.only(left: 20.0),
                           child: Text(
                             'Имя Фамилия',
                             style: text.headlineLarge
@@ -67,6 +67,12 @@ class DiscussionPage extends StatelessWidget {
                       'реализации системы массового участия.',
                       style: text.bodyMedium?.copyWith(color: colors.outline),
                     ),
+                  );
+                }
+                if (index == 9) {
+                  return const Padding(
+                    padding: EdgeInsets.only(bottom: 70.0),
+                    child: CommentCard(),
                   );
                 } else {
                   return const CommentCard();

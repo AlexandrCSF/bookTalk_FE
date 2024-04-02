@@ -20,7 +20,7 @@ class MemberListPage extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5),
         child: ListView.builder(
           itemCount: 1 + 20,
           itemBuilder: (context, index) {

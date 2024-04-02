@@ -32,7 +32,7 @@ class CommentCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   CircleAvatar(
-                    radius: 15,
+                    radius: 20,
                     backgroundImage: Image
                         .asset('lib/images/5_3.jpg')
                         .image,

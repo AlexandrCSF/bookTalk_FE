@@ -14,7 +14,7 @@ class MemberTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircleAvatar(
-            radius: 15,
+            radius: 20,
             backgroundImage: Image
                 .asset('lib/images/5_3.jpg')
                 .image,
@@ -23,8 +23,9 @@ class MemberTile extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10.0),
             child: Text(
               'Имя Фамилия',
-              style: text.headlineMedium
+              style: text.headlineLarge
                   ?.copyWith(color: colors.onSurface),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
