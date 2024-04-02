@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/book_club_page/widgets/club_description.dart';
 import 'package:booktalk_frontend/pages/book_club_page/widgets/club_tags.dart';
-import 'package:booktalk_frontend/pages/widgets/event_list_widget.dart';
+import 'package:booktalk_frontend/pages/book_club_page/widgets/event_list_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/main_outline_button.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -119,7 +119,12 @@ class BookClubPage extends StatelessWidget {
                     },
                   ),
                 ),
-                EventListWidget(events: events),
+                EventListWidget(
+                  events: events,
+                  onTap: () {
+                    context.router.navigate(const EventListRoute());
+                  },
+                ),
               ],
             ),
           ),

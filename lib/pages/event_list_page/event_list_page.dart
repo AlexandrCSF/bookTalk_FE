@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import 'widgets/event_card.dart';
 
 @RoutePage()
 class EventListPage extends StatelessWidget {
@@ -39,7 +42,7 @@ class EventListPage extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 20.0, top: 20.0),
                 child: Text(
-                  "Обсуждения",
+                  "Ближайшие мероприятия",
                   style: text.headlineLarge?.copyWith(color: colors.onSurface),
                 ),
               );

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import 'event_widget.dart';
+import '../../widgets/event_widget.dart';
 
 class EventListWidget extends StatelessWidget {
 
   final List<String> events;
+  final VoidCallback onTap;
 
-  const EventListWidget({super.key, required this.events});
+  const EventListWidget({super.key, required this.events, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class EventListWidget extends StatelessWidget {
               IconButton(
                 icon: Icon(MdiIcons.arrowRight),
                 color: colors.onBackground,
-                onPressed: () {},
+                onPressed: onTap,
               ),
             ],
           ),
