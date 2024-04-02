@@ -3,15 +3,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-class EventCard extends StatelessWidget {
+import '../../widgets/small_outline_button.dart';
+
+class EventCard extends StatefulWidget {
   const EventCard({super.key});
+
+  @override
+  State<EventCard> createState() => _EventCardState();
+}
+
+class _EventCardState extends State<EventCard> {
+  bool _isChecked = false;
+
+  void _toggleCheck() {
+    setState(() {
+      _isChecked = !_isChecked;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
     return AspectRatio(
-      aspectRatio: 320/215,
+      aspectRatio: 320 / 215,
       child: Card(
           surfaceTintColor: colors.surface,
           elevation: 3,
@@ -31,39 +46,43 @@ class EventCard extends StatelessWidget {
                   children: [
                     Text(
                       'Тема встречи: ',
-                      style: text.headlineMedium?.copyWith(color: colors.primary),
+                      style:
+                          text.headlineMedium?.copyWith(color: colors.primary),
                     ),
                     Text(
                       'Наследник из Калькутты',
-                      style:
-                          text.headlineMedium?.copyWith(color: colors.onSurface),
+                      style: text.headlineMedium
+                          ?.copyWith(color: colors.onSurface),
                     ),
                     Text(
                       'Дата: ',
-                      style: text.headlineMedium?.copyWith(color: colors.primary),
+                      style:
+                          text.headlineMedium?.copyWith(color: colors.primary),
                     ),
                     Text(
                       '15 июля 2024',
-                      style:
-                          text.headlineMedium?.copyWith(color: colors.onSurface),
+                      style: text.headlineMedium
+                          ?.copyWith(color: colors.onSurface),
                     ),
                     Text(
                       'Время: ',
-                      style: text.headlineMedium?.copyWith(color: colors.primary),
+                      style:
+                          text.headlineMedium?.copyWith(color: colors.primary),
                     ),
                     Text(
                       '14:00',
-                      style:
-                          text.headlineMedium?.copyWith(color: colors.onSurface),
+                      style: text.headlineMedium
+                          ?.copyWith(color: colors.onSurface),
                     ),
                     Text(
                       'Место: ',
-                      style: text.headlineMedium?.copyWith(color: colors.primary),
+                      style:
+                          text.headlineMedium?.copyWith(color: colors.primary),
                     ),
                     Text(
                       'кафе Жёлтый носорог',
-                      style:
-                          text.headlineMedium?.copyWith(color: colors.onSurface),
+                      style: text.headlineMedium
+                          ?.copyWith(color: colors.onSurface),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
@@ -77,9 +96,15 @@ class EventCard extends StatelessWidget {
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
-                  child: SmallPrimaryButton(
-                    icon: MdiIcons.plus,
-                  ),
+                  child: _isChecked
+                      ? SmallOutlineButton(
+                          icon: MdiIcons.check,
+                          onTap: _toggleCheck,
+                        )
+                      : SmallPrimaryButton(
+                          icon: MdiIcons.plus,
+                          onTap: _toggleCheck,
+                        ),
                 ),
               ],
             ),

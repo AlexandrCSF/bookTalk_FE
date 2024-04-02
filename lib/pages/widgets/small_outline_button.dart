@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SmallPrimaryButton extends StatelessWidget {
+class SmallOutlineButton extends StatelessWidget {
   final VoidCallback? onTap;
   final IconData icon;
 
-  const SmallPrimaryButton({
+  const SmallOutlineButton({
     super.key,
     required this.icon,
     this.onTap,
@@ -14,15 +14,19 @@ class SmallPrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     return Container(
-      width: 45,
-      height: 45,
+      width: 41,
+      height: 41,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: colors.primary,
+        color: colors.onPrimary,
+        border: Border.all(
+          width: 2,
+          color: colors.primary
+        )
       ),
       child: Icon(
         icon,
-        color: colors.onPrimary,
+        color: colors.primary,
         size: 28,
       ),
     );

@@ -29,7 +29,7 @@ class MainOutlineButton extends StatelessWidget {
         ),
         child: Padding(
           padding:
-          const EdgeInsets.only(top: 12, right: 12, bottom: 12, left: 20),
+          const EdgeInsets.only(top: 10, right: 12, bottom: 10, left: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
