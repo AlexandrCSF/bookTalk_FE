@@ -45,28 +45,22 @@ class AppRouter extends _$AppRouter {
                   path: 'book-club-list',
                   initial: true,
                   page: BookClubListRoute.page,
-                  children: [
-                    AutoRoute(
-                      path: 'book-club:id',
-                      page: BookClubRoute.page,
-                      children: [
-                        AutoRoute(
-                          path: 'event-list',
-                          page: EventListRoute.page,
-                        ),
-                        AutoRoute(
-                          path: 'discussion-list',
-                          page: DiscussionListRoute.page,
-                          children: [
-                            AutoRoute(
-                              path: 'discussion:id',
-                              page: DiscussionRoute.page,
-                            )
-                          ],
-                        ),
-                      ],
-                    )
-                  ],
+                ),
+                AutoRoute(
+                  path: 'book-club:id',
+                  page: BookClubRoute.page,
+                ),
+                AutoRoute(
+                  path: 'event-list',
+                  page: EventListRoute.page,
+                ),
+                AutoRoute(
+                  path: 'discussion-list',
+                  page: DiscussionListRoute.page,
+                ),
+                AutoRoute(
+                  path: 'discussion:id',
+                  page: DiscussionRoute.page,
                 ),
               ],
             ),
@@ -78,27 +72,23 @@ class AppRouter extends _$AppRouter {
                   path: 'profile',
                   initial: true,
                   page: ProfileRoute.page,
-                  children: [
-                    AutoRoute(
-                      path: 'create-club',
-                      page: CreateClubRoute.page,
-                    ),
-                    AutoRoute(
-                      path: 'edit-profile',
-                      page: EditProfileRoute.page,
-                      children: [
-                        AutoRoute(
-                          path: 'interests',
-                          page: InterestsRoute.page,
-                        )
-                      ],
-                    ),
-                  ],
-                )
+                ),
               ],
-            )
+            ),
           ],
-        )
+        ),
+        AutoRoute(
+          path: '/edit-profile',
+          page: EditProfileRoute.page,
+        ),
+        AutoRoute(
+          path: '/interests',
+          page: InterestsRoute.page,
+        ),
+        AutoRoute(
+          path: '/create-club',
+          page: CreateClubRoute.page,
+        ),
       ];
 }
 
