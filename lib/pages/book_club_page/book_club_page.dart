@@ -15,13 +15,26 @@ import '../widgets/event_widget.dart';
 import '../widgets/tag_widget.dart';
 
 @RoutePage()
-class BookClubPage extends StatelessWidget {
+class BookClubPage extends StatefulWidget {
   final int id;
 
   const BookClubPage({
     super.key,
     @PathParam('id') this.id = 1,
   });
+
+  @override
+  State<BookClubPage> createState() => _BookClubPageState();
+}
+
+class _BookClubPageState extends State<BookClubPage> {
+  bool _isSubscribed = false;
+
+  void _toggleSubscribe() {
+    setState(() {
+      _isSubscribed = !_isSubscribed;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,8 +110,17 @@ class BookClubPage extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
-                  child:
-                      MainPrimaryButton(label: 'Вступить', icon: MdiIcons.plus),
+                  child: _isSubscribed
+                      ? MainOutlineButton(
+                          label: 'Вы вступили',
+                          icon: MdiIcons.check,
+                          onTap: _toggleSubscribe,
+                        )
+                      : MainPrimaryButton(
+                          label: 'Вступить',
+                          icon: MdiIcons.plus,
+                          onTap: _toggleSubscribe,
+                        ),
                 ),
                 const ClubDescription(
                   description: 'Не следует, однако, забывать, что новая '
