@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
-import '../../../navigation/app_router.dart';
 import 'package:flutter/material.dart';
 
+import '../../../navigation/app_router.dart';
 import '../widgets/club_card.dart';
 
-class Recommendations extends StatelessWidget {
-  const Recommendations({super.key});
+class SubscriptionsTab extends StatelessWidget {
+  const SubscriptionsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
