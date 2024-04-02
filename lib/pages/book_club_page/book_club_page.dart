@@ -43,7 +43,9 @@ class BookClubPage extends StatelessWidget {
             child: IconButton(
               icon: Icon(MdiIcons.accountMultipleOutline),
               color: colors.primary,
-              onPressed: () {},
+              onPressed: () {
+                context.router.navigate(const MemberListRoute());
+              },
             ),
           )
         ],

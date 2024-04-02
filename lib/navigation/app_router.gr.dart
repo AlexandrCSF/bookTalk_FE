@@ -91,6 +91,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const InterestsPage(),
       );
     },
+    MemberListRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MemberListPage(),
+      );
+    },
     MyEventsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -299,6 +305,20 @@ class InterestsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'InterestsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MemberListPage]
+class MemberListRoute extends PageRouteInfo<void> {
+  const MemberListRoute({List<PageRouteInfo>? children})
+      : super(
+          MemberListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MemberListRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
