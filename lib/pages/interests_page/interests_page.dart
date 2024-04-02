@@ -7,8 +7,24 @@ class InterestsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('interests'),
+    final colors = Theme.of(context).colorScheme;
+    final text = Theme.of(context).textTheme;
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 70),
+        child: Align(
+          alignment: Alignment.center,
+          child: Column(
+            children: [
+              Text(
+                "Расскажите нам о своих интересах",
+                style: text.titleMedium?.copyWith(color: colors.onBackground),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

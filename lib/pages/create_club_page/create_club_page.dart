@@ -10,18 +10,15 @@ class CreateClubPage extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 70),
+        child: Align(
+          alignment: Alignment.center,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 45),
-                child: Text(
-                  "Создайте свой клуб!",
-                  style: text.titleMedium?.copyWith(color: colors.onBackground),
-                ),
+              Text(
+                "Создайте свой клуб!",
+                style: text.titleMedium?.copyWith(color: colors.onBackground),
               ),
             ],
           ),
