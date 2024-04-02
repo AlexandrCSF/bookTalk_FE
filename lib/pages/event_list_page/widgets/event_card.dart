@@ -11,7 +11,7 @@ class EventCard extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
     return AspectRatio(
-      aspectRatio: 320/208,
+      aspectRatio: 320/215,
       child: Card(
           surfaceTintColor: colors.surface,
           elevation: 3,
