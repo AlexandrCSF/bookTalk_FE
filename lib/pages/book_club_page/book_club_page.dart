@@ -1,12 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/navigation/app_router.dart';
+import 'package:booktalk_frontend/pages/book_club_page/widgets/club_description.dart';
+import 'package:booktalk_frontend/pages/book_club_page/widgets/club_tags.dart';
+import 'package:booktalk_frontend/pages/widgets/event_list_widget.dart';
+import 'package:booktalk_frontend/pages/widgets/main_outline_button.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 import '../widgets/event_widget.dart';
 import '../widgets/tag_widget.dart';
@@ -76,7 +79,6 @@ class BookClubPage extends StatelessWidget {
                         child: Text(
                           'Исторические романы',
                           textAlign: TextAlign.center,
-                          //textWidthBasis: TextWidthBasis.longestLine,
                           style: text.titleLarge
                               ?.copyWith(color: colors.onBackground),
                         ),
@@ -96,12 +98,8 @@ class BookClubPage extends StatelessWidget {
                   child:
                       MainPrimaryButton(label: 'Вступить', icon: MdiIcons.plus),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10.0),
-                  child: ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    subtitle: Text(
-                      'Не следует, однако, забывать, что новая '
+                const ClubDescription(
+                  description: 'Не следует, однако, забывать, что новая '
                       'модель организационной деятельности требует анализа '
                       'экономической целесообразности принимаемых решений. '
                       'Предварительные выводы неутешительны: высококачественный '
@@ -109,55 +107,14 @@ class BookClubPage extends StatelessWidget {
                       'внедрения и модернизации переосмысления '
                       'внешнеэкономических политик. Вот вам яркий пример '
                       'современных тенденций',
-                      style: text.headlineSmall?.copyWith(
-                        color: colors.outline,
-                      ),
-                    ),
-                  ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 9),
-                  child: Wrap(
-                    children: [
-                      for (String tag in tags)
-                        TagWidget(
-                          tag: tag,
-                        ),
-                    ],
-                  ),
-                ),
+                ClubTags(tags: tags),
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
-                  child:
-                  MainPrimaryButton(label: 'Обсуждения', icon: MdiIcons.arrowRight),
+                  child: MainPrimaryButton(
+                      label: 'Обсуждения', icon: MdiIcons.arrowRight),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 25),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Ближайшие мероприятия",
-                            style:
-                            text.headlineLarge?.copyWith(color: colors.onSurface),
-                          ),
-                          IconButton(
-                            icon: Icon(MdiIcons.arrowRight),
-                            color: colors.onBackground,
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                      for (String event in events)
-                        EventWidget(
-                          event: event,
-                        ),
-                    ],
-                  ),
-                ),
+                EventListWidget(events: events),
               ],
             ),
           ),
