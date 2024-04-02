@@ -19,6 +19,7 @@ class ProfilePage extends StatelessWidget {
     List<String> tags = ["#детектив", "#исторический_роман", "#юмор"];
     return Scaffold(
         appBar: AppBar(
+          surfaceTintColor: colors.background,
           backgroundColor: colors.background,
           elevation: 0,
           title: Text(
@@ -27,7 +28,7 @@ class ProfilePage extends StatelessWidget {
           ),
           actions: [
             Padding(
-              padding: const EdgeInsets.only(right: 20),
+              padding: const EdgeInsets.only(right: 10),
               child: IconButton(
                 onPressed: () {
                   context.router.navigate(const EditProfileRoute());
@@ -40,11 +41,11 @@ class ProfilePage extends StatelessWidget {
             )
           ],
         ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+        body: Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Align(
+            alignment: Alignment.center,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 37),
@@ -124,5 +125,70 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
     );
+
+    //Profile page for unauthorized user
+
+
+    /*return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 80),
+        child: SingleChildScrollView(
+          child: Align(
+            alignment: Alignment.center,
+            child: Column(
+              children: [
+                Container(
+                  clipBehavior: Clip.hardEdge,
+                  width: 272,
+                  height: 260,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(32)),
+                  ),
+                  child: Image.asset(
+                    'lib/images/profile_image.jpg',
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 17),
+                  child: Text(
+                    "Читай, общайся, развивайся вместе с bookTalk",
+                    style: text.titleMedium?.copyWith(color: colors.onBackground),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Text(
+                    "Создайте собственный книжный клуб или присоединитесь к обсуждению книг любимых жанров в приложении bookTalk",
+                    style: text.labelMedium?.copyWith(color: colors.outline),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(top: 43),
+                child: MainOutlineButton(
+                  label: "Войти",
+                  icon: MdiIcons.login,
+                  onTap: (){
+                    context.router.navigate(const AuthorizationRoute());
+                  },
+                ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: MainPrimaryButton(
+                    label: "Зарегистрироваться",
+                    icon: MdiIcons.plus,
+                    onTap: (){
+                      context.router.navigate(const RegistrationRoute());
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );*/
   }
 }
