@@ -112,7 +112,12 @@ class BookClubPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: MainPrimaryButton(
-                      label: 'Обсуждения', icon: MdiIcons.arrowRight),
+                    label: 'Обсуждения',
+                    icon: MdiIcons.arrowRight,
+                    onTap: () {
+                      context.navigateTo(const DiscussionListRoute());
+                    },
+                  ),
                 ),
                 EventListWidget(events: events),
               ],
