@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/pages/book_club_list_page/tabs/my_clubs_tab.dart';
 import 'package:booktalk_frontend/pages/book_club_list_page/tabs/recommendations_tab.dart';
+import 'package:booktalk_frontend/pages/book_club_list_page/tabs/subscriptions_tab.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/search_field.dart';
@@ -48,7 +49,7 @@ class BookClubListPage extends StatelessWidget {
         ),
         body: const TabBarView(
           children: [
-            Center(child: Text('я участник')),
+            SubscriptionsTab(),
             RecommendationsTab(),
             MyClubsTab(),
           ],
