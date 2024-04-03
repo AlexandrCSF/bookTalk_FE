@@ -41,86 +41,91 @@ class ProfilePage extends StatelessWidget {
             )
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
-          child: Align(
-            alignment: Alignment.center,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 37),
-                  child: CircleAvatar(
-                    radius: 77.5,
-                    backgroundImage: Image.asset('lib/images/avatar.jpg').image,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Align(
+              alignment: Alignment.center,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 37),
+                    child: CircleAvatar(
+                      radius: 77.5,
+                      backgroundImage: Image.asset('lib/images/avatar.jpg').image,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Роберт Серый",
-                        style:
-                            text.titleMedium?.copyWith(color: colors.onSurface),
-                      ),
-                      Text(
-                        "robert_seryi@mail.ru",
-                        style:
-                            text.headlineMedium?.copyWith(color: colors.outline),
-                      ),
-                      Text(
-                        "г.Воронеж",
-                        style:
-                            text.headlineMedium?.copyWith(color: colors.outline),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 25),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Мои интересы",
-                        style:
-                            text.headlineLarge?.copyWith(color: colors.onSurface),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 9),
-                        child: Wrap(
-                          children: [
-                            for (String tag in tags)
-                              TagWidget(
-                                tag: tag,
-                              ),
-                          ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Column(
+                      children: [
+                        Text(
+                          "Роберт Серый",
+                          style:
+                              text.titleMedium?.copyWith(color: colors.onSurface),
                         ),
-                      ),
-                    ],
+                        Text(
+                          "robert_seryi@mail.ru",
+                          style:
+                              text.headlineMedium?.copyWith(color: colors.outline),
+                        ),
+                        Text(
+                          "г.Воронеж",
+                          style:
+                              text.headlineMedium?.copyWith(color: colors.outline),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 46),
-                  child: MainPrimaryButton(
-                    label: "Создать клуб",
-                    icon: MdiIcons.plus,
-                    onTap: (){
-                      context.router.navigate(const CreateClubRoute());
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Мои интересы",
+                          style:
+                              text.headlineLarge?.copyWith(color: colors.onSurface),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 9),
+                          child: Wrap(
+                            alignment: WrapAlignment.spaceBetween,
+                            spacing: 8,
+                            runSpacing: 7,
+                            children: [
+                              for (String tag in tags)
+                                TagWidget(
+                                  tag: tag,
+                                ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 12),
-                  child: MainOutlineButton(
-                    label: "Выйти",
-                    icon: MdiIcons.logout,
-                    onTap: (){
-                      context.router.navigate(const AuthorizationRoute());
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(top: 46),
+                    child: MainPrimaryButton(
+                      label: "Создать клуб",
+                      icon: MdiIcons.plus,
+                      onTap: (){
+                        context.router.navigate(const CreateClubRoute());
+                      },
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 12),
+                    child: MainOutlineButton(
+                      label: "Выйти",
+                      icon: MdiIcons.logout,
+                      onTap: (){
+                        context.router.navigate(const AuthorizationRoute());
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

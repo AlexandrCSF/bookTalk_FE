@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TagWidget extends StatelessWidget {
+class ChosenTagWidget extends StatelessWidget {
   final String tag;
 
-  const TagWidget({
+  const ChosenTagWidget({
     super.key,
     required this.tag
   });
@@ -16,15 +16,13 @@ class TagWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: colors.primary,
-        ),
+        color: colors.primary,
       ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(11, 4, 11, 4),
         child: Text(
           tag,
-          style: text.labelMedium?.copyWith(color: colors.primary),
+          style: text.labelMedium?.copyWith(color: colors.background),
         ),
       ),
     );

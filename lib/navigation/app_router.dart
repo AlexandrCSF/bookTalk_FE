@@ -89,6 +89,10 @@ class AppRouter extends _$AppRouter {
           path: '/create-club',
           page: CreateClubRoute.page,
         ),
+        AutoRoute(
+          path: '/authorization',
+          page: AuthorizationRoute.page,
+        ),
       ];
 }
 

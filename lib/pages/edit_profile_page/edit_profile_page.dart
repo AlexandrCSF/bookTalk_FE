@@ -43,88 +43,93 @@ class EditProfilePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 60, right: 60),
-        child: Align(
-          alignment: Alignment.center,
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap: () {},
-                child: Stack(
-                  alignment: Alignment.bottomRight,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 40, bottom: 10),
-                      child: CircleAvatar(
-                        radius: 72,
-                        backgroundImage:
-                            Image.asset('lib/images/avatar.jpg').image,
-                      ),
-                    ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: colors.onPrimary,
-                        border: Border.all(
-                          color: colors.primary,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 60, right: 60),
+          child: Align(
+            alignment: Alignment.center,
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: () {},
+                  child: Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 40, bottom: 10),
+                        child: CircleAvatar(
+                          radius: 72,
+                          backgroundImage:
+                              Image.asset('lib/images/avatar.jpg').image,
                         ),
                       ),
-                      child: Icon(
-                        MdiIcons.plus,
-                        color: colors.primary,
-                        size: 28,
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: colors.onPrimary,
+                          border: Border.all(
+                            color: colors.primary,
+                          ),
+                        ),
+                        child: Icon(
+                          MdiIcons.plus,
+                          color: colors.primary,
+                          size: 28,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                const TextFieldWidget(label: "Имя и фамилия", hintText: "Введите имя и фамилию", text: "Роберт Серый"),
+                const TextFieldWidget(label: "Город",hintText: "Введите ваш город", text: "Воронеж"),
+                const TextFieldWidget(label: "Почта", hintText: "Введите почту", text: "robert_seryi@mail.ru"),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "Мои интересы",
+                          style:
+                          text.headlineLarge?.copyWith(color: colors.onSurface),
+                        ),
                       ),
-                    )
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            for (String tag in tags)
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 7),
+                                child: TagWidget(
+                                  tag: tag,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-              ),
-              const TextFieldWidget(label: "Имя и фамилия", hintText: "Введите имя и фамилию", text: "Роберт Серый"),
-              const TextFieldWidget(label: "Город",hintText: "Введите ваш город", text: "Воронеж"),
-              const TextFieldWidget(label: "Почта", hintText: "Введите почту", text: "robert_seryi@mail.ru"),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 5),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Мои интересы",
-                        style:
-                        text.headlineLarge?.copyWith(color: colors.onSurface),
-                      ),
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 3),
+                  child: MainOutlineButton(
+                    label: "Добавить",
+                    icon: MdiIcons.arrowRight,
+                    onTap: (){
+                      context.router.navigate(InterestsRoute());
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 5),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          for (String tag in tags)
-                            TagWidget(
-                              tag: tag,
-                            ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: MainOutlineButton(
-                  label: "Добавить",
-                  icon: MdiIcons.arrowRight,
-                  onTap: (){
-                    context.router.navigate(InterestsRoute());
-                  },
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
