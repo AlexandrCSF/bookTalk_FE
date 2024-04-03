@@ -34,7 +34,7 @@ class BookTalkApp extends StatelessWidget {
         ),
         textTheme: TextTheme(
           titleLarge: GoogleFonts.inter(
-            fontSize: 34,
+            fontSize: 32,
             fontWeight: FontWeight.w900,
           ),
           titleMedium: GoogleFonts.inter(
@@ -72,67 +72,6 @@ class BookTalkApp extends StatelessWidget {
             height: 1,
           ),
         ),
-        /*textTheme: TextTheme(
-          titleLarge: GoogleFonts.inter(
-            fontSize: 32,
-            fontWeight: FontWeight.w900,
-          ),
-          titleMedium: GoogleFonts.inter(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-          headlineLarge: GoogleFonts.inter(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-          headlineMedium: GoogleFonts.inter(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-          headlineSmall: GoogleFonts.inter(
-            fontSize: 16,
-            fontWeight: FontWeight.normal,
-          ),
-          labelMedium: GoogleFonts.inter(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-          ),
-          bodyLarge: GoogleFonts.inter(
-            fontSize: 13,
-            fontWeight: FontWeight.bold,
-          ),
-          bodyMedium: GoogleFonts.inter(
-            fontSize: 13,
-            fontWeight: FontWeight.normal,
-          ),
-          bodySmall: GoogleFonts.inter(
-            fontSize: 10,
-            fontWeight: FontWeight.bold,
-          ),
-        ),*/
-        /*textTheme: TextTheme(
-          bodyLarge: GoogleFonts.inter(
-            fontSize: 20,
-          ),
-          bodyMedium: GoogleFonts.inter(
-            fontSize: 18,
-          ),
-          bodySmall: GoogleFonts.inter(
-            fontSize: 16,
-          ),
-          titleMedium: GoogleFonts.inter(
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
-          ),
-          titleSmall: GoogleFonts.inter(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-          headlineMedium: GoogleFonts.inter(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),*/
       ),
     );
   }

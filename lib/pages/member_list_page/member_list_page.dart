@@ -1,12 +1,10 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/pages/member_list_page/widgets/member_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
-import 'widgets/event_card.dart';
+import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
-class EventListPage extends StatelessWidget {
-  const EventListPage({super.key});
+class MemberListPage extends StatelessWidget {
+  const MemberListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,35 +18,23 @@ class EventListPage extends StatelessWidget {
         leading: AutoLeadingButton(
           color: colors.primary,
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(
-                MdiIcons.plus,
-                color: colors.primary,
-              ),
-            ),
-          ),
-        ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5),
         child: ListView.builder(
-          itemCount: 7,
+          itemCount: 1 + 20,
           itemBuilder: (context, index) {
             if (index == 0) {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 20.0, top: 20.0),
                 child: Text(
-                  "Ближайшие мероприятия",
+                  "Участники клуба",
                   style: text.headlineLarge?.copyWith(color: colors.onSurface),
                 ),
               );
             }
             else {
-              return EventCard();
+              return const MemberTile();
             }
           },
         ),

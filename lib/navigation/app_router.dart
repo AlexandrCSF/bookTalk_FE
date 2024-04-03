@@ -10,6 +10,7 @@ import '../pages/event_list_page/event_list_page.dart';
 import '../pages/book_club_page/book_club_page.dart';
 import '../pages/book_club_list_page/book_club_list_page.dart';
 import '../pages/interests_page/interests_page.dart';
+import '../pages/member_list_page/member_list_page.dart';
 import '../pages/my_events_page/my_events_page.dart';
 import '../pages/profile_page/profile_page.dart';
 import '../pages/home_page/home_page.dart';
@@ -62,6 +63,10 @@ class AppRouter extends _$AppRouter {
                   path: 'discussion:id',
                   page: DiscussionRoute.page,
                 ),
+                AutoRoute(
+                  path: 'member-list',
+                  page: MemberListRoute.page,
+                )
               ],
             ),
             AutoRoute(
