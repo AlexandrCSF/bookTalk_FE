@@ -13,6 +13,9 @@ class ClubTags extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 9),
       child: Wrap(
+        alignment: WrapAlignment.spaceBetween,
+        spacing: 8,
+        runSpacing: 7,
         children: [
           for (String tag in tags)
             TagWidget(

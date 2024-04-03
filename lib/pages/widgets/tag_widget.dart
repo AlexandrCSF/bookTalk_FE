@@ -13,21 +13,18 @@ class TagWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 7, right: 8),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: colors.primary,
-          ),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: colors.primary,
         ),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(11, 4, 11, 4),
-          child: Text(
-            tag,
-            style: text.labelMedium?.copyWith(color: colors.primary),
-          ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(11, 4, 11, 4),
+        child: Text(
+          tag,
+          style: text.labelMedium?.copyWith(color: colors.primary),
         ),
       ),
     );

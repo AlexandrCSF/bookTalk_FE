@@ -29,40 +29,43 @@ class MyEventsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colors.background,
+        surfaceTintColor: colors.background,
         elevation: 0,
         title: Text(
           'Мероприятия',
           style: text.headlineLarge?.copyWith(color: colors.primary),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(
-            right: 20.0, left: 20.0, top: 5.0, bottom: 10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const Calendar(),
-            EventListWidget(events: todayEvents, title: "Мероприятия сегодня"),
-            EventListWidget(events: events, title: "Ближайшие мероприятия",),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(
+              right: 20.0, left: 20.0, top: 5.0, bottom: 10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const Calendar(),
+              EventListWidget(events: todayEvents, title: "Мероприятия сегодня"),
+              EventListWidget(events: events, title: "Ближайшие мероприятия",),
+            ],
+          ),
+          /*child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Calendar(),
+              const InfoText(
+                regularText: 'Чтобы просматривать мероприятия, нужно ',
+                boldText: 'войти или зарегистрироваться',
+              ),
+              MainPrimaryButton(
+                label: 'Авторизоваться',
+                icon: MdiIcons.arrowRight,
+                onTap: () {
+                  context.navigateTo(const BookClubListTab(children: [ BookClubListRoute() ]));
+                },
+              )
+            ],
+          ),*/
         ),
-        /*child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Calendar(),
-            const InfoText(
-              regularText: 'Чтобы просматривать мероприятия, нужно ',
-              boldText: 'войти или зарегистрироваться',
-            ),
-            MainPrimaryButton(
-              label: 'Авторизоваться',
-              icon: MdiIcons.arrowRight,
-              onTap: () {
-                context.navigateTo(const BookClubListTab(children: [ BookClubListRoute() ]));
-              },
-            )
-          ],
-        ),*/
       ),
     );
   }
