@@ -16,12 +16,9 @@ class EditAvatarWidget extends StatelessWidget {
       child: Stack(
         alignment: Alignment.bottomRight,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 40, bottom: 10),
-            child: CircleAvatar(
-              radius: 72,
-              backgroundImage: img.image,
-            ),
+          CircleAvatar(
+            radius: 72,
+            backgroundImage: img.image,
           ),
           Container(
             width: 40,

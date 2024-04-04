@@ -8,12 +8,9 @@ class AvatarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 37),
-      child: CircleAvatar(
-        radius: 77.5,
-        backgroundImage: img.image,
-      ),
+    return CircleAvatar(
+      radius: 77.5,
+      backgroundImage: img.image,
     );
   }
 }

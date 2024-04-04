@@ -50,7 +50,10 @@ class ProfilePage extends StatelessWidget {
               alignment: Alignment.center,
               child: Column(
                 children: [
-                  AvatarWidget(img: img ??= Image.asset('lib/images/base_avatar.png')),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 37),
+                    child: AvatarWidget(img: img ??= Image.asset('lib/images/base_avatar.png')),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16),
                     child: Column(

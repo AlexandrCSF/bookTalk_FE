@@ -52,7 +52,10 @@ class EditProfilePage extends StatelessWidget {
             alignment: Alignment.center,
             child: Column(
               children: [
-                EditAvatarWidget(img: img ??= Image.asset('lib/images/base_avatar.png')),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40, bottom: 10),
+                  child: EditAvatarWidget(img: img ??= Image.asset('lib/images/base_avatar.png')),
+                ),
                 const TextFieldWidget(label: "Имя и фамилия", hintText: "Введите имя и фамилию", text: "Роберт Серый"),
                 const TextFieldWidget(label: "Город",hintText: "Введите ваш город", text: "Воронеж"),
                 const TextFieldWidget(label: "Почта", hintText: "Введите почту", text: "robert_seryi@mail.ru"),
