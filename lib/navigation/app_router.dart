@@ -71,11 +71,11 @@ class AppRouter extends _$AppRouter {
                   page: MemberListRoute.page,
                 ),
                 AutoRoute(
-                  path: '/create-event',
+                  path: 'create-event',
                   page: CreateEventRoute.page,
                 ),
                 AutoRoute(
-                  path: '/edit-event',
+                  path: 'edit-event',
                   page: EditEventRoute.page,
                 ),
               ],

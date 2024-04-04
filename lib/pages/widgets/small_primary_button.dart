@@ -13,17 +13,20 @@ class SmallPrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    return Container(
-      width: 45,
-      height: 45,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: colors.primary,
-      ),
-      child: Icon(
-        icon,
-        color: colors.onPrimary,
-        size: 28,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 45,
+        height: 45,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: colors.primary,
+        ),
+        child: Icon(
+          icon,
+          color: colors.onPrimary,
+          size: 28,
+        ),
       ),
     );
   }

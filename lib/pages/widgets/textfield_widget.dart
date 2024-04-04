@@ -36,6 +36,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           ),
           TextFormField(
             /*controller: controller,*/
+            textAlign: TextAlign.start,
+            textAlignVertical: TextAlignVertical.center,
             initialValue: widget.text,
             maxLines: widget.maxLines,
             style: text.labelMedium
@@ -44,8 +46,6 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               hintText: widget.hintText,
               hintStyle:
               text.labelMedium?.copyWith(color: colors.outline),
-              contentPadding:
-              const EdgeInsets.fromLTRB(10, 10, 10, 0),
               fillColor: colors.onInverseSurface,
               filled: true,
               enabledBorder: OutlineInputBorder(
