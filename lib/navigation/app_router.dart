@@ -15,6 +15,9 @@ import '../pages/my_events_page/my_events_page.dart';
 import '../pages/profile_page/profile_page.dart';
 import '../pages/home_page/home_page.dart';
 import '../pages/registration_page/registration_page.dart';
+import '../pages/create_event_page/create_event_page.dart';
+import '../pages/edit_club_page/edit_club_page.dart';
+import '../pages/edit_event_page/edit_event_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -66,7 +69,15 @@ class AppRouter extends _$AppRouter {
                 AutoRoute(
                   path: 'member-list',
                   page: MemberListRoute.page,
-                )
+                ),
+                AutoRoute(
+                  path: '/create-event',
+                  page: CreateEventRoute.page,
+                ),
+                AutoRoute(
+                  path: '/edit-event',
+                  page: EditEventRoute.page,
+                ),
               ],
             ),
             AutoRoute(
@@ -97,6 +108,10 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           path: '/authorization',
           page: AuthorizationRoute.page,
+        ),
+        AutoRoute(
+          path: '/edit-club',
+          page: EditClubRoute.page,
         ),
       ];
 }

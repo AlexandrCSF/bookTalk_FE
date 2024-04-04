@@ -56,9 +56,9 @@ class EditProfilePage extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 40, bottom: 10),
                   child: EditAvatarWidget(img: img ??= Image.asset('lib/images/base_avatar.png')),
                 ),
-                const TextFieldWidget(label: "Имя и фамилия", hintText: "Введите имя и фамилию", text: "Роберт Серый"),
-                const TextFieldWidget(label: "Город",hintText: "Введите ваш город", text: "Воронеж"),
-                const TextFieldWidget(label: "Почта", hintText: "Введите почту", text: "robert_seryi@mail.ru"),
+                const TextFieldWidget(label: "Имя и фамилия", hintText: "Введите имя и фамилию", text: "Роберт Серый", maxLines: 1),
+                const TextFieldWidget(label: "Город",hintText: "Введите ваш город", text: "Воронеж", maxLines: 1),
+                const TextFieldWidget(label: "Почта", hintText: "Введите почту", text: "robert_seryi@mail.ru", maxLines: 1),
                 Column(
                   children: [
                     Padding(

@@ -55,6 +55,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CreateClubPage(),
       );
     },
+    CreateEventRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CreateEventPage(),
+      );
+    },
     DiscussionListRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -65,6 +71,18 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const DiscussionPage(),
+      );
+    },
+    EditClubRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const EditClubPage(),
+      );
+    },
+    EditEventRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const EditEventPage(),
       );
     },
     EditProfileRoute.name: (routeData) {
@@ -226,6 +244,20 @@ class CreateClubRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CreateEventPage]
+class CreateEventRoute extends PageRouteInfo<void> {
+  const CreateEventRoute({List<PageRouteInfo>? children})
+      : super(
+          CreateEventRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CreateEventRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [DiscussionListPage]
 class DiscussionListRoute extends PageRouteInfo<void> {
   const DiscussionListRoute({List<PageRouteInfo>? children})
@@ -249,6 +281,34 @@ class DiscussionRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'DiscussionRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EditClubPage]
+class EditClubRoute extends PageRouteInfo<void> {
+  const EditClubRoute({List<PageRouteInfo>? children})
+      : super(
+          EditClubRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EditClubRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EditEventPage]
+class EditEventRoute extends PageRouteInfo<void> {
+  const EditEventRoute({List<PageRouteInfo>? children})
+      : super(
+          EditEventRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EditEventRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

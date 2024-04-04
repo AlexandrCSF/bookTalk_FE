@@ -5,9 +5,10 @@ class TextFieldWidget extends StatefulWidget {
   final String label;
   final String hintText;
   final String text;
+  final int maxLines;
 
 
-  const TextFieldWidget({super.key, required this.label, required this.hintText, required this.text});
+  const TextFieldWidget({super.key, required this.label, required this.hintText, required this.text, required this.maxLines});
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
@@ -36,6 +37,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           TextFormField(
             /*controller: controller,*/
             initialValue: widget.text,
+            maxLines: widget.maxLines,
             style: text.labelMedium
                 ?.copyWith(color: colors.onBackground),
             decoration: InputDecoration(
