@@ -110,6 +110,10 @@ class AppRouter extends _$AppRouter {
           page: AuthorizationRoute.page,
         ),
         AutoRoute(
+          path: '/registration',
+          page: RegistrationRoute.page,
+        ),
+        AutoRoute(
           path: '/edit-club',
           page: EditClubRoute.page,
         ),

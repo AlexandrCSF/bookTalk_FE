@@ -39,7 +39,7 @@ class DiscussionPage extends StatelessWidget {
                         CircleAvatar(
                           radius: 30,
                           backgroundImage:
-                              Image.asset('lib/images/5_3.jpg').image,
+                              Image.asset('lib/images/base_avatar.png').image,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20.0),

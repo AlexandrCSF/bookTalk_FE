@@ -38,7 +38,7 @@ class DiscussionCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
+                  padding: const EdgeInsets.only(top: 10.0),
                   child: Text('Также как базовый вектор развития способствует подготовке и '
                       'реализации системы массового участия. Ясность нашей позиции '
                       'очевидна: консультация с широким активом позволяет оценить '

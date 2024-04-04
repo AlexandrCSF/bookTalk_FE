@@ -110,7 +110,14 @@ class _BookClubPageState extends State<BookClubPage> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
-                  child: _isSubscribed
+                  child: MainPrimaryButton(
+                    label: 'Редактировать',
+                    icon: MdiIcons.pencil,
+                    onTap: () {
+                      context.router.navigate(const EditClubRoute());
+                    },
+                  ),
+                  /*child: _isSubscribed
                       ? MainOutlineButton(
                           label: 'Вы вступили',
                           icon: MdiIcons.check,
@@ -120,7 +127,7 @@ class _BookClubPageState extends State<BookClubPage> {
                           label: 'Вступить',
                           icon: MdiIcons.plus,
                           onTap: _toggleSubscribe,
-                        ),
+                        ),*/
                 ),
                 const ClubDescription(
                   description: 'Не следует, однако, забывать, что новая '

@@ -16,11 +16,11 @@ class MemberTile extends StatelessWidget {
           CircleAvatar(
             radius: 20,
             backgroundImage: Image
-                .asset('lib/images/5_3.jpg')
+                .asset('lib/images/base_avatar.png')
                 .image,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10.0),
+            padding: const EdgeInsets.only(left: 15.0),
             child: Text(
               'Имя Фамилия',
               style: text.headlineLarge
