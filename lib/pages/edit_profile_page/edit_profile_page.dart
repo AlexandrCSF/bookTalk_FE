@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/navigation/app_router.dart';
+import 'package:booktalk_frontend/pages/widgets/edit_avatar_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/main_outline_button.dart';
 import 'package:booktalk_frontend/pages/widgets/textfield_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,6 +18,7 @@ class EditProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    Image? img /*= Image.asset('lib/images/avatar.jpg')*/;
     List<String> tags = ["#детектив", "#исторический_роман", "#юмор"];
     return Scaffold(
       appBar: AppBar(
@@ -50,38 +52,7 @@ class EditProfilePage extends StatelessWidget {
             alignment: Alignment.center,
             child: Column(
               children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: Stack(
-                    alignment: Alignment.bottomRight,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 40, bottom: 10),
-                        child: CircleAvatar(
-                          radius: 72,
-                          backgroundImage:
-                              Image.asset('lib/images/avatar.jpg').image,
-                        ),
-                      ),
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: colors.onPrimary,
-                          border: Border.all(
-                            color: colors.primary,
-                          ),
-                        ),
-                        child: Icon(
-                          MdiIcons.plus,
-                          color: colors.primary,
-                          size: 28,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                EditAvatarWidget(img: img ??= Image.asset('lib/images/base_avatar.png')),
                 const TextFieldWidget(label: "Имя и фамилия", hintText: "Введите имя и фамилию", text: "Роберт Серый"),
                 const TextFieldWidget(label: "Город",hintText: "Введите ваш город", text: "Воронеж"),
                 const TextFieldWidget(label: "Почта", hintText: "Введите почту", text: "robert_seryi@mail.ru"),

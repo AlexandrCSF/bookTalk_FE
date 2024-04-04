@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/navigation/app_router.dart';
+import 'package:booktalk_frontend/pages/widgets/avatar_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/main_outline_button.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:booktalk_frontend/pages/widgets/tag_widget.dart';
@@ -16,6 +17,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    Image? img /*= Image.asset('lib/images/avatar.jpg')*/;
     List<String> tags = ["#детектив", "#исторический_роман", "#юмор"];
     return Scaffold(
         appBar: AppBar(
@@ -48,13 +50,7 @@ class ProfilePage extends StatelessWidget {
               alignment: Alignment.center,
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 37),
-                    child: CircleAvatar(
-                      radius: 77.5,
-                      backgroundImage: Image.asset('lib/images/avatar.jpg').image,
-                    ),
-                  ),
+                  AvatarWidget(img: img ??= Image.asset('lib/images/base_avatar.png')),
                   Padding(
                     padding: const EdgeInsets.only(top: 16),
                     child: Column(
