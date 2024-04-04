@@ -134,9 +134,9 @@ class ProfilePage extends StatelessWidget {
 
 
     /*return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 80),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20, top: 80),
           child: Align(
             alignment: Alignment.center,
             child: Column(

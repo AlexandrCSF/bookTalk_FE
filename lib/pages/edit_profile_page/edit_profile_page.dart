@@ -81,7 +81,7 @@ class EditProfilePage extends StatelessWidget {
                           children: [
                             for (String tag in tags)
                               Padding(
-                                padding: const EdgeInsets.only(bottom: 7),
+                                padding: const EdgeInsets.only(bottom: 5),
                                 child: TagWidget(
                                   tag: tag,
                                 ),
@@ -93,12 +93,12 @@ class EditProfilePage extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 3),
+                  padding: const EdgeInsets.only(top: 5),
                   child: MainOutlineButton(
                     label: "Добавить",
                     icon: MdiIcons.arrowRight,
                     onTap: (){
-                      context.router.navigate(InterestsRoute());
+                      context.router.navigate(const InterestsRoute());
                     },
                   ),
                 ),
