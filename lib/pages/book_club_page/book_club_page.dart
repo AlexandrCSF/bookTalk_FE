@@ -141,7 +141,7 @@ class _BookClubPageState extends State<BookClubPage> {
                 ),
                 ClubTags(tags: tags),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10.0),
+                  padding: const EdgeInsets.only(top: 20.0),
                   child: MainPrimaryButton(
                     label: 'Обсуждения',
                     icon: MdiIcons.arrowRight,
