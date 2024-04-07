@@ -12,7 +12,7 @@ class CreateDiscussionDialog extends StatelessWidget {
     return AlertDialog(
       surfaceTintColor: colors.surface,
       content: Container(
-        height: 390,
+        height: 410,
         width: 320,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
