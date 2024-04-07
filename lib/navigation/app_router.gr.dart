@@ -80,9 +80,17 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     EditEventRoute.name: (routeData) {
+      final args = routeData.argsAs<EditEventRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const EditEventPage(),
+        child: EditEventPage(
+          key: args.key,
+          topic: args.topic,
+          city: args.city,
+          date: args.date,
+          time: args.time,
+          place: args.place,
+        ),
       );
     },
     EditProfileRoute.name: (routeData) {
@@ -301,16 +309,60 @@ class EditClubRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [EditEventPage]
-class EditEventRoute extends PageRouteInfo<void> {
-  const EditEventRoute({List<PageRouteInfo>? children})
-      : super(
+class EditEventRoute extends PageRouteInfo<EditEventRouteArgs> {
+  EditEventRoute({
+    Key? key,
+    required String topic,
+    required String city,
+    required String date,
+    required String time,
+    required String place,
+    List<PageRouteInfo>? children,
+  }) : super(
           EditEventRoute.name,
+          args: EditEventRouteArgs(
+            key: key,
+            topic: topic,
+            city: city,
+            date: date,
+            time: time,
+            place: place,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'EditEventRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<EditEventRouteArgs> page =
+      PageInfo<EditEventRouteArgs>(name);
+}
+
+class EditEventRouteArgs {
+  const EditEventRouteArgs({
+    this.key,
+    required this.topic,
+    required this.city,
+    required this.date,
+    required this.time,
+    required this.place,
+  });
+
+  final Key? key;
+
+  final String topic;
+
+  final String city;
+
+  final String date;
+
+  final String time;
+
+  final String place;
+
+  @override
+  String toString() {
+    return 'EditEventRouteArgs{key: $key, topic: $topic, city: $city, date: $date, time: $time, place: $place}';
+  }
 }
 
 /// generated route for

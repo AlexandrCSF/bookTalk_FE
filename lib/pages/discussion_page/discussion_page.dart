@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/pages/discussion_page/widgets/create_comment_dialog.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -6,8 +7,22 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'widgets/comment_card.dart';
 
 @RoutePage()
-class DiscussionPage extends StatelessWidget {
+class DiscussionPage extends StatefulWidget {
   const DiscussionPage({super.key});
+
+  @override
+  State<DiscussionPage> createState() => _DiscussionPageState();
+}
+
+class _DiscussionPageState extends State<DiscussionPage> {
+  void _createComment() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return CreateCommentDialog();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +54,7 @@ class DiscussionPage extends StatelessWidget {
                         CircleAvatar(
                           radius: 30,
                           backgroundImage:
-                              Image.asset('lib/images/5_3.jpg').image,
+                              Image.asset('lib/images/base_avatar.png').image,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20.0),
@@ -84,6 +99,7 @@ class DiscussionPage extends StatelessWidget {
               child: MainPrimaryButton(
                 label: 'Написать комментарий',
                 icon: MdiIcons.pencil,
+                onTap: _createComment,
               ),
             ),
           ],

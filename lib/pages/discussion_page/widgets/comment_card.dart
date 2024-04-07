@@ -34,7 +34,7 @@ class CommentCard extends StatelessWidget {
                   CircleAvatar(
                     radius: 20,
                     backgroundImage: Image
-                        .asset('lib/images/5_3.jpg')
+                        .asset('lib/images/base_avatar.png')
                         .image,
                   ),
                   Padding(
@@ -53,10 +53,7 @@ class CommentCard extends StatelessWidget {
                   'Также как базовый вектор развития способствует подготовке и '
                       'реализации системы массового участия. Ясность нашей позиции '
                       'очевидна: консультация с широким активом позволяет оценить '
-                      'значение благоприятных перспектив. В частности, глубокий '
-                      'уровень погружения, а также свежий взгляд на привычные '
-                      'вещи — безусловно открывает новые горизонты для позиций, '
-                      'занимаемых участниками в отношении поставленных задач.',
+                      'значение благоприятных перспектив.',
                   style: text.bodyMedium?.copyWith(color: colors.outline),
                 ),
               ),
