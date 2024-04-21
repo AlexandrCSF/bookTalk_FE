@@ -93,7 +93,7 @@ class EditProfilePage extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 5),
+                  padding: const EdgeInsets.only(top: 5, bottom: 36),
                   child: MainOutlineButton(
                     label: "Добавить",
                     icon: MdiIcons.arrowRight,
