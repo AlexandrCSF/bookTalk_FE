@@ -18,7 +18,7 @@ abstract class _$AppRouter extends RootStackRouter {
     AuthorizationRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const AuthorizationPage(),
+        child: AuthorizationPage(),
       );
     },
     BookClubListRoute.name: (routeData) {
@@ -64,7 +64,7 @@ abstract class _$AppRouter extends RootStackRouter {
     DiscussionListRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const DiscussionListPage(),
+        child: DiscussionListPage(),
       );
     },
     DiscussionRoute.name: (routeData) {
@@ -138,7 +138,7 @@ abstract class _$AppRouter extends RootStackRouter {
     ProfileRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ProfilePage(),
+        child: ProfilePage(),
       );
     },
     ProfileTab.name: (routeData) {

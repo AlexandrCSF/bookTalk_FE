@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "919263431638",
+    "project_id": "booktalk-d9318",
+    "storage_bucket": "booktalk-d9318.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919263431638:android:4af9f250b9676712837277",
+        "android_client_info": {
+          "package_name": "com.example.booktalk_frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxJZU11i10MnLhtRRa2wnvtO6cPm9h_2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

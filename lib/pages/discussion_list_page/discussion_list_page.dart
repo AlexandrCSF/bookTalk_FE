@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/analytics/analytics.dart';
 import 'package:booktalk_frontend/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/discussion_list_page/widgets/create_discussion_dialog.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -8,20 +10,23 @@ import 'widgets/discussion_card.dart';
 
 @RoutePage()
 class DiscussionListPage extends StatefulWidget {
-  const DiscussionListPage({super.key});
+  DiscussionListPage({super.key});
+
+  final Analytics analytics = Analytics(analytics: FirebaseAnalytics.instance);
 
   @override
   State<DiscussionListPage> createState() => _DiscussionListPageState();
 }
 
 class _DiscussionListPageState extends State<DiscussionListPage> {
-  void _createDiscussion() {
+  void _createDiscussion() async {
     showDialog(
       context: context,
       builder: (context) {
-        return CreateDiscussionDialog();
+        return const CreateDiscussionDialog();
       },
     );
+    await widget.analytics.createComment();
   }
 
   @override

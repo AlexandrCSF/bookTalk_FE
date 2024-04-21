@@ -1,7 +1,10 @@
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:booktalk_frontend/pages/widgets/textfield_widget.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import '../../../analytics/analytics.dart';
 
 class CreateCommentDialog extends StatelessWidget {
   const CreateCommentDialog({super.key});
@@ -25,7 +28,9 @@ class CreateCommentDialog extends StatelessWidget {
             MainPrimaryButton(
               label: 'Добавить',
               icon: MdiIcons.check,
-              onTap: Navigator.of(context).pop,
+              onTap: () {
+                Navigator.of(context).pop;
+              },
             ),
           ],
         ),
