@@ -1,0 +1,313 @@
+[33mcommit e74a82874f3bb1d65652bf6759de94d7f688b13f[m[33m ([m[1;36mHEAD -> [m[1;32mfeature_analytics[m[33m)[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Sun Apr 21 21:00:15 2024 +0300
+
+    feat: add firebase analytics
+
+[33mcommit 2c28873ecb603a39e0db3e16fde29cb08bde40a5[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Sun Apr 21 13:40:47 2024 +0300
+
+    feat: add splash screen
+
+[33mcommit 2101831e6a9db04f9b33f09dc862d5ce7345edc4[m
+Merge: fd4986d e6fc760
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Sun Apr 7 20:38:41 2024 +0300
+
+    Merge branch 'feature_events'
+
+[33mcommit e6fc760e5f8718ce809c8e8b654047f07e1fccd2[m[33m ([m[1;32mfeature_events[m[33m)[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Sun Apr 7 20:37:28 2024 +0300
+
+    fix: change layout of new event dialog
+
+[33mcommit fd4986d39ffdbccbbed6f387c4cd9175812ef90a[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Sun Apr 7 20:20:23 2024 +0300
+
+    feat: implement create club page, authorization page and registration page
+
+[33mcommit c4723715840ff90ad4273652a2fd0cbd9e9b47ee[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Thu Apr 4 23:52:11 2024 +0300
+
+    feat: add dialogs for new discussion and new comment
+
+[33mcommit 82cd144bf5e36b1ee62fcc6adf3276c8c5ba5b28[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Thu Apr 4 23:18:49 2024 +0300
+
+    feat: implement edit club page
+
+[33mcommit 4d10a5a640bb2b3ca32a335253220b7b7299c23e[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Thu Apr 4 21:50:47 2024 +0300
+
+    fix: padding in profile page and edit profile page
+
+[33mcommit 301119accc84767a34e8f90eb8e89b5c7d921475[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Thu Apr 4 21:49:55 2024 +0300
+
+    feat: implement create club page
+
+[33mcommit 4421aa564fda14aa603584a1d2f9b032ea7a249e[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Thu Apr 4 21:46:09 2024 +0300
+
+    fix: content padding in TextFieldWidget
+
+[33mcommit 06cacde9529002fae11e1d2560de54b342c53ea7[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Thu Apr 4 21:45:17 2024 +0300
+
+    feat: implement authorization page
+
+[33mcommit f606499e8c27770aed2cacbda0493312dea5f845[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Thu Apr 4 16:11:19 2024 +0300
+
+    feat: implement create and edit event pages
+
+[33mcommit 8c071e95f6772ba4117b049092675eb5e9379950[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Thu Apr 4 11:15:41 2024 +0300
+
+    feat: add edit club, create event, edit event pages
+
+[33mcommit b8a89d5f298a4809e5faaf6c59a183e1944e9724[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Thu Apr 4 10:46:49 2024 +0300
+
+    fix: remove padding for avatar widgets
+
+[33mcommit 14a85dfef8f6e18ff1fcaa94347cd5b78f971500[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Thu Apr 4 10:33:19 2024 +0300
+
+    feat: add avatar widget for profile and edit profile
+
+[33mcommit 90b5ad596f6f09b98ac09f79698dea8fd01f9bb7[m
+Merge: cff1f63 3b5a705
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Wed Apr 3 13:14:25 2024 +0300
+
+    fix: merge conflicts
+
+[33mcommit cff1f63506c8783e7ae40c27d342ed69d69325c4[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Wed Apr 3 12:49:08 2024 +0300
+
+    feat: implement edit profile page and interests page
+
+[33mcommit 3b5a7050564a26bf2cfa0dfc5b403dbd06fdef2d[m[33m ([m[1;31morigin/feature_club_page[m[33m, [m[1;32mfeature_club_page[m[33m)[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Wed Apr 3 12:46:28 2024 +0300
+
+    fix: change tags layout
+
+[33mcommit f1d53be7f7d63720b541d9a4bd066b4831d0f2f4[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Tue Apr 2 23:49:57 2024 +0300
+
+    feat: add widget for text fields
+
+[33mcommit 4631d570689b683abed234c4b2ba73f9d9c9cc9f[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Tue Apr 2 23:47:10 2024 +0300
+
+    feat: add labels for create_club and interests_page
+
+[33mcommit 35db38bfcc1176b2731e01195f11bc718b69190b[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Tue Apr 2 23:46:23 2024 +0300
+
+    feat: implement first version of edit profile page
+
+[33mcommit 732d718be520f5f730fb902b21b5657b333718ee[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Tue Apr 2 23:45:05 2024 +0300
+
+    add profile page version for unauthorized user
+
+[33mcommit 6a16c9ae35ae8062fef039593d07bc9060c22389[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Apr 2 23:36:36 2024 +0300
+
+    fix: change button styles
+
+[33mcommit f510f49f553cc03e08c9466b277b1bbc0a196f1a[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Apr 2 23:25:18 2024 +0300
+
+    feat: implement subscribe button
+
+[33mcommit 0756c6335540f77d77c7112ca029706df72e3e38[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Apr 2 23:12:17 2024 +0300
+
+    fix: add events to my events page
+
+[33mcommit eebae7542df97a7bd58d83ba12f6c514d77ef5f0[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Apr 2 23:01:24 2024 +0300
+
+    feat: implement tabs for book club list tab view
+
+[33mcommit f6d36a3a691fd9a737717555f3cfe589d0033f86[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Apr 2 22:39:35 2024 +0300
+
+    fix: change comment cards padding
+
+[33mcommit 3f9f715a26b55b57ecb5ab17e7a36cd04a5cd832[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Apr 2 22:24:36 2024 +0300
+
+    fix: change event card aspect ratio
+
+[33mcommit 69a35c8cab2092b35849dfae3bb3d7f72dcfc480[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Apr 2 22:22:26 2024 +0300
+
+    feat: implement member list page
+
+[33mcommit 5c1da547a63a7c80453e3174208b6d181d1993d1[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Apr 2 21:16:44 2024 +0300
+
+    fix: change event list widget on club page
+
+[33mcommit f6155a39f6ac3d23729299b4fa076c5bf7e2112b[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Apr 2 18:38:17 2024 +0300
+
+    feat: implement discussion page
+
+[33mcommit f37dee03f801376909e569a8a2008e28c5b0183c[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Apr 2 17:51:07 2024 +0300
+
+    feat: implement discussion list page
+
+[33mcommit 7b68f8e910493af6a8c247cd635dd1473093c70c[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Tue Apr 2 16:51:04 2024 +0300
+
+    add profile_image for profile page
+
+[33mcommit 481a3cf8f8fbb21e512adeb0c518d4c75b827449[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Apr 2 16:35:33 2024 +0300
+
+    fix: create widgets for book club page
+
+[33mcommit 3f3fdae855c90d94c55c5d832bab669bd538b3bd[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Apr 2 15:09:45 2024 +0300
+
+    feat: implement book club page
+
+[33mcommit 02a4123fd2a60e2ffdc4f50dbfda66e68e69c102[m
+Author: marylarina <mashalar1510@gmail.com>
+Date:   Tue Apr 2 13:54:48 2024 +0300
+
+    feat: implement profile page
+
+[33mcommit 025e07585da2d88a7cce89edd95b3db907815169[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Sat Mar 30 18:13:25 2024 +0300
+
+    feat: add buttons
+
+[33mcommit e097515028c1a3f268686a4b0dce25f138a23964[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Sat Mar 30 17:23:22 2024 +0300
+
+    feat: add authorization, interests, registration pages
+
+[33mcommit 322064f1d7234d5c51cb54eea4ba58232d1852ba[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Sat Mar 30 16:20:32 2024 +0300
+
+    feat: add navigation to club page
+
+[33mcommit beb1369edfb29b0d3cd45141b209b8eade9a4192[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Fri Mar 29 20:09:27 2024 +0300
+
+    feat: add club card
+
+[33mcommit 069d8bdc8c920a9cec4b29e08f887fa1dbbc46b9[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Fri Mar 29 00:04:29 2024 +0300
+
+    feat: add pages for club, discussion, list of discussion, list of events
+
+[33mcommit d6cdb76f1a45719444cb7726cec3d1464e6bf4e7[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Mar 26 22:36:05 2024 +0300
+
+    fix: change search field height
+
+[33mcommit ef531c2ea0ed2989b1ea7e9a935e994b5d8e99a1[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Mar 26 18:39:53 2024 +0300
+
+    feat: add search field
+
+[33mcommit bb0bcf00d64d4359f8aa18f9f7f64da61fbbd733[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Mar 26 17:29:42 2024 +0300
+
+    fix: change date formatting for calendar
+
+[33mcommit 13e398b41c5aaffe176248999eb5c0e84f1ddee1[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Mar 26 16:11:08 2024 +0300
+
+    feat: add tab bar and tab bar view
+
+[33mcommit ca6dc213f7d3d9213e9e5a99c0587f06ce472811[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Tue Mar 26 01:06:59 2024 +0300
+
+    feat: implement my events page for unauthorized user
+
+[33mcommit edf5c50194ad1a9fca1460cffcdb1481305925d4[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Mon Mar 25 22:57:14 2024 +0300
+
+    feat: add color scheme
+
+[33mcommit 9e73dd584d35562074d76d8b6938b7a54b5460b8[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Mon Mar 25 22:31:03 2024 +0300
+
+    feat: implement navigation between three main tabs, add navigation bar
+
+[33mcommit 2ace54f7ac7c9b4e816a39ba5aaea98e7dd995ab[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Mon Mar 25 20:27:48 2024 +0300
+
+    feat: add profile page, my events page, list of clubs page
+
+[33mcommit 04c37af301042f508f4a271bd2f8a015a9f794d5[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Mon Mar 25 19:51:08 2024 +0300
+
+    init: add material app, home page
+
+[33mcommit 65c637a67e508991bcce9e167ac2620da0b0006f[m
+Author: zhekkkk <fedo5eeW@yandex.ru>
+Date:   Mon Mar 25 19:39:43 2024 +0300
+
+    init
+
+[33mcommit 335792c917e431ac0a48dc6960543bff16bf70d9[m
+Author: AlexandrCSF <100766761+AlexandrCSF@users.noreply.github.com>
+Date:   Sat Mar 9 12:31:38 2024 +0300
+
+    Initial commit

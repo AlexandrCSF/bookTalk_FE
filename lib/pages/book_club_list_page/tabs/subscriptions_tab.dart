@@ -9,8 +9,6 @@ import '../widgets/club_card.dart';
 class SubscriptionsTab extends StatelessWidget {
   SubscriptionsTab({super.key});
 
-  final Analytics analytics = Analytics(analytics: FirebaseAnalytics.instance);
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,8 +17,7 @@ class SubscriptionsTab extends StatelessWidget {
         itemCount: 5,
         itemBuilder: (context, index) {
           return ClubCard(
-            onTap: () async {
-              await analytics.openClubPage(index, 'name');
+            onTap: () {
               context.router.navigate(BookClubRoute());
             },
           );

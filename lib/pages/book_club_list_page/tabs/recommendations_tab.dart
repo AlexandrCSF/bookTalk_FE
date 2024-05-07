@@ -9,8 +9,6 @@ import '../widgets/club_card.dart';
 class RecommendationsTab extends StatelessWidget {
   RecommendationsTab({super.key});
 
-  final Analytics analytics = Analytics(analytics: FirebaseAnalytics.instance);
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,14 +17,7 @@ class RecommendationsTab extends StatelessWidget {
         itemCount: 7,
         itemBuilder: (context, index) {
           return ClubCard(
-            onTap: () async {
-              /*await analytics.logEvent(
-                name: 'open_club_page',
-                parameters: {
-                  "club_index": index,
-                },
-              );*/
-              await analytics.openClubPage(index, 'name');
+            onTap: () {
               context.router.navigate(BookClubRoute());
             },
           );

@@ -16,8 +16,6 @@ import '../../analytics/analytics.dart';
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
 
-  final Analytics analytics = Analytics(analytics: FirebaseAnalytics.instance);
-
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -123,8 +121,7 @@ class ProfilePage extends StatelessWidget {
                     child: MainOutlineButton(
                       label: "Выйти",
                       icon: MdiIcons.logout,
-                      onTap: () async {
-                        await analytics.signOut();
+                      onTap: () {
                         context.router.navigate(const AuthorizationRoute());
                       },
                     ),

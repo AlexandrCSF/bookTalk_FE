@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/analytics/analytics.dart';
 import 'package:booktalk_frontend/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/widgets/edit_avatar_widget.dart';
 import 'package:flutter/material.dart';

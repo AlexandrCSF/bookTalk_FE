@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/analytics/analytics.dart';
 import 'package:booktalk_frontend/pages/discussion_page/widgets/create_comment_dialog.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'widgets/comment_card.dart';
@@ -19,7 +21,7 @@ class _DiscussionPageState extends State<DiscussionPage> {
     showDialog(
       context: context,
       builder: (context) {
-        return CreateCommentDialog();
+        return const CreateCommentDialog();
       },
     );
   }

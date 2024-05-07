@@ -16,7 +16,7 @@ class Analytics {
 
   Future<void> unsubscribe(int index) async {
     await analytics.logEvent(
-      name: 'subscribe',
+      name: 'unsubscribe',
       parameters: {
         "club_index": index,
       },

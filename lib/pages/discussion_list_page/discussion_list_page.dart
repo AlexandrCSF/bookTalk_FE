@@ -12,21 +12,18 @@ import 'widgets/discussion_card.dart';
 class DiscussionListPage extends StatefulWidget {
   DiscussionListPage({super.key});
 
-  final Analytics analytics = Analytics(analytics: FirebaseAnalytics.instance);
-
   @override
   State<DiscussionListPage> createState() => _DiscussionListPageState();
 }
 
 class _DiscussionListPageState extends State<DiscussionListPage> {
-  void _createDiscussion() async {
+  void _createDiscussion() {
     showDialog(
       context: context,
       builder: (context) {
         return const CreateDiscussionDialog();
       },
     );
-    await widget.analytics.createComment();
   }
 
   @override

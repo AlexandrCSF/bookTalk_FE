@@ -1,7 +1,10 @@
+import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:booktalk_frontend/pages/widgets/textfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import '../../../analytics/analytics.dart';
 
 class CreateDiscussionDialog extends StatelessWidget {
   const CreateDiscussionDialog({super.key});
@@ -32,6 +35,7 @@ class CreateDiscussionDialog extends StatelessWidget {
               icon: MdiIcons.check,
               onTap: () {
                 Navigator.of(context).pop;
+                getIt.get<Analytics>().createDiscussion();
               },
             ),
           ],

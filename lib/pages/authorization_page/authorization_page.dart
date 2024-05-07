@@ -12,8 +12,6 @@ import '../widgets/main_primary_button.dart';
 class AuthorizationPage extends StatelessWidget {
   AuthorizationPage({super.key});
 
-  final Analytics analytics = Analytics(analytics: FirebaseAnalytics.instance);
-
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -68,8 +66,7 @@ class AuthorizationPage extends StatelessWidget {
         child: MainPrimaryButton(
           label: "Войти",
           icon: MdiIcons.login,
-          onTap: () async {
-            await analytics.signIn();
+          onTap: () {
             context.router.navigate(const MyEventsRoute());
           },
         ),
