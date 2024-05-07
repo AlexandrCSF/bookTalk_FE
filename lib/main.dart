@@ -21,7 +21,6 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   getIt.registerSingleton<Analytics>(
       Analytics(analytics: FirebaseAnalytics.instance));
-  //await initializeDependencies();
 
   initializeDateFormatting().then(
     (_) => runApp(

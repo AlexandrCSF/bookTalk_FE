@@ -1,6 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:booktalk_frontend/analytics/analytics.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import '../../../navigation/app_router.dart';
 import 'package:flutter/material.dart';
 
