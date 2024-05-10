@@ -16,9 +16,11 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     AuthorizationRoute.name: (routeData) {
+      final args = routeData.argsAs<AuthorizationRouteArgs>(
+          orElse: () => const AuthorizationRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: AuthorizationPage(),
+        child: AuthorizationPage(key: args.key),
       );
     },
     BookClubListRoute.name: (routeData) {
@@ -62,9 +64,11 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     DiscussionListRoute.name: (routeData) {
+      final args = routeData.argsAs<DiscussionListRouteArgs>(
+          orElse: () => const DiscussionListRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: DiscussionListPage(),
+        child: DiscussionListPage(key: args.key),
       );
     },
     DiscussionRoute.name: (routeData) {
@@ -136,9 +140,11 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     ProfileRoute.name: (routeData) {
+      final args = routeData.argsAs<ProfileRouteArgs>(
+          orElse: () => const ProfileRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: ProfilePage(),
+        child: ProfilePage(key: args.key),
       );
     },
     ProfileTab.name: (routeData) {
@@ -158,16 +164,31 @@ abstract class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [AuthorizationPage]
-class AuthorizationRoute extends PageRouteInfo<void> {
-  const AuthorizationRoute({List<PageRouteInfo>? children})
-      : super(
+class AuthorizationRoute extends PageRouteInfo<AuthorizationRouteArgs> {
+  AuthorizationRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           AuthorizationRoute.name,
+          args: AuthorizationRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'AuthorizationRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<AuthorizationRouteArgs> page =
+      PageInfo<AuthorizationRouteArgs>(name);
+}
+
+class AuthorizationRouteArgs {
+  const AuthorizationRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'AuthorizationRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -267,16 +288,31 @@ class CreateEventRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [DiscussionListPage]
-class DiscussionListRoute extends PageRouteInfo<void> {
-  const DiscussionListRoute({List<PageRouteInfo>? children})
-      : super(
+class DiscussionListRoute extends PageRouteInfo<DiscussionListRouteArgs> {
+  DiscussionListRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           DiscussionListRoute.name,
+          args: DiscussionListRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'DiscussionListRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<DiscussionListRouteArgs> page =
+      PageInfo<DiscussionListRouteArgs>(name);
+}
+
+class DiscussionListRouteArgs {
+  const DiscussionListRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'DiscussionListRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -465,16 +501,31 @@ class MyEventsTab extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ProfilePage]
-class ProfileRoute extends PageRouteInfo<void> {
-  const ProfileRoute({List<PageRouteInfo>? children})
-      : super(
+class ProfileRoute extends PageRouteInfo<ProfileRouteArgs> {
+  ProfileRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           ProfileRoute.name,
+          args: ProfileRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'ProfileRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<ProfileRouteArgs> page =
+      PageInfo<ProfileRouteArgs>(name);
+}
+
+class ProfileRouteArgs {
+  const ProfileRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ProfileRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

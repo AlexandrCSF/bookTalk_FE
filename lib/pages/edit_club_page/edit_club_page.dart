@@ -36,7 +36,7 @@ class EditClubPage extends StatelessWidget {
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
               onPressed: () {
-                context.router.maybePop(const ProfileRoute());
+                context.router.maybePop(ProfileRoute());
               },
               icon: Icon(
                 MdiIcons.check,

@@ -4,10 +4,20 @@ import 'package:flutter/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class ClubCard extends StatelessWidget {
-
+  final String title;
+  final String description;
+  final String imageUrl;
+  final int members;
   final VoidCallback? onTap;
 
-  const ClubCard({super.key, this.onTap});
+  const ClubCard({
+    super.key,
+    this.onTap,
+    required this.title,
+    required this.description,
+    required this.imageUrl,
+    required this.members,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +46,18 @@ class ClubCard extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        'lib/images/hist_map.jpg',
+                      child: Image.network(
+                        imageUrl,
                         width: 80,
                         height: 120,
                         fit: BoxFit.fitHeight,
                       ),
+                      /*child: Image.asset(
+                        'lib/images/hist_map.jpg',
+                        width: 80,
+                        height: 120,
+                        fit: BoxFit.fitHeight,
+                      ),*/
                     ),
                     const SizedBox(
                       width: 15,
@@ -52,17 +68,14 @@ class ClubCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Исторические романы',
+                            title,
                             style: text.headlineLarge
                                 ?.copyWith(color: colors.onBackground),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
-                            'Значимость этих проблем настолько очевидна, '
-                            'что новая модель организационной деятельности '
-                            'требуют от нас анализа новых предложений. Задача '
-                            'организации, в особенности же новая модель',
+                            description,
                             style:
                                 text.bodySmall?.copyWith(color: colors.outline),
                             maxLines: 2,
@@ -70,7 +83,7 @@ class ClubCard extends StatelessWidget {
                             softWrap: true,
                           ),
                           Text(
-                            '25 участников',
+                            _numOfMembers(members),
                             style:
                                 text.bodyLarge?.copyWith(color: colors.primary),
                           ),
@@ -96,5 +109,20 @@ class ClubCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _numOfMembers(int num) {
+    if(members == 11
+        || members == 12
+        || members == 13
+        || members == 14
+        || members % 10 > 4
+        || members % 10 == 0) {
+      return '$num участников';
+    } else if (members % 10 == 1) {
+      return '$num участник';
+    } else {
+      return '$num участника';
+    }
   }
 }

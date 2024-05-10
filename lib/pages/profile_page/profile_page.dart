@@ -122,7 +122,7 @@ class ProfilePage extends StatelessWidget {
                       label: "Выйти",
                       icon: MdiIcons.logout,
                       onTap: () {
-                        context.router.navigate(const AuthorizationRoute());
+                        context.router.navigate(AuthorizationRoute());
                       },
                     ),
                   ),
