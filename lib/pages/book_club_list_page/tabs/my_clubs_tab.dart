@@ -15,12 +15,12 @@ class MyClubsTab extends StatelessWidget {
         itemCount: 4,
         itemBuilder: (context, index) {
           return ClubCard(
-            title: 'Исторические викторы',
-            description: 'Всё самое наишизейшее со всей человеческой истории',
+            title: 'Исторические исторические',
+            description: 'Описание описание описание описание описание описание описание',
             members: 34,
             imageUrl: '',
             onTap: () {
-              context.router.navigate(BookClubRoute());
+              context.router.navigate(BookClubRoute(id: 1));
             },
           );
         },

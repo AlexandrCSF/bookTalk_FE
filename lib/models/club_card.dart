@@ -14,7 +14,7 @@ abstract class ClubCard with _$ClubCard {
     required int admin,
     required String city,
     required List<int> interests,
-    required List<Meeting>? meetings,
+    required List<Meeting> meetings,
   }) = _ClubCard;
 
   factory ClubCard.fromJson(Map<String, dynamic> json) => _$ClubCardFromJson(json);

@@ -46,18 +46,18 @@ class ClubCard extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
+                      /*child: Image.network(
                         imageUrl,
                         width: 80,
                         height: 120,
                         fit: BoxFit.fitHeight,
-                      ),
-                      /*child: Image.asset(
-                        'lib/images/hist_map.jpg',
+                      ),*/
+                      child: Image.asset(
+                        'lib/resources/images/hist_map.jpg',
                         width: 80,
                         height: 120,
                         fit: BoxFit.fitHeight,
-                      ),*/
+                      ),
                     ),
                     const SizedBox(
                       width: 15,
@@ -112,10 +112,10 @@ class ClubCard extends StatelessWidget {
   }
 
   String _numOfMembers(int num) {
-    if(members == 11
-        || members == 12
-        || members == 13
-        || members == 14
+    if(members % 100 == 11
+        || members % 100 == 12
+        || members % 100 == 13
+        || members % 100 == 14
         || members % 10 > 4
         || members % 10 == 0) {
       return '$num участников';

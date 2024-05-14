@@ -102,7 +102,7 @@ class CreateClubPage extends StatelessWidget {
                         label: "Создать клуб",
                         icon: MdiIcons.check,
                         onTap: () {
-                          context.router.navigate(BookClubRoute());
+                          context.router.navigate(BookClubRoute(id: 1));
                         },
                       ),
                     ),

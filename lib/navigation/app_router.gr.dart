@@ -38,11 +38,7 @@ abstract class _$AppRouter extends RootStackRouter {
     BookClubRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<BookClubRouteArgs>(
-          orElse: () => BookClubRouteArgs(
-                  id: pathParams.getInt(
-                'id',
-                1,
-              )));
+          orElse: () => BookClubRouteArgs(id: pathParams.getInt('id')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: BookClubPage(
@@ -224,7 +220,7 @@ class BookClubListTab extends PageRouteInfo<void> {
 class BookClubRoute extends PageRouteInfo<BookClubRouteArgs> {
   BookClubRoute({
     Key? key,
-    int id = 1,
+    required int id,
     List<PageRouteInfo>? children,
   }) : super(
           BookClubRoute.name,
@@ -245,7 +241,7 @@ class BookClubRoute extends PageRouteInfo<BookClubRouteArgs> {
 class BookClubRouteArgs {
   const BookClubRouteArgs({
     this.key,
-    this.id = 1,
+    required this.id,
   });
 
   final Key? key;

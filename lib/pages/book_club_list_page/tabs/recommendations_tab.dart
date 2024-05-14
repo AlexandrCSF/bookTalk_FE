@@ -20,7 +20,7 @@ class RecommendationsTab extends StatelessWidget {
             members: 34,
             imageUrl: '',
             onTap: () {
-              context.router.navigate(BookClubRoute());
+              context.router.navigate(BookClubRoute(id: 1));
             },
           );
         },

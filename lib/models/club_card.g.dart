@@ -16,8 +16,8 @@ _$ClubCardImpl _$$ClubCardImplFromJson(Map<String, dynamic> json) =>
       interests: (json['interests'] as List<dynamic>)
           .map((e) => (e as num).toInt())
           .toList(),
-      meetings: (json['meetings'] as List<dynamic>?)
-          ?.map((e) => Meeting.fromJson(e as Map<String, dynamic>))
+      meetings: (json['meetings'] as List<dynamic>)
+          .map((e) => Meeting.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
