@@ -15,8 +15,8 @@ class RecommendationsTab extends StatelessWidget {
         itemCount: 7,
         itemBuilder: (context, index) {
           return ClubCard(
-            title: 'Исторические викторы',
-            description: 'Всё самое наишизейшее со всей человеческой истории',
+            title: 'Исторические клубы',
+            description: 'Исторические клубы Исторические клубы Исторические клубы Исторические клубы',
             members: 34,
             imageUrl: '',
             onTap: () {

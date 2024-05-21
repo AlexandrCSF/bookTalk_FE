@@ -32,13 +32,6 @@ class BookClubPage extends StatefulWidget {
 }
 
 class _BookClubPageState extends State<BookClubPage> {
-  /*bool _isSubscribed = false;
-
-  void _toggleSubscribe() {
-    setState(() {
-      _isSubscribed = !_isSubscribed;
-    });
-  }*/
 
   @override
   Widget build(BuildContext context) {
