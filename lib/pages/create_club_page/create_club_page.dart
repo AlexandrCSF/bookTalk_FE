@@ -45,17 +45,14 @@ class CreateClubPage extends StatelessWidget {
                     const TextFieldWidget(
                         label: "Название клуба",
                         hintText: "Введите название",
-                        text: "",
                         maxLines: 1),
                     const TextFieldWidget(
                         label: "Город",
                         hintText: "Введите город",
-                        text: "",
                         maxLines: 1),
                     const TextFieldWidget(
                         label: "Описание клуба",
                         hintText: "Введите описание",
-                        text: "",
                         maxLines: 6),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 5),

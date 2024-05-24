@@ -162,11 +162,12 @@ class _ClubClient implements ClubClient {
   }
 
   @override
-  Future<ClubCreate> createClub(ClubCreate clubCreate) async {
+  Future<ClubCreate> createClub(Map<String, dynamic> clubCreate) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = clubCreate;
+    final _data = <String, dynamic>{};
+    _data.addAll(clubCreate);
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ClubCreate>(Options(
       method: 'PUT',
@@ -190,13 +191,14 @@ class _ClubClient implements ClubClient {
 
   @override
   Future<ClubPatch> editClub(
-    ClubPatch clubPatch,
+    Map<String, dynamic> clubPatch,
     String clubId,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'club_id': clubId};
     final _headers = <String, dynamic>{};
-    final _data = clubPatch;
+    final _data = <String, dynamic>{};
+    _data.addAll(clubPatch);
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ClubPatch>(Options(
       method: 'PATCH',
@@ -247,7 +249,7 @@ class _ClubClient implements ClubClient {
 
   @override
   Future<Subscribe> subscribeToClub(
-    Subscribe subscribe,
+    Map<String, dynamic> subscribe,
     int userId,
     int clubId,
   ) async {
@@ -257,7 +259,8 @@ class _ClubClient implements ClubClient {
       r'club_id': clubId,
     };
     final _headers = <String, dynamic>{};
-    final _data = subscribe;
+    final _data = <String, dynamic>{};
+    _data.addAll(subscribe);
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<Subscribe>(Options(
       method: 'POST',

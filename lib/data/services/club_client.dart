@@ -42,12 +42,12 @@ abstract class ClubClient {
 
   @PUT(ClubUrls.createClub)
   Future<ClubCreate> createClub(
-    @Body() ClubCreate clubCreate,
+    @Body() Map<String, dynamic> clubCreate,
   );
 
   @PATCH(ClubUrls.editClub)
   Future<ClubPatch> editClub(
-    @Body() ClubPatch clubPatch,
+    @Body() Map<String, dynamic> clubPatch,
     @Query('club_id') String clubId,
   );
 
@@ -58,7 +58,7 @@ abstract class ClubClient {
 
   @POST(ClubUrls.subscribeToClub)
   Future<Subscribe> subscribeToClub(
-    @Body() Subscribe subscribe,
+    @Body() Map<String, dynamic> subscribe,
     @Query('user_id') int userId,
     @Query('club_id') int clubId,
   );

@@ -54,27 +54,22 @@ class EditEventPage extends StatelessWidget {
                 TextFieldWidget(
                     label: 'Тема мероприятия',
                     hintText: 'Введите тему',
-                    text: topic,
                     maxLines: 1),
                 TextFieldWidget(
                     label: 'Город',
                     hintText: 'Введите город',
-                    text: city,
                     maxLines: 1),
                 TextFieldWidget(
                     label: 'Дата',
                     hintText: 'Выберите дату',
-                    text: date,
                     maxLines: 1),
                 TextFieldWidget(
                     label: 'Время',
                     hintText: 'Выберите время',
-                    text: time,
                     maxLines: 1),
                 TextFieldWidget(
                     label: 'Место',
                     hintText: 'Введите место',
-                    text: place,
                     maxLines: 1),
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0),

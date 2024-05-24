@@ -59,7 +59,7 @@ class ClubRepository {
     final subscribe = Subscribe(userId: userId, clubId: clubId);
     try {
       Subscribe result = await _client.subscribeToClub(
-        subscribe, userId, clubId,
+        subscribe.toJson(), userId, clubId,
       );
       return result;
     } on DioException catch (e) {

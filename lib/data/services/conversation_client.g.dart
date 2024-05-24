@@ -79,11 +79,13 @@ class _ConversationClient implements ConversationClient {
   }
 
   @override
-  Future<Conversation> createConversation(Conversation conversation) async {
+  Future<Conversation> createConversation(
+      Map<String, dynamic> conversation) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = conversation;
+    final _data = <String, dynamic>{};
+    _data.addAll(conversation);
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<Conversation>(Options(
       method: 'POST',
@@ -106,11 +108,12 @@ class _ConversationClient implements ConversationClient {
   }
 
   @override
-  Future<Message> createMessage(Message message) async {
+  Future<Message> createMessage(Map<String, dynamic> message) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = message;
+    final _data = <String, dynamic>{};
+    _data.addAll(message);
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<Message>(Options(
       method: 'POST',

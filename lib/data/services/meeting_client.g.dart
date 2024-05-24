@@ -78,7 +78,7 @@ class _MeetingClient implements MeetingClient {
 
   @override
   Future<Meeting> attendMeeting(
-    Meeting meeting,
+    Map<String, dynamic> meeting,
     int userId,
     int meetingId,
   ) async {
@@ -88,7 +88,8 @@ class _MeetingClient implements MeetingClient {
       r'meeting_id': meetingId,
     };
     final _headers = <String, dynamic>{};
-    final _data = meeting;
+    final _data = <String, dynamic>{};
+    _data.addAll(meeting);
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<Meeting>(Options(
       method: 'POST',
@@ -112,13 +113,14 @@ class _MeetingClient implements MeetingClient {
 
   @override
   Future<MeetingCreate> createMeeting(
-    MeetingCreate meetingCreate,
+    Map<String, dynamic> meetingCreate,
     String clubId,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'club_id': clubId};
     final _headers = <String, dynamic>{};
-    final _data = meetingCreate;
+    final _data = <String, dynamic>{};
+    _data.addAll(meetingCreate);
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<MeetingCreate>(Options(
       method: 'PUT',
@@ -142,13 +144,14 @@ class _MeetingClient implements MeetingClient {
 
   @override
   Future<Meeting> editMeeting(
-    MeetingPatch meetingPatch,
+    Map<String, dynamic> meetingPatch,
     int meetingId,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'meeting_id': meetingId};
     final _headers = <String, dynamic>{};
-    final _data = meetingPatch;
+    final _data = <String, dynamic>{};
+    _data.addAll(meetingPatch);
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<Meeting>(Options(
       method: 'PATCH',

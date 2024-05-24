@@ -4,18 +4,25 @@ import 'package:flutter/material.dart';
 class TextFieldWidget extends StatefulWidget {
   final String label;
   final String hintText;
-  final String text;
+  //final String text;
   final int maxLines;
+  final TextEditingController? controller;
 
-
-  const TextFieldWidget({super.key, required this.label, required this.hintText, required this.text, required this.maxLines});
+  const TextFieldWidget({
+    super.key,
+    required this.label,
+    required this.hintText,
+    //required this.text,
+    required this.maxLines,
+    this.controller,
+  });
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
 }
 
 class _TextFieldWidgetState extends State<TextFieldWidget> {
-  final controller = TextEditingController();
+  //final controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +37,19 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             padding: const EdgeInsets.only(bottom: 10),
             child: Text(
               widget.label,
-              style: text.headlineLarge
-                  ?.copyWith(color: colors.onBackground),
+              style: text.headlineLarge?.copyWith(color: colors.onBackground),
             ),
           ),
           TextFormField(
-            /*controller: controller,*/
+            controller: widget.controller,
             textAlign: TextAlign.start,
             textAlignVertical: TextAlignVertical.center,
-            initialValue: widget.text,
+            //initialValue: widget.text,
             maxLines: widget.maxLines,
-            style: text.labelMedium
-                ?.copyWith(color: colors.onBackground),
+            style: text.labelMedium?.copyWith(color: colors.onBackground),
             decoration: InputDecoration(
               hintText: widget.hintText,
-              hintStyle:
-              text.labelMedium?.copyWith(color: colors.outline),
+              hintStyle: text.labelMedium?.copyWith(color: colors.outline),
               fillColor: colors.onInverseSurface,
               filled: true,
               enabledBorder: OutlineInputBorder(
