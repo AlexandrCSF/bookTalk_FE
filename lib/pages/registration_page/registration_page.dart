@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/analytics/analytics.dart';
 import 'package:booktalk_frontend/navigation/app_router.dart';
+import 'package:booktalk_frontend/pages/widgets/dropdown_list_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/edit_avatar_widget.dart';
 import 'package:booktalk_frontend/viewmodels/registration_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -55,28 +56,11 @@ class RegistrationPage extends StatelessWidget {
                       maxLines: 1,
                       controller: provider.lastNameController,
                     ),
-                    DropdownButton<String>(
+                    DropdownListWidget(
                       value: provider.selectedCity,
-                      onChanged: (String? newValue) {
-                        provider.setCity(newValue);
-                        /*setState(() {
-                          _value = newValue!;
-                        });*/
-                      },
-                      items: provider.cities
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
+                      values: provider.cities,
+                      onChooseItem: provider.setCity,
                     ),
-                    /*const TextFieldWidget(
-                      label: "Город",
-                      hintText: "Введите ваш город",
-                      text: "",
-                      maxLines: 1,
-                    ),*/
                     TextFieldWidget(
                       label: "Почта",
                       hintText: "Введите почту",
