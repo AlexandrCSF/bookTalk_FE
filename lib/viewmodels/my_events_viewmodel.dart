@@ -1,5 +1,3 @@
-
-
 import 'dart:collection';
 
 import 'package:booktalk_frontend/data/api_exceptions.dart';

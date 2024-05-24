@@ -23,20 +23,20 @@ abstract class MeetingClient {
 
   @POST(MeetingUrls.attendMeeting)
   Future<Meeting> attendMeeting(
-    @Body() Meeting meeting,
+    @Body() Map<String, dynamic> meeting,
     @Query('user_id') int userId,
     @Query('meeting_id') int meetingId,
   );
 
   @PUT(MeetingUrls.createMeeting)
   Future<MeetingCreate> createMeeting(
-    @Body() MeetingCreate meetingCreate,
+    @Body() Map<String, dynamic> meetingCreate,
     @Query('club_id') String clubId,
   );
 
   @PATCH(MeetingUrls.editMeeting)
   Future<Meeting> editMeeting(
-    @Body() MeetingPatch meetingPatch,
+    @Body() Map<String, dynamic> meetingPatch,
     @Query('meeting_id') int meetingId,
   );
 

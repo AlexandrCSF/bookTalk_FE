@@ -21,16 +21,16 @@ abstract class AuthClient {
   @POST(AuthUrls.createUser)
   Future<UserCreate> createUser(
     @Query('uuid') String uuid,
-    @Body() UserCreate userCreate,
+    @Body() Map<String, dynamic> userCreate,
   );
 
   @POST(AuthUrls.freeToken)
   Future<FreeToken> freeToken(
-    @Body() UserUuidSerializerRequest userUuidSerializerRequest,
+    @Body() Map<String, dynamic> userUuidSerializerRequest,
   );
 
   @POST(AuthUrls.refreshToken)
   Future<FreeToken> refreshToken(
-    @Body() TokenRefreshSerializerRequest tokenRefreshSerializerRequest,
+    @Body() Map<String, dynamic> tokenRefreshSerializerRequest,
   );
 }

@@ -48,12 +48,13 @@ class _AuthClient implements AuthClient {
   @override
   Future<UserCreate> createUser(
     String uuid,
-    UserCreate userCreate,
+    Map<String, dynamic> userCreate,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'uuid': uuid};
     final _headers = <String, dynamic>{};
-    final _data = userCreate;
+    final _data = <String, dynamic>{};
+    _data.addAll(userCreate);
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<UserCreate>(Options(
       method: 'POST',
@@ -77,11 +78,12 @@ class _AuthClient implements AuthClient {
 
   @override
   Future<FreeToken> freeToken(
-      UserUuidSerializerRequest userUuidSerializerRequest) async {
+      Map<String, dynamic> userUuidSerializerRequest) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = userUuidSerializerRequest;
+    final _data = <String, dynamic>{};
+    _data.addAll(userUuidSerializerRequest);
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<FreeToken>(Options(
       method: 'POST',
@@ -105,11 +107,12 @@ class _AuthClient implements AuthClient {
 
   @override
   Future<FreeToken> refreshToken(
-      TokenRefreshSerializerRequest tokenRefreshSerializerRequest) async {
+      Map<String, dynamic> tokenRefreshSerializerRequest) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = tokenRefreshSerializerRequest;
+    final _data = <String, dynamic>{};
+    _data.addAll(tokenRefreshSerializerRequest);
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<FreeToken>(Options(
       method: 'POST',

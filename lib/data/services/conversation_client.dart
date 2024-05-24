@@ -22,12 +22,12 @@ abstract class ConversationClient {
 
   @POST(ConversationUrls.createConversation)
   Future<Conversation> createConversation(
-    @Body() Conversation conversation,
+    @Body() Map<String, dynamic> conversation,
   );
 
   @POST(ConversationUrls.createMessage)
   Future<Message> createMessage(
-    @Body() Message message,
+    @Body() Map<String, dynamic> message,
   );
 
 }

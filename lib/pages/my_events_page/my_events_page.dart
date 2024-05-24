@@ -3,8 +3,10 @@ import 'package:booktalk_frontend/pages/book_club_list_page/book_club_list_page.
 import 'package:booktalk_frontend/pages/my_events_page/widgets/event_list_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/main_disabled_button.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
+import 'package:booktalk_frontend/viewmodels/my_events_viewmodel.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../navigation/app_router.dart';
 import '../widgets/main_outline_button.dart';
@@ -19,6 +21,11 @@ class MyEventsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    Map<DateTime, List<dynamic>> events = {
+      DateTime.utc(2024, 6, 5): ['aaa', 'ffff'],
+      DateTime.utc(2024, 6, 8): ['aaa', 'ffff'],
+      DateTime.utc(2024, 6, 10): ['aaa', 'ffff'],
+    };
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colors.background,
@@ -29,19 +36,22 @@ class MyEventsPage extends StatelessWidget {
           style: text.headlineLarge?.copyWith(color: colors.primary),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(
-              right: 20.0, left: 20.0, top: 5.0, bottom: 10.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Calendar(),
-              EventListWidget(events: todayEvents, title: "Мероприятия сегодня"),
-              EventListWidget(events: events, title: "Ближайшие мероприятия",),
-            ],
-          ),
-          /*child: Column(
+      body: Consumer<MyEventsViewModel>(
+        builder: (context, provider, child) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  right: 20.0, left: 20.0, top: 5.0, bottom: 10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Calendar(events: events),
+                  EventListWidget(events: provider.todayMeetings, title: "Мероприятия сегодня"),
+                  EventListWidget(events: provider.allMeetings, title: "Ближайшие мероприятия"),
+                ],
+              ),
+              /*child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Calendar(),
@@ -58,8 +68,10 @@ class MyEventsPage extends StatelessWidget {
               )
             ],
           ),*/
-        ),
-      ),
+            ),
+          );
+        }
+      )
     );
   }
 }
