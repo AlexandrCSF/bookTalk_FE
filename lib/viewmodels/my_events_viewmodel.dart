@@ -16,6 +16,9 @@ class MyEventsViewModel extends ChangeNotifier {
   List<String> _todayMeetings = [];
   UnmodifiableListView<String> get todayMeetings => UnmodifiableListView(_todayMeetings);
 
+  Map<DateTime, List<String>> _meetingMarkers = {};
+  Map<DateTime, List<String>> get meetingMarkers => _meetingMarkers;
+
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
@@ -60,6 +63,8 @@ class MyEventsViewModel extends ChangeNotifier {
     List<String> result = [];
     for(var event in meetingList) {
       result.add('${event.name} · ${event.date} · ${event.time} · ${event.location}');
+      //_meetingMarkers[DateTime.parse(event.date)]!.add(event.name);
+      _meetingMarkers.putIfAbsent(DateTime.parse(event.date), () => []).add(event.name);
     }
     return result;
   }

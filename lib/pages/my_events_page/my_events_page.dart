@@ -21,11 +21,11 @@ class MyEventsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    Map<DateTime, List<dynamic>> events = {
+    /*Map<DateTime, List<dynamic>> events = {
       DateTime.utc(2024, 6, 5): ['aaa', 'ffff'],
       DateTime.utc(2024, 6, 8): ['aaa', 'ffff'],
       DateTime.utc(2024, 6, 10): ['aaa', 'ffff'],
-    };
+    };*/
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colors.background,
@@ -46,7 +46,7 @@ class MyEventsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Calendar(events: events),
+                  Calendar(events: provider.meetingMarkers),
                   EventListWidget(events: provider.todayMeetings, title: "Мероприятия сегодня"),
                   EventListWidget(events: provider.allMeetings, title: "Ближайшие мероприятия"),
                 ],
