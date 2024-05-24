@@ -1,6 +1,7 @@
 import 'package:booktalk_frontend/data/repositories/auth_repository.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/user_create.dart';
+import 'package:booktalk_frontend/utils/device_info.dart';
 import 'package:flutter/cupertino.dart';
 
 class RegistrationViewModel extends ChangeNotifier {
@@ -53,7 +54,11 @@ class RegistrationViewModel extends ChangeNotifier {
       city: _selectedCity,
     );
     print(userCreate.toJson());
-    await _repository.signUp(userCreate, 'testuuid');
+    String uuid = await DeviceInformation.getId();
+    if (uuid.isEmpty) {
+      // todo: handle empty value
+    }
+    await _repository.signUp(userCreate, uuid);
   }
 
   @override
