@@ -19,13 +19,6 @@ class MyEventsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    List<String> events = [
-      "Исторические романы · Наследник из Калькутты · 15 июля 2024 · 14:00 · кафе Жёлтый носорог",
-      "Ещё какой-нибудь клуб · Ещё какая-нибудь книга · 29 августа 2024 · 16:30 · кафе G. Shelter"
-    ];
-    List<String> todayEvents = [
-      "Исторические романы · Наследник из Калькутты · 15 июля 2024 · 14:00 · кафе Жёлтый носорог",
-    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colors.background,

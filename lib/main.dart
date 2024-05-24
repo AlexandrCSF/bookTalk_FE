@@ -1,10 +1,13 @@
 import 'package:booktalk_frontend/analytics/analytics.dart';
 import 'package:booktalk_frontend/data/repositories/book_club_repository.dart';
+import 'package:booktalk_frontend/data/repositories/my_events_repository.dart';
 import 'package:booktalk_frontend/data/services/auth_client.dart';
 import 'package:booktalk_frontend/data/services/club_client.dart';
 import 'package:booktalk_frontend/data/services/genre_client.dart';
+import 'package:booktalk_frontend/data/services/meeting_client.dart';
 import 'package:booktalk_frontend/viewmodels/book_club_list_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/book_club_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/my_events_viewmodel.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -33,16 +36,15 @@ Future<void> main() async {
 
   Dio dio = Dio();
 
-  dio.options.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI'
-      '6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3MzQ0MjY5LCJpYXQ'
-      'iOjE3MTUyNDgyNjksImp0aSI6ImEwNzUyYzU0YzU4OTQ0YzA5YzI5YjkwZjQyZWZjYTM'
-      'wIiwidXNlcl9pZCI6MX0.Isp4QGIMhss4CGriIsM4PwIV6_DQoTBt4rDcMHSVo9E';
+  dio.options.headers['Authorization'] = 'Bearer ******';
 
   getIt.registerSingleton(dio);
   getIt.registerSingleton(ClubClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(AuthClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(GenreClient(getIt.get<Dio>(), baseUrl: baseUrl));
+  getIt.registerSingleton(MeetingClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(ClubRepository());
+  getIt.registerSingleton(MyEventsRepository());
 
   initializeDateFormatting().then(
     (_) => runApp(
@@ -55,6 +57,9 @@ Future<void> main() async {
             ),
             ChangeNotifierProvider(
               create: (context) => BookClubViewModel(),
+            ),
+            ChangeNotifierProvider(
+              create: (context) => MyEventsViewModel(),
             ),
           ],
           child: BookTalkApp(),

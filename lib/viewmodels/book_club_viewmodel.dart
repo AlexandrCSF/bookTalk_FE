@@ -54,8 +54,9 @@ class BookClubViewModel extends ChangeNotifier {
       getEvents();
     } on ApiException catch (e) {
       debugPrint(e.message);
+    } finally {
+      _setLoadingStatus(false);
     }
-    _setLoadingStatus(false);
   }
 
   void getEvents() {

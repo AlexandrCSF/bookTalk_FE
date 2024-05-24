@@ -13,12 +13,12 @@ abstract class MeetingClient {
 
   @GET(MeetingUrls.getListOfAttenders)
   Future<List<Meeting>> getListOfAttenders(
-    @Query('user_id') int userId,
+    @Query('meeting_id') int meetingId,
   );
 
   @GET(MeetingUrls.getListOfMeetingsForUser)
-  Future<List<Meeting>> getListOfMeeting(
-    @Query('meeting_id') int meetingId,
+  Future<List<Meeting>> getListOfMeetings(
+    @Query('user_id') int userId,
   );
 
   @POST(MeetingUrls.attendMeeting)
