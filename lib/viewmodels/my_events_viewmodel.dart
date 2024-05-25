@@ -63,7 +63,6 @@ class MyEventsViewModel extends ChangeNotifier {
     List<String> result = [];
     for(var event in meetingList) {
       result.add('${event.name} · ${event.date} · ${event.time} · ${event.location}');
-      //_meetingMarkers[DateTime.parse(event.date)]!.add(event.name);
       _meetingMarkers.putIfAbsent(DateTime.parse(event.date), () => []).add(event.name);
     }
     return result;

@@ -6,9 +6,11 @@ import 'package:booktalk_frontend/data/services/auth_client.dart';
 import 'package:booktalk_frontend/data/services/club_client.dart';
 import 'package:booktalk_frontend/data/services/genre_client.dart';
 import 'package:booktalk_frontend/data/services/meeting_client.dart';
+import 'package:booktalk_frontend/utils/secure_storage.dart';
 import 'package:booktalk_frontend/viewmodels/book_club_list_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/book_club_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/my_events_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/registration_viewmodel.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:dio/dio.dart';
@@ -39,10 +41,9 @@ Future<void> main() async {
 
   Dio dio = Dio();
 
-  dio.options.headers['Authorization'] = 'Bearer ******';
-  final FlutterSecureStorage secureStorage = FlutterSecureStorage();
+  //dio.options.headers['Authorization'] = 'Bearer ******';
 
-  dio.interceptors.add(InterceptorsWrapper(
+  /*dio.interceptors.add(InterceptorsWrapper(
     onRequest: (options, handler) async {
       final String? accessToken = await secureStorage.read(key: 'accessToken');
 
@@ -52,9 +53,12 @@ Future<void> main() async {
 
       return handler.next(options);
     },
-  ));
+  ));*/
 
   getIt.registerSingleton(dio);
+
+  final secureStorage = SecureStorage();
+
   getIt.registerSingleton(secureStorage);
   getIt.registerSingleton(ClubClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(AuthClient(getIt.get<Dio>(), baseUrl: baseUrl));
@@ -79,7 +83,12 @@ Future<void> main() async {
             ChangeNotifierProvider(
               create: (context) => MyEventsViewModel(),
             ),
-            ChangeNotifierProvider(create: (context) => RegistrationViewModel(),),
+            ChangeNotifierProvider(
+              create: (context) => RegistrationViewModel(),
+            ),
+            ChangeNotifierProvider(
+              create: (context) => ProfileViewModel(),
+            ),
           ],
           child: BookTalkApp(),
         ),

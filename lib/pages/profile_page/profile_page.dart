@@ -4,24 +4,47 @@ import 'package:booktalk_frontend/pages/widgets/avatar_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/main_outline_button.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:booktalk_frontend/pages/widgets/tag_widget.dart';
+import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../../analytics/analytics.dart';
 
 @RoutePage()
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
+
   ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+
+  late ProfileViewModel provider;
+
+  @override
+  void initState() {
+    provider = Provider.of<ProfileViewModel>(context, listen: false);
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    Image? img /*= Image.asset('lib/images/avatar.jpg')*/;
+    Image? img;
     List<String> tags = ["#детектив", "#исторический_роман", "#юмор"];
+    // todo: change user id
+    provider.loadUserData(1);
+    provider.profilePicture != null
+        ? img = Image.network(provider.profilePicture!)
+        : img = null;
     return Scaffold(
         appBar: AppBar(
           surfaceTintColor: colors.background,
@@ -55,24 +78,25 @@ class ProfilePage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 37),
-                    child: AvatarWidget(img: img ??= Image.asset('lib/images/base_avatar.png')),
+                    // todo: add image
+                    child: AvatarWidget(img: img ??= Image.asset('lib/resources/images/base_avatar.png')),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16),
                     child: Column(
                       children: [
                         Text(
-                          "Роберт Серый",
+                          '${provider.firstName} ${provider.lastName}',
                           style:
                               text.titleMedium?.copyWith(color: colors.onSurface),
                         ),
                         Text(
-                          "robert_seryi@mail.ru",
+                          provider.email,
                           style:
                               text.headlineMedium?.copyWith(color: colors.outline),
                         ),
                         Text(
-                          "г.Воронеж",
+                          provider.city,
                           style:
                               text.headlineMedium?.copyWith(color: colors.outline),
                         ),
