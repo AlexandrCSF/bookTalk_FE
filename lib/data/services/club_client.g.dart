@@ -162,11 +162,12 @@ class _ClubClient implements ClubClient {
   }
 
   @override
-  Future<ClubCreate> createClub(ClubCreate clubCreate) async {
+  Future<ClubCreate> createClub(Map<String, dynamic> clubCreate) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = clubCreate;
+    final _data = <String, dynamic>{};
+    _data.addAll(clubCreate);
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ClubCreate>(Options(
       method: 'PUT',

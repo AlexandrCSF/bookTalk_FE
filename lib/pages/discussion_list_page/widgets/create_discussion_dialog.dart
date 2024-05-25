@@ -23,12 +23,10 @@ class CreateDiscussionDialog extends StatelessWidget {
             const TextFieldWidget(
                 label: 'Тема обсуждения',
                 hintText: 'Введите тему',
-                text: '',
                 maxLines: 1),
             const TextFieldWidget(
                 label: 'Описание',
                 hintText: 'Введите описание',
-                text: '',
                 maxLines: 6),
             MainPrimaryButton(
               label: 'Добавить',

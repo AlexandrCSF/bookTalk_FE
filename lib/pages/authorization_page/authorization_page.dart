@@ -43,7 +43,6 @@ class AuthorizationPage extends StatelessWidget {
                   child: TextFieldWidget(
                       label: "Логин",
                       hintText: "Введите логин",
-                      text: "",
                       maxLines: 1),
                 ),
                 const Padding(
@@ -51,7 +50,6 @@ class AuthorizationPage extends StatelessWidget {
                   child: TextFieldWidget(
                       label: "Пароль",
                       hintText: "Введите пароль",
-                      text: "",
                       maxLines: 1),
                 ),
               ],

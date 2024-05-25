@@ -30,27 +30,22 @@ class CreateEventPage extends StatelessWidget {
                 const TextFieldWidget(
                     label: 'Тема мероприятия',
                     hintText: 'Введите тему',
-                    text: '',
                     maxLines: 1),
                 const TextFieldWidget(
                     label: 'Город',
                     hintText: 'Введите город',
-                    text: '',
                     maxLines: 1),
                 const TextFieldWidget(
                     label: 'Дата',
                     hintText: 'Выберите дату',
-                    text: '',
                     maxLines: 1),
                 const TextFieldWidget(
                     label: 'Время',
                     hintText: 'Выберите время',
-                    text: '',
                     maxLines: 1),
                 const TextFieldWidget(
                     label: 'Место',
                     hintText: 'Введите место',
-                    text: '',
                     maxLines: 1),
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0),

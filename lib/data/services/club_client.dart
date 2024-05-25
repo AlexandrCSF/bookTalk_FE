@@ -42,7 +42,7 @@ abstract class ClubClient {
 
   @PUT(ClubUrls.createClub)
   Future<ClubCreate> createClub(
-    @Body() ClubCreate clubCreate,
+    @Body() Map<String, dynamic> clubCreate,
   );
 
   @PATCH(ClubUrls.editClub)

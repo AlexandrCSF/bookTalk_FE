@@ -23,7 +23,6 @@ class CreateCommentDialog extends StatelessWidget {
             const TextFieldWidget(
                 label: 'Добавить комментарий',
                 hintText: 'Введите комментарий',
-                text: '',
                 maxLines: 6),
             MainPrimaryButton(
               label: 'Добавить',
