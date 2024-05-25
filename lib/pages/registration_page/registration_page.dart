@@ -60,6 +60,7 @@ class RegistrationPage extends StatelessWidget {
                       value: provider.selectedCity,
                       values: provider.cities,
                       onChooseItem: provider.setCity,
+                      label: "Город",
                     ),
                     TextFieldWidget(
                       label: "Почта",

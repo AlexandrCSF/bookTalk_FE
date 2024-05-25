@@ -4,6 +4,7 @@ import 'package:booktalk_frontend/data/services/club_client.dart';
 import 'package:booktalk_frontend/data/services/genre_client.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
+import 'package:booktalk_frontend/models/club_create.dart';
 import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/models/subscribe.dart';
 import 'package:dio/dio.dart';
@@ -77,6 +78,16 @@ class ClubRepository {
       }
     }
     return clubGenres;
+  }
+
+  // todo: change return value to clubcard??
+  Future<ClubCreate> createClub(ClubCreate clubCreate) async {
+    try {
+      final result = await _client.createClub(clubCreate.toJson());
+      return result;
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
   }
 
 }
