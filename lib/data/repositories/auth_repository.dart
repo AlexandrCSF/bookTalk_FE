@@ -10,7 +10,7 @@ import 'package:booktalk_frontend/utils/secure_storage.dart';
 class AuthRepository {
 
   final _client = getIt.get<AuthClient>();
-  final _secureStorage = getIt.get<SecureStorage>();
+  /*final _secureStorage = getIt.get<SecureStorage>();
 
   Future<void> signUp(UserCreate userCreate, String uuid) async {
     await _client.createUser(uuid, userCreate.toJson());
@@ -29,7 +29,7 @@ class AuthRepository {
           TokenRefreshSerializerRequest(refresh: refreshToken).toJson());
       _secureStorage.updateAccessToken(token.accessToken);
     }
-  }
+  }*/
 
   Future<User> getUserData(int userId) async {
     return await _client.getUser(userId);

@@ -58,7 +58,7 @@ class RegistrationViewModel extends ChangeNotifier {
     if (uuid.isEmpty) {
       // todo: handle empty value
     }
-    await _repository.signUp(userCreate, uuid);
+    //await _repository.signUp(userCreate, uuid);
   }
 
   @override

@@ -28,7 +28,7 @@ import 'firebase_options.dart';
 import 'booktalk_app.dart';
 
 final getIt = GetIt.instance;
-const String baseUrl = 'https://rererer';
+const String baseUrl = 'https://db4f-37-113-5-53.ngrok-free.app';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +41,7 @@ Future<void> main() async {
 
   Dio dio = Dio();
 
-  //dio.options.headers['Authorization'] = 'Bearer ******';
+  dio.options.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI4NzY1NTA1LCJpYXQiOjE3MTY2Njk1MDUsImp0aSI6IjI3MDg4YThhNmJlMTQ0MjU5YzE1M2QxMDE2YjFkZDc0IiwidXNlcl9pZCI6M30.WVjDiShLhXOBK69MWHVizqNoqLs6S2THmg8Z_r0H72s';
 
   /*dio.interceptors.add(InterceptorsWrapper(
     onRequest: (options, handler) async {
@@ -57,9 +57,9 @@ Future<void> main() async {
 
   getIt.registerSingleton(dio);
 
-  final secureStorage = SecureStorage();
+  //final secureStorage = SecureStorage();
 
-  getIt.registerSingleton(secureStorage);
+  //getIt.registerSingleton(secureStorage);
   getIt.registerSingleton(ClubClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(AuthClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(GenreClient(getIt.get<Dio>(), baseUrl: baseUrl));
@@ -77,9 +77,9 @@ Future<void> main() async {
             ChangeNotifierProvider(
               create: (context) => BookClubListViewModel(),
             ),
-            ChangeNotifierProvider(
+            /*ChangeNotifierProvider(
               create: (context) => BookClubViewModel(),
-            ),
+            ),*/
             ChangeNotifierProvider(
               create: (context) => MyEventsViewModel(),
             ),
