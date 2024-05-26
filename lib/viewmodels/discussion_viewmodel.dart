@@ -28,15 +28,26 @@ class DiscussionViewModel extends ChangeNotifier {
   String _lastName = '';
   String get lastName => _lastName;
 
+  final _messageController = TextEditingController();
+  TextEditingController get messageController => _messageController;
+
   List<MessageCard> _messages = [];
   UnmodifiableListView<MessageCard> get messages =>
       UnmodifiableListView(_messages);
 
+  @override
+  void dispose() {
+    _messageController.dispose();
+    super.dispose();
+  }
+
   Future<void> loadMessages() async {
+    _messages = [];
     try {
       final conversationAuthor = await _authRepository.getUserData(createdBy);
       _firstName = conversationAuthor.firstName;
       _lastName = conversationAuthor.lastName;
+      notifyListeners();
       final result =
           await _repository.getMessagesForConversation(conversationId);
       for (var message in result) {
@@ -49,6 +60,25 @@ class DiscussionViewModel extends ChangeNotifier {
             text: message.text));
       }
       print(_messages);
+    } on ApiException catch (e) {
+      debugPrint(e.message);
+    } finally {
+      notifyListeners();
+    }
+  }
+
+  // todo: userId
+  Future<void> createComment(userId) async {
+    try {
+      Map<String, dynamic> message = {
+        'id': 11,
+        'conversation': conversationId,
+        'author': userId,
+        'text': _messageController.text,
+      };
+      print(message);
+      await _repository.createMessage(message);
+      await loadMessages();
     } on ApiException catch (e) {
       debugPrint(e.message);
     } finally {

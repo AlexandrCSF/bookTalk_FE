@@ -35,7 +35,7 @@ class CreateClubPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 18, bottom: 12),
                 child: EditAvatarWidget(
-                  img: Image.asset('lib/images/base_club_avatar.png'),
+                  img: Image.asset('lib/resources/images/base_club_avatar.png'),
                 ),
               ),
               Padding(

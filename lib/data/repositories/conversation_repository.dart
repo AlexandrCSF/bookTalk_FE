@@ -6,7 +6,6 @@ import 'package:booktalk_frontend/models/message.dart';
 import 'package:dio/dio.dart';
 
 class ConversationRepository {
-
   final _client = getIt.get<ConversationClient>();
 
   Future<List<Conversation>> getConversationForClub(int clubId) async {
@@ -29,4 +28,19 @@ class ConversationRepository {
     }
   }
 
+  Future<void> createConversation(Map<String, dynamic> conversation) async {
+    try {
+      _client.createConversation(conversation);
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
+
+  Future<void> createMessage(Map<String, dynamic> message) async {
+    try {
+      _client.createMessage(message);
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
 }

@@ -31,19 +31,16 @@ class DiscussionPage extends StatefulWidget {
 }
 
 class _DiscussionPageState extends State<DiscussionPage> {
-  void _createComment() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const CreateCommentDialog();
-      },
-    );
-  }
+  //void _createComment() 
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-    final text = Theme.of(context).textTheme;
+    final colors = Theme
+        .of(context)
+        .colorScheme;
+    final text = Theme
+        .of(context)
+        .textTheme;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colors.background,
@@ -55,18 +52,22 @@ class _DiscussionPageState extends State<DiscussionPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-        child: Stack(
-          children: [
-            ChangeNotifierProvider<DiscussionViewModel>(
-              create: (BuildContext context) => DiscussionViewModel(conversationId: widget.id, createdBy: widget.createdBy)..loadMessages(),
-              child: Consumer<DiscussionViewModel>(
-                builder: (context, provider, child) {
-                  return ListView.builder(
+        child: ChangeNotifierProvider<DiscussionViewModel>(
+          create: (BuildContext context) =>
+          DiscussionViewModel(
+              conversationId: widget.id, createdBy: widget.createdBy)
+            ..loadMessages(),
+          child: Consumer<DiscussionViewModel>(
+            builder: (context, provider, child) {
+              return Stack(
+                children: [
+                  ListView.builder(
                     itemCount: 3 + provider.messages.length,
                     itemBuilder: (context, index) {
                       if (index == 0) {
                         return Padding(
-                          padding: const EdgeInsets.only(bottom: 20.0, top: 20.0),
+                          padding: const EdgeInsets.only(
+                              bottom: 20.0, top: 20.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,7 +75,9 @@ class _DiscussionPageState extends State<DiscussionPage> {
                               CircleAvatar(
                                 radius: 30,
                                 backgroundImage:
-                                Image.asset('lib/images/base_avatar.png').image,
+                                Image
+                                    .asset('lib/images/base_avatar.png')
+                                    .image,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
@@ -91,46 +94,60 @@ class _DiscussionPageState extends State<DiscussionPage> {
                       if (index == 1) {
                         return Text(
                           widget.title,
-                          style: text.titleMedium?.copyWith(color: colors.onSurface),
+                          style: text.titleMedium?.copyWith(
+                              color: colors.onSurface),
                         );
                       }
                       if (index == 2) {
                         return Padding(
-                          padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+                          padding: const EdgeInsets.only(
+                              top: 20.0, bottom: 20.0),
                           child: Text(
                             widget.description,
-                            style: text.bodyMedium?.copyWith(color: colors.outline),
+                            style: text.bodyMedium?.copyWith(
+                                color: colors.outline),
                           ),
                         );
                       }
-                      if (index == 9) {
+                      if (index == (2 + provider.messages.length)) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 70.0),
                           child: CommentCard(
-                            message: provider.messages[index-3],
+                            message: provider.messages[index - 3],
                           ),
                         );
                       } else {
                         return CommentCard(
-                          message: provider.messages[index-3],
+                          message: provider.messages[index - 3],
                         );
                       }
                     },
-                  );
-                },
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: MainPrimaryButton(
-                label: 'Написать комментарий',
-                icon: MdiIcons.pencil,
-                onTap: _createComment,
-              ),
-            ),
-          ],
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: MainPrimaryButton(
+                      label: 'Написать комментарий',
+                      icon: MdiIcons.pencil,
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return CreateCommentDialog(
+                              controller: provider.messageController,
+                              onTap: () => provider.createComment(1),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
+
     );
   }
 }
