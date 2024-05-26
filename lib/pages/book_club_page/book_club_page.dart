@@ -160,7 +160,7 @@ class _BookClubPageState extends State<BookClubPage> {
                                   label: 'Обсуждения',
                                   icon: MdiIcons.arrowRight,
                                   onTap: () {
-                                    context.navigateTo(DiscussionListRoute());
+                                    context.navigateTo(DiscussionListRoute(clubId: widget.id));
                                   },
                                 ),
                               ),

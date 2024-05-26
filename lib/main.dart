@@ -1,9 +1,11 @@
 import 'package:booktalk_frontend/analytics/analytics.dart';
 import 'package:booktalk_frontend/data/repositories/auth_repository.dart';
 import 'package:booktalk_frontend/data/repositories/book_club_repository.dart';
+import 'package:booktalk_frontend/data/repositories/coversation_repository.dart';
 import 'package:booktalk_frontend/data/repositories/my_events_repository.dart';
 import 'package:booktalk_frontend/data/services/auth_client.dart';
 import 'package:booktalk_frontend/data/services/club_client.dart';
+import 'package:booktalk_frontend/data/services/conversation_client.dart';
 import 'package:booktalk_frontend/data/services/genre_client.dart';
 import 'package:booktalk_frontend/data/services/meeting_client.dart';
 import 'package:booktalk_frontend/utils/secure_storage.dart';
@@ -64,9 +66,11 @@ Future<void> main() async {
   getIt.registerSingleton(AuthClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(GenreClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(MeetingClient(getIt.get<Dio>(), baseUrl: baseUrl));
+  getIt.registerSingleton(ConversationClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(ClubRepository());
   getIt.registerSingleton(MyEventsRepository());
   getIt.registerSingleton(AuthRepository());
+  getIt.registerSingleton(ConversationRepository());
 
   initializeDateFormatting().then(
     (_) => runApp(

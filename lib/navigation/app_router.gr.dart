@@ -60,11 +60,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     DiscussionListRoute.name: (routeData) {
-      final args = routeData.argsAs<DiscussionListRouteArgs>(
-          orElse: () => const DiscussionListRouteArgs());
+      final args = routeData.argsAs<DiscussionListRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: DiscussionListPage(key: args.key),
+        child: DiscussionListPage(
+          key: args.key,
+          clubId: args.clubId,
+        ),
       );
     },
     DiscussionRoute.name: (routeData) {
@@ -287,10 +289,14 @@ class CreateEventRoute extends PageRouteInfo<void> {
 class DiscussionListRoute extends PageRouteInfo<DiscussionListRouteArgs> {
   DiscussionListRoute({
     Key? key,
+    required int clubId,
     List<PageRouteInfo>? children,
   }) : super(
           DiscussionListRoute.name,
-          args: DiscussionListRouteArgs(key: key),
+          args: DiscussionListRouteArgs(
+            key: key,
+            clubId: clubId,
+          ),
           initialChildren: children,
         );
 
@@ -301,13 +307,18 @@ class DiscussionListRoute extends PageRouteInfo<DiscussionListRouteArgs> {
 }
 
 class DiscussionListRouteArgs {
-  const DiscussionListRouteArgs({this.key});
+  const DiscussionListRouteArgs({
+    this.key,
+    required this.clubId,
+  });
 
   final Key? key;
 
+  final int clubId;
+
   @override
   String toString() {
-    return 'DiscussionListRouteArgs{key: $key}';
+    return 'DiscussionListRouteArgs{key: $key, clubId: $clubId}';
   }
 }
 

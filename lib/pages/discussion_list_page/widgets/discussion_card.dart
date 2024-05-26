@@ -1,19 +1,20 @@
+import 'package:booktalk_frontend/models/conversation.dart';
 import 'package:flutter/material.dart';
 
 class DiscussionCard extends StatelessWidget {
-
   final VoidCallback? onTap;
+  final Conversation conversation;
 
-  const DiscussionCard({super.key, this.onTap});
+  const DiscussionCard({
+    super.key,
+    this.onTap,
+    required this.conversation,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme
-        .of(context)
-        .colorScheme;
-    final text = Theme
-        .of(context)
-        .textTheme;
+    final colors = Theme.of(context).colorScheme;
+    final text = Theme.of(context).textTheme;
     return GestureDetector(
       onTap: onTap,
       child: Card(
@@ -32,26 +33,24 @@ class DiscussionCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Заголовок',
-                  style: text.headlineLarge?.copyWith(color: colors.onBackground),
+                  conversation.title,
+                  style:
+                      text.headlineLarge?.copyWith(color: colors.onBackground),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
-                  child: Text('Также как базовый вектор развития способствует подготовке и '
-                      'реализации системы массового участия. Ясность нашей позиции '
-                      'очевидна: консультация с широким активом позволяет оценить '
-                      'значение благоприятных перспектив. В частности, глубокий '
-                      'уровень погружения, а также свежий взгляд на привычные '
-                      'вещи — безусловно открывает новые горизонты для позиций, '
-                      'занимаемых участниками в отношении поставленных задач.',
-                      style: text.bodySmall?.copyWith(color: colors.outline), maxLines: 6, overflow: TextOverflow.ellipsis,),
+                  child: Text(
+                    conversation.description,
+                    style: text.bodySmall?.copyWith(color: colors.outline),
+                    maxLines: 6,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
-          )
-      ),
+          )),
     );
   }
 }
