@@ -1,7 +1,7 @@
 import 'package:booktalk_frontend/analytics/analytics.dart';
 import 'package:booktalk_frontend/data/repositories/auth_repository.dart';
 import 'package:booktalk_frontend/data/repositories/book_club_repository.dart';
-import 'package:booktalk_frontend/data/repositories/coversation_repository.dart';
+import 'package:booktalk_frontend/data/repositories/conversation_repository.dart';
 import 'package:booktalk_frontend/data/repositories/my_events_repository.dart';
 import 'package:booktalk_frontend/data/services/auth_client.dart';
 import 'package:booktalk_frontend/data/services/club_client.dart';

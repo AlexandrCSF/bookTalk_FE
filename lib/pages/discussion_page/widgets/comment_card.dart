@@ -1,17 +1,18 @@
+import 'package:booktalk_frontend/models/message_card.dart';
 import 'package:flutter/material.dart';
 
 class CommentCard extends StatelessWidget {
+  final MessageCard message;
 
-  const CommentCard({super.key});
+  const CommentCard({
+    super.key,
+    required this.message,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme
-        .of(context)
-        .colorScheme;
-    final text = Theme
-        .of(context)
-        .textTheme;
+    final colors = Theme.of(context).colorScheme;
+    final text = Theme.of(context).textTheme;
     return Card(
         surfaceTintColor: colors.surface,
         elevation: 3,
@@ -33,14 +34,13 @@ class CommentCard extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundImage: Image
-                        .asset('lib/images/base_avatar.png')
-                        .image,
+                    backgroundImage:
+                        Image.asset('lib/images/base_avatar.png').image,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0),
                     child: Text(
-                      'Имя Фамилия',
+                      '${message.firstName} ${message.lastName}',
                       style: text.headlineMedium
                           ?.copyWith(color: colors.onSurface),
                     ),
@@ -50,16 +50,12 @@ class CommentCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  'Также как базовый вектор развития способствует подготовке и '
-                      'реализации системы массового участия. Ясность нашей позиции '
-                      'очевидна: консультация с широким активом позволяет оценить '
-                      'значение благоприятных перспектив.',
+                  message.text,
                   style: text.bodyMedium?.copyWith(color: colors.outline),
                 ),
               ),
             ],
           ),
-        )
-    );
+        ));
   }
 }

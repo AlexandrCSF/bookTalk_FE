@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:booktalk_frontend/data/api_exceptions.dart';
-import 'package:booktalk_frontend/data/repositories/coversation_repository.dart';
+import 'package:booktalk_frontend/data/repositories/conversation_repository.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/conversation.dart';
 import 'package:flutter/material.dart';

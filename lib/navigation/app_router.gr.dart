@@ -70,9 +70,16 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     DiscussionRoute.name: (routeData) {
+      final args = routeData.argsAs<DiscussionRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const DiscussionPage(),
+        child: DiscussionPage(
+          key: args.key,
+          id: args.id,
+          title: args.title,
+          description: args.description,
+          createdBy: args.createdBy,
+        ),
       );
     },
     EditClubRoute.name: (routeData) {
@@ -324,16 +331,55 @@ class DiscussionListRouteArgs {
 
 /// generated route for
 /// [DiscussionPage]
-class DiscussionRoute extends PageRouteInfo<void> {
-  const DiscussionRoute({List<PageRouteInfo>? children})
-      : super(
+class DiscussionRoute extends PageRouteInfo<DiscussionRouteArgs> {
+  DiscussionRoute({
+    Key? key,
+    required int id,
+    required String title,
+    required String description,
+    required int createdBy,
+    List<PageRouteInfo>? children,
+  }) : super(
           DiscussionRoute.name,
+          args: DiscussionRouteArgs(
+            key: key,
+            id: id,
+            title: title,
+            description: description,
+            createdBy: createdBy,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'DiscussionRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<DiscussionRouteArgs> page =
+      PageInfo<DiscussionRouteArgs>(name);
+}
+
+class DiscussionRouteArgs {
+  const DiscussionRouteArgs({
+    this.key,
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.createdBy,
+  });
+
+  final Key? key;
+
+  final int id;
+
+  final String title;
+
+  final String description;
+
+  final int createdBy;
+
+  @override
+  String toString() {
+    return 'DiscussionRouteArgs{key: $key, id: $id, title: $title, description: $description, createdBy: $createdBy}';
+  }
 }
 
 /// generated route for

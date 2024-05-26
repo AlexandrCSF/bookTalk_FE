@@ -24,7 +24,6 @@ class DiscussionListPage extends StatefulWidget {
 }
 
 class _DiscussionListPageState extends State<DiscussionListPage> {
-
   void _createDiscussion() {
     showDialog(
       context: context,
@@ -60,7 +59,8 @@ class _DiscussionListPageState extends State<DiscussionListPage> {
         ],
       ),
       body: ChangeNotifierProvider<DiscussionListViewModel>(
-        create: (BuildContext context) => DiscussionListViewModel(clubId: widget.clubId)..loadConversations(),
+        create: (BuildContext context) =>
+            DiscussionListViewModel(clubId: widget.clubId)..loadConversations(),
         child: Consumer<DiscussionListViewModel>(
           builder: (context, provider, child) {
             return Padding(
@@ -73,14 +73,22 @@ class _DiscussionListPageState extends State<DiscussionListPage> {
                       padding: const EdgeInsets.only(bottom: 20.0, top: 20.0),
                       child: Text(
                         "Обсуждения",
-                        style: text.headlineLarge?.copyWith(color: colors.onSurface),
+                        style: text.headlineLarge
+                            ?.copyWith(color: colors.onSurface),
                       ),
                     );
                   } else {
                     return DiscussionCard(
                       conversation: provider.conversationList[index - 1],
                       onTap: () {
-                        context.router.navigate(const DiscussionRoute());
+                        context.router.navigate(
+                          DiscussionRoute(
+                            description: provider.conversationList[index - 1].description,
+                            title: provider.conversationList[index - 1].title,
+                            id: provider.conversationList[index - 1].id,
+                            createdBy: provider.conversationList[index - 1].createdBy,
+                          ),
+                        );
                       },
                     );
                   }
