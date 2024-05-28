@@ -16,6 +16,12 @@ class DiscussionListViewModel extends ChangeNotifier {
   List<Conversation> _conversationList = [];
   UnmodifiableListView<Conversation> get conversationList => UnmodifiableListView(_conversationList);
 
+  final _titleController = TextEditingController();
+  TextEditingController get titleController => _titleController;
+
+  final _descriptionController = TextEditingController();
+  TextEditingController get descriptionController => _descriptionController;
+
   Future<void> loadConversations() async {
     try {
       final result = await _repository.getConversationForClub(clubId);
@@ -25,6 +31,16 @@ class DiscussionListViewModel extends ChangeNotifier {
     } finally {
       notifyListeners();
     }
+  }
+  
+  Future<void> createDiscussion() async {
+    /*try {
+      Map<String, dynamic> conversation = {
+        'conversation': ,
+        'author': userId,
+        'text': _messageController.text,
+      };
+    }*/
   }
 
 }
