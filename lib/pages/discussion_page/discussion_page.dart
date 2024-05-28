@@ -31,7 +31,6 @@ class DiscussionPage extends StatefulWidget {
 }
 
 class _DiscussionPageState extends State<DiscussionPage> {
-  //void _createComment() 
 
   @override
   Widget build(BuildContext context) {

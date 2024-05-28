@@ -24,46 +24,50 @@ class DiscussionListPage extends StatefulWidget {
 }
 
 class _DiscussionListPageState extends State<DiscussionListPage> {
-  void _createDiscussion() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const CreateDiscussionDialog();
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: colors.background,
-        elevation: 0,
-        surfaceTintColor: colors.background,
-        leading: AutoLeadingButton(
-          color: colors.primary,
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: IconButton(
-              onPressed: _createDiscussion,
-              icon: Icon(
-                MdiIcons.plus,
+    return ChangeNotifierProvider<DiscussionListViewModel>(
+      create: (BuildContext context) =>
+          DiscussionListViewModel(clubId: widget.clubId)..loadConversations(),
+      child: Consumer<DiscussionListViewModel>(
+        builder: (context, provider, child) {
+          return Scaffold(
+            appBar: AppBar(
+              backgroundColor: colors.background,
+              elevation: 0,
+              surfaceTintColor: colors.background,
+              leading: AutoLeadingButton(
                 color: colors.primary,
               ),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: IconButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return CreateDiscussionDialog(
+                            titleController: provider.titleController,
+                            descriptionController:
+                                provider.descriptionController,
+                            onTap: () => provider.createDiscussion(1),
+                          );
+                        },
+                      );
+                    },
+                    icon: Icon(
+                      MdiIcons.plus,
+                      color: colors.primary,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-      body: ChangeNotifierProvider<DiscussionListViewModel>(
-        create: (BuildContext context) =>
-            DiscussionListViewModel(clubId: widget.clubId)..loadConversations(),
-        child: Consumer<DiscussionListViewModel>(
-          builder: (context, provider, child) {
-            return Padding(
+            body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               child: ListView.builder(
                 itemCount: provider.conversationList.length + 1,
@@ -83,10 +87,12 @@ class _DiscussionListPageState extends State<DiscussionListPage> {
                       onTap: () {
                         context.router.navigate(
                           DiscussionRoute(
-                            description: provider.conversationList[index - 1].description,
+                            description: provider
+                                .conversationList[index - 1].description,
                             title: provider.conversationList[index - 1].title,
                             id: provider.conversationList[index - 1].id,
-                            createdBy: provider.conversationList[index - 1].createdBy,
+                            createdBy:
+                                provider.conversationList[index - 1].createdBy,
                           ),
                         );
                       },
@@ -94,9 +100,9 @@ class _DiscussionListPageState extends State<DiscussionListPage> {
                   }
                 },
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

@@ -33,14 +33,22 @@ class DiscussionListViewModel extends ChangeNotifier {
     }
   }
   
-  Future<void> createDiscussion() async {
-    /*try {
+  Future<void> createDiscussion(userId) async {
+    try {
       Map<String, dynamic> conversation = {
-        'conversation': ,
-        'author': userId,
-        'text': _messageController.text,
+        'title': _titleController.text,
+        'description': _descriptionController.text,
+        'created_by': userId,
+        'club': clubId,
       };
-    }*/
+      print(conversation);
+      await _repository.createConversation(conversation);
+      await loadConversations();
+    } on ApiException catch (e) {
+      debugPrint(e.message);
+    } finally {
+      notifyListeners();
+    }
   }
 
 }
