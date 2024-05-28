@@ -77,19 +77,11 @@ class _MeetingClient implements MeetingClient {
   }
 
   @override
-  Future<Meeting> attendMeeting(
-    Map<String, dynamic> meeting,
-    int userId,
-    int meetingId,
-  ) async {
+  Future<Meeting> attendMeeting(int meetingId) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'user_id': userId,
-      r'meeting_id': meetingId,
-    };
+    final queryParameters = <String, dynamic>{r'meeting_id': meetingId};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(meeting);
+    const Map<String, dynamic>? _data = null;
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<Meeting>(Options(
       method: 'POST',

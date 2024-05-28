@@ -13,6 +13,8 @@ class EventCard extends StatefulWidget {
   final String date;
   final String time;
   final String place;
+  final bool isSubscribed;
+  final bool isAdministrator;
 
   const EventCard({
     super.key,
@@ -21,6 +23,8 @@ class EventCard extends StatefulWidget {
     required this.date,
     required this.time,
     required this.place,
+    required this.isSubscribed,
+    required this.isAdministrator,
   });
 
   @override

@@ -22,6 +22,13 @@ class DiscussionListViewModel extends ChangeNotifier {
   final _descriptionController = TextEditingController();
   TextEditingController get descriptionController => _descriptionController;
 
+  @override
+  void dispose() {
+    super.dispose();
+    _titleController.dispose();
+    _descriptionController.dispose();
+  }
+
   Future<void> loadConversations() async {
     try {
       final result = await _repository.getConversationForClub(clubId);

@@ -1,14 +1,14 @@
 import 'dart:collection';
 
 import 'package:booktalk_frontend/data/api_exceptions.dart';
-import 'package:booktalk_frontend/data/repositories/my_events_repository.dart';
+import 'package:booktalk_frontend/data/repositories/meeting_repository.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
 import 'package:flutter/material.dart';
 
 class MyEventsViewModel extends ChangeNotifier {
 
-  final MyEventsRepository _repository = getIt.get<MyEventsRepository>();
+  final MeetingRepository _repository = getIt.get<MeetingRepository>();
 
   List<String> _allMeetings = [];
   UnmodifiableListView<String> get allMeetings => UnmodifiableListView(_allMeetings);

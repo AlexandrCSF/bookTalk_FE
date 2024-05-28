@@ -56,6 +56,8 @@ class EventListPage extends StatelessWidget {
                 date: '15 июля 2024',
                 time: '14:00',
                 city: 'Воронеж',
+                isSubscribed: false,
+                isAdministrator: false,
               );
             }
           },

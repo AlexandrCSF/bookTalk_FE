@@ -23,8 +23,8 @@ abstract class MeetingClient {
 
   @POST(MeetingUrls.attendMeeting)
   Future<Meeting> attendMeeting(
-    @Body() Map<String, dynamic> meeting,
-    @Query('user_id') int userId,
+    //@Body() Map<String, dynamic> meeting,
+    //@Query('user_id') int userId,
     @Query('meeting_id') int meetingId,
   );
 
