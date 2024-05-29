@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/models/club_meeting.dart';
 import 'package:booktalk_frontend/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/widgets/small_primary_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,23 +9,15 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import '../../widgets/small_outline_button.dart';
 
 class EventCard extends StatefulWidget {
-  final String topic;
-  final String city;
-  final String date;
-  final String time;
-  final String place;
-  final bool isSubscribed;
-  final bool isAdministrator;
+  final ClubMeeting clubMeeting;
+  final VoidCallback onSubscribe;
+  final VoidCallback onUnsubscribe;
 
   const EventCard({
     super.key,
-    required this.topic,
-    required this.city,
-    required this.date,
-    required this.time,
-    required this.place,
-    required this.isSubscribed,
-    required this.isAdministrator,
+    required this.clubMeeting,
+    required this.onSubscribe,
+    required this.onUnsubscribe,
   });
 
   @override
@@ -69,7 +62,7 @@ class _EventCardState extends State<EventCard> {
                           text.headlineMedium?.copyWith(color: colors.primary),
                     ),
                     Text(
-                      widget.topic,
+                      widget.clubMeeting.name,
                       style: text.headlineMedium
                           ?.copyWith(color: colors.onSurface),
                     ),
@@ -79,7 +72,7 @@ class _EventCardState extends State<EventCard> {
                           text.headlineMedium?.copyWith(color: colors.primary),
                     ),
                     Text(
-                      widget.date,
+                      widget.clubMeeting.date,
                       style: text.headlineMedium
                           ?.copyWith(color: colors.onSurface),
                     ),
@@ -89,7 +82,7 @@ class _EventCardState extends State<EventCard> {
                           text.headlineMedium?.copyWith(color: colors.primary),
                     ),
                     Text(
-                      widget.time,
+                      widget.clubMeeting.time,
                       style: text.headlineMedium
                           ?.copyWith(color: colors.onSurface),
                     ),
@@ -99,14 +92,14 @@ class _EventCardState extends State<EventCard> {
                           text.headlineMedium?.copyWith(color: colors.primary),
                     ),
                     Text(
-                      widget.place,
+                      widget.clubMeeting.location,
                       style: text.headlineMedium
                           ?.copyWith(color: colors.onSurface),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Text(
-                        '25 человек идут',
+                        _numOfMembers(widget.clubMeeting.numOfAttender),
                         style:
                             text.headlineSmall?.copyWith(color: colors.primary),
                       ),
@@ -116,30 +109,37 @@ class _EventCardState extends State<EventCard> {
                 Align(
                   alignment: Alignment.bottomRight,
                   child: SmallPrimaryButton(
-                    icon: MdiIcons.pencil,
-                    onTap: () {
-                      context.router.navigate(EditEventRoute(
-                        topic: widget.topic,
-                        place: widget.place,
-                        date: widget.date,
-                        time: widget.time,
-                        city: widget.city,
-                      ));
-                    },
+                    icon: widget.clubMeeting.isAdministrator
+                        ? MdiIcons.pencil
+                        : widget.clubMeeting.isSubscribed
+                            ? MdiIcons.check
+                            : MdiIcons.plus,
+                    onTap: widget.clubMeeting.isAdministrator
+                        ? () => {}/*context.router.navigate(EditEventRoute(/*parameters*/))*/
+                        : widget.clubMeeting.isSubscribed
+                            ? widget.onUnsubscribe
+                            : widget.onSubscribe,
                   ),
-                  /*_isChecked
-                      ? SmallOutlineButton(
-                          icon: MdiIcons.check,
-                          onTap: _toggleCheck,
-                        )
-                      : SmallPrimaryButton(
-                          icon: MdiIcons.plus,
-                          onTap: _toggleCheck,
-                        ),*/
                 ),
               ],
             ),
           )),
     );
+  }
+
+  String _numOfMembers(int numOfAttenders) {
+    final members = widget.clubMeeting.numOfAttender;
+    if (members % 100 == 11 ||
+        members % 100 == 12 ||
+        members % 100 == 13 ||
+        members % 100 == 14 ||
+        members % 10 > 4 ||
+        members % 10 == 0) {
+      return '$numOfAttenders человек идут';
+    } else if (members % 10 == 1) {
+      return '$numOfAttenders человек идёт';
+    } else {
+      return '$numOfAttenders человека идут';
+    }
   }
 }

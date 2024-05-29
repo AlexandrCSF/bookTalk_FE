@@ -109,9 +109,14 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     EventListRoute.name: (routeData) {
+      final args = routeData.argsAs<EventListRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const EventListPage(),
+        child: EventListPage(
+          key: args.key,
+          clubId: args.clubId,
+          isAdministrator: args.isAdministrator,
+        ),
       );
     },
     HomeRoute.name: (routeData) {
@@ -470,16 +475,45 @@ class EditProfileRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [EventListPage]
-class EventListRoute extends PageRouteInfo<void> {
-  const EventListRoute({List<PageRouteInfo>? children})
-      : super(
+class EventListRoute extends PageRouteInfo<EventListRouteArgs> {
+  EventListRoute({
+    Key? key,
+    required int clubId,
+    required bool isAdministrator,
+    List<PageRouteInfo>? children,
+  }) : super(
           EventListRoute.name,
+          args: EventListRouteArgs(
+            key: key,
+            clubId: clubId,
+            isAdministrator: isAdministrator,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'EventListRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<EventListRouteArgs> page =
+      PageInfo<EventListRouteArgs>(name);
+}
+
+class EventListRouteArgs {
+  const EventListRouteArgs({
+    this.key,
+    required this.clubId,
+    required this.isAdministrator,
+  });
+
+  final Key? key;
+
+  final int clubId;
+
+  final bool isAdministrator;
+
+  @override
+  String toString() {
+    return 'EventListRouteArgs{key: $key, clubId: $clubId, isAdministrator: $isAdministrator}';
+  }
 }
 
 /// generated route for

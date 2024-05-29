@@ -3,6 +3,7 @@ import 'package:booktalk_frontend/data/services/club_client.dart';
 import 'package:booktalk_frontend/data/services/meeting_client.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
+import 'package:booktalk_frontend/models/user.dart';
 import 'package:dio/dio.dart';
 
 class MeetingRepository {
@@ -32,6 +33,11 @@ class MeetingRepository {
     } on DioException catch (e) {
       throw HandleException.handleException(e);
     }
+  }
+
+  Future<int> getNumberOfMeetingAttenders(int meetingId) async {
+    List<User> attenders = await _client.getListOfAttenders(meetingId);
+    return attenders.length;
   }
 
   Future<List<Meeting>> getMeetingsForClub(int clubId) async {

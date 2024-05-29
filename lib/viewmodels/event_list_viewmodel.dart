@@ -12,26 +12,22 @@ class EventListViewModel extends ChangeNotifier {
 
   final int clubId;
   final bool isAdministrated;
-  final List<Meeting> meetings;
 
   EventListViewModel({
     required this.clubId,
     required this.isAdministrated,
-    required this.meetings,
   });
-
-  List<Meeting> _meetingList = [];
 
   List<ClubMeeting> _clubMeetingList = [];
   UnmodifiableListView<ClubMeeting> get clubMeetingList =>
       UnmodifiableListView(_clubMeetingList);
 
-  /*Future<void> initializeMeetings(int userId) async {
+  Future<void> loadMeetings(int userId) async {
     try {
-      _meetingList = meetings;
       final userMeetings = await _repository.getMeetingsForUser(userId);
-      for (var meeting in meetings) {
-        _repository.
+      final clubMeetings = await _repository.getMeetingsForClub(clubId);
+      for (var meeting in clubMeetings) {
+        int numOfAttenders = await _repository.getNumberOfMeetingAttenders(meeting.id);
         if (isAdministrated == true) {
           _clubMeetingList.add(
             ClubMeeting(
@@ -43,6 +39,7 @@ class EventListViewModel extends ChangeNotifier {
               club: meeting.club,
               isSubscribed: false,
               isAdministrator: true,
+              numOfAttender: numOfAttenders,
             ),
           );
         } else if (userMeetings.contains(meeting)) {
@@ -56,6 +53,7 @@ class EventListViewModel extends ChangeNotifier {
               club: meeting.club,
               isSubscribed: true,
               isAdministrator: false,
+              numOfAttender: numOfAttenders,
             ),
           );
         } else {
@@ -69,6 +67,7 @@ class EventListViewModel extends ChangeNotifier {
               club: meeting.club,
               isSubscribed: false,
               isAdministrator: false,
+              numOfAttender: numOfAttenders,
             ),
           );
         }
@@ -78,17 +77,21 @@ class EventListViewModel extends ChangeNotifier {
     } finally {
       notifyListeners();
     }
-  }*/
+  }
 
-  Future<void> loadMeetings() async {
+  Future<void> subscribe(int meetingId) async {
     try {
-      final result = await _repository.getMeetingsForClub(clubId);
-      //_meetingList = initializeMeetings(userId);
-      // todo: isSubscribed and numOfAttenders
+      await _repository.attendMeeting(meetingId);
     } on ApiException catch (e) {
       debugPrint(e.message);
     } finally {
       notifyListeners();
     }
   }
+
+  // todo: add unsubscribe
+  Future<void> unsubscribe(int meetingId) async {
+
+  }
+
 }

@@ -141,6 +141,7 @@ class _BookClubPageState extends State<BookClubPage> {
                                             label: 'Вы вступили',
                                             icon: MdiIcons.check,
                                             onTap: () => provider
+                                            // todo: change to unsubscribe
                                                 .subscribe(widget.id as String),
                                           )
                                         : MainPrimaryButton(
@@ -168,7 +169,7 @@ class _BookClubPageState extends State<BookClubPage> {
                                 events: provider.events,
                                 onTap: () {
                                   context.router
-                                      .navigate(const EventListRoute());
+                                      .navigate(EventListRoute(clubId: widget.id, isAdministrator: provider.isAdministrator));
                                 },
                               ),
                             ],
