@@ -47,6 +47,24 @@ class ClubRepository {
     }
   }
 
+  Future<List<ClubCard>> getAdministratedList(int userId) async {
+    try {
+      final result = await _client.getAdministratedList(userId);
+      return result;
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
+
+  Future<List<ClubCard>> getRecommendationList(int userId) async {
+    try {
+      final result = await _client.getRecommendationList(userId);
+      return result;
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
+
   Future<List<ClubCard>> getSubscriptionList(int userId) async {
     try {
       final result = await _client.getMembershipList(userId);
@@ -56,13 +74,9 @@ class ClubRepository {
     }
   }
 
-  Future<Subscribe> subscribeToClub(int userId, int clubId) async {
-    final subscribe = Subscribe(userId: userId, clubId: clubId);
+  Future<void> subscribeToClub(int clubId) async {
     try {
-      Subscribe result = await _client.subscribeToClub(
-        subscribe.toJson(), userId, clubId,
-      );
-      return result;
+      await _client.subscribeToClub(clubId);
     } on DioException catch (e) {
       throw HandleException.handleException(e);
     }
@@ -80,8 +94,7 @@ class ClubRepository {
     return clubGenres;
   }
 
-  // todo: change return value to clubcard??
-  Future<ClubCreate> createClub(ClubCreate clubCreate) async {
+  Future<ClubCard> createClub(ClubCreate clubCreate) async {
     try {
       final result = await _client.createClub(clubCreate.toJson());
       return result;

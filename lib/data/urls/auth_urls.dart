@@ -7,5 +7,6 @@ abstract class AuthUrls {
   static const String freeToken = '/auth/token/free';
   static const String refreshToken = '/auth/token/refresh/';
   static const String createUser = '/auth/user/';
+  static const String logIn = '/auth/auth/';
 
 }

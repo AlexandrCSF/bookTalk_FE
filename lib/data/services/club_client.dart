@@ -12,7 +12,6 @@ part 'club_client.g.dart';
 
 @RestApi()
 abstract class ClubClient {
-
   factory ClubClient(Dio dio, {String baseUrl}) = _ClubClient;
 
   @GET(ClubUrls.getClubById)
@@ -22,6 +21,11 @@ abstract class ClubClient {
 
   @GET(ClubUrls.getMembershipForUser)
   Future<List<ClubCard>> getMembershipList(
+    @Query('user_id') int userId,
+  );
+
+  @GET(ClubUrls.getRecommendationForUser)
+  Future<List<ClubCard>> getRecommendationList(
     @Query('user_id') int userId,
   );
 
@@ -41,12 +45,12 @@ abstract class ClubClient {
   );
 
   @PUT(ClubUrls.createClub)
-  Future<ClubCreate> createClub(
+  Future<ClubCard> createClub(
     @Body() Map<String, dynamic> clubCreate,
   );
 
   @PATCH(ClubUrls.editClub)
-  Future<ClubPatch> editClub(
+  Future<ClubCard> editClub(
     @Body() Map<String, dynamic> clubPatch,
     @Query('club_id') String clubId,
   );
@@ -57,10 +61,12 @@ abstract class ClubClient {
   );
 
   @POST(ClubUrls.subscribeToClub)
-  Future<Subscribe> subscribeToClub(
-    @Body() Map<String, dynamic> subscribe,
-    @Query('user_id') int userId,
+  Future<void> subscribeToClub(
     @Query('club_id') int clubId,
   );
 
+  @POST(ClubUrls.subscribeToClub)
+  Future<void> unsubscribeFromClub(
+    @Query('club_id') int clubId,
+  );
 }

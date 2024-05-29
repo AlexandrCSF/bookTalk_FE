@@ -29,6 +29,7 @@ mixin _$UserCreate {
   String get dateJoined => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
+  List<String> get interests => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +49,8 @@ abstract class $UserCreateCopyWith<$Res> {
       @JsonKey(name: 'last_name') String lastName,
       @JsonKey(name: 'date_joined') String dateJoined,
       String email,
-      String city});
+      String city,
+      List<String> interests});
 }
 
 /// @nodoc
@@ -70,6 +72,7 @@ class _$UserCreateCopyWithImpl<$Res, $Val extends UserCreate>
     Object? dateJoined = null,
     Object? email = null,
     Object? city = null,
+    Object? interests = null,
   }) {
     return _then(_value.copyWith(
       username: null == username
@@ -96,6 +99,10 @@ class _$UserCreateCopyWithImpl<$Res, $Val extends UserCreate>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
+      interests: null == interests
+          ? _value.interests
+          : interests // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -114,7 +121,8 @@ abstract class _$$UserCreateImplCopyWith<$Res>
       @JsonKey(name: 'last_name') String lastName,
       @JsonKey(name: 'date_joined') String dateJoined,
       String email,
-      String city});
+      String city,
+      List<String> interests});
 }
 
 /// @nodoc
@@ -134,6 +142,7 @@ class __$$UserCreateImplCopyWithImpl<$Res>
     Object? dateJoined = null,
     Object? email = null,
     Object? city = null,
+    Object? interests = null,
   }) {
     return _then(_$UserCreateImpl(
       username: null == username
@@ -160,6 +169,10 @@ class __$$UserCreateImplCopyWithImpl<$Res>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
+      interests: null == interests
+          ? _value._interests
+          : interests // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -173,7 +186,9 @@ class _$UserCreateImpl implements _UserCreate {
       @JsonKey(name: 'last_name') required this.lastName,
       @JsonKey(name: 'date_joined') required this.dateJoined,
       required this.email,
-      required this.city});
+      required this.city,
+      required final List<String> interests})
+      : _interests = interests;
 
   factory _$UserCreateImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserCreateImplFromJson(json);
@@ -193,10 +208,17 @@ class _$UserCreateImpl implements _UserCreate {
   final String email;
   @override
   final String city;
+  final List<String> _interests;
+  @override
+  List<String> get interests {
+    if (_interests is EqualUnmodifiableListView) return _interests;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_interests);
+  }
 
   @override
   String toString() {
-    return 'UserCreate(username: $username, firstName: $firstName, lastName: $lastName, dateJoined: $dateJoined, email: $email, city: $city)';
+    return 'UserCreate(username: $username, firstName: $firstName, lastName: $lastName, dateJoined: $dateJoined, email: $email, city: $city, interests: $interests)';
   }
 
   @override
@@ -213,13 +235,15 @@ class _$UserCreateImpl implements _UserCreate {
             (identical(other.dateJoined, dateJoined) ||
                 other.dateJoined == dateJoined) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.city, city) || other.city == city));
+            (identical(other.city, city) || other.city == city) &&
+            const DeepCollectionEquality()
+                .equals(other._interests, _interests));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, username, firstName, lastName, dateJoined, email, city);
+  int get hashCode => Object.hash(runtimeType, username, firstName, lastName,
+      dateJoined, email, city, const DeepCollectionEquality().hash(_interests));
 
   @JsonKey(ignore: true)
   @override
@@ -242,7 +266,8 @@ abstract class _UserCreate implements UserCreate {
       @JsonKey(name: 'last_name') required final String lastName,
       @JsonKey(name: 'date_joined') required final String dateJoined,
       required final String email,
-      required final String city}) = _$UserCreateImpl;
+      required final String city,
+      required final List<String> interests}) = _$UserCreateImpl;
 
   factory _UserCreate.fromJson(Map<String, dynamic> json) =
       _$UserCreateImpl.fromJson;
@@ -262,6 +287,8 @@ abstract class _UserCreate implements UserCreate {
   String get email;
   @override
   String get city;
+  @override
+  List<String> get interests;
   @override
   @JsonKey(ignore: true)
   _$$UserCreateImplCopyWith<_$UserCreateImpl> get copyWith =>

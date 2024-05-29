@@ -71,7 +71,6 @@ class DiscussionViewModel extends ChangeNotifier {
   Future<void> createComment(userId) async {
     try {
       Map<String, dynamic> message = {
-        'id': 11,
         'conversation': conversationId,
         'author': userId,
         'text': _messageController.text,

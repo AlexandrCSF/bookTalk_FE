@@ -75,6 +75,35 @@ class _ClubClient implements ClubClient {
   }
 
   @override
+  Future<List<ClubCard>> getRecommendationList(int userId) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'user_id': userId};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result =
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<ClubCard>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/clubs/recommends/',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map((dynamic i) => ClubCard.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
   Future<List<ClubCard>> getAdministratedList(int userId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'user_id': userId};
@@ -162,14 +191,14 @@ class _ClubClient implements ClubClient {
   }
 
   @override
-  Future<ClubCreate> createClub(Map<String, dynamic> clubCreate) async {
+  Future<ClubCard> createClub(Map<String, dynamic> clubCreate) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(clubCreate);
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ClubCreate>(Options(
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<ClubCard>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
@@ -185,12 +214,12 @@ class _ClubClient implements ClubClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ClubCreate.fromJson(_result.data!);
+    final value = ClubCard.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<ClubPatch> editClub(
+  Future<ClubCard> editClub(
     Map<String, dynamic> clubPatch,
     String clubId,
   ) async {
@@ -199,8 +228,8 @@ class _ClubClient implements ClubClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(clubPatch);
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ClubPatch>(Options(
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<ClubCard>(Options(
       method: 'PATCH',
       headers: _headers,
       extra: _extra,
@@ -216,7 +245,7 @@ class _ClubClient implements ClubClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ClubPatch.fromJson(_result.data!);
+    final value = ClubCard.fromJson(_result.data!);
     return value;
   }
 
@@ -248,38 +277,51 @@ class _ClubClient implements ClubClient {
   }
 
   @override
-  Future<Subscribe> subscribeToClub(
-    Map<String, dynamic> subscribe,
-    int userId,
-    int clubId,
-  ) async {
+  Future<void> subscribeToClub(int clubId) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'user_id': userId,
-      r'club_id': clubId,
-    };
+    final queryParameters = <String, dynamic>{r'club_id': clubId};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(subscribe);
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<Subscribe>(Options(
+    const Map<String, dynamic>? _data = null;
+    await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/clubs/subscribe/',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = Subscribe.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/clubs/subscribe/',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+  }
+
+  @override
+  Future<void> unsubscribeFromClub(int clubId) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'club_id': clubId};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/clubs/subscribe/',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

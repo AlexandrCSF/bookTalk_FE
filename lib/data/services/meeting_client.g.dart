@@ -48,7 +48,7 @@ class _MeetingClient implements MeetingClient {
   }
 
   @override
-  Future<List<Meeting>> getListOfMeetings(int userId) async {
+  Future<List<Meeting>> getListOfMeetingsForUser(int userId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'user_id': userId};
     final _headers = <String, dynamic>{};

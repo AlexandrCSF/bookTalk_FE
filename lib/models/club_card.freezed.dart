@@ -25,7 +25,7 @@ mixin _$ClubCard {
   String get description => throw _privateConstructorUsedError;
   int get admin => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
-  List<int> get interests => throw _privateConstructorUsedError;
+  List<Genre> get interests => throw _privateConstructorUsedError;
   List<Meeting> get meetings => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $ClubCardCopyWith<$Res> {
       String description,
       int admin,
       String city,
-      List<int> interests,
+      List<Genre> interests,
       List<Meeting> meetings});
 }
 
@@ -94,7 +94,7 @@ class _$ClubCardCopyWithImpl<$Res, $Val extends ClubCard>
       interests: null == interests
           ? _value.interests
           : interests // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<Genre>,
       meetings: null == meetings
           ? _value.meetings
           : meetings // ignore: cast_nullable_to_non_nullable
@@ -117,7 +117,7 @@ abstract class _$$ClubCardImplCopyWith<$Res>
       String description,
       int admin,
       String city,
-      List<int> interests,
+      List<Genre> interests,
       List<Meeting> meetings});
 }
 
@@ -164,7 +164,7 @@ class __$$ClubCardImplCopyWithImpl<$Res>
       interests: null == interests
           ? _value._interests
           : interests // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<Genre>,
       meetings: null == meetings
           ? _value._meetings
           : meetings // ignore: cast_nullable_to_non_nullable
@@ -182,7 +182,7 @@ class _$ClubCardImpl implements _ClubCard {
       required this.description,
       required this.admin,
       required this.city,
-      required final List<int> interests,
+      required final List<Genre> interests,
       required final List<Meeting> meetings})
       : _interests = interests,
         _meetings = meetings;
@@ -200,9 +200,9 @@ class _$ClubCardImpl implements _ClubCard {
   final int admin;
   @override
   final String city;
-  final List<int> _interests;
+  final List<Genre> _interests;
   @override
-  List<int> get interests {
+  List<Genre> get interests {
     if (_interests is EqualUnmodifiableListView) return _interests;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_interests);
@@ -270,7 +270,7 @@ abstract class _ClubCard implements ClubCard {
       required final String description,
       required final int admin,
       required final String city,
-      required final List<int> interests,
+      required final List<Genre> interests,
       required final List<Meeting> meetings}) = _$ClubCardImpl;
 
   factory _ClubCard.fromJson(Map<String, dynamic> json) =
@@ -287,7 +287,7 @@ abstract class _ClubCard implements ClubCard {
   @override
   String get city;
   @override
-  List<int> get interests;
+  List<Genre> get interests;
   @override
   List<Meeting> get meetings;
   @override

@@ -21,6 +21,12 @@ class BookClubListViewModel extends ChangeNotifier {
   List<ClubCard> _subscriptionsList = [];
   UnmodifiableListView<ClubCard> get subscriptionList => UnmodifiableListView(_subscriptionsList);
 
+  List<ClubCard> _recommendationList = [];
+  UnmodifiableListView<ClubCard> get recommendationList => UnmodifiableListView(_recommendationList);
+
+  List<ClubCard> _administratedList = [];
+  UnmodifiableListView<ClubCard> get administratedList => UnmodifiableListView(_administratedList);
+
   void _setLoading(bool value) {
     _isLoading = value;
     notifyListeners();
@@ -35,6 +41,30 @@ class BookClubListViewModel extends ChangeNotifier {
     try {
       final result = await _repository.getSubscriptionList(userId);
       _subscriptionsList = result;
+    } on ApiException catch (e) {
+      _setError(e.message);
+      _setLoading(false);
+    } finally {
+      _setLoading(false);
+    }
+  }
+
+  Future<void> getRecommendationList(int userId) async {
+    try {
+      final result = await _repository.getRecommendationList(userId);
+      _recommendationList = result;
+    } on ApiException catch (e) {
+      _setError(e.message);
+      _setLoading(false);
+    } finally {
+      _setLoading(false);
+    }
+  }
+
+  Future<void> getAdministratedList(int userId) async {
+    try {
+      final result = await _repository.getAdministratedList(userId);
+      _administratedList = result;
     } on ApiException catch (e) {
       _setError(e.message);
       _setLoading(false);

@@ -16,13 +16,12 @@ class CreateClubViewModel extends ChangeNotifier {
   String _selectedCity = 'Не выбрано';
   String get selectedCity => _selectedCity;
 
-  Future<void> createClub(int userId) async {
+  /*Future<void> createClub(int userId) async {
     ClubCreate clubCreate = ClubCreate(
-      id: 1,
       name: _nameController.text,
       description: _descriptionController.text,
       adminId: userId,
       cityFias: _selectedCity,
     );
-  }
+  }*/
 }

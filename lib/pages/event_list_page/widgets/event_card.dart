@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/models/club_meeting.dart';
-import 'package:booktalk_frontend/navigation/app_router.dart';
+import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/widgets/small_primary_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

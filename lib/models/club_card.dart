@@ -1,3 +1,4 @@
+import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,7 +14,7 @@ abstract class ClubCard with _$ClubCard {
     required String description,
     required int admin,
     required String city,
-    required List<int> interests,
+    required List<Genre> interests,
     required List<Meeting> meetings,
   }) = _ClubCard;
 

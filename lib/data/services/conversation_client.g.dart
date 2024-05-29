@@ -79,15 +79,15 @@ class _ConversationClient implements ConversationClient {
   }
 
   @override
-  Future<Conversation> createConversation(
-      Map<String, dynamic> conversation) async {
+  Future<ConversationCreate> createConversation(
+      Map<String, dynamic> conversationCreate) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(conversation);
+    _data.addAll(conversationCreate);
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<Conversation>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<ConversationCreate>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -103,19 +103,20 @@ class _ConversationClient implements ConversationClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = Conversation.fromJson(_result.data!);
+    final value = ConversationCreate.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<Message> createMessage(Map<String, dynamic> message) async {
+  Future<MessageCreate> createMessage(
+      Map<String, dynamic> messageCreate) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(message);
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Message>(Options(
+    _data.addAll(messageCreate);
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<MessageCreate>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -131,7 +132,7 @@ class _ConversationClient implements ConversationClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = Message.fromJson(_result.data!);
+    final value = MessageCreate.fromJson(_result.data!);
     return value;
   }
 

@@ -4,7 +4,6 @@ import 'package:booktalk_frontend/pages/widgets/textfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../../../analytics/analytics.dart';
 
 class CreateDiscussionDialog extends StatefulWidget {
   final TextEditingController titleController;

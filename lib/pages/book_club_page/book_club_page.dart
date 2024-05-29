@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
-import 'package:booktalk_frontend/navigation/app_router.dart';
+import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/book_club_page/widgets/club_description.dart';
 import 'package:booktalk_frontend/pages/book_club_page/widgets/club_tags.dart';
 import 'package:booktalk_frontend/pages/book_club_page/widgets/event_list_widget.dart';
@@ -32,14 +32,6 @@ class BookClubPage extends StatefulWidget {
 }
 
 class _BookClubPageState extends State<BookClubPage> {
-  /*late BookClubViewModel provider;
-
-  @override
-  void initState() {
-    provider = Provider.of<BookClubViewModel>(context, listen: false);
-    provider.getClubData('${widget.id}', 1);
-    super.initState();
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +82,7 @@ class _BookClubPageState extends State<BookClubPage> {
                                 Positioned.fill(
                                   // todo: change to imageUrl
                                   child: Image.asset(
-                                    'lib/resources/images/hist_map.jpg',
+                                    'lib/utils/resources/images/hist_map.jpg',
                                     fit: BoxFit.cover,
                                   ),
                                 ),

@@ -7,7 +7,6 @@ part 'meeting_create.g.dart';
 abstract class MeetingCreate with _$MeetingCreate {
 
   const factory MeetingCreate({
-    required int id,
     required String name,
     required String date,
     required String time,

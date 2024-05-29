@@ -53,7 +53,7 @@ class ClubCard extends StatelessWidget {
                         fit: BoxFit.fitHeight,
                       ),*/
                       child: Image.asset(
-                        'lib/resources/images/hist_map.jpg',
+                        'lib/utils/resources/images/hist_map.jpg',
                         width: 80,
                         height: 120,
                         fit: BoxFit.fitHeight,

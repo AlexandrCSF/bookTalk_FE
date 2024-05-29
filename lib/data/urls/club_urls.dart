@@ -6,6 +6,7 @@ abstract class ClubUrls {
   static const String getMeetingsByClubId = '/clubs/meetings/';
   static const String getMembershipForUser = '/clubs/membership_for_user/';
   static const String getListOfMembersByClubId = '/clubs/users/';
+  static const String getRecommendationForUser = '/clubs/recommends/';
 
   /// PUT
   static const String createClub = '/clubs/club/';
@@ -18,5 +19,6 @@ abstract class ClubUrls {
 
   /// POST
   static const String subscribeToClub = '/clubs/subscribe/';
+  static const String unsubscribeFromClub = '/clubs/unsubscribe/';
 
 }

@@ -8,7 +8,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../navigation/app_router.dart';
+import '../../utils/navigation/app_router.dart';
 import '../widgets/main_outline_button.dart';
 import 'widgets/info_text.dart';
 import 'widgets/calendar.dart';

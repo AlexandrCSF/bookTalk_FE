@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'navigation/app_router.dart';
+import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 
 class BookTalkApp extends StatelessWidget {
   BookTalkApp({super.key});

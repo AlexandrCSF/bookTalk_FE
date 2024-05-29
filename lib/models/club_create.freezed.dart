@@ -20,13 +20,13 @@ ClubCreate _$ClubCreateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ClubCreate {
-  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'admin_id')
   int get adminId => throw _privateConstructorUsedError;
   @JsonKey(name: 'city_fias')
   String get cityFias => throw _privateConstructorUsedError;
+  List<String> get interests => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,11 +41,11 @@ abstract class $ClubCreateCopyWith<$Res> {
       _$ClubCreateCopyWithImpl<$Res, ClubCreate>;
   @useResult
   $Res call(
-      {int id,
-      String name,
+      {String name,
       String description,
       @JsonKey(name: 'admin_id') int adminId,
-      @JsonKey(name: 'city_fias') String cityFias});
+      @JsonKey(name: 'city_fias') String cityFias,
+      List<String> interests});
 }
 
 /// @nodoc
@@ -61,17 +61,13 @@ class _$ClubCreateCopyWithImpl<$Res, $Val extends ClubCreate>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? name = null,
     Object? description = null,
     Object? adminId = null,
     Object? cityFias = null,
+    Object? interests = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -88,6 +84,10 @@ class _$ClubCreateCopyWithImpl<$Res, $Val extends ClubCreate>
           ? _value.cityFias
           : cityFias // ignore: cast_nullable_to_non_nullable
               as String,
+      interests: null == interests
+          ? _value.interests
+          : interests // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -101,11 +101,11 @@ abstract class _$$ClubCreateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String name,
+      {String name,
       String description,
       @JsonKey(name: 'admin_id') int adminId,
-      @JsonKey(name: 'city_fias') String cityFias});
+      @JsonKey(name: 'city_fias') String cityFias,
+      List<String> interests});
 }
 
 /// @nodoc
@@ -119,17 +119,13 @@ class __$$ClubCreateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? name = null,
     Object? description = null,
     Object? adminId = null,
     Object? cityFias = null,
+    Object? interests = null,
   }) {
     return _then(_$ClubCreateImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -146,6 +142,10 @@ class __$$ClubCreateImplCopyWithImpl<$Res>
           ? _value.cityFias
           : cityFias // ignore: cast_nullable_to_non_nullable
               as String,
+      interests: null == interests
+          ? _value._interests
+          : interests // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -154,17 +154,16 @@ class __$$ClubCreateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClubCreateImpl implements _ClubCreate {
   const _$ClubCreateImpl(
-      {required this.id,
-      required this.name,
+      {required this.name,
       required this.description,
       @JsonKey(name: 'admin_id') required this.adminId,
-      @JsonKey(name: 'city_fias') required this.cityFias});
+      @JsonKey(name: 'city_fias') required this.cityFias,
+      required final List<String> interests})
+      : _interests = interests;
 
   factory _$ClubCreateImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClubCreateImplFromJson(json);
 
-  @override
-  final int id;
   @override
   final String name;
   @override
@@ -175,10 +174,17 @@ class _$ClubCreateImpl implements _ClubCreate {
   @override
   @JsonKey(name: 'city_fias')
   final String cityFias;
+  final List<String> _interests;
+  @override
+  List<String> get interests {
+    if (_interests is EqualUnmodifiableListView) return _interests;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_interests);
+  }
 
   @override
   String toString() {
-    return 'ClubCreate(id: $id, name: $name, description: $description, adminId: $adminId, cityFias: $cityFias)';
+    return 'ClubCreate(name: $name, description: $description, adminId: $adminId, cityFias: $cityFias, interests: $interests)';
   }
 
   @override
@@ -186,19 +192,20 @@ class _$ClubCreateImpl implements _ClubCreate {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClubCreateImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.adminId, adminId) || other.adminId == adminId) &&
             (identical(other.cityFias, cityFias) ||
-                other.cityFias == cityFias));
+                other.cityFias == cityFias) &&
+            const DeepCollectionEquality()
+                .equals(other._interests, _interests));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, description, adminId, cityFias);
+  int get hashCode => Object.hash(runtimeType, name, description, adminId,
+      cityFias, const DeepCollectionEquality().hash(_interests));
 
   @JsonKey(ignore: true)
   @override
@@ -216,18 +223,15 @@ class _$ClubCreateImpl implements _ClubCreate {
 
 abstract class _ClubCreate implements ClubCreate {
   const factory _ClubCreate(
-          {required final int id,
-          required final String name,
-          required final String description,
-          @JsonKey(name: 'admin_id') required final int adminId,
-          @JsonKey(name: 'city_fias') required final String cityFias}) =
-      _$ClubCreateImpl;
+      {required final String name,
+      required final String description,
+      @JsonKey(name: 'admin_id') required final int adminId,
+      @JsonKey(name: 'city_fias') required final String cityFias,
+      required final List<String> interests}) = _$ClubCreateImpl;
 
   factory _ClubCreate.fromJson(Map<String, dynamic> json) =
       _$ClubCreateImpl.fromJson;
 
-  @override
-  int get id;
   @override
   String get name;
   @override
@@ -238,6 +242,8 @@ abstract class _ClubCreate implements ClubCreate {
   @override
   @JsonKey(name: 'city_fias')
   String get cityFias;
+  @override
+  List<String> get interests;
   @override
   @JsonKey(ignore: true)
   _$$ClubCreateImplCopyWith<_$ClubCreateImpl> get copyWith =>

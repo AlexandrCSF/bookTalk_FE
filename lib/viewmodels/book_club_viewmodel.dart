@@ -4,6 +4,7 @@ import 'package:booktalk_frontend/data/api_exceptions.dart';
 import 'package:booktalk_frontend/data/repositories/book_club_repository.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
+import 'package:booktalk_frontend/models/genre.dart';
 import 'package:flutter/material.dart';
 
 class BookClubViewModel extends ChangeNotifier {
@@ -39,10 +40,10 @@ class BookClubViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getGenres(List<int> genreIds, String clubId) async {
-    final clubGenres = await _repository.getClubGenres(clubId);
+  Future<void> getGenres(List<Genre> genreIds, String clubId) async {
+    //final clubGenres = await _repository.getClubGenres(clubId);
     if (_genres.isEmpty) {
-      for (var genre in clubGenres) {
+      for (var genre in genreIds) {
         _genres.add(genre.name);
       }
     }

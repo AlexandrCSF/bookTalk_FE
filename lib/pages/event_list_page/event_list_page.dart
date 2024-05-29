@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../../navigation/app_router.dart';
+import '../../utils/navigation/app_router.dart';
 import 'widgets/event_card.dart';
 
 @RoutePage()
@@ -74,12 +74,12 @@ class _EventListPageState extends State<EventListPage> {
                     );
                   } else {
                     return EventCard(
-                      clubMeeting: provider.clubMeetingList[index],
+                      clubMeeting: provider.clubMeetingList[index-1],
                       onSubscribe: () => provider
-                          .subscribe(provider.clubMeetingList[index].id),
+                          .subscribe(provider.clubMeetingList[index-1].id),
                       /*todo: change to unsubscribe*/
                       onUnsubscribe: () => provider
-                          .subscribe(provider.clubMeetingList[index].id),
+                          .subscribe(provider.clubMeetingList[index-1].id),
                     );
                   }
                 },

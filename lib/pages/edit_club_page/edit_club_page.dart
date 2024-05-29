@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:booktalk_frontend/navigation/app_router.dart';
+import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/widgets/edit_avatar_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/main_error_button.dart';
 import 'package:booktalk_frontend/pages/widgets/main_outline_button.dart';

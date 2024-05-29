@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:booktalk_frontend/analytics/analytics.dart';
-import 'package:booktalk_frontend/navigation/app_router.dart';
+import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/widgets/dropdown_list_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/edit_avatar_widget.dart';
 import 'package:booktalk_frontend/viewmodels/registration_viewmodel.dart';
@@ -85,7 +84,7 @@ class RegistrationPage extends StatelessWidget {
               label: "Готово",
               icon: MdiIcons.check,
               onTap: () {
-                provider.signUp();
+                //provider.signUp();
                 context.router.navigate(const MyEventsRoute());
               },
             ),

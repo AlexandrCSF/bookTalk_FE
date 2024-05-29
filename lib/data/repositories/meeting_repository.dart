@@ -13,7 +13,7 @@ class MeetingRepository {
 
   Future<List<Meeting>> getMeetingsForUser(int userId) async {
     try {
-      return await _client.getListOfMeetings(userId);
+      return await _client.getListOfMeetingsForUser(userId);
     } on DioException catch (e) {
       throw HandleException.handleException(e);
     }
@@ -21,7 +21,7 @@ class MeetingRepository {
 
   Future<List<Meeting>> getTodayMeetingsForUser(int userId) async {
     try {
-      final List<Meeting> allMeetings = await _client.getListOfMeetings(userId);
+      final List<Meeting> allMeetings = await _client.getListOfMeetingsForUser(userId);
       List<Meeting> todayMeetings = [];
       DateTime today = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
       for (var meeting in allMeetings) {

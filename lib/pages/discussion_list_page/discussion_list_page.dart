@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:booktalk_frontend/analytics/analytics.dart';
-import 'package:booktalk_frontend/navigation/app_router.dart';
+import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/discussion_list_page/widgets/create_discussion_dialog.dart';
 import 'package:booktalk_frontend/viewmodels/discussion_list_viewmodel.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';

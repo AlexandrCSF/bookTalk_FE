@@ -1,23 +1,23 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import '../pages/authorization_page/authorization_page.dart';
-import '../pages/create_club_page/create_club_page.dart';
-import '../pages/discussion_list_page/discussion_list_page.dart';
-import '../pages/discussion_page/discussion_page.dart';
-import '../pages/edit_profile_page/edit_profile_page.dart';
-import '../pages/event_list_page/event_list_page.dart';
-import '../pages/book_club_page/book_club_page.dart';
-import '../pages/book_club_list_page/book_club_list_page.dart';
-import '../pages/interests_page/interests_page.dart';
-import '../pages/member_list_page/member_list_page.dart';
-import '../pages/my_events_page/my_events_page.dart';
-import '../pages/profile_page/profile_page.dart';
-import '../pages/home_page/home_page.dart';
-import '../pages/registration_page/registration_page.dart';
-import '../pages/create_event_page/create_event_page.dart';
-import '../pages/edit_club_page/edit_club_page.dart';
-import '../pages/edit_event_page/edit_event_page.dart';
+import 'package:booktalk_frontend/pages/authorization_page/authorization_page.dart';
+import 'package:booktalk_frontend/pages/create_club_page/create_club_page.dart';
+import 'package:booktalk_frontend/pages/discussion_list_page/discussion_list_page.dart';
+import 'package:booktalk_frontend/pages/discussion_page/discussion_page.dart';
+import 'package:booktalk_frontend/pages/edit_profile_page/edit_profile_page.dart';
+import 'package:booktalk_frontend/pages/event_list_page/event_list_page.dart';
+import 'package:booktalk_frontend/pages/book_club_page/book_club_page.dart';
+import 'package:booktalk_frontend/pages/book_club_list_page/book_club_list_page.dart';
+import 'package:booktalk_frontend/pages/interests_page/interests_page.dart';
+import 'package:booktalk_frontend/pages/member_list_page/member_list_page.dart';
+import 'package:booktalk_frontend/pages/my_events_page/my_events_page.dart';
+import 'package:booktalk_frontend/pages/profile_page/profile_page.dart';
+import 'package:booktalk_frontend/pages/home_page/home_page.dart';
+import 'package:booktalk_frontend/pages/registration_page/registration_page.dart';
+import 'package:booktalk_frontend/pages/create_event_page/create_event_page.dart';
+import 'package:booktalk_frontend/pages/edit_club_page/edit_club_page.dart';
+import 'package:booktalk_frontend/pages/edit_event_page/edit_event_page.dart';
 
 part 'app_router.gr.dart';
 

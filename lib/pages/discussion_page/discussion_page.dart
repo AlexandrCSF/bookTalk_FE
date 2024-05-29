@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:booktalk_frontend/analytics/analytics.dart';
 import 'package:booktalk_frontend/pages/discussion_page/widgets/create_comment_dialog.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:booktalk_frontend/viewmodels/discussion_viewmodel.dart';
@@ -75,7 +74,7 @@ class _DiscussionPageState extends State<DiscussionPage> {
                                 radius: 30,
                                 backgroundImage:
                                 Image
-                                    .asset('lib/images/base_avatar.png')
+                                    .asset('lib/resources/images/base_avatar.png')
                                     .image,
                               ),
                               Padding(

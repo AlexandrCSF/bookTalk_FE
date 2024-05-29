@@ -41,7 +41,7 @@ class RegistrationViewModel extends ChangeNotifier {
     }
   }
 
-  Future<void> signUp() async {
+  /*Future<void> signUp() async {
     UserCreate userCreate = UserCreate(
       username: 'testusername',
       firstName: _firstNameController.text,
@@ -59,7 +59,7 @@ class RegistrationViewModel extends ChangeNotifier {
       // todo: handle empty value
     }
     //await _repository.signUp(userCreate, uuid);
-  }
+  }*/
 
   @override
   void dispose() {

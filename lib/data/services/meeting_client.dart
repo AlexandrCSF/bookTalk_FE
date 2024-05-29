@@ -18,14 +18,12 @@ abstract class MeetingClient {
   );
 
   @GET(MeetingUrls.getListOfMeetingsForUser)
-  Future<List<Meeting>> getListOfMeetings(
+  Future<List<Meeting>> getListOfMeetingsForUser(
     @Query('user_id') int userId,
   );
 
   @POST(MeetingUrls.attendMeeting)
   Future<Meeting> attendMeeting(
-    //@Body() Map<String, dynamic> meeting,
-    //@Query('user_id') int userId,
     @Query('meeting_id') int meetingId,
   );
 
