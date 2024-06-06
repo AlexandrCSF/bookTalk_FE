@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/models/club_card.dart';
 import 'package:flutter/material.dart';
 
 import 'package:booktalk_frontend/pages/authorization_page/authorization_page.dart';

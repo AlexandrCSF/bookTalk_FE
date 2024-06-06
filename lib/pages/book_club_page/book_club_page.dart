@@ -21,10 +21,12 @@ import '../widgets/tag_widget.dart';
 @RoutePage()
 class BookClubPage extends StatefulWidget {
   final int id;
+  final ClubCard? clubCard;
 
   const BookClubPage({
     super.key,
     @PathParam('id') required this.id,
+    this.clubCard,
   });
 
   @override

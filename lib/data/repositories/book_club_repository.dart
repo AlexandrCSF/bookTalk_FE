@@ -94,9 +94,9 @@ class ClubRepository {
     return clubGenres;
   }
 
-  Future<ClubCard> createClub(ClubCreate clubCreate) async {
+  Future<ClubCard> createClub(Map<String, dynamic> clubCreate) async {
     try {
-      final result = await _client.createClub(clubCreate.toJson());
+      final result = await _client.createClub(clubCreate);
       return result;
     } on DioException catch (e) {
       throw HandleException.handleException(e);

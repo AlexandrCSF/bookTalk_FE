@@ -44,6 +44,7 @@ abstract class _$AppRouter extends RootStackRouter {
         child: BookClubPage(
           key: args.key,
           id: args.id,
+          clubCard: args.clubCard,
         ),
       );
     },
@@ -235,12 +236,14 @@ class BookClubRoute extends PageRouteInfo<BookClubRouteArgs> {
   BookClubRoute({
     Key? key,
     required int id,
+    ClubCard? clubCard,
     List<PageRouteInfo>? children,
   }) : super(
           BookClubRoute.name,
           args: BookClubRouteArgs(
             key: key,
             id: id,
+            clubCard: clubCard,
           ),
           rawPathParams: {'id': id},
           initialChildren: children,
@@ -256,15 +259,18 @@ class BookClubRouteArgs {
   const BookClubRouteArgs({
     this.key,
     required this.id,
+    this.clubCard,
   });
 
   final Key? key;
 
   final int id;
 
+  final ClubCard? clubCard;
+
   @override
   String toString() {
-    return 'BookClubRouteArgs{key: $key, id: $id}';
+    return 'BookClubRouteArgs{key: $key, id: $id, clubCard: $clubCard}';
   }
 }
 

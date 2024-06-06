@@ -1,6 +1,7 @@
 import 'package:booktalk_frontend/data/repositories/auth_repository.dart';
 import 'package:booktalk_frontend/data/repositories/book_club_repository.dart';
 import 'package:booktalk_frontend/data/repositories/conversation_repository.dart';
+import 'package:booktalk_frontend/data/repositories/genre_repository.dart';
 import 'package:booktalk_frontend/data/repositories/meeting_repository.dart';
 import 'package:booktalk_frontend/data/services/auth_client.dart';
 import 'package:booktalk_frontend/data/services/club_client.dart';
@@ -61,15 +62,20 @@ Future<void> main() async {
   //final secureStorage = SecureStorage();
 
   //getIt.registerSingleton(secureStorage);
+
+  /// Client Services
   getIt.registerSingleton(ClubClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(AuthClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(GenreClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(MeetingClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(ConversationClient(getIt.get<Dio>(), baseUrl: baseUrl));
+
+  /// Repositories
   getIt.registerSingleton(ClubRepository());
   getIt.registerSingleton(MeetingRepository());
   getIt.registerSingleton(AuthRepository());
   getIt.registerSingleton(ConversationRepository());
+  getIt.registerSingleton(GenreRepository());
 
   initializeDateFormatting().then(
     (_) => runApp(
