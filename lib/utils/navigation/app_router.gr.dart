@@ -95,7 +95,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: EditEventPage(
           key: args.key,
           topic: args.topic,
-          city: args.city,
           date: args.date,
           time: args.time,
           place: args.place,
@@ -407,9 +406,8 @@ class EditEventRoute extends PageRouteInfo<EditEventRouteArgs> {
   EditEventRoute({
     Key? key,
     required String topic,
-    required String city,
-    required String date,
-    required String time,
+    required DateTime date,
+    required TimeOfDay time,
     required String place,
     List<PageRouteInfo>? children,
   }) : super(
@@ -417,7 +415,6 @@ class EditEventRoute extends PageRouteInfo<EditEventRouteArgs> {
           args: EditEventRouteArgs(
             key: key,
             topic: topic,
-            city: city,
             date: date,
             time: time,
             place: place,
@@ -435,7 +432,6 @@ class EditEventRouteArgs {
   const EditEventRouteArgs({
     this.key,
     required this.topic,
-    required this.city,
     required this.date,
     required this.time,
     required this.place,
@@ -445,17 +441,15 @@ class EditEventRouteArgs {
 
   final String topic;
 
-  final String city;
+  final DateTime date;
 
-  final String date;
-
-  final String time;
+  final TimeOfDay time;
 
   final String place;
 
   @override
   String toString() {
-    return 'EditEventRouteArgs{key: $key, topic: $topic, city: $city, date: $date, time: $time, place: $place}';
+    return 'EditEventRouteArgs{key: $key, topic: $topic, date: $date, time: $time, place: $place}';
   }
 }
 

@@ -1,28 +1,34 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/pages/widgets/picker_button.dart';
 import 'package:booktalk_frontend/pages/widgets/textfield_widget.dart';
+import 'package:booktalk_frontend/viewmodels/edit_event_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/main_primary_button.dart';
 
 @RoutePage()
-class EditEventPage extends StatelessWidget {
+class EditEventPage extends StatefulWidget {
   final String topic;
-  final String city;
-  final String date;
-  final String time;
+  final DateTime date;
+  final TimeOfDay time;
   final String place;
 
   const EditEventPage({
     super.key,
     required this.topic,
-    required this.city,
     required this.date,
     required this.time,
     required this.place,
   });
 
+  @override
+  State<EditEventPage> createState() => _EditEventPageState();
+}
+
+class _EditEventPageState extends State<EditEventPage> {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -49,33 +55,78 @@ class EditEventPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 60),
           child: Align(
             alignment: Alignment.center,
-            child: Column(
-              children: [
-                TextFieldWidget(
-                    label: 'Тема мероприятия',
-                    hintText: 'Введите тему',
-                    maxLines: 1),
-                TextFieldWidget(
-                    label: 'Город',
-                    hintText: 'Введите город',
-                    maxLines: 1),
-                TextFieldWidget(
-                    label: 'Дата',
-                    hintText: 'Выберите дату',
-                    maxLines: 1),
-                TextFieldWidget(
-                    label: 'Время',
-                    hintText: 'Выберите время',
-                    maxLines: 1),
-                TextFieldWidget(
-                    label: 'Место',
-                    hintText: 'Введите место',
-                    maxLines: 1),
-                Padding(
-                  padding: const EdgeInsets.only(top: 40.0),
-                  child: MainPrimaryButton(label: 'Сохранить', icon: MdiIcons.check),
-                ),
-              ],
+            child: ChangeNotifierProvider<EditEventViewModel>(
+              create: (BuildContext context) => EditEventViewModel(
+                initialDate: widget.date,
+                initialPlace: widget.place,
+                initialTime: widget.time,
+                initialTopic: widget.topic,
+              )..initEditEvent(),
+              child: Consumer<EditEventViewModel>(
+                builder: (context, provider, child) {
+                  return Column(
+                    children: [
+                      TextFieldWidget(
+                        label: 'Тема мероприятия',
+                        hintText: 'Введите тему',
+                        maxLines: 1,
+                        controller: provider.topicController,
+                      ),
+                      PickerButton(
+                        label: 'Дата',
+                        value: 'Выберите дату',
+                        onTap: () {
+                          showDatePicker(
+                            context: context,
+                            initialDate: provider.selectedDate,
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2100),
+                          ).then((value) {
+                            if (value != null) {
+                              provider.setDate(value);
+                            }
+                          });
+                        },
+                      ),
+                      PickerButton(
+                        label: 'Время',
+                        value: 'Выберите время',
+                        onTap: () {
+                          showTimePicker(
+                            context: context,
+                            initialTime: provider.selectedTime,
+                          ).then((value) {
+                            if (value != null) {
+                              provider.setTime(value);
+                            }
+                          });
+                        },
+                      ),
+                      TextFieldWidget(
+                        label: 'Место',
+                        hintText: 'Введите место',
+                        maxLines: 1,
+                        controller: provider.placeController,
+                      ),
+                      if (provider.errorMessage.isNotEmpty)
+                        Text(
+                          provider.errorMessage,
+                          style: text.labelMedium?.copyWith(
+                            color: colors.onError,
+                          ),
+                        ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 40.0),
+                        child: MainPrimaryButton(
+                          label: 'Добавить',
+                          icon: MdiIcons.check,
+                          onTap: () => provider.editEvent(),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
           ),
         ),
