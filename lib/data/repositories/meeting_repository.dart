@@ -56,4 +56,8 @@ class MeetingRepository {
     }
   }
 
+  Future<void> createMeeting(Map<String, dynamic> meeetingCreate) async {
+
+  }
+
 }
