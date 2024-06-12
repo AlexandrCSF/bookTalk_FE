@@ -23,7 +23,7 @@ mixin _$ClubCard {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  int get admin => throw _privateConstructorUsedError;
+  User get admin => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   List<Genre> get interests => throw _privateConstructorUsedError;
   List<Meeting> get meetings => throw _privateConstructorUsedError;
@@ -43,10 +43,12 @@ abstract class $ClubCardCopyWith<$Res> {
       {int id,
       String name,
       String description,
-      int admin,
+      User admin,
       String city,
       List<Genre> interests,
       List<Meeting> meetings});
+
+  $UserCopyWith<$Res> get admin;
 }
 
 /// @nodoc
@@ -86,7 +88,7 @@ class _$ClubCardCopyWithImpl<$Res, $Val extends ClubCard>
       admin: null == admin
           ? _value.admin
           : admin // ignore: cast_nullable_to_non_nullable
-              as int,
+              as User,
       city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -100,6 +102,14 @@ class _$ClubCardCopyWithImpl<$Res, $Val extends ClubCard>
           : meetings // ignore: cast_nullable_to_non_nullable
               as List<Meeting>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get admin {
+    return $UserCopyWith<$Res>(_value.admin, (value) {
+      return _then(_value.copyWith(admin: value) as $Val);
+    });
   }
 }
 
@@ -115,10 +125,13 @@ abstract class _$$ClubCardImplCopyWith<$Res>
       {int id,
       String name,
       String description,
-      int admin,
+      User admin,
       String city,
       List<Genre> interests,
       List<Meeting> meetings});
+
+  @override
+  $UserCopyWith<$Res> get admin;
 }
 
 /// @nodoc
@@ -156,7 +169,7 @@ class __$$ClubCardImplCopyWithImpl<$Res>
       admin: null == admin
           ? _value.admin
           : admin // ignore: cast_nullable_to_non_nullable
-              as int,
+              as User,
       city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -197,7 +210,7 @@ class _$ClubCardImpl implements _ClubCard {
   @override
   final String description;
   @override
-  final int admin;
+  final User admin;
   @override
   final String city;
   final List<Genre> _interests;
@@ -268,7 +281,7 @@ abstract class _ClubCard implements ClubCard {
       {required final int id,
       required final String name,
       required final String description,
-      required final int admin,
+      required final User admin,
       required final String city,
       required final List<Genre> interests,
       required final List<Meeting> meetings}) = _$ClubCardImpl;
@@ -283,7 +296,7 @@ abstract class _ClubCard implements ClubCard {
   @override
   String get description;
   @override
-  int get admin;
+  User get admin;
   @override
   String get city;
   @override

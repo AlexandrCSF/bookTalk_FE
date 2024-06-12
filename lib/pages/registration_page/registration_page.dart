@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/pages/registration_interests_page/registration_interests_page.dart';
 import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/widgets/dropdown_list_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/edit_avatar_widget.dart';
@@ -11,13 +12,29 @@ import '../widgets/main_primary_button.dart';
 import '../widgets/textfield_widget.dart';
 
 @RoutePage()
-class RegistrationPage extends StatelessWidget {
+class RegistrationPage extends StatefulWidget {
+
   const RegistrationPage({super.key});
+
+  @override
+  State<RegistrationPage> createState() => _RegistrationPageState();
+}
+
+class _RegistrationPageState extends State<RegistrationPage> {
+
+  late RegistrationViewModel viewModel;
+
+  @override
+  void initState() {
+    viewModel = Provider.of<RegistrationViewModel>(context, listen: false);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    viewModel.loadGenres();
     return Consumer<RegistrationViewModel>(
       builder: (context, provider, child) {
         return Scaffold(
@@ -37,12 +54,13 @@ class RegistrationPage extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    /*Padding(
+                    Padding(
                       padding: const EdgeInsets.only(top: 19, bottom: 19),
                       child: EditAvatarWidget(
-                        img: Image.asset('lib/images/base_avatar.png'),
+                        img: Image.asset(
+                            'lib/utils/eresources/images/base_avatar.png'),
                       ),
-                    ),*/
+                    ),
                     TextFieldWidget(
                       label: "Имя",
                       hintText: "Введите имя",
@@ -85,7 +103,9 @@ class RegistrationPage extends StatelessWidget {
               icon: MdiIcons.check,
               onTap: () {
                 //provider.signUp();
-                context.router.navigate(const MyEventsRoute());
+                if (provider.checkFields()) {
+                  context.router.navigate(RegistrationInterestsRoute());
+                }
               },
             ),
           ),

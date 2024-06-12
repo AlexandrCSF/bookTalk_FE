@@ -21,29 +21,11 @@ class ClickableTagWidget extends StatefulWidget {
 class _ClickableTagWidgetState extends State<ClickableTagWidget> {
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-    final text = Theme.of(context).textTheme;
     return GestureDetector(
       onTap: widget.onTap,
       child: widget.isChosen
           ? ChosenTagWidget(tag: widget.tag)
           : TagWidget(tag: widget.tag),
-      /*child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: colors.primary,
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(11, 4, 11, 4),
-          child: Text(
-            widget.tag,
-            style: text.labelMedium?.copyWith(color: colors.primary),
-          ),
-        ),
-      ),*/
     );
-    ;
   }
 }

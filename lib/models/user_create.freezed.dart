@@ -29,7 +29,7 @@ mixin _$UserCreate {
   String get dateJoined => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
-  List<String> get interests => throw _privateConstructorUsedError;
+  List<int> get interests => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +50,7 @@ abstract class $UserCreateCopyWith<$Res> {
       @JsonKey(name: 'date_joined') String dateJoined,
       String email,
       String city,
-      List<String> interests});
+      List<int> interests});
 }
 
 /// @nodoc
@@ -102,7 +102,7 @@ class _$UserCreateCopyWithImpl<$Res, $Val extends UserCreate>
       interests: null == interests
           ? _value.interests
           : interests // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<int>,
     ) as $Val);
   }
 }
@@ -122,7 +122,7 @@ abstract class _$$UserCreateImplCopyWith<$Res>
       @JsonKey(name: 'date_joined') String dateJoined,
       String email,
       String city,
-      List<String> interests});
+      List<int> interests});
 }
 
 /// @nodoc
@@ -172,7 +172,7 @@ class __$$UserCreateImplCopyWithImpl<$Res>
       interests: null == interests
           ? _value._interests
           : interests // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<int>,
     ));
   }
 }
@@ -187,7 +187,7 @@ class _$UserCreateImpl implements _UserCreate {
       @JsonKey(name: 'date_joined') required this.dateJoined,
       required this.email,
       required this.city,
-      required final List<String> interests})
+      required final List<int> interests})
       : _interests = interests;
 
   factory _$UserCreateImpl.fromJson(Map<String, dynamic> json) =>
@@ -208,9 +208,9 @@ class _$UserCreateImpl implements _UserCreate {
   final String email;
   @override
   final String city;
-  final List<String> _interests;
+  final List<int> _interests;
   @override
-  List<String> get interests {
+  List<int> get interests {
     if (_interests is EqualUnmodifiableListView) return _interests;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_interests);
@@ -267,7 +267,7 @@ abstract class _UserCreate implements UserCreate {
       @JsonKey(name: 'date_joined') required final String dateJoined,
       required final String email,
       required final String city,
-      required final List<String> interests}) = _$UserCreateImpl;
+      required final List<int> interests}) = _$UserCreateImpl;
 
   factory _UserCreate.fromJson(Map<String, dynamic> json) =
       _$UserCreateImpl.fromJson;
@@ -288,7 +288,7 @@ abstract class _UserCreate implements UserCreate {
   @override
   String get city;
   @override
-  List<String> get interests;
+  List<int> get interests;
   @override
   @JsonKey(ignore: true)
   _$$UserCreateImplCopyWith<_$UserCreateImpl> get copyWith =>

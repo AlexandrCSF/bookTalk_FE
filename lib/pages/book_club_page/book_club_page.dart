@@ -34,7 +34,6 @@ class BookClubPage extends StatefulWidget {
 }
 
 class _BookClubPageState extends State<BookClubPage> {
-
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -135,7 +134,7 @@ class _BookClubPageState extends State<BookClubPage> {
                                             label: 'Вы вступили',
                                             icon: MdiIcons.check,
                                             onTap: () => provider
-                                            // todo: change to unsubscribe
+                                                // todo: change to unsubscribe
                                                 .subscribe(widget.id as String),
                                           )
                                         : MainPrimaryButton(
@@ -155,15 +154,20 @@ class _BookClubPageState extends State<BookClubPage> {
                                   label: 'Обсуждения',
                                   icon: MdiIcons.arrowRight,
                                   onTap: () {
-                                    context.navigateTo(DiscussionListRoute(clubId: widget.id));
+                                    context.navigateTo(
+                                        DiscussionListRoute(clubId: widget.id));
                                   },
                                 ),
                               ),
                               EventListWidget(
                                 events: provider.events,
                                 onTap: () {
-                                  context.router
-                                      .navigate(EventListRoute(clubId: widget.id, isAdministrator: provider.isAdministrator));
+                                  context.router.navigate(
+                                    EventListRoute(
+                                      clubId: widget.id,
+                                      isAdministrator: provider.isAdministrator,
+                                    ),
+                                  );
                                 },
                               ),
                             ],

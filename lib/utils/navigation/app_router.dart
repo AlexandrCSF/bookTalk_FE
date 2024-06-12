@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
+import 'package:booktalk_frontend/models/meeting.dart';
+import 'package:booktalk_frontend/pages/registration_interests_page/registration_interests_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:booktalk_frontend/pages/authorization_page/authorization_page.dart';
@@ -117,6 +119,10 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           path: '/edit-club',
           page: EditClubRoute.page,
+        ),
+        AutoRoute(
+          path: '/registration-interests',
+          page: RegistrationInterestsRoute.page,
         ),
       ];
 }

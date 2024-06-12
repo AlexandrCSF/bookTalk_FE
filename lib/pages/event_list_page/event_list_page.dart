@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/models/meeting.dart';
 import 'package:booktalk_frontend/viewmodels/event_list_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -41,7 +42,7 @@ class _EventListPageState extends State<EventListPage> {
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
               onPressed: () {
-                context.router.navigate(const CreateEventRoute());
+                context.router.navigate(CreateEventRoute(clubId: widget.clubId));
               },
               icon: Icon(
                 MdiIcons.plus,
@@ -74,6 +75,7 @@ class _EventListPageState extends State<EventListPage> {
                     );
                   } else {
                     return EventCard(
+                      meeting: provider.fromClubMeeting(provider.clubMeetingList[index-1]),
                       clubMeeting: provider.clubMeetingList[index-1],
                       onSubscribe: () => provider
                           .subscribe(provider.clubMeetingList[index-1].id),

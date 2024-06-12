@@ -19,6 +19,7 @@ class EventListViewModel extends ChangeNotifier {
   });
 
   List<ClubMeeting> _clubMeetingList = [];
+
   UnmodifiableListView<ClubMeeting> get clubMeetingList =>
       UnmodifiableListView(_clubMeetingList);
 
@@ -27,7 +28,8 @@ class EventListViewModel extends ChangeNotifier {
       final userMeetings = await _repository.getMeetingsForUser(userId);
       final clubMeetings = await _repository.getMeetingsForClub(clubId);
       for (var meeting in clubMeetings) {
-        int numOfAttenders = await _repository.getNumberOfMeetingAttenders(meeting.id);
+        int numOfAttenders =
+            await _repository.getNumberOfMeetingAttenders(meeting.id);
         if (isAdministrated == true) {
           _clubMeetingList.add(
             ClubMeeting(
@@ -79,6 +81,17 @@ class EventListViewModel extends ChangeNotifier {
     }
   }
 
+  Meeting fromClubMeeting(ClubMeeting clubMeeting) {
+    return Meeting(
+      id: clubMeeting.id,
+      name: clubMeeting.name,
+      date: clubMeeting.date,
+      time: clubMeeting.time,
+      location: clubMeeting.location,
+      club: clubMeeting.club,
+    );
+  }
+
   Future<void> subscribe(int meetingId) async {
     try {
       await _repository.attendMeeting(meetingId);
@@ -90,8 +103,5 @@ class EventListViewModel extends ChangeNotifier {
   }
 
   // todo: add unsubscribe
-  Future<void> unsubscribe(int meetingId) async {
-
-  }
-
+  Future<void> unsubscribe(int meetingId) async {}
 }

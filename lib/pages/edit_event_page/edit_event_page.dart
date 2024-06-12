@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/models/meeting.dart';
 import 'package:booktalk_frontend/pages/widgets/picker_button.dart';
 import 'package:booktalk_frontend/pages/widgets/textfield_widget.dart';
 import 'package:booktalk_frontend/viewmodels/edit_event_viewmodel.dart';
@@ -11,17 +12,20 @@ import '../widgets/main_primary_button.dart';
 
 @RoutePage()
 class EditEventPage extends StatefulWidget {
-  final String topic;
+  /*final String topic;
   final DateTime date;
   final TimeOfDay time;
-  final String place;
+  final String place;*/
+
+  final Meeting meeting;
 
   const EditEventPage({
     super.key,
-    required this.topic,
+    /*required this.topic,
     required this.date,
     required this.time,
-    required this.place,
+    required this.place,*/
+    required this.meeting,
   });
 
   @override
@@ -57,10 +61,7 @@ class _EditEventPageState extends State<EditEventPage> {
             alignment: Alignment.center,
             child: ChangeNotifierProvider<EditEventViewModel>(
               create: (BuildContext context) => EditEventViewModel(
-                initialDate: widget.date,
-                initialPlace: widget.place,
-                initialTime: widget.time,
-                initialTopic: widget.topic,
+                initialMeeting: widget.meeting
               )..initEditEvent(),
               child: Consumer<EditEventViewModel>(
                 builder: (context, provider, child) {

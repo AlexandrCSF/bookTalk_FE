@@ -11,16 +11,17 @@ import 'package:booktalk_frontend/utils/city_fias.dart';
 import 'package:flutter/material.dart';
 
 class CreateClubViewModel extends ChangeNotifier {
-
   final _repository = getIt.get<ClubRepository>();
   final _genreRepository = getIt.get<GenreRepository>();
 
   String _selectedCity = 'Не выбрано';
+
   String get selectedCity => _selectedCity;
 
   String _selectedCityFias = '';
 
   final List<String> _cities = [];
+
   List<String> get cities => _cities;
 
   late ClubCard createdClub;
@@ -39,13 +40,18 @@ class CreateClubViewModel extends ChangeNotifier {
   }
 
   List<Genre> _allGenres = [];
+
   UnmodifiableListView get allGenres => UnmodifiableListView(_allGenres);
 
   List<int> _selectedGenreIndexes = [];
-  UnmodifiableListView get selectedGenreIndexes => UnmodifiableListView(_selectedGenreIndexes);
+
+  UnmodifiableListView get selectedGenreIndexes =>
+      UnmodifiableListView(_selectedGenreIndexes);
 
   List<String> _selectedGenreNames = [];
-  UnmodifiableListView get selectedGenreNames => UnmodifiableListView(_selectedGenreNames);
+
+  UnmodifiableListView get selectedGenreNames =>
+      UnmodifiableListView(_selectedGenreNames);
 
   void addGenres(List<Genre> genres) {
     for (var genre in genres) {
@@ -57,23 +63,26 @@ class CreateClubViewModel extends ChangeNotifier {
 
   Future<void> loadGenres() async {
     _allGenres = await _genreRepository.getGenreList();
+    notifyListeners();
   }
 
   final _nameController = TextEditingController();
+
   TextEditingController get nameController => _nameController;
 
   final _descriptionController = TextEditingController();
+
   TextEditingController get descriptionController => _descriptionController;
 
   Future<void> createClub(int userId) async {
     try {
-      Map<String, dynamic> clubCreate = {
-        'title': _nameController.text,
-        'description': _descriptionController.text,
-        'created_by': userId,
-        'city_fias': _selectedCityFias,
-        'interests': _selectedGenreIndexes,
-      };
+      ClubCreate clubCreate = ClubCreate(
+        name: _nameController.text,
+        description: _descriptionController.text,
+        adminId: userId,
+        cityFias: _selectedCityFias,
+        interests: _selectedGenreIndexes,
+      );
       createdClub = await _repository.createClub(clubCreate);
     } on ApiException catch (e) {
       debugPrint(e.message);

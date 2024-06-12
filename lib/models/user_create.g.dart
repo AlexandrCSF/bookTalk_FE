@@ -14,8 +14,9 @@ _$UserCreateImpl _$$UserCreateImplFromJson(Map<String, dynamic> json) =>
       dateJoined: json['date_joined'] as String,
       email: json['email'] as String,
       city: json['city'] as String,
-      interests:
-          (json['interests'] as List<dynamic>).map((e) => e as String).toList(),
+      interests: (json['interests'] as List<dynamic>)
+          .map((e) => (e as num).toInt())
+          .toList(),
     );
 
 Map<String, dynamic> _$$UserCreateImplToJson(_$UserCreateImpl instance) =>

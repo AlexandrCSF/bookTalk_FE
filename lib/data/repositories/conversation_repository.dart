@@ -2,7 +2,9 @@ import 'package:booktalk_frontend/data/api_exceptions.dart';
 import 'package:booktalk_frontend/data/services/conversation_client.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/conversation.dart';
+import 'package:booktalk_frontend/models/conversation_create.dart';
 import 'package:booktalk_frontend/models/message.dart';
+import 'package:booktalk_frontend/models/message_create.dart';
 import 'package:dio/dio.dart';
 
 class ConversationRepository {
@@ -28,17 +30,17 @@ class ConversationRepository {
     }
   }
 
-  Future<void> createConversation(Map<String, dynamic> conversation) async {
+  Future<void> createConversation(ConversationCreate conversation) async {
     try {
-      _client.createConversation(conversation);
+      _client.createConversation(conversation.toJson());
     } on DioException catch (e) {
       throw HandleException.handleException(e);
     }
   }
 
-  Future<void> createMessage(Map<String, dynamic> message) async {
+  Future<void> createMessage(MessageCreate message) async {
     try {
-      _client.createMessage(message);
+      _client.createMessage(message.toJson());
     } on DioException catch (e) {
       throw HandleException.handleException(e);
     }

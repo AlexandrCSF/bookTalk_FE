@@ -13,7 +13,7 @@ abstract class UserCreate with _$UserCreate {
     @JsonKey(name: 'date_joined') required String dateJoined,
     required String email,
     required String city,
-    required List<String> interests,
+    required List<int> interests,
   }) = _UserCreate;
 
   factory UserCreate.fromJson(Map<String, dynamic> json) =>

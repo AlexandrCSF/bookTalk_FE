@@ -1,22 +1,41 @@
 import 'package:booktalk_frontend/data/api_exceptions.dart';
 import 'package:booktalk_frontend/data/repositories/meeting_repository.dart';
 import 'package:booktalk_frontend/main.dart';
+import 'package:booktalk_frontend/models/meeting.dart';
+import 'package:booktalk_frontend/models/meeting_patch.dart';
 import 'package:flutter/material.dart';
 
 class EditEventViewModel extends ChangeNotifier {
   final _repository = getIt.get<MeetingRepository>();
-
+  
   EditEventViewModel({
-    required this.initialDate,
-    required this.initialPlace,
-    required this.initialTime,
-    required this.initialTopic,
+    required this.initialMeeting,
   });
 
-  final String initialTopic;
-  final String initialPlace;
-  final DateTime initialDate;
-  final TimeOfDay initialTime;
+  final Meeting initialMeeting;
+
+  Future<void> editEvent() async {
+    _errorMessage = '';
+    if (_topicController.text.isNotEmpty && _placeController.text.isNotEmpty) {
+      try {
+        MeetingPatch meetingPatch = MeetingPatch(
+          name: _topicController.text,
+          date:
+              '${_selectedDate.day}-${_selectedDate.month}-${_selectedDate.year}',
+          time: '${_selectedTime.hour}:${_selectedTime.minute}',
+          location: _placeController.text,
+        );
+        await _repository.editMeeting(meetingPatch, initialMeeting.id);
+      } on ApiException catch (e) {
+        debugPrint(e.message);
+      } finally {
+        notifyListeners();
+      }
+    } else {
+      _errorMessage = 'Все поля должны быть заполнены';
+      notifyListeners();
+    }
+  }
 
   final _topicController = TextEditingController();
   TextEditingController get topicController => _topicController;
@@ -42,32 +61,14 @@ class EditEventViewModel extends ChangeNotifier {
   String get errorMessage => _errorMessage;
 
   void initEditEvent() {
-    _topicController.text = initialTopic;
-    _placeController.text = initialPlace;
-    setDate(initialDate);
-    setTime(initialTime);
-  }
-
-  Future<void> editEvent() async {
-    _errorMessage = '';
-    if (_topicController.text.isNotEmpty && _placeController.text.isNotEmpty ) {
-      try {
-        Map<String, dynamic> createMeeting = {
-          'name': _topicController.text,
-          'date':
-          '${_selectedDate.day}-${_selectedDate.month}-${_selectedDate.year}',
-          'time': '${_selectedTime.hour}:${_selectedTime.minute}',
-          'location': _placeController.text,
-        };
-        await _repository.createMeeting(createMeeting);
-      } on ApiException catch (e) {
-        debugPrint(e.message);
-      } finally {
-        notifyListeners();
-      }
-    } else {
-      _errorMessage = 'Все поля должны быть заполнены';
-      notifyListeners();
-    }
+    _topicController.text = initialMeeting.name;
+    _placeController.text = initialMeeting.location;
+    _selectedDate = DateTime.parse(initialMeeting.date);
+    String timeString = initialMeeting.time;
+    List<String> parts = timeString.split(':');
+    int hour = int.parse(parts[0]);
+    int minute = int.parse(parts[1]);
+    TimeOfDay initialTimeOfDay = TimeOfDay(hour: hour, minute: minute);
+    _selectedTime = initialTimeOfDay;
   }
 }

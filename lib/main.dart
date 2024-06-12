@@ -30,7 +30,7 @@ import 'firebase_options.dart';
 import 'booktalk_app.dart';
 
 final getIt = GetIt.instance;
-const String baseUrl = 'https://c0e2-37-113-5-53.ngrok-free.app';
+const String baseUrl = 'https://4a13-37-113-3-248.ngrok-free.app';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

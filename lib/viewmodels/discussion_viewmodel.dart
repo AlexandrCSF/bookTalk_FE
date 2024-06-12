@@ -7,6 +7,7 @@ import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/conversation.dart';
 import 'package:booktalk_frontend/models/message.dart';
 import 'package:booktalk_frontend/models/message_card.dart';
+import 'package:booktalk_frontend/models/message_create.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -23,15 +24,19 @@ class DiscussionViewModel extends ChangeNotifier {
   });
 
   String _firstName = '';
+
   String get firstName => _firstName;
 
   String _lastName = '';
+
   String get lastName => _lastName;
 
   final _messageController = TextEditingController();
+
   TextEditingController get messageController => _messageController;
 
   List<MessageCard> _messages = [];
+
   UnmodifiableListView<MessageCard> get messages =>
       UnmodifiableListView(_messages);
 
@@ -70,13 +75,18 @@ class DiscussionViewModel extends ChangeNotifier {
   // todo: userId
   Future<void> createComment(userId) async {
     try {
-      Map<String, dynamic> message = {
+      /*Map<String, dynamic> message = {
         'conversation': conversationId,
         'author': userId,
         'text': _messageController.text,
-      };
-      print(message);
-      await _repository.createMessage(message);
+      };*/
+      MessageCreate messageCreate = MessageCreate(
+        conversation: conversationId,
+        author: userId,
+        text: _messageController.text,
+      );
+      print(messageCreate);
+      await _repository.createMessage(messageCreate);
       await loadMessages();
     } on ApiException catch (e) {
       debugPrint(e.message);

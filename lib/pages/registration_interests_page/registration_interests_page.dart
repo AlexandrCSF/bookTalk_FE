@@ -2,7 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/pages/interests_page/widgets/clickable_tag_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
+import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/viewmodels/create_club_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/registration_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -12,8 +14,8 @@ import '../widgets/chosen_tag_widget.dart';
 import '../widgets/tag_widget.dart';
 
 @RoutePage()
-class InterestsPage extends StatelessWidget {
-  const InterestsPage({super.key});
+class RegistrationInterestsPage extends StatelessWidget {
+  const RegistrationInterestsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class InterestsPage extends StatelessWidget {
                   style: text.titleMedium?.copyWith(color: colors.onBackground),
                   textAlign: TextAlign.center,
                 ),
-                Consumer<CreateClubViewModel>(
+                Consumer<RegistrationViewModel>(
                     builder: (context, provider, child) {
                   return Padding(
                     padding: const EdgeInsets.only(top: 39),
@@ -42,21 +44,17 @@ class InterestsPage extends StatelessWidget {
                       runSpacing: 7,
                       children: [
                         for (Genre genre in provider.allGenres)
-                          // todo: implement onTap
                           ClickableTagWidget(
                             tag: genre.name,
-                            isChosen: provider.selectedGenreIndexes
-                                .contains(genre.id),
-                            onTap: () {},
-                          )
-                        /*for (String tag in provider.selectedGenreNames)
-                            ChosenTagWidget(
-                              tag: tag,
-                            ),
-                          for (String tag in provider.)
-                            TagWidget(
-                              tag: tag,
-                            ),*/
+                            isChosen: provider.selectedGenres.contains(genre),
+                            onTap: () {
+                              if (provider.selectedGenres.contains(genre)) {
+                                provider.removeGenre(genre);
+                              } else {
+                                provider.addGenre(genre);
+                              }
+                            },
+                          ),
                       ],
                     ),
                   );
@@ -72,7 +70,7 @@ class InterestsPage extends StatelessWidget {
           label: "Подтвердить",
           icon: MdiIcons.arrowRight,
           onTap: () {
-            context.router.maybePop();
+            context.router.navigate(AuthorizationRoute());
           },
         ),
       ),

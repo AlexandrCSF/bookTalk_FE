@@ -55,9 +55,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     CreateEventRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateEventRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const CreateEventPage(),
+        child: CreateEventPage(
+          key: args.key,
+          clubId: args.clubId,
+        ),
       );
     },
     DiscussionListRoute.name: (routeData) {
@@ -95,10 +99,7 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: EditEventPage(
           key: args.key,
-          topic: args.topic,
-          date: args.date,
-          time: args.time,
-          place: args.place,
+          meeting: args.meeting,
         ),
       );
     },
@@ -161,6 +162,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const ProfileTabPage(),
+      );
+    },
+    RegistrationInterestsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RegistrationInterestsPage(),
       );
     },
     RegistrationRoute.name: (routeData) {
@@ -289,16 +296,40 @@ class CreateClubRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [CreateEventPage]
-class CreateEventRoute extends PageRouteInfo<void> {
-  const CreateEventRoute({List<PageRouteInfo>? children})
-      : super(
+class CreateEventRoute extends PageRouteInfo<CreateEventRouteArgs> {
+  CreateEventRoute({
+    Key? key,
+    required int clubId,
+    List<PageRouteInfo>? children,
+  }) : super(
           CreateEventRoute.name,
+          args: CreateEventRouteArgs(
+            key: key,
+            clubId: clubId,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'CreateEventRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<CreateEventRouteArgs> page =
+      PageInfo<CreateEventRouteArgs>(name);
+}
+
+class CreateEventRouteArgs {
+  const CreateEventRouteArgs({
+    this.key,
+    required this.clubId,
+  });
+
+  final Key? key;
+
+  final int clubId;
+
+  @override
+  String toString() {
+    return 'CreateEventRouteArgs{key: $key, clubId: $clubId}';
+  }
 }
 
 /// generated route for
@@ -411,19 +442,13 @@ class EditClubRoute extends PageRouteInfo<void> {
 class EditEventRoute extends PageRouteInfo<EditEventRouteArgs> {
   EditEventRoute({
     Key? key,
-    required String topic,
-    required DateTime date,
-    required TimeOfDay time,
-    required String place,
+    required Meeting meeting,
     List<PageRouteInfo>? children,
   }) : super(
           EditEventRoute.name,
           args: EditEventRouteArgs(
             key: key,
-            topic: topic,
-            date: date,
-            time: time,
-            place: place,
+            meeting: meeting,
           ),
           initialChildren: children,
         );
@@ -437,25 +462,16 @@ class EditEventRoute extends PageRouteInfo<EditEventRouteArgs> {
 class EditEventRouteArgs {
   const EditEventRouteArgs({
     this.key,
-    required this.topic,
-    required this.date,
-    required this.time,
-    required this.place,
+    required this.meeting,
   });
 
   final Key? key;
 
-  final String topic;
-
-  final DateTime date;
-
-  final TimeOfDay time;
-
-  final String place;
+  final Meeting meeting;
 
   @override
   String toString() {
-    return 'EditEventRouteArgs{key: $key, topic: $topic, date: $date, time: $time, place: $place}';
+    return 'EditEventRouteArgs{key: $key, meeting: $meeting}';
   }
 }
 
@@ -625,6 +641,20 @@ class ProfileTab extends PageRouteInfo<void> {
         );
 
   static const String name = 'ProfileTab';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RegistrationInterestsPage]
+class RegistrationInterestsRoute extends PageRouteInfo<void> {
+  const RegistrationInterestsRoute({List<PageRouteInfo>? children})
+      : super(
+          RegistrationInterestsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RegistrationInterestsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

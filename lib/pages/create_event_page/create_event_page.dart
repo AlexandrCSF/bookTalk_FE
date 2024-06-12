@@ -10,7 +10,12 @@ import '../widgets/main_primary_button.dart';
 
 @RoutePage()
 class CreateEventPage extends StatefulWidget {
-  const CreateEventPage({super.key});
+  final int clubId;
+
+  const CreateEventPage({
+    super.key,
+    required this.clubId,
+  });
 
   @override
   State<CreateEventPage> createState() => _CreateEventPageState();
@@ -93,7 +98,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                         child: MainPrimaryButton(
                           label: 'Добавить',
                           icon: MdiIcons.check,
-                          onTap: () => provider.createEvent(),
+                          onTap: () => provider.createEvent(widget.clubId),
                         ),
                       ),
                     ],

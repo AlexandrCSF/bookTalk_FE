@@ -12,8 +12,9 @@ _$ClubCreateImpl _$$ClubCreateImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
       adminId: (json['admin_id'] as num).toInt(),
       cityFias: json['city_fias'] as String,
-      interests:
-          (json['interests'] as List<dynamic>).map((e) => e as String).toList(),
+      interests: (json['interests'] as List<dynamic>)
+          .map((e) => (e as num).toInt())
+          .toList(),
     );
 
 Map<String, dynamic> _$$ClubCreateImplToJson(_$ClubCreateImpl instance) =>

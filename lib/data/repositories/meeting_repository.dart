@@ -3,6 +3,8 @@ import 'package:booktalk_frontend/data/services/club_client.dart';
 import 'package:booktalk_frontend/data/services/meeting_client.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
+import 'package:booktalk_frontend/models/meeting_create.dart';
+import 'package:booktalk_frontend/models/meeting_patch.dart';
 import 'package:booktalk_frontend/models/user.dart';
 import 'package:dio/dio.dart';
 
@@ -56,8 +58,20 @@ class MeetingRepository {
     }
   }
 
-  Future<void> createMeeting(Map<String, dynamic> meeetingCreate) async {
+  Future<void> createMeeting(MeetingCreate meeetingCreate, String clubId) async {
+    try {
+      await _client.createMeeting(meeetingCreate.toJson(), clubId);
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
 
+  Future<void> editMeeting(MeetingPatch meetingPatch, int meetingId) async {
+    try {
+      await _client.editMeeting(meetingPatch.toJson(), meetingId);
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
   }
 
 }
