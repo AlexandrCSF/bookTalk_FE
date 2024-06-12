@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/pages/widgets/dropdown_list_widget.dart';
 import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/widgets/edit_avatar_widget.dart';
@@ -20,15 +21,13 @@ class CreateClubPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-
-    /*List<String> chosentags = ["#детектив", "#исторический_роман", "#юмор"];*/
     return Scaffold(
       body: SingleChildScrollView(
         child: Align(
             alignment: Alignment.center,
             child: ChangeNotifierProvider<CreateClubViewModel>(
               create: (BuildContext context) =>
-                  CreateClubViewModel()..getCities(),
+                  CreateClubViewModel(),
               child: Consumer<CreateClubViewModel>(
                 builder: (context, provider, child) {
                   return Column(
@@ -95,13 +94,13 @@ class CreateClubPage extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    for (String tag
-                                        in provider.selectedGenreNames)
+                                    for (Genre genre
+                                        in provider.selectedGenres)
                                       Padding(
                                         padding:
                                             const EdgeInsets.only(bottom: 5),
                                         child: TagWidget(
-                                          tag: tag,
+                                          tag: genre.name,
                                         ),
                                       ),
                                   ],

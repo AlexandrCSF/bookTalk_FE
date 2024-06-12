@@ -1,4 +1,5 @@
 import 'package:booktalk_frontend/main.dart';
+import 'package:booktalk_frontend/models/free_token.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -7,22 +8,30 @@ class SecureStorage {
   final _secureStorage = const FlutterSecureStorage();
   Dio dio = getIt.get<Dio>();
   Interceptor? _interceptor;
+  bool _isAuthorized = false;
 
-  Future<void> writeTokens(String accessToken, String refreshToken) async {
-    await _secureStorage.write(key: 'accessToken', value: accessToken);
-    await _secureStorage.write(key: 'refreshToken', value: refreshToken);
-    _setInterceptor(accessToken);
+  bool isAuthorized() {
+    return _isAuthorized;
   }
 
-  Future<void> updateAccessToken(String newToken) async {
-    await _secureStorage.write(key: 'accessToken', value: newToken);
-    _setInterceptor(newToken);
+  Future<void> writeTokens(FreeToken freeToken) async {
+    await _secureStorage.write(key: 'accessToken', value: freeToken.accessToken);
+    await _secureStorage.write(key: 'refreshToken', value: freeToken.refreshToken);
+    await _secureStorage.write(key: 'userId', value: freeToken.userId);
+    _setInterceptor(freeToken.accessToken);
+    _authorize();
+  }
+
+  Future<void> updateAccessToken(FreeToken freeToken) async {
+    await _secureStorage.write(key: 'accessToken', value: freeToken.accessToken);
+    _setInterceptor(freeToken.accessToken);
   }
 
   Future<void> deleteTokens() async {
     await _secureStorage.delete(key: 'accessToken');
     await _secureStorage.delete(key: 'refreshToken');
     _removeInterceptor();
+    _unauthorize();
   }
 
   Future<String?> getAccessToken() async {
@@ -46,6 +55,14 @@ class SecureStorage {
 
   void _removeInterceptor() {
     dio.interceptors.remove(_interceptor);
+  }
+
+  void _authorize() {
+    _isAuthorized = true;
+  }
+
+  void _unauthorize() {
+    _isAuthorized = false;
   }
 
 }

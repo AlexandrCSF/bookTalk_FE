@@ -14,65 +14,7 @@ class CreateClubViewModel extends ChangeNotifier {
   final _repository = getIt.get<ClubRepository>();
   final _genreRepository = getIt.get<GenreRepository>();
 
-  String _selectedCity = 'Не выбрано';
-
-  String get selectedCity => _selectedCity;
-
-  String _selectedCityFias = '';
-
-  final List<String> _cities = [];
-
-  List<String> get cities => _cities;
-
   late ClubCard createdClub;
-
-  void setCity(String? value) {
-    if (value != null) {
-      _selectedCity = value;
-      _selectedCityFias = CityFias.cityFias[value] ?? _selectedCityFias;
-    }
-  }
-
-  void getCities() {
-    for (var city in CityFias.cityFias.keys) {
-      _cities.add(city);
-    }
-  }
-
-  List<Genre> _allGenres = [];
-
-  UnmodifiableListView get allGenres => UnmodifiableListView(_allGenres);
-
-  List<int> _selectedGenreIndexes = [];
-
-  UnmodifiableListView get selectedGenreIndexes =>
-      UnmodifiableListView(_selectedGenreIndexes);
-
-  List<String> _selectedGenreNames = [];
-
-  UnmodifiableListView get selectedGenreNames =>
-      UnmodifiableListView(_selectedGenreNames);
-
-  void addGenres(List<Genre> genres) {
-    for (var genre in genres) {
-      _selectedGenreIndexes.add(genre.id);
-      _selectedGenreNames.add(genre.name);
-    }
-    notifyListeners();
-  }
-
-  Future<void> loadGenres() async {
-    _allGenres = await _genreRepository.getGenreList();
-    notifyListeners();
-  }
-
-  final _nameController = TextEditingController();
-
-  TextEditingController get nameController => _nameController;
-
-  final _descriptionController = TextEditingController();
-
-  TextEditingController get descriptionController => _descriptionController;
 
   Future<void> createClub(int userId) async {
     try {
@@ -80,7 +22,7 @@ class CreateClubViewModel extends ChangeNotifier {
         name: _nameController.text,
         description: _descriptionController.text,
         adminId: userId,
-        cityFias: _selectedCityFias,
+        cityFias: CityFias.cityFias[_selectedCity]!,
         interests: _selectedGenreIndexes,
       );
       createdClub = await _repository.createClub(clubCreate);
@@ -90,4 +32,55 @@ class CreateClubViewModel extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void setCity(String? value) {
+    if (value != null) {
+      _selectedCity = value;
+      notifyListeners();
+    }
+  }
+
+  void addGenre(Genre genre) {
+    _selectedGenres.add(genre);
+    _selectedGenreIndexes.add(genre.id);
+    notifyListeners();
+  }
+
+  void removeGenre(Genre genre) {
+    _selectedGenres.remove(genre);
+    _selectedGenreIndexes.remove(genre.id);
+    notifyListeners();
+  }
+
+  Future<void> loadGenres() async {
+    _allGenres = await _genreRepository.getGenreList();
+    notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _nameController.dispose();
+    _descriptionController.dispose();
+  }
+
+  final _nameController = TextEditingController();
+  TextEditingController get nameController => _nameController;
+
+  final _descriptionController = TextEditingController();
+  TextEditingController get descriptionController => _descriptionController;
+
+  String _selectedCity = 'Воронеж';
+  String get selectedCity => _selectedCity;
+
+  final Iterable<String> _cities = CityFias.cityFias.keys;
+  UnmodifiableListView<String> get cities => UnmodifiableListView(_cities);
+
+  List<Genre> _allGenres = [];
+  UnmodifiableListView<Genre> get allGenres => UnmodifiableListView(_allGenres);
+
+  List<Genre> _selectedGenres = [];
+  UnmodifiableListView<Genre> get selectedGenres => UnmodifiableListView(_selectedGenres);
+
+  List<int> _selectedGenreIndexes = [];
 }

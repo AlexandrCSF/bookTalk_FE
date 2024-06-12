@@ -1,9 +1,7 @@
 import 'package:booktalk_frontend/data/urls/auth_urls.dart';
 import 'package:booktalk_frontend/models/free_token.dart';
-import 'package:booktalk_frontend/models/token_refresh_serializer_request.dart';
 import 'package:booktalk_frontend/models/user.dart';
 import 'package:booktalk_frontend/models/user_create.dart';
-import 'package:booktalk_frontend/models/user_uuid_serializer_request.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -32,5 +30,10 @@ abstract class AuthClient {
   @POST(AuthUrls.refreshToken)
   Future<FreeToken> refreshToken(
     @Body() Map<String, dynamic> tokenRefreshSerializerRequest,
+  );
+
+  @POST(AuthUrls.logIn)
+  Future<FreeToken> logIn(
+    @Body() Map<String, dynamic> login,
   );
 }

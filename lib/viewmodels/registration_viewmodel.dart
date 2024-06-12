@@ -7,13 +7,33 @@ import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/models/user_create.dart';
 import 'package:booktalk_frontend/utils/city_fias.dart';
-import 'package:booktalk_frontend/utils/device_info.dart';
 import 'package:flutter/cupertino.dart';
 
 class RegistrationViewModel extends ChangeNotifier {
 
   final _repository = getIt.get<AuthRepository>();
   final _genreRepository = getIt.get<GenreRepository>();
+
+  Future<void> signUp() async {
+    try {
+      UserCreate userCreate = UserCreate(username: 'testusername',
+        firstName: _firstNameController.text,
+        lastName: _lastNameController.text,
+        dateJoined: '${DateTime.now().year.toString()}-'
+            '${DateTime.now().month.toString()}-'
+            '${DateTime.now().day.toString()}',
+        email: _emailController.text,
+        city: CityFias.cityFias[_selectedCity]!,
+        interests: _selectedGenreIndexes,
+      );
+      print(userCreate.toJson());
+      await _repository.signUp(userCreate);
+    } on ApiException catch (e) {
+      debugPrint(e.message);
+    } finally {
+      notifyListeners();
+    }
+  }
 
   void setCity(String? value) {
     if (value != null) {
@@ -34,25 +54,9 @@ class RegistrationViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> signUp() async {
-    try {
-      UserCreate userCreate = UserCreate(username: 'testusername',
-        firstName: _firstNameController.text,
-        lastName: _lastNameController.text,
-        dateJoined: '${DateTime.now().year.toString()}-'
-            '${DateTime.now().month.toString()}-'
-            '${DateTime.now().day.toString()}',
-        email: _emailController.text,
-        city: _selectedCity,
-        interests: _selectedGenreIndexes,
-      );
-      print(userCreate.toJson());
-      await _repository.signUp(userCreate);
-    } on ApiException catch (e) {
-      debugPrint(e.message);
-    } finally {
-      notifyListeners();
-    }
+  Future<void> loadGenres() async {
+    _allGenres = await _genreRepository.getGenreList();
+    notifyListeners();
   }
 
   bool checkFields() {
@@ -67,11 +71,6 @@ class RegistrationViewModel extends ChangeNotifier {
     } else {
       return true;
     }
-  }
-
-  Future<void> loadGenres() async {
-    _allGenres = await _genreRepository.getGenreList();
-    notifyListeners();
   }
 
   bool validateEmail(String email) {
@@ -104,17 +103,17 @@ class RegistrationViewModel extends ChangeNotifier {
   final _passwordController = TextEditingController();
   TextEditingController get passwordController => _passwordController;
 
-  String _selectedCity = 'Не выбрано';
+  String _selectedCity = 'Воронеж';
   String get selectedCity => _selectedCity;
+
+  final Iterable<String> _cities = CityFias.cityFias.keys;
+  UnmodifiableListView<String> get cities => UnmodifiableListView(_cities);
 
   List<Genre> _allGenres = [];
   UnmodifiableListView<Genre> get allGenres => UnmodifiableListView(_allGenres);
 
   List<Genre> _selectedGenres = [];
   UnmodifiableListView<Genre> get selectedGenres => UnmodifiableListView(_selectedGenres);
-
-  final Iterable<String> _cities = CityFias.cityFias.values;
-  UnmodifiableListView<String> get cities => UnmodifiableListView(_cities);
 
   List<int> _selectedGenreIndexes = [];
 

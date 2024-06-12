@@ -8,15 +8,11 @@ import 'package:booktalk_frontend/pages/widgets/main_outline_button.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:booktalk_frontend/viewmodels/book_club_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
-
-import '../widgets/event_widget.dart';
-import '../widgets/tag_widget.dart';
 
 @RoutePage()
 class BookClubPage extends StatefulWidget {
@@ -38,12 +34,6 @@ class _BookClubPageState extends State<BookClubPage> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    /*List<String> tags = ["#детектив", "#исторический_роман", "#юмор"];
-    List<String> events = [
-      "Исторические романы · Наследник из Калькутты · 15 июля 2024 · 14:00 · кафе Жёлтый носорог",
-      "Ещё какой-нибудь клуб · Ещё какая-нибудь книга · 29 августа 2024 · 16:30 · кафе G. Shelter"
-    ];*/
-
     return Scaffold(
         appBar: AppBar(
           surfaceTintColor: colors.background,

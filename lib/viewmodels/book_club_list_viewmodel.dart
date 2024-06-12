@@ -12,31 +12,6 @@ class BookClubListViewModel extends ChangeNotifier {
 
   final ClubRepository _repository = getIt.get<ClubRepository>();
 
-  bool _isLoading = true;
-  bool get isLoading => _isLoading;
-
-  String _onError = '';
-  String get onError => _onError;
-
-  List<ClubCard> _subscriptionsList = [];
-  UnmodifiableListView<ClubCard> get subscriptionList => UnmodifiableListView(_subscriptionsList);
-
-  List<ClubCard> _recommendationList = [];
-  UnmodifiableListView<ClubCard> get recommendationList => UnmodifiableListView(_recommendationList);
-
-  List<ClubCard> _administratedList = [];
-  UnmodifiableListView<ClubCard> get administratedList => UnmodifiableListView(_administratedList);
-
-  void _setLoading(bool value) {
-    _isLoading = value;
-    notifyListeners();
-  }
-
-  void _setError(String message) {
-    _onError = message;
-    //notifyListeners();
-  }
-
   Future<void> getSubscriptionList(int userId) async {
     try {
       final result = await _repository.getSubscriptionList(userId);
@@ -72,5 +47,30 @@ class BookClubListViewModel extends ChangeNotifier {
       _setLoading(false);
     }
   }
+
+  void _setLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+
+  void _setError(String message) {
+    _onError = message;
+    //notifyListeners();
+  }
+
+  bool _isLoading = true;
+  bool get isLoading => _isLoading;
+
+  String _onError = '';
+  String get onError => _onError;
+
+  List<ClubCard> _subscriptionsList = [];
+  UnmodifiableListView<ClubCard> get subscriptionList => UnmodifiableListView(_subscriptionsList);
+
+  List<ClubCard> _recommendationList = [];
+  UnmodifiableListView<ClubCard> get recommendationList => UnmodifiableListView(_recommendationList);
+
+  List<ClubCard> _administratedList = [];
+  UnmodifiableListView<ClubCard> get administratedList => UnmodifiableListView(_administratedList);
 
 }

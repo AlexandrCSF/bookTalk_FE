@@ -1,3 +1,4 @@
+import 'package:booktalk_frontend/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,7 +16,9 @@ class BookTalkApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
+        colorScheme: AppTheme.colorScheme(),
+        textTheme: AppTheme.textTheme(),
+        /*colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF904B3C),
           primary: const Color(0xFF904B3C),
           onPrimary: const Color(0xFFFFFFFF),
@@ -31,8 +34,8 @@ class BookTalkApp extends StatelessWidget {
           error: const Color(0xFFBA1A1A),
           onError: const Color(0xFFFFFFFF),
           brightness: Brightness.light,
-        ),
-        textTheme: TextTheme(
+        ),*/
+        /*textTheme: TextTheme(
           titleLarge: GoogleFonts.inter(
             fontSize: 32,
             fontWeight: FontWeight.w900,
@@ -71,7 +74,7 @@ class BookTalkApp extends StatelessWidget {
             fontWeight: FontWeight.normal,
             height: 1,
           ),
-        ),
+        ),*/
       ),
     );
   }

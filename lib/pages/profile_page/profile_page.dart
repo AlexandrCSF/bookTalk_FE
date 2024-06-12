@@ -77,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 37),
                     // todo: add image
-                    child: AvatarWidget(img: img ??= Image.asset('lib/resources/images/base_avatar.png')),
+                    child: AvatarWidget(img: img ??= Image.asset('lib/utils/resources/images/base_avatar.png')),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16),

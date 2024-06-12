@@ -45,18 +45,15 @@ class InterestsPage extends StatelessWidget {
                           // todo: implement onTap
                           ClickableTagWidget(
                             tag: genre.name,
-                            isChosen: provider.selectedGenreIndexes
-                                .contains(genre.id),
-                            onTap: () {},
-                          )
-                        /*for (String tag in provider.selectedGenreNames)
-                            ChosenTagWidget(
-                              tag: tag,
-                            ),
-                          for (String tag in provider.)
-                            TagWidget(
-                              tag: tag,
-                            ),*/
+                            isChosen: provider.selectedGenres.contains(genre),
+                            onTap: () {
+                              if (provider.selectedGenres.contains(genre)) {
+                                provider.removeGenre(genre);
+                              } else {
+                                provider.addGenre(genre);
+                              }
+                            },
+                          ),
                       ],
                     ),
                   );

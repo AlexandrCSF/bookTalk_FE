@@ -11,30 +11,6 @@ class BookClubViewModel extends ChangeNotifier {
 
   final _repository = getIt.get<ClubRepository>();
 
-  final int clubId;
-  BookClubViewModel({required this.clubId});
-
-  ClubCard? _club;
-  ClubCard? get club => _club;
-
-  bool _isSubscribed = false;
-  bool get isSubscribed => _isSubscribed;
-
-  bool _isAdministrator = false;
-  bool get isAdministrator => _isAdministrator;
-
-  bool _isLoading = true;
-  bool get isLoading => _isLoading;
-
-  String _onErrorMessage = '';
-  String get onErrorMessage => _onErrorMessage;
-
-  List<String> _genres = [];
-  List<String> get genres => _genres;
-
-  List<String> _events = [];
-  List<String> get events => _events;
-
   void _setLoadingStatus(bool value) {
     _isLoading = value;
     notifyListeners();
@@ -84,5 +60,29 @@ class BookClubViewModel extends ChangeNotifier {
   Future<void> subscribe(String clubId) async {
     _isSubscribed = !_isSubscribed;
   }
+
+  final int clubId;
+  BookClubViewModel({required this.clubId});
+
+  ClubCard? _club;
+  ClubCard? get club => _club;
+
+  bool _isSubscribed = false;
+  bool get isSubscribed => _isSubscribed;
+
+  bool _isAdministrator = false;
+  bool get isAdministrator => _isAdministrator;
+
+  bool _isLoading = true;
+  bool get isLoading => _isLoading;
+
+  String _onErrorMessage = '';
+  String get onErrorMessage => _onErrorMessage;
+
+  List<String> _genres = [];
+  List<String> get genres => _genres;
+
+  List<String> _events = [];
+  List<String> get events => _events;
 
 }

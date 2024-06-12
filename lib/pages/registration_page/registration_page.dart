@@ -58,7 +58,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       padding: const EdgeInsets.only(top: 19, bottom: 19),
                       child: EditAvatarWidget(
                         img: Image.asset(
-                            'lib/utils/eresources/images/base_avatar.png'),
+                            'lib/utils/resources/images/base_avatar.png'),
                       ),
                     ),
                     TextFieldWidget(
