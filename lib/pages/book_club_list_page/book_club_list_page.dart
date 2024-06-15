@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/pages/book_club_list_page/tabs/my_clubs_tab.dart';
 import 'package:booktalk_frontend/pages/book_club_list_page/tabs/recommendations_tab.dart';
 import 'package:booktalk_frontend/pages/book_club_list_page/tabs/subscriptions_tab.dart';
+import 'package:booktalk_frontend/utils/secure_storage.dart';
 import 'package:booktalk_frontend/viewmodels/book_club_list_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/book_club_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +24,7 @@ class BookClubListPage extends StatefulWidget {
 class _BookClubListPageState extends State<BookClubListPage> {
 
   late BookClubListViewModel provider;
+  late ProfileViewModel profileProvider;
 
   @override
   void initState() {
@@ -32,9 +36,13 @@ class _BookClubListPageState extends State<BookClubListPage> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    provider.getAdministratedList(1);
-    provider.getSubscriptionList(1);
-    provider.getRecommendationList(1);
+    profileProvider = Provider.of<ProfileViewModel>(context);
+    if(profileProvider.authorized) {
+      provider.authorize();
+      provider.loadClubs(profileProvider.userId);
+    } else {
+      provider.unauthorize();
+    }
     return DefaultTabController(
       length: 3,
       initialIndex: 1,

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/discussion_list_page/widgets/create_discussion_dialog.dart';
 import 'package:booktalk_frontend/viewmodels/discussion_list_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -28,6 +29,7 @@ class _DiscussionListPageState extends State<DiscussionListPage> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    final profileProvider = Provider.of<ProfileViewModel>(context);
     return ChangeNotifierProvider<DiscussionListViewModel>(
       create: (BuildContext context) =>
           DiscussionListViewModel(clubId: widget.clubId)..loadConversations(),
@@ -53,7 +55,7 @@ class _DiscussionListPageState extends State<DiscussionListPage> {
                             titleController: provider.titleController,
                             descriptionController:
                                 provider.descriptionController,
-                            onTap: () => provider.createDiscussion(1),
+                            onTap: () => provider.createDiscussion(profileProvider.userId),
                           );
                         },
                       );

@@ -21,7 +21,7 @@ class MainErrorButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: colors.error,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(22),
         ),
         child: Padding(
           padding:

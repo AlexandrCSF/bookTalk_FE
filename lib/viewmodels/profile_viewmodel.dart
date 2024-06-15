@@ -4,8 +4,10 @@ import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/login.dart';
 import 'package:booktalk_frontend/models/user.dart';
 import 'package:booktalk_frontend/utils/secure_storage.dart';
+import 'package:booktalk_frontend/viewmodels/book_club_list_viewmodel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProfileViewModel extends ChangeNotifier {
 
@@ -46,9 +48,10 @@ class ProfileViewModel extends ChangeNotifier {
         password: _passwordController.text,
       );
       print("VM login: $login");
-      await _repository.signIn(login);
+      int userId = await _repository.signIn(login);
+      _userId = userId;
       _authorize();
-      loadUserData(1);
+      loadUserData(_userId);
     } on ApiException catch (e) {
       debugPrint(e.message);
     } finally {
@@ -85,5 +88,8 @@ class ProfileViewModel extends ChangeNotifier {
 
   bool _authorized = getIt.get<SecureStorage>().isAuthorized();
   bool get authorized => _authorized;
+
+  late int _userId;
+  int get userId => _userId;
 
 }

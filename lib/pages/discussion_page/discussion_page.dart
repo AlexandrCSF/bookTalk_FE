@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/pages/discussion_page/widgets/create_comment_dialog.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:booktalk_frontend/viewmodels/discussion_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -39,6 +40,7 @@ class _DiscussionPageState extends State<DiscussionPage> {
     final text = Theme
         .of(context)
         .textTheme;
+    final profileProvider = Provider.of<ProfileViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colors.background,
@@ -74,7 +76,7 @@ class _DiscussionPageState extends State<DiscussionPage> {
                                 radius: 30,
                                 backgroundImage:
                                 Image
-                                    .asset('lib/resources/images/base_avatar.png')
+                                    .asset('lib/utils/resources/images/base_avatar.png')
                                     .image,
                               ),
                               Padding(
@@ -132,7 +134,7 @@ class _DiscussionPageState extends State<DiscussionPage> {
                           builder: (context) {
                             return CreateCommentDialog(
                               controller: provider.messageController,
-                              onTap: () => provider.createComment(1),
+                              onTap: () => provider.createComment(profileProvider.userId),
                             );
                           },
                         );

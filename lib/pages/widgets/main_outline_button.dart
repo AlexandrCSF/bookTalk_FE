@@ -21,7 +21,7 @@ class MainOutlineButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: colors.onPrimary,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(22),
           border: Border.all(
             color: colors.primary,
             width: 2,

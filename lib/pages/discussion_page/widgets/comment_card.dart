@@ -35,7 +35,7 @@ class CommentCard extends StatelessWidget {
                   CircleAvatar(
                     radius: 20,
                     backgroundImage:
-                        Image.asset('lib/images/base_avatar.png').image,
+                        Image.asset('lib/utils/resources/images/base_avatar.png').image,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0),

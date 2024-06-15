@@ -7,6 +7,7 @@ import 'package:booktalk_frontend/pages/book_club_page/widgets/event_list_widget
 import 'package:booktalk_frontend/pages/widgets/main_outline_button.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:booktalk_frontend/viewmodels/book_club_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -34,6 +35,7 @@ class _BookClubPageState extends State<BookClubPage> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    final profileProvider = Provider.of<ProfileViewModel>(context);
     return Scaffold(
         appBar: AppBar(
           surfaceTintColor: colors.background,
@@ -55,7 +57,7 @@ class _BookClubPageState extends State<BookClubPage> {
         ),
         body: ChangeNotifierProvider<BookClubViewModel>(
           create: (BuildContext context) =>
-              BookClubViewModel(clubId: widget.id)..getClubData(1),
+              BookClubViewModel(clubId: widget.id)..getClubData(profileProvider.userId),
           child: Consumer<BookClubViewModel>(
             builder: (context, provider, child) {
               // todo: change userId

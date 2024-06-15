@@ -194,7 +194,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Text(
                     "Читай, общайся, развивайся вместе с bookTalk",
                     style:
-                        text.titleMedium?.copyWith(color: colors.onBackground),
+                        text.titleMedium?.copyWith(color: colors.onBackground, height: 1.2),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -202,7 +202,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   padding: const EdgeInsets.only(top: 15),
                   child: Text(
                     "Создайте собственный книжный клуб или присоединитесь к обсуждению книг любимых жанров в приложении bookTalk",
-                    style: text.labelMedium?.copyWith(color: colors.outline),
+                    style: text.headlineSmall?.copyWith(color: colors.outline),
                     textAlign: TextAlign.center,
                   ),
                 ),

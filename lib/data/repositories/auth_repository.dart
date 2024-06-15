@@ -35,11 +35,12 @@ class AuthRepository {
     }
   }*/
 
-  Future<void> signIn(Login login) async {
+  Future<int> signIn(Login login) async {
     try {
       FreeToken freeToken = await _client.logIn(login.toJson());
       print("RP freeToken: $freeToken");
       await _secureStorage.writeTokens(freeToken);
+      return freeToken.userId;
     } on DioException catch (e) {
       throw HandleException.handleException(e);
     }

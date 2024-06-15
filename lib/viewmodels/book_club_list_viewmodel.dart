@@ -5,12 +5,20 @@ import 'package:booktalk_frontend/data/repositories/book_club_repository.dart';
 import 'package:booktalk_frontend/data/services/club_client.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
+import 'package:booktalk_frontend/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
 
 
 class BookClubListViewModel extends ChangeNotifier {
 
   final ClubRepository _repository = getIt.get<ClubRepository>();
+
+  Future<void> loadClubs(int userId) async {
+    await getSubscriptionList(userId);
+    await getRecommendationList(userId);
+    await getAdministratedList(userId);
+    _setLoading(false);
+  }
 
   Future<void> getSubscriptionList(int userId) async {
     try {
@@ -19,8 +27,6 @@ class BookClubListViewModel extends ChangeNotifier {
       _subscriptionsList = result;
     } on ApiException catch (e) {
       _setError(e.message);
-      _setLoading(false);
-    } finally {
       _setLoading(false);
     }
   }
@@ -33,8 +39,6 @@ class BookClubListViewModel extends ChangeNotifier {
     } on ApiException catch (e) {
       _setError(e.message);
       _setLoading(false);
-    } finally {
-      _setLoading(false);
     }
   }
 
@@ -46,8 +50,6 @@ class BookClubListViewModel extends ChangeNotifier {
     } on ApiException catch (e) {
       _setError(e.message);
       _setLoading(false);
-    } finally {
-      _setLoading(false);
     }
   }
 
@@ -58,6 +60,19 @@ class BookClubListViewModel extends ChangeNotifier {
 
   void _setError(String message) {
     _onError = message;
+    notifyListeners();
+  }
+
+  void authorize() {
+    _authorized = true;
+    notifyListeners();
+  }
+
+  void unauthorize() {
+    _authorized = false;
+    _subscriptionsList = [];
+    _recommendationList = [];
+    _administratedList = [];
     notifyListeners();
   }
 
@@ -75,5 +90,8 @@ class BookClubListViewModel extends ChangeNotifier {
 
   List<ClubCard> _administratedList = [];
   UnmodifiableListView<ClubCard> get administratedList => UnmodifiableListView(_administratedList);
+
+  bool _authorized = getIt.get<SecureStorage>().isAuthorized();
+  bool get authorized => _authorized;
 
 }

@@ -17,7 +17,7 @@ class MainDisabledButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: const Color(0xFFCDCDCD),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(22),
       ),
       child: Padding(
         padding:

@@ -21,7 +21,7 @@ class MainPrimaryButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: colors.primary,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(22),
         ),
         child: Padding(
           padding:
