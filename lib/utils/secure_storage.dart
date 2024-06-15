@@ -17,7 +17,8 @@ class SecureStorage {
   Future<void> writeTokens(FreeToken freeToken) async {
     await _secureStorage.write(key: 'accessToken', value: freeToken.accessToken);
     await _secureStorage.write(key: 'refreshToken', value: freeToken.refreshToken);
-    await _secureStorage.write(key: 'userId', value: freeToken.userId);
+    await _secureStorage.write(key: 'userId', value: '${freeToken.userId}');
+    print('SS set token');
     _setInterceptor(freeToken.accessToken);
     _authorize();
   }
@@ -42,6 +43,14 @@ class SecureStorage {
     return await _secureStorage.read(key: 'refreshToken');
   }
 
+  Future<int?> getUserId() async {
+    String? stringId = await _secureStorage.read(key: 'userId');
+    if (stringId != null) {
+      return int.parse(stringId);
+    }
+    return 0;
+  }
+
   void _setInterceptor(String accessToken) {
     _removeInterceptor();
     _interceptor = InterceptorsWrapper(
@@ -51,6 +60,7 @@ class SecureStorage {
       },
     );
     dio.interceptors.add(_interceptor!);
+    print('SS set interceptor');
   }
 
   void _removeInterceptor() {
@@ -59,6 +69,7 @@ class SecureStorage {
 
   void _authorize() {
     _isAuthorized = true;
+    print('SS authorized');
   }
 
   void _unauthorize() {

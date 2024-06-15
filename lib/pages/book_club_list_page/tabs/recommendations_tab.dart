@@ -22,8 +22,6 @@ class _RecommendationsTabState extends State<RecommendationsTab> {
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
       child: Consumer<BookClubListViewModel>(
         builder: (context, provider, child) {
-          // todo: change userId
-          provider.getSubscriptionList(1);
           if (provider.isLoading) {
             return const Center(
               child: CircularProgressIndicator(),

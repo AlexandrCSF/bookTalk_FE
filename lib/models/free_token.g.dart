@@ -8,7 +8,7 @@ part of 'free_token.dart';
 
 _$FreeTokenImpl _$$FreeTokenImplFromJson(Map<String, dynamic> json) =>
     _$FreeTokenImpl(
-      userId: json['user_id'] as String,
+      userId: (json['user_id'] as num).toInt(),
       accessToken: json['access_token'] as String,
       refreshToken: json['refresh_token'] as String,
     );

@@ -14,18 +14,30 @@ import 'widgets/info_text.dart';
 import 'widgets/calendar.dart';
 
 @RoutePage()
-class MyEventsPage extends StatelessWidget {
-  const MyEventsPage({super.key});
+class MyEventsPage extends StatefulWidget {
+
+  MyEventsPage({super.key});
+
+  @override
+  State<MyEventsPage> createState() => _MyEventsPageState();
+}
+
+class _MyEventsPageState extends State<MyEventsPage> {
+
+  late MyEventsViewModel provider;
+
+  @override
+  void initState() {
+    provider = Provider.of<MyEventsViewModel>(context, listen: false);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    /*Map<DateTime, List<dynamic>> events = {
-      DateTime.utc(2024, 6, 5): ['aaa', 'ffff'],
-      DateTime.utc(2024, 6, 8): ['aaa', 'ffff'],
-      DateTime.utc(2024, 6, 10): ['aaa', 'ffff'],
-    };*/
+    provider.getAllMeetings(1);
+    provider.getTodayMeetings(1);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colors.background,

@@ -13,6 +13,7 @@ class AuthorizationViewModel extends ChangeNotifier {
         email: _emailController.text,
         password: _passwordController.text,
       );
+      print("VM login: $login");
       await _repository.signIn(login);
     } on ApiException catch (e) {
       debugPrint(e.message);

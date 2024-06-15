@@ -139,9 +139,11 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     MyEventsRoute.name: (routeData) {
+      final args = routeData.argsAs<MyEventsRouteArgs>(
+          orElse: () => const MyEventsRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const MyEventsPage(),
+        child: MyEventsPage(key: args.key),
       );
     },
     MyEventsTab.name: (routeData) {
@@ -576,16 +578,31 @@ class MemberListRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [MyEventsPage]
-class MyEventsRoute extends PageRouteInfo<void> {
-  const MyEventsRoute({List<PageRouteInfo>? children})
-      : super(
+class MyEventsRoute extends PageRouteInfo<MyEventsRouteArgs> {
+  MyEventsRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           MyEventsRoute.name,
+          args: MyEventsRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'MyEventsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<MyEventsRouteArgs> page =
+      PageInfo<MyEventsRouteArgs>(name);
+}
+
+class MyEventsRouteArgs {
+  const MyEventsRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'MyEventsRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

@@ -5,6 +5,7 @@ import 'package:booktalk_frontend/data/services/genre_client.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
 import 'package:booktalk_frontend/models/club_create.dart';
+import 'package:booktalk_frontend/models/club_patch.dart';
 import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/models/subscribe.dart';
 import 'package:dio/dio.dart';
@@ -97,6 +98,15 @@ class ClubRepository {
   Future<ClubCard> createClub(ClubCreate clubCreate) async {
     try {
       final result = await _client.createClub(clubCreate.toJson());
+      return result;
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
+
+  Future<ClubCard> editClub(ClubPatch clubPatch, String clubId) async {
+    try {
+      final result = await _client.editClub(clubPatch.toJson(), clubId);
       return result;
     } on DioException catch (e) {
       throw HandleException.handleException(e);

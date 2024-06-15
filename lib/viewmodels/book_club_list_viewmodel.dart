@@ -15,6 +15,7 @@ class BookClubListViewModel extends ChangeNotifier {
   Future<void> getSubscriptionList(int userId) async {
     try {
       final result = await _repository.getSubscriptionList(userId);
+      print(result);
       _subscriptionsList = result;
     } on ApiException catch (e) {
       _setError(e.message);
@@ -27,6 +28,7 @@ class BookClubListViewModel extends ChangeNotifier {
   Future<void> getRecommendationList(int userId) async {
     try {
       final result = await _repository.getRecommendationList(userId);
+      print(result);
       _recommendationList = result;
     } on ApiException catch (e) {
       _setError(e.message);
@@ -39,6 +41,7 @@ class BookClubListViewModel extends ChangeNotifier {
   Future<void> getAdministratedList(int userId) async {
     try {
       final result = await _repository.getAdministratedList(userId);
+      print(result);
       _administratedList = result;
     } on ApiException catch (e) {
       _setError(e.message);
@@ -55,7 +58,7 @@ class BookClubListViewModel extends ChangeNotifier {
 
   void _setError(String message) {
     _onError = message;
-    //notifyListeners();
+    notifyListeners();
   }
 
   bool _isLoading = true;

@@ -21,7 +21,7 @@ FreeToken _$FreeTokenFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$FreeToken {
   @JsonKey(name: 'user_id')
-  String get userId => throw _privateConstructorUsedError;
+  int get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'access_token')
   String get accessToken => throw _privateConstructorUsedError;
   @JsonKey(name: 'refresh_token')
@@ -39,7 +39,7 @@ abstract class $FreeTokenCopyWith<$Res> {
       _$FreeTokenCopyWithImpl<$Res, FreeToken>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'user_id') String userId,
+      {@JsonKey(name: 'user_id') int userId,
       @JsonKey(name: 'access_token') String accessToken,
       @JsonKey(name: 'refresh_token') String refreshToken});
 }
@@ -65,7 +65,7 @@ class _$FreeTokenCopyWithImpl<$Res, $Val extends FreeToken>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
@@ -87,7 +87,7 @@ abstract class _$$FreeTokenImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'user_id') String userId,
+      {@JsonKey(name: 'user_id') int userId,
       @JsonKey(name: 'access_token') String accessToken,
       @JsonKey(name: 'refresh_token') String refreshToken});
 }
@@ -111,7 +111,7 @@ class __$$FreeTokenImplCopyWithImpl<$Res>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
@@ -137,7 +137,7 @@ class _$FreeTokenImpl implements _FreeToken {
 
   @override
   @JsonKey(name: 'user_id')
-  final String userId;
+  final int userId;
   @override
   @JsonKey(name: 'access_token')
   final String accessToken;
@@ -183,7 +183,7 @@ class _$FreeTokenImpl implements _FreeToken {
 
 abstract class _FreeToken implements FreeToken {
   const factory _FreeToken(
-          {@JsonKey(name: 'user_id') required final String userId,
+          {@JsonKey(name: 'user_id') required final int userId,
           @JsonKey(name: 'access_token') required final String accessToken,
           @JsonKey(name: 'refresh_token') required final String refreshToken}) =
       _$FreeTokenImpl;
@@ -193,7 +193,7 @@ abstract class _FreeToken implements FreeToken {
 
   @override
   @JsonKey(name: 'user_id')
-  String get userId;
+  int get userId;
   @override
   @JsonKey(name: 'access_token')
   String get accessToken;

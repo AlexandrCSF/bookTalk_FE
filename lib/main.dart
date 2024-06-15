@@ -21,7 +21,6 @@ final getIt = GetIt.instance;
 const String baseUrl = BaseUrl.baseUrl;
 
 Future<void> main() async {
-
   /// splash screen
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
@@ -46,7 +45,8 @@ Future<void> main() async {
   getIt.registerSingleton(AuthClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(GenreClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(MeetingClient(getIt.get<Dio>(), baseUrl: baseUrl));
-  getIt.registerSingleton(ConversationClient(getIt.get<Dio>(), baseUrl: baseUrl));
+  getIt.registerSingleton(
+      ConversationClient(getIt.get<Dio>(), baseUrl: baseUrl));
 
   /// repositories
   getIt.registerSingleton(ClubRepository());
@@ -60,6 +60,7 @@ Future<void> main() async {
     (_) => runApp(
       DevicePreview(
         enabled: kIsWeb,
+
         /// multi provider
         builder: (context) => MultiProvider(
           providers: [
@@ -74,6 +75,9 @@ Future<void> main() async {
             ),
             ChangeNotifierProvider(
               create: (context) => ProfileViewModel(),
+            ),
+            ChangeNotifierProvider(
+              create: (context) => AuthorizationViewModel(),
             ),
           ],
           child: BookTalkApp(),

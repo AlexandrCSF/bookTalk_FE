@@ -8,9 +8,7 @@ import 'package:flutter/material.dart';
 class EditEventViewModel extends ChangeNotifier {
   final _repository = getIt.get<MeetingRepository>();
   
-  EditEventViewModel({
-    required this.initialMeeting,
-  });
+  EditEventViewModel({required this.initialMeeting});
 
   final Meeting initialMeeting;
 

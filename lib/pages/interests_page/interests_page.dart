@@ -19,6 +19,7 @@ class InterestsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    CreateClubViewModel provider = Provider.of<CreateClubViewModel>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(

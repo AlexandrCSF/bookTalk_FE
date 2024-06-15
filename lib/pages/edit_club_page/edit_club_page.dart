@@ -19,7 +19,7 @@ class EditClubPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    Image? img/*= Image.asset('lib/images/avatar.jpg')*/;
+    Image? img;
     List<String> tags = ["#детектив", "#исторический_роман", "#юмор"];
     return Scaffold(
       appBar: AppBar(
@@ -57,7 +57,7 @@ class EditClubPage extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 40, bottom: 10),
                   child: EditAvatarWidget(
                       img: img ??=
-                          Image.asset('lib/images/base_club_avatar.png')),
+                          Image.asset('lib/utils/resources/images/base_club_avatar.png')),
                 ),
                 const TextFieldWidget(
                     label: "Название клуба",

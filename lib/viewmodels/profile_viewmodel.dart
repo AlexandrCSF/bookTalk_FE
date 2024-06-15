@@ -1,7 +1,9 @@
 import 'package:booktalk_frontend/data/api_exceptions.dart';
 import 'package:booktalk_frontend/data/repositories/auth_repository.dart';
 import 'package:booktalk_frontend/main.dart';
+import 'package:booktalk_frontend/models/login.dart';
 import 'package:booktalk_frontend/models/user.dart';
+import 'package:booktalk_frontend/utils/secure_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -29,9 +31,48 @@ class ProfileViewModel extends ChangeNotifier {
       _lastName = user.lastName;
       _email = user.email;
       _city = 'г. ${user.city}';
+      print(user);
     } on ApiException catch (e) {
       debugPrint(e.message);
+    } finally {
+      notifyListeners();
     }
   }
+
+  Future<void> signIn() async {
+    try {
+      Login login = Login(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      print("VM login: $login");
+      await _repository.signIn(login);
+      _authorize();
+      loadUserData(1);
+    } on ApiException catch (e) {
+      debugPrint(e.message);
+    } finally {
+      notifyListeners();
+    }
+  }
+
+  void _authorize() async {
+    _authorized = true;
+    notifyListeners();
+  }
+
+  void _unauthorize() async {
+    _authorized = false;
+    notifyListeners();
+  }
+
+  final TextEditingController _emailController = TextEditingController();
+  TextEditingController get emailController => _emailController;
+
+  final TextEditingController _passwordController = TextEditingController();
+  TextEditingController get passwordController => _passwordController;
+
+  bool _authorized = getIt.get<SecureStorage>().isAuthorized();
+  bool get authorized => _authorized;
 
 }

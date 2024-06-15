@@ -7,7 +7,7 @@ part 'free_token.g.dart';
 abstract class FreeToken with _$FreeToken {
 
   const factory FreeToken({
-    @JsonKey(name: 'user_id') required String userId,
+    @JsonKey(name: 'user_id') required int userId,
     @JsonKey(name: 'access_token') required String accessToken,
     @JsonKey(name: 'refresh_token') required String refreshToken,
   }) = _FreeToken;
