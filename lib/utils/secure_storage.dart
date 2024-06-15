@@ -74,6 +74,7 @@ class SecureStorage {
 
   void _unauthorize() {
     _isAuthorized = false;
+    print('SS unauthorized');
   }
 
 }

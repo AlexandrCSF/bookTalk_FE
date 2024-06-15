@@ -155,7 +155,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     icon: MdiIcons.logout,
                     onTap: () {
                       // todo: change the route
-                      context.router.navigate(RegistrationRoute());
+                      provider.signOut();
+                      //context.router.navigate(RegistrationRoute());
                       //context.router.navigate(AuthorizationRoute());
                     },
                   ),

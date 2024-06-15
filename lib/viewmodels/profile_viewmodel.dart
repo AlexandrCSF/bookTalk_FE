@@ -56,6 +56,17 @@ class ProfileViewModel extends ChangeNotifier {
     }
   }
 
+  Future<void> signOut() async {
+    try {
+      await _repository.signOut();
+      _unauthorize();
+    } on ApiException catch (e) {
+      debugPrint(e.message);
+    } finally {
+      notifyListeners();
+    }
+  }
+
   void _authorize() async {
     _authorized = true;
     notifyListeners();

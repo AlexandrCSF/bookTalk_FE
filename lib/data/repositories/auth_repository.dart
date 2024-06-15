@@ -57,6 +57,10 @@ class AuthRepository {
     }
   }
 
+  Future<void> signOut() async {
+    await _secureStorage.deleteTokens();
+  }
+
   Future<User> getUserData(int userId) async {
     return await _client.getUser(userId);
   }
