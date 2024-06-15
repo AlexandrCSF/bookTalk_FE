@@ -75,9 +75,17 @@ class ClubRepository {
     }
   }
 
-  Future<void> subscribeToClub(int clubId) async {
+  Future<void> subscribeToClub(String clubId) async {
     try {
       await _client.subscribeToClub(clubId);
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
+
+  Future<void> unsubscribeFromClub(String clubId) async {
+    try {
+      await _client.unsubscribeFromClub(clubId);
     } on DioException catch (e) {
       throw HandleException.handleException(e);
     }

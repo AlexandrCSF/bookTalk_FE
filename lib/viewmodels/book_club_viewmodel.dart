@@ -57,11 +57,20 @@ class BookClubViewModel extends ChangeNotifier {
     _isSubscribed = status;
   }
 
-  Future<void> subscribe(String clubId) async {
-    _isSubscribed = !_isSubscribed;
+  Future<void> subscribe() async {
+    await _repository.subscribeToClub('$clubId');
+    _isSubscribed = true;
+    notifyListeners();
+  }
+
+  Future<void> unsubscribe() async {
+    await _repository.unsubscribeFromClub('$clubId');
+    _isSubscribed = false;
+    notifyListeners();
   }
 
   final int clubId;
+
   BookClubViewModel({required this.clubId});
 
   ClubCard? _club;

@@ -8,10 +8,7 @@ import 'package:booktalk_frontend/pages/widgets/main_outline_button.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:booktalk_frontend/viewmodels/book_club_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -60,7 +57,6 @@ class _BookClubPageState extends State<BookClubPage> {
               BookClubViewModel(clubId: widget.id)..getClubData(profileProvider.userId),
           child: Consumer<BookClubViewModel>(
             builder: (context, provider, child) {
-              // todo: change userId
               return provider.isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : CustomScrollView(
@@ -126,14 +122,13 @@ class _BookClubPageState extends State<BookClubPage> {
                                             label: 'Вы вступили',
                                             icon: MdiIcons.check,
                                             onTap: () => provider
-                                                // todo: change to unsubscribe
-                                                .subscribe(widget.id as String),
+                                                .unsubscribe(),
                                           )
                                         : MainPrimaryButton(
                                             label: 'Вступить',
                                             icon: MdiIcons.plus,
                                             onTap: () => provider
-                                                .subscribe(widget.id as String),
+                                                .subscribe(),
                                           ),
                               ),
                               ClubDescription(

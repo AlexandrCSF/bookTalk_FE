@@ -277,7 +277,7 @@ class _ClubClient implements ClubClient {
   }
 
   @override
-  Future<void> subscribeToClub(int clubId) async {
+  Future<void> subscribeToClub(String clubId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'club_id': clubId};
     final _headers = <String, dynamic>{};
@@ -301,7 +301,7 @@ class _ClubClient implements ClubClient {
   }
 
   @override
-  Future<void> unsubscribeFromClub(int clubId) async {
+  Future<void> unsubscribeFromClub(String clubId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'club_id': clubId};
     final _headers = <String, dynamic>{};
