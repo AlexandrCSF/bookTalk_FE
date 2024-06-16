@@ -65,7 +65,6 @@ class BookClubListViewModel extends ChangeNotifier {
 
   void authorize() {
     _authorized = true;
-    notifyListeners();
   }
 
   void unauthorize() {
@@ -73,7 +72,6 @@ class BookClubListViewModel extends ChangeNotifier {
     _subscriptionsList = [];
     _recommendationList = [];
     _administratedList = [];
-    notifyListeners();
   }
 
   bool _isLoading = true;

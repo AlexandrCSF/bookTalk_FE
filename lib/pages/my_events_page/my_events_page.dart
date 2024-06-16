@@ -4,6 +4,7 @@ import 'package:booktalk_frontend/pages/my_events_page/widgets/event_list_widget
 import 'package:booktalk_frontend/pages/widgets/main_disabled_button.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:booktalk_frontend/viewmodels/my_events_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,20 +25,27 @@ class MyEventsPage extends StatefulWidget {
 
 class _MyEventsPageState extends State<MyEventsPage> {
 
-  late MyEventsViewModel provider;
+  /*late MyEventsViewModel provider;
+  late ProfileViewModel profileProvider;
 
   @override
   void initState() {
     provider = Provider.of<MyEventsViewModel>(context, listen: false);
     super.initState();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
+    MyEventsViewModel provider = Provider.of<MyEventsViewModel>(context, listen: false);
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    provider.getAllMeetings(1);
-    provider.getTodayMeetings(1);
+    ProfileViewModel profileProvider = Provider.of<ProfileViewModel>(context);
+    if(profileProvider.authorized) {
+      provider.loadEvents(profileProvider.userId);
+      provider.authorize();
+    } else {
+      provider.unauthorize();
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colors.background,
@@ -50,40 +58,58 @@ class _MyEventsPageState extends State<MyEventsPage> {
       ),
       body: Consumer<MyEventsViewModel>(
         builder: (context, provider, child) {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  right: 20.0, left: 20.0, top: 5.0, bottom: 10.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Calendar(events: provider.meetingMarkers),
-                  EventListWidget(events: provider.todayMeetings, title: "Мероприятия сегодня"),
-                  EventListWidget(events: provider.allMeetings, title: "Ближайшие мероприятия"),
-                ],
+          if(provider.authorized) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    right: 20.0, left: 20.0, top: 5.0, bottom: 10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Calendar(events: provider.meetingMarkers),
+                    if(provider.todayMeetings.isNotEmpty) EventListWidget(events: provider.todayMeetings, title: "Мероприятия сегодня"),
+                    EventListWidget(events: provider.allMeetings, title: "Ближайшие мероприятия"),
+                  ],
+                ),
               ),
-              /*child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Calendar(),
-              const InfoText(
-                regularText: 'Чтобы просматривать мероприятия, нужно ',
-                boldText: 'войти или зарегистрироваться',
-              ),
-              MainPrimaryButton(
-                label: 'Авторизоваться',
-                icon: MdiIcons.arrowRight,
-                onTap: () {
-                  context.navigateTo(const BookClubListTab(children: [ BookClubListRoute() ]));
-                },
-              )
-            ],
-          ),*/
-            ),
-          );
+            );
+          } else {
+            return _unauthorizedEvents();
+          }
         }
       )
     );
   }
+
+  Widget _unauthorizedEvents() {
+    //Map<DateTime, List<dynamic>> events = {};
+    Map<DateTime, List<dynamic>> events = {
+      DateTime.utc(2024, 6, 5): ['aaa', 'ffff'],
+      DateTime.utc(2024, 6, 8): ['aaa', 'ffff'],
+      DateTime.utc(2024, 6, 10): ['aaa', 'ffff'],
+    };
+    return Padding(
+      padding: const EdgeInsets.only(
+          right: 20.0, left: 20.0, top: 5.0, bottom: 10.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Calendar(events: events),
+          const InfoText(
+            regularText: 'Чтобы просматривать мероприятия, нужно ',
+            boldText: 'войти или зарегистрироваться',
+          ),
+          MainPrimaryButton(
+            label: 'Авторизоваться',
+            icon: MdiIcons.arrowRight,
+            onTap: () {
+              context.navigateTo(ProfileTab(children: [ ProfileRoute() ]));
+            },
+          )
+        ],
+      ),
+    );
+  }
+
 }

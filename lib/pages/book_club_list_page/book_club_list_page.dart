@@ -23,23 +23,15 @@ class BookClubListPage extends StatefulWidget {
 
 class _BookClubListPageState extends State<BookClubListPage> {
 
-  late BookClubListViewModel provider;
-  late ProfileViewModel profileProvider;
-
-  @override
-  void initState() {
-    provider = Provider.of<BookClubListViewModel>(context, listen: false);
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    BookClubListViewModel provider = Provider.of<BookClubListViewModel>(context, listen: false);
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    profileProvider = Provider.of<ProfileViewModel>(context);
+    ProfileViewModel profileProvider = Provider.of<ProfileViewModel>(context);
     if(profileProvider.authorized) {
-      provider.authorize();
       provider.loadClubs(profileProvider.userId);
+      provider.authorize();
     } else {
       provider.unauthorize();
     }

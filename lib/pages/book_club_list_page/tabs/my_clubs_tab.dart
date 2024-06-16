@@ -61,14 +61,14 @@ class _MyClubsTabState extends State<MyClubsTab> {
               }
             }
           } else {
-            return _unauthorizedSubscriptions();
+            return _unauthorizedMyClubs();
           }
         },
       ),
     );
   }
 
-  Widget _unauthorizedSubscriptions() {
+  Widget _unauthorizedMyClubs() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [

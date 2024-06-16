@@ -12,6 +12,7 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
+
   List<dynamic> _getEventsForDay(DateTime day) {
     return widget.events[day] ?? [];
   }
@@ -20,6 +21,7 @@ class _CalendarState extends State<Calendar> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    print("CALENDAR EVENTS: ${widget.events}");
     return Card(
       surfaceTintColor: colors.surface,
       elevation: 5.0,
@@ -45,10 +47,14 @@ class _CalendarState extends State<Calendar> {
               CalendarBuilders(markerBuilder: (context, date, events) {
             if (events.isNotEmpty) {
               return Container(
-                  height: 5,
-                  width: 5,
+                  height: 40,
+                  width: 40,
                   decoration: BoxDecoration(
-                    color: colors.primary,
+                    color: Colors.transparent,
+                    border: Border.all(
+                      color: colors.primary,
+                      width: 2,
+                    ),
                     shape: BoxShape.circle,
                   ),
                 );
