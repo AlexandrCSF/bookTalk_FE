@@ -15,13 +15,14 @@ class CreateEventViewModel extends ChangeNotifier {
         MeetingCreate meetingCreate = MeetingCreate(
           name: _topicController.text,
           date:
-              '${_selectedDate.day}-${_selectedDate.month}-${_selectedDate.year}',
+              '${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}',
           time: '${_selectedTime.hour}:${_selectedTime.minute}',
           location: _placeController.text,
         );
-        await _repository.createMeeting(meetingCreate, clubId as String);
+        print(meetingCreate);
+        await _repository.createMeeting(meetingCreate, '$clubId');
       } on ApiException catch (e) {
-        debugPrint(e.message);
+        print(e.message);
       } finally {
         notifyListeners();
       }
@@ -42,6 +43,7 @@ class CreateEventViewModel extends ChangeNotifier {
 
   void setDate(DateTime value) {
     _selectedDate = value;
+    notifyListeners();
   }
 
   TimeOfDay _selectedTime = TimeOfDay.now();
@@ -49,8 +51,10 @@ class CreateEventViewModel extends ChangeNotifier {
 
   void setTime(TimeOfDay value) {
     _selectedTime = value;
+    notifyListeners();
   }
 
   String _errorMessage = '';
   String get errorMessage => _errorMessage;
+
 }

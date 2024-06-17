@@ -1,6 +1,7 @@
 import 'package:booktalk_frontend/data/api_exceptions.dart';
 import 'package:booktalk_frontend/data/repositories/meeting_repository.dart';
 import 'package:booktalk_frontend/main.dart';
+import 'package:booktalk_frontend/models/club_meeting.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
 import 'package:booktalk_frontend/models/meeting_patch.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class EditEventViewModel extends ChangeNotifier {
   
   EditEventViewModel({required this.initialMeeting});
 
-  final Meeting initialMeeting;
+  final ClubMeeting initialMeeting;
 
   Future<void> editEvent() async {
     _errorMessage = '';
@@ -19,10 +20,11 @@ class EditEventViewModel extends ChangeNotifier {
         MeetingPatch meetingPatch = MeetingPatch(
           name: _topicController.text,
           date:
-              '${_selectedDate.day}-${_selectedDate.month}-${_selectedDate.year}',
+              '${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}',
           time: '${_selectedTime.hour}:${_selectedTime.minute}',
           location: _placeController.text,
         );
+        print(meetingPatch);
         await _repository.editMeeting(meetingPatch, initialMeeting.id);
       } on ApiException catch (e) {
         debugPrint(e.message);
@@ -46,6 +48,7 @@ class EditEventViewModel extends ChangeNotifier {
 
   void setDate(DateTime value) {
     _selectedDate = value;
+    notifyListeners();
   }
 
   TimeOfDay _selectedTime = TimeOfDay.now();
@@ -53,6 +56,7 @@ class EditEventViewModel extends ChangeNotifier {
 
   void setTime(TimeOfDay value) {
     _selectedTime = value;
+    notifyListeners();
   }
 
   String _errorMessage = '';
@@ -69,4 +73,5 @@ class EditEventViewModel extends ChangeNotifier {
     TimeOfDay initialTimeOfDay = TimeOfDay(hour: hour, minute: minute);
     _selectedTime = initialTimeOfDay;
   }
+
 }

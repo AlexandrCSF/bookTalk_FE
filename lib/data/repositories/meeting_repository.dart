@@ -60,8 +60,9 @@ class MeetingRepository {
 
   Future<void> createMeeting(MeetingCreate meeetingCreate, String clubId) async {
     try {
-      await _client.createMeeting(meeetingCreate.toJson(), clubId);
+      MeetingCreate response = await _client.createMeeting(meeetingCreate.toJson(), clubId);
     } on DioException catch (e) {
+      if (e.type == DioExceptionType.badResponse)
       throw HandleException.handleException(e);
     }
   }

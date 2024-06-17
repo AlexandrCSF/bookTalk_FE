@@ -5,6 +5,7 @@ import 'package:booktalk_frontend/data/repositories/book_club_repository.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
 import 'package:booktalk_frontend/models/genre.dart';
+import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:flutter/material.dart';
 
 class BookClubViewModel extends ChangeNotifier {
@@ -17,15 +18,13 @@ class BookClubViewModel extends ChangeNotifier {
   }
 
   Future<void> getGenres(List<Genre> genreIds, String clubId) async {
-    //final clubGenres = await _repository.getClubGenres(clubId);
     if (_genres.isEmpty) {
       for (var genre in genreIds) {
-        _genres.add(genre.name);
+        _genres.add(StringFormatting.getFormattedTag(genre.name));
       }
     }
   }
 
-  // todo: remove userId
   Future<void> getClubData(int userId) async {
     String id = '$clubId';
     try {
@@ -48,7 +47,7 @@ class BookClubViewModel extends ChangeNotifier {
     if (_events.isEmpty) {
       for (var event in _club!.meetings) {
         _events.add(
-            '${event.name} · ${event.date} · ${event.time} · ${event.location}');
+            '${event.name} · ${StringFormatting.getFormattedDateFromString(event.date)} · ${StringFormatting.getFormattedTimeFromString(event.time)} · ${event.location}');
       }
     }
   }

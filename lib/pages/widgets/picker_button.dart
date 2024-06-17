@@ -5,12 +5,14 @@ class PickerButton extends StatefulWidget {
   final String label;
   final String value;
   final VoidCallback? onTap;
+  final IconData icon;
 
   const PickerButton({
     super.key,
     required this.label,
     required this.value,
     this.onTap,
+    required this.icon,
   });
 
   @override
@@ -37,17 +39,32 @@ class _PickerButtonState extends State<PickerButton> {
           GestureDetector(
             onTap: widget.onTap,
             child: Container(
+              height: 52,
+              width: double.infinity,
               decoration: BoxDecoration(
                 color: colors.onInverseSurface,
                 border: Border.all(
                   width: 2,
                   color: colors.inversePrimary,
                 ),
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(22),
               ),
-              child: Text(
-                widget.value,
-                style: text.labelMedium?.copyWith(color: colors.onBackground),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      widget.value,
+                      style: text.headlineSmall?.copyWith(color: colors.outline),
+                    ),
+                    Icon(
+                      widget.icon,
+                      color: colors.outline,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

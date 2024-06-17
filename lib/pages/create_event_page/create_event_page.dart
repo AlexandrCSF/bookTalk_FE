@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/pages/widgets/picker_button.dart';
 import 'package:booktalk_frontend/pages/widgets/textfield_widget.dart';
+import 'package:booktalk_frontend/utils/navigation/app_router.dart';
+import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:booktalk_frontend/viewmodels/create_event_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -52,7 +54,8 @@ class _CreateEventPageState extends State<CreateEventPage> {
                       ),
                       PickerButton(
                         label: 'Дата',
-                        value: 'Выберите дату',
+                        value: StringFormatting.getFormattedDateFromDate(provider.selectedDate),
+                        icon: MdiIcons.calendar,
                         onTap: () {
                           showDatePicker(
                             context: context,
@@ -68,7 +71,8 @@ class _CreateEventPageState extends State<CreateEventPage> {
                       ),
                       PickerButton(
                         label: 'Время',
-                        value: 'Выберите время',
+                        value: StringFormatting.getFormattedTimeFromTime(provider.selectedTime),
+                        icon: MdiIcons.clock,
                         onTap: () {
                           showTimePicker(
                             context: context,
@@ -98,7 +102,10 @@ class _CreateEventPageState extends State<CreateEventPage> {
                         child: MainPrimaryButton(
                           label: 'Добавить',
                           icon: MdiIcons.check,
-                          onTap: () => provider.createEvent(widget.clubId),
+                          onTap: () {
+                            provider.createEvent(widget.clubId);
+                            context.router.maybePop();
+                          },
                         ),
                       ),
                     ],

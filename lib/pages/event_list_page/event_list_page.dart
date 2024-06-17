@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
 import 'package:booktalk_frontend/viewmodels/event_list_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +29,7 @@ class _EventListPageState extends State<EventListPage> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    ProfileViewModel profileProvider = Provider.of<ProfileViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colors.background,
@@ -38,7 +40,7 @@ class _EventListPageState extends State<EventListPage> {
         ),
         // todo: check if is administrator
         actions: [
-          Padding(
+          if (widget.isAdministrator) Padding(
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
               onPressed: () {
@@ -56,7 +58,7 @@ class _EventListPageState extends State<EventListPage> {
         // todo: change userId
         create: (BuildContext context) => EventListViewModel(
             clubId: widget.clubId, isAdministrated: widget.isAdministrator)
-          ..loadMeetings(1),
+          ..loadMeetings(profileProvider.userId),
         child: Consumer<EventListViewModel>(
           builder: (context, provider, child) {
             return Padding(

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
+import 'package:booktalk_frontend/models/club_meeting.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
 import 'package:booktalk_frontend/pages/registration_interests_page/registration_interests_page.dart';
 import 'package:flutter/material.dart';

@@ -22,6 +22,14 @@ class MainErrorButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: colors.error,
           borderRadius: BorderRadius.circular(22),
+          boxShadow: [
+            BoxShadow(
+              color: colors.outline.withOpacity(0.7),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 1),
+            ),
+          ],
         ),
         child: Padding(
           padding:

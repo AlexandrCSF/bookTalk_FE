@@ -36,10 +36,6 @@ Future<void> main() async {
   Dio dio = Dio();
   getIt.registerSingleton(dio);
 
-  /// secure storage
-  final secureStorage = SecureStorage();
-  getIt.registerSingleton(secureStorage);
-
   /// API services
   getIt.registerSingleton(ClubClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(AuthClient(getIt.get<Dio>(), baseUrl: baseUrl));
@@ -47,6 +43,10 @@ Future<void> main() async {
   getIt.registerSingleton(MeetingClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(
       ConversationClient(getIt.get<Dio>(), baseUrl: baseUrl));
+
+  /// secure storage
+  final secureStorage = SecureStorage();
+  getIt.registerSingleton(secureStorage);
 
   /// repositories
   getIt.registerSingleton(ClubRepository());

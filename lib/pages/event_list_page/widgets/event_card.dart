@@ -3,6 +3,7 @@ import 'package:booktalk_frontend/models/club_meeting.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
 import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/widgets/small_primary_button.dart';
+import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -28,14 +29,6 @@ class EventCard extends StatefulWidget {
 }
 
 class _EventCardState extends State<EventCard> {
-  bool _isChecked = false;
-
-  void _toggleCheck() {
-    setState(() {
-      _isChecked = !_isChecked;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -75,7 +68,7 @@ class _EventCardState extends State<EventCard> {
                           text.headlineMedium?.copyWith(color: colors.primary),
                     ),
                     Text(
-                      widget.clubMeeting.date,
+                      StringFormatting.getFormattedDateFromString(widget.clubMeeting.date),
                       style: text.headlineMedium
                           ?.copyWith(color: colors.onSurface),
                     ),
@@ -85,7 +78,7 @@ class _EventCardState extends State<EventCard> {
                           text.headlineMedium?.copyWith(color: colors.primary),
                     ),
                     Text(
-                      widget.clubMeeting.time,
+                      StringFormatting.getFormattedTimeFromString(widget.clubMeeting.time),
                       style: text.headlineMedium
                           ?.copyWith(color: colors.onSurface),
                     ),
@@ -111,18 +104,23 @@ class _EventCardState extends State<EventCard> {
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
-                  child: SmallPrimaryButton(
-                    icon: widget.clubMeeting.isAdministrator
-                        ? MdiIcons.pencil
-                        : widget.clubMeeting.isSubscribed
-                            ? MdiIcons.check
-                            : MdiIcons.plus,
-                    onTap: widget.clubMeeting.isAdministrator
-                        ? () => {}/*context.router.navigate(EditEventRoute(/*parameters*/))*/
-                        : widget.clubMeeting.isSubscribed
-                            ? widget.onUnsubscribe
-                            : widget.onSubscribe,
-                  ),
+                  child: widget.clubMeeting.isAdministrator
+                      ? SmallPrimaryButton(
+                          icon: MdiIcons.pencil,
+                          onTap: () {
+                            context.router.navigate(
+                                EditEventRoute(meeting: widget.clubMeeting));
+                          },
+                        )
+                      : widget.clubMeeting.isSubscribed
+                          ? SmallOutlineButton(
+                              icon: MdiIcons.check,
+                    onTap: widget.onUnsubscribe,
+                            )
+                          : SmallPrimaryButton(
+                              icon: MdiIcons.plus,
+                    onTap: widget.onSubscribe,
+                            ),
                 ),
               ],
             ),

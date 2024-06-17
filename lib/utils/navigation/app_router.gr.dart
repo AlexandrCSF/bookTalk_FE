@@ -444,7 +444,7 @@ class EditClubRoute extends PageRouteInfo<void> {
 class EditEventRoute extends PageRouteInfo<EditEventRouteArgs> {
   EditEventRoute({
     Key? key,
-    required Meeting meeting,
+    required ClubMeeting meeting,
     List<PageRouteInfo>? children,
   }) : super(
           EditEventRoute.name,
@@ -469,7 +469,7 @@ class EditEventRouteArgs {
 
   final Key? key;
 
-  final Meeting meeting;
+  final ClubMeeting meeting;
 
   @override
   String toString() {

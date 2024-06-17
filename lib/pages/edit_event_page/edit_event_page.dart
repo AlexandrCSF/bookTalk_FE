@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/models/club_meeting.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
 import 'package:booktalk_frontend/pages/widgets/picker_button.dart';
 import 'package:booktalk_frontend/pages/widgets/textfield_widget.dart';
+import 'package:booktalk_frontend/utils/navigation/app_router.dart';
+import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:booktalk_frontend/viewmodels/edit_event_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +20,7 @@ class EditEventPage extends StatefulWidget {
   final TimeOfDay time;
   final String place;*/
 
-  final Meeting meeting;
+  final ClubMeeting meeting;
 
   const EditEventPage({
     super.key,
@@ -60,9 +63,9 @@ class _EditEventPageState extends State<EditEventPage> {
           child: Align(
             alignment: Alignment.center,
             child: ChangeNotifierProvider<EditEventViewModel>(
-              create: (BuildContext context) => EditEventViewModel(
-                initialMeeting: widget.meeting
-              )..initEditEvent(),
+              create: (BuildContext context) =>
+                  EditEventViewModel(initialMeeting: widget.meeting)
+                    ..initEditEvent(),
               child: Consumer<EditEventViewModel>(
                 builder: (context, provider, child) {
                   return Column(
@@ -75,12 +78,13 @@ class _EditEventPageState extends State<EditEventPage> {
                       ),
                       PickerButton(
                         label: 'Дата',
-                        value: 'Выберите дату',
+                        value: StringFormatting.getFormattedDateFromDate(provider.selectedDate),
+                        icon: MdiIcons.calendar,
                         onTap: () {
                           showDatePicker(
                             context: context,
                             initialDate: provider.selectedDate,
-                            firstDate: DateTime.now(),
+                            firstDate: DateTime(2002),
                             lastDate: DateTime(2100),
                           ).then((value) {
                             if (value != null) {
@@ -91,7 +95,8 @@ class _EditEventPageState extends State<EditEventPage> {
                       ),
                       PickerButton(
                         label: 'Время',
-                        value: 'Выберите время',
+                        value: StringFormatting.getFormattedTimeFromTime(provider.selectedTime),
+                        icon: MdiIcons.clock,
                         onTap: () {
                           showTimePicker(
                             context: context,
@@ -121,7 +126,10 @@ class _EditEventPageState extends State<EditEventPage> {
                         child: MainPrimaryButton(
                           label: 'Добавить',
                           icon: MdiIcons.check,
-                          onTap: () => provider.editEvent(),
+                          onTap: () {
+                            provider.editEvent();
+                            context.router.maybePop();
+                          },
                         ),
                       ),
                     ],
