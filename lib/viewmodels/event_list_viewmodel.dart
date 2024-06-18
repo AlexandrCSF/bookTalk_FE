@@ -5,10 +5,13 @@ import 'package:booktalk_frontend/data/repositories/meeting_repository.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/club_meeting.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
+import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:flutter/material.dart';
 
 class EventListViewModel extends ChangeNotifier {
   final _repository = getIt.get<MeetingRepository>();
+
+  final _analytics = getIt.get<Analytics>();
 
   final int clubId;
   final bool isAdministrated;
@@ -95,6 +98,7 @@ class EventListViewModel extends ChangeNotifier {
   Future<void> subscribe(int meetingId) async {
     try {
       await _repository.attendMeeting(meetingId);
+      await _analytics.checkEvent();
     } on ApiException catch (e) {
       debugPrint(e.message);
     } finally {
@@ -102,6 +106,13 @@ class EventListViewModel extends ChangeNotifier {
     }
   }
 
-  // todo: add unsubscribe
-  Future<void> unsubscribe(int meetingId) async {}
+  Future<void> unsubscribe(int meetingId) async {
+    try {
+      await _repository.wontAttendMeeting(meetingId);
+    } on ApiException catch (e) {
+      debugPrint(e.message);
+    } finally {
+      notifyListeners();
+    }
+  }
 }

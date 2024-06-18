@@ -6,6 +6,7 @@ import 'package:booktalk_frontend/models/user.dart';
 import 'package:booktalk_frontend/pages/interests_page/edit_club_interests_page.dart';
 import 'package:booktalk_frontend/pages/interests_page/edit_profile_interests_page.dart';
 import 'package:booktalk_frontend/pages/interests_page/registration_interests_page.dart';
+import 'package:booktalk_frontend/pages/onboarding/welcome_view_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:booktalk_frontend/pages/authorization_page/authorization_page.dart';
@@ -135,7 +136,11 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           path: '/edit-profile-interests',
           page: EditProfileInterestsRoute.page,
-        )
+        ),
+        AutoRoute(
+          path: '/welcome',
+          page: WelcomeViewRoute.page,
+        ),
       ];
 }
 

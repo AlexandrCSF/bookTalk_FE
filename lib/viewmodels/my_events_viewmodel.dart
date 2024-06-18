@@ -5,6 +5,7 @@ import 'package:booktalk_frontend/data/repositories/meeting_repository.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
 import 'package:booktalk_frontend/utils/secure_storage.dart';
+import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 
@@ -54,22 +55,6 @@ class MyEventsViewModel extends ChangeNotifier {
     }
   }
 
-  /*Future<void> getTodayMeetings(int userId) async {
-    *//*if(!_isLoading) {
-      _setLoadingStatus(true);
-    }*//*
-    try {
-      List<Meeting> meetings = await _repository.getMeetingsForUser(userId);
-      _allMeetings = getEvents(meetings);
-      List<Meeting> todayMeetings = await _repository.getTodayMeetingsForUser(userId);
-      _todayMeetings = getEvents(todayMeetings);
-    } on ApiException catch (e) {
-      debugPrint(e.message);
-    } finally {
-      //_setLoadingStatus(false);
-    }
-  }*/
-
   List<String> getEvents(List<Meeting> meetingList) {
     List<String> result = [];
     for(var event in meetingList) {
@@ -79,7 +64,7 @@ class MyEventsViewModel extends ChangeNotifier {
       print(formattedDateTime);
       if (dateTime.isAfter(today)) {
         result.add(
-            '${event.name} · ${event.date} · ${event.time} · ${event.location}');
+            '${event.name} · ${StringFormatting.getFormattedDateFromString(event.date)} · ${StringFormatting.getFormattedTimeFromString(event.time)} · ${event.location}');
         _meetingMarkers
             .putIfAbsent(formattedDateTime, () => [])
             .add(event.name);
@@ -90,14 +75,12 @@ class MyEventsViewModel extends ChangeNotifier {
 
   void authorize() {
     _authorized = true;
-    //notifyListeners();
   }
 
   void unauthorize() {
     _authorized = false;
     _allMeetings = [];
     _todayMeetings = [];
-    //notifyListeners();
   }
 
   bool _authorized = getIt.get<SecureStorage>().isAuthorized();

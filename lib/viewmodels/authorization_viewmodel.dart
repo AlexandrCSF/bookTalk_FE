@@ -2,9 +2,11 @@ import 'package:booktalk_frontend/data/api_exceptions.dart';
 import 'package:booktalk_frontend/data/repositories/auth_repository.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/login.dart';
+import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:flutter/material.dart';
 
 class AuthorizationViewModel extends ChangeNotifier {
+
   final _repository = getIt.get<AuthRepository>();
 
   Future<void> signIn() async {

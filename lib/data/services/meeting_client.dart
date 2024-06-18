@@ -23,9 +23,14 @@ abstract class MeetingClient {
   );
 
   @POST(MeetingUrls.attendMeeting)
-  Future<Meeting> attendMeeting(
+  Future<void> attendMeeting(
     @Query('meeting_id') int meetingId,
   );
+
+  @POST(MeetingUrls.wontAttendMeeting)
+  Future<void> wontAttendMeeting(
+      @Query('meeting_id') int meetingId,
+      );
 
   @PUT(MeetingUrls.createMeeting)
   Future<MeetingCreate> createMeeting(

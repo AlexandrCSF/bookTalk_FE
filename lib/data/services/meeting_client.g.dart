@@ -77,30 +77,51 @@ class _MeetingClient implements MeetingClient {
   }
 
   @override
-  Future<Meeting> attendMeeting(int meetingId) async {
+  Future<void> attendMeeting(int meetingId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'meeting_id': meetingId};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Meeting>(Options(
+    await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/meetings/attend/',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = Meeting.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/meetings/attend/',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+  }
+
+  @override
+  Future<void> wontAttendMeeting(int meetingId) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'meeting_id': meetingId};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/meetings/wont_attend/',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
   }
 
   @override

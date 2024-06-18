@@ -6,12 +6,15 @@ import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
 import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/models/user.dart';
+import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:flutter/material.dart';
 
 class BookClubViewModel extends ChangeNotifier {
 
   final _repository = getIt.get<ClubRepository>();
+
+  final _analytics = getIt.get<Analytics>();
 
   void _setLoadingStatus(bool value) {
     _isLoading = value;
@@ -69,6 +72,7 @@ class BookClubViewModel extends ChangeNotifier {
   Future<void> subscribe() async {
     await _repository.subscribeToClub('$clubId');
     _isSubscribed = true;
+    _analytics.clubSubscription();
     notifyListeners();
   }
 

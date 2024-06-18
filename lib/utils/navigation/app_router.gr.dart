@@ -202,6 +202,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const RegistrationPage(),
       );
     },
+    WelcomeViewRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const WelcomeViewPage(),
+      );
+    },
   };
 }
 
@@ -810,6 +816,20 @@ class RegistrationRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'RegistrationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [WelcomeViewPage]
+class WelcomeViewRoute extends PageRouteInfo<void> {
+  const WelcomeViewRoute({List<PageRouteInfo>? children})
+      : super(
+          WelcomeViewRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'WelcomeViewRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -7,12 +7,15 @@ import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
 import 'package:booktalk_frontend/models/club_create.dart';
 import 'package:booktalk_frontend/models/genre.dart';
+import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:booktalk_frontend/utils/city_fias.dart';
 import 'package:flutter/material.dart';
 
 class CreateClubViewModel extends ChangeNotifier {
   final _repository = getIt.get<ClubRepository>();
   final _genreRepository = getIt.get<GenreRepository>();
+
+  final _analytics = getIt.get<Analytics>();
 
   late ClubCard createdClub;
 
@@ -26,6 +29,7 @@ class CreateClubViewModel extends ChangeNotifier {
         interests: _selectedGenreNames,
       );
       createdClub = await _repository.createClub(clubCreate);
+      await _analytics.createClub();
     } on ApiException catch (e) {
       debugPrint(e.message);
     } finally {

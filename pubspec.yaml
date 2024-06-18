@@ -53,6 +53,7 @@ dependencies:
   json_annotation: ^4.9.0
   flutter_secure_storage: ^4.2.1
   device_info_plus: ^10.1.0
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -134,7 +135,7 @@ flutter_native_splash:
 
   # The image parameter allows you to specify an image used in the splash screen.  It must be a
   # png file and should be sized for 4x pixel density.
-  image: lib/images/logo2.png
+  image: lib/utils/resources/images/booktalklogo.svg
 
   # The branding property allows you to specify an image used as branding in the splash screen.
   # It must be a png file. It is supported for Android, iOS and the Web.  For Android 12,
@@ -166,7 +167,8 @@ flutter_native_splash:
   # 640 pixels in diameter.
   # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
   # 768 pixels in diameter.
-   image: lib/images/logo2.png
+  # image: lib/images/logo2.png
+   image: lib/utils/resources/images/booktalklogo.svg
 
   # Splash screen background color.
    color: "#fff8f6"

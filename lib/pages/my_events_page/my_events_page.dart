@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/pages/book_club_list_page/book_club_list_page.dart';
 import 'package:booktalk_frontend/pages/my_events_page/widgets/event_list_widget.dart';
+import 'package:booktalk_frontend/pages/onboarding/welcome_view_page.dart';
 import 'package:booktalk_frontend/pages/widgets/main_disabled_button.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:booktalk_frontend/viewmodels/my_events_viewmodel.dart';
@@ -102,7 +103,8 @@ class _MyEventsPageState extends State<MyEventsPage> {
             label: 'Авторизоваться',
             icon: MdiIcons.arrowRight,
             onTap: () {
-              context.navigateTo(ProfileTab(children: [ProfileRoute()]));
+              //context.navigateTo(ProfileTab(children: [ProfileRoute()]));
+              context.navigateTo(WelcomeViewRoute());
             },
           )
         ],

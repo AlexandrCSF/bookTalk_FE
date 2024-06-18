@@ -58,6 +58,14 @@ class MeetingRepository {
     }
   }
 
+  Future<void> wontAttendMeeting(int meetingId) async {
+    try {
+      await _client.wontAttendMeeting(meetingId);
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
+
   Future<void> createMeeting(MeetingCreate meeetingCreate, String clubId) async {
     try {
       MeetingCreate response = await _client.createMeeting(meeetingCreate.toJson(), clubId);

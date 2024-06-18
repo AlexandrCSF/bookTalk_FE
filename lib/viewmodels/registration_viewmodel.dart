@@ -6,6 +6,7 @@ import 'package:booktalk_frontend/data/repositories/genre_repository.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/models/user_create.dart';
+import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:booktalk_frontend/utils/city_fias.dart';
 import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,6 +15,8 @@ class RegistrationViewModel extends ChangeNotifier {
 
   final _repository = getIt.get<AuthRepository>();
   final _genreRepository = getIt.get<GenreRepository>();
+
+  final _analytics = getIt.get<Analytics>();
 
   Future<void> signUp() async {
     _errorMessage = '';
@@ -30,6 +33,7 @@ class RegistrationViewModel extends ChangeNotifier {
         );
         print(userCreate);
         await _repository.signUp(userCreate);
+        await _analytics.signUp();
       } on ApiException catch (e) {
         debugPrint(e.message);
       } finally {

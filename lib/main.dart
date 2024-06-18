@@ -29,9 +29,7 @@ Future<void> main() async {
 
   /// firebase analytics
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  getIt.registerSingleton<Analytics>(
-    Analytics(analytics: FirebaseAnalytics.instance),
-  );
+  getIt.registerSingleton<Analytics>(Analytics(analytics: FirebaseAnalytics.instance));
 
   /// dio
   Dio dio = Dio();
@@ -42,8 +40,7 @@ Future<void> main() async {
   getIt.registerSingleton(AuthClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(GenreClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(MeetingClient(getIt.get<Dio>(), baseUrl: baseUrl));
-  getIt.registerSingleton(
-      ConversationClient(getIt.get<Dio>(), baseUrl: baseUrl));
+  getIt.registerSingleton(ConversationClient(getIt.get<Dio>(), baseUrl: baseUrl));
 
   /// secure storage
   final secureStorage = SecureStorage();
