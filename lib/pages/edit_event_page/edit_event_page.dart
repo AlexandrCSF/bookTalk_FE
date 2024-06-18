@@ -15,19 +15,11 @@ import '../widgets/main_primary_button.dart';
 
 @RoutePage()
 class EditEventPage extends StatefulWidget {
-  /*final String topic;
-  final DateTime date;
-  final TimeOfDay time;
-  final String place;*/
 
   final ClubMeeting meeting;
 
   const EditEventPage({
     super.key,
-    /*required this.topic,
-    required this.date,
-    required this.time,
-    required this.place,*/
     required this.meeting,
   });
 
