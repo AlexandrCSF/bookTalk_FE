@@ -6,9 +6,11 @@ import 'package:booktalk_frontend/models/login.dart';
 import 'package:booktalk_frontend/models/token_refresh_serializer_request.dart';
 import 'package:booktalk_frontend/models/user.dart';
 import 'package:booktalk_frontend/models/user_create.dart';
+import 'package:booktalk_frontend/models/user_patch.dart';
 import 'package:booktalk_frontend/models/user_uuid_serializer_request.dart';
 import 'package:booktalk_frontend/utils/device_info.dart';
 import 'package:booktalk_frontend/utils/secure_storage.dart';
+import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:dio/dio.dart';
 
 class AuthRepository {
@@ -48,11 +50,15 @@ class AuthRepository {
 
   Future<void> signUp(UserCreate userCreate) async {
     try {
-      String uuid = await DeviceInformation.getId();
+      /*String uuid = await DeviceInformation.getId();
       if (uuid.isEmpty) {
         uuid = '';
-      }
-      await _client.createUser(uuid, userCreate.toJson());
+      }*/
+      String uuid = StringFormatting.generateRandomSequence(20);
+      print(uuid);
+      print(userCreate.toJson());
+      User user = await _client.createUser(uuid, userCreate.toJson());
+      print(user);
     } on DioException catch (e) {
       throw HandleException.handleException(e);
     }
@@ -64,6 +70,18 @@ class AuthRepository {
 
   Future<User> getUserData(int userId) async {
     return await _client.getUser(userId);
+  }
+
+  Future<User> editUser(UserPatch userPatch, int userId) async {
+    try {
+      print(userId);
+      print(userPatch.toJson());
+      User user = await _client.editUser(userPatch.toJson(), userId);
+      print(user);
+      return user;
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
   }
 
 }

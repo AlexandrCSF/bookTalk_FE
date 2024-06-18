@@ -1,3 +1,4 @@
+import 'package:booktalk_frontend/models/genre.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user.freezed.dart';
@@ -16,6 +17,8 @@ abstract class User with _$User {
     required String email,
     required String city,
     required String uuid,
+    required String password,
+    required List<Genre> interests,
     @JsonKey(name: 'refresh_token') required String refresh_token,
   }) = _User;
 

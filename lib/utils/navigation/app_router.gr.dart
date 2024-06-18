@@ -103,10 +103,20 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    EditProfileRoute.name: (routeData) {
+    EditProfileInterestsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const EditProfilePage(),
+        child: const EditProfileInterestsPage(),
+      );
+    },
+    EditProfileRoute.name: (routeData) {
+      final args = routeData.argsAs<EditProfileRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EditProfilePage(
+          key: args.key,
+          user: args.user,
+        ),
       );
     },
     EventListRoute.name: (routeData) {
@@ -478,17 +488,55 @@ class EditEventRouteArgs {
 }
 
 /// generated route for
-/// [EditProfilePage]
-class EditProfileRoute extends PageRouteInfo<void> {
-  const EditProfileRoute({List<PageRouteInfo>? children})
+/// [EditProfileInterestsPage]
+class EditProfileInterestsRoute extends PageRouteInfo<void> {
+  const EditProfileInterestsRoute({List<PageRouteInfo>? children})
       : super(
+          EditProfileInterestsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EditProfileInterestsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EditProfilePage]
+class EditProfileRoute extends PageRouteInfo<EditProfileRouteArgs> {
+  EditProfileRoute({
+    Key? key,
+    required User user,
+    List<PageRouteInfo>? children,
+  }) : super(
           EditProfileRoute.name,
+          args: EditProfileRouteArgs(
+            key: key,
+            user: user,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'EditProfileRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<EditProfileRouteArgs> page =
+      PageInfo<EditProfileRouteArgs>(name);
+}
+
+class EditProfileRouteArgs {
+  const EditProfileRouteArgs({
+    this.key,
+    required this.user,
+  });
+
+  final Key? key;
+
+  final User user;
+
+  @override
+  String toString() {
+    return 'EditProfileRouteArgs{key: $key, user: $user}';
+  }
 }
 
 /// generated route for

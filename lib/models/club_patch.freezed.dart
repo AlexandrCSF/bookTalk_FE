@@ -25,6 +25,7 @@ mixin _$ClubPatch {
   @JsonKey(name: 'city_fias')
   String get cityFias => throw _privateConstructorUsedError;
   int get admin => throw _privateConstructorUsedError;
+  List<String> get interests => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +42,8 @@ abstract class $ClubPatchCopyWith<$Res> {
       {String name,
       String description,
       @JsonKey(name: 'city_fias') String cityFias,
-      int admin});
+      int admin,
+      List<String> interests});
 }
 
 /// @nodoc
@@ -61,6 +63,7 @@ class _$ClubPatchCopyWithImpl<$Res, $Val extends ClubPatch>
     Object? description = null,
     Object? cityFias = null,
     Object? admin = null,
+    Object? interests = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -79,6 +82,10 @@ class _$ClubPatchCopyWithImpl<$Res, $Val extends ClubPatch>
           ? _value.admin
           : admin // ignore: cast_nullable_to_non_nullable
               as int,
+      interests: null == interests
+          ? _value.interests
+          : interests // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -95,7 +102,8 @@ abstract class _$$ClubPatchImplCopyWith<$Res>
       {String name,
       String description,
       @JsonKey(name: 'city_fias') String cityFias,
-      int admin});
+      int admin,
+      List<String> interests});
 }
 
 /// @nodoc
@@ -113,6 +121,7 @@ class __$$ClubPatchImplCopyWithImpl<$Res>
     Object? description = null,
     Object? cityFias = null,
     Object? admin = null,
+    Object? interests = null,
   }) {
     return _then(_$ClubPatchImpl(
       name: null == name
@@ -131,6 +140,10 @@ class __$$ClubPatchImplCopyWithImpl<$Res>
           ? _value.admin
           : admin // ignore: cast_nullable_to_non_nullable
               as int,
+      interests: null == interests
+          ? _value._interests
+          : interests // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -142,7 +155,9 @@ class _$ClubPatchImpl implements _ClubPatch {
       {required this.name,
       required this.description,
       @JsonKey(name: 'city_fias') required this.cityFias,
-      required this.admin});
+      required this.admin,
+      required final List<String> interests})
+      : _interests = interests;
 
   factory _$ClubPatchImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClubPatchImplFromJson(json);
@@ -156,10 +171,17 @@ class _$ClubPatchImpl implements _ClubPatch {
   final String cityFias;
   @override
   final int admin;
+  final List<String> _interests;
+  @override
+  List<String> get interests {
+    if (_interests is EqualUnmodifiableListView) return _interests;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_interests);
+  }
 
   @override
   String toString() {
-    return 'ClubPatch(name: $name, description: $description, cityFias: $cityFias, admin: $admin)';
+    return 'ClubPatch(name: $name, description: $description, cityFias: $cityFias, admin: $admin, interests: $interests)';
   }
 
   @override
@@ -172,13 +194,15 @@ class _$ClubPatchImpl implements _ClubPatch {
                 other.description == description) &&
             (identical(other.cityFias, cityFias) ||
                 other.cityFias == cityFias) &&
-            (identical(other.admin, admin) || other.admin == admin));
+            (identical(other.admin, admin) || other.admin == admin) &&
+            const DeepCollectionEquality()
+                .equals(other._interests, _interests));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, description, cityFias, admin);
+  int get hashCode => Object.hash(runtimeType, name, description, cityFias,
+      admin, const DeepCollectionEquality().hash(_interests));
 
   @JsonKey(ignore: true)
   @override
@@ -199,7 +223,8 @@ abstract class _ClubPatch implements ClubPatch {
       {required final String name,
       required final String description,
       @JsonKey(name: 'city_fias') required final String cityFias,
-      required final int admin}) = _$ClubPatchImpl;
+      required final int admin,
+      required final List<String> interests}) = _$ClubPatchImpl;
 
   factory _ClubPatch.fromJson(Map<String, dynamic> json) =
       _$ClubPatchImpl.fromJson;
@@ -213,6 +238,8 @@ abstract class _ClubPatch implements ClubPatch {
   String get cityFias;
   @override
   int get admin;
+  @override
+  List<String> get interests;
   @override
   @JsonKey(ignore: true)
   _$$ClubPatchImplCopyWith<_$ClubPatchImpl> get copyWith =>

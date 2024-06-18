@@ -11,7 +11,7 @@ abstract class ClubCreate with _$ClubCreate {
     required String description,
     @JsonKey(name: 'admin_id') required int adminId,
     @JsonKey(name: 'city_fias') required String cityFias,
-    required List<int> interests,
+    required List<String> interests,
   }) = _ClubCreate;
 
   factory ClubCreate.fromJson(Map<String, dynamic> json) => _$ClubCreateFromJson(json);

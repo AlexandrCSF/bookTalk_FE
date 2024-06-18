@@ -83,12 +83,7 @@ class _MyEventsPageState extends State<MyEventsPage> {
   }
 
   Widget _unauthorizedEvents() {
-    //Map<DateTime, List<dynamic>> events = {};
-    Map<DateTime, List<dynamic>> events = {
-      DateTime.utc(2024, 6, 5): ['aaa', 'ffff'],
-      DateTime.utc(2024, 6, 8): ['aaa', 'ffff'],
-      DateTime.utc(2024, 6, 10): ['aaa', 'ffff'],
-    };
+    Map<DateTime, List<dynamic>> events = {};
     return Padding(
       padding: const EdgeInsets.only(
           right: 20.0, left: 20.0, top: 5.0, bottom: 10.0),

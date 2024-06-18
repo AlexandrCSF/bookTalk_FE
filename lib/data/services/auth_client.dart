@@ -17,7 +17,7 @@ abstract class AuthClient {
   );
 
   @POST(AuthUrls.createUser)
-  Future<UserCreate> createUser(
+  Future<User> createUser(
     @Query('uuid') String uuid,
     @Body() Map<String, dynamic> userCreate,
   );
@@ -35,5 +35,11 @@ abstract class AuthClient {
   @POST(AuthUrls.logIn)
   Future<FreeToken> logIn(
     @Body() Map<String, dynamic> login,
+  );
+
+  @PATCH(AuthUrls.editUser)
+  Future<User> editUser(
+    @Body() Map<String, dynamic> userPatch,
+    @Query('user_id') int userId,
   );
 }

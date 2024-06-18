@@ -17,7 +17,7 @@ class BookClubViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getGenres(List<Genre> genreIds, String clubId) async {
+  void getGenres(List<Genre> genreIds) async {
     if (_genres.isEmpty) {
       for (var genre in genreIds) {
         _genres.add(StringFormatting.getFormattedTag(genre.name));
@@ -34,7 +34,7 @@ class BookClubViewModel extends ChangeNotifier {
       if(!_isAdministrator) {
         _isSubscribed = await _repository.isSubscribed(id, userId);
       }
-      await getGenres(_club!.interests, id);
+      getGenres(_club!.interests);
       getEvents();
     } on ApiException catch (e) {
       debugPrint(e.message);

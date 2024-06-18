@@ -5,40 +5,61 @@ import 'package:booktalk_frontend/data/repositories/auth_repository.dart';
 import 'package:booktalk_frontend/data/repositories/genre_repository.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/genre.dart';
-import 'package:booktalk_frontend/models/user_create.dart';
+import 'package:booktalk_frontend/models/user.dart';
+import 'package:booktalk_frontend/models/user_patch.dart';
 import 'package:booktalk_frontend/utils/city_fias.dart';
 import 'package:booktalk_frontend/utils/string_formatting.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class RegistrationViewModel extends ChangeNotifier {
+class EditProfileViewModel extends ChangeNotifier {
 
   final _repository = getIt.get<AuthRepository>();
   final _genreRepository = getIt.get<GenreRepository>();
 
-  Future<void> signUp() async {
-    try {
-      UserCreate userCreate = UserCreate(
-        username: StringFormatting.generateRandomSequence(15),
-        firstName: _firstNameController.text,
-        lastName: _lastNameController.text,
-        email: _emailController.text,
-        city: CityFias.cityFias[_selectedCity]!,
-        interests: _selectedGenreNames,
-        password: _passwordController.text,
-      );
-      print(userCreate);
-      await _repository.signUp(userCreate);
-    } on ApiException catch (e) {
-      debugPrint(e.message);
-    } finally {
+  late User initialProfile;
+
+  Future<void> editProfile() async {
+    _errorMessage = '';
+    if (_firstNameController.text.isNotEmpty &&
+        _lastNameController.text.isNotEmpty &&
+        _emailController.text.isNotEmpty) {
+      try {
+        UserPatch userPatch = UserPatch(
+          username: initialProfile.username,
+          firstName: _firstNameController.text,
+          lastName: _lastNameController.text,
+          email: _emailController.text,
+          city: CityFias.cityFias[_selectedCity]!,
+          interests: _selectedGenreNames,
+        );
+        print(userPatch);
+        await _repository.editUser(userPatch, initialProfile.id);
+      } on ApiException catch (e) {
+        debugPrint(e.message);
+      } finally {
+        notifyListeners();
+      }
+    } else {
+      _errorMessage = 'Все поля должны быть заполнены';
       notifyListeners();
     }
+  }
+
+  Future<void> loadGenres() async {
+    _allGenres = await _genreRepository.getGenreList();
+    notifyListeners();
   }
 
   void setCity(String? value) {
     if (value != null) {
       _selectedCity = value;
       notifyListeners();
+    }
+  }
+
+  void getGenreNames() {
+    for (Genre genre in _selectedGenres) {
+      _selectedGenreNames.add(genre.name);
     }
   }
 
@@ -51,43 +72,24 @@ class RegistrationViewModel extends ChangeNotifier {
 
   void removeGenre(Genre genre) {
     _selectedGenres.remove(genre);
-    _selectedGenreIndexes.remove(genre.id);
     _selectedGenreNames.remove(genre.name);
     notifyListeners();
   }
 
-  Future<void> loadGenres() async {
-    _allGenres = await _genreRepository.getGenreList();
-    notifyListeners();
-  }
-
-  bool checkFields() {
-    _errorMessage = '';
-    if (_firstNameController.text.isEmpty
-        || _lastNameController.text.isEmpty
-        || _emailController.text.isEmpty
-        || _passwordController.text.isEmpty) {
-      _errorMessage = 'Все поля должны быть заполнены';
-      notifyListeners();
-      return false;
-    } else {
-      return true;
+  void initEditProfile(User user) {
+    initialProfile = user;
+    _firstNameController.text = user.firstName;
+    _lastNameController.text = user.lastName;
+    _emailController.text = user.email;
+    for (Genre genre in user.interests) {
+      _selectedGenres.add(genre);
     }
-  }
-
-  bool validateEmail(String email) {
-    RegExp regexp = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
-    if (regexp.hasMatch(email)) {
-      return true;
-    } else {
-      return false;
-    }
+    getGenreNames();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _passwordController.dispose();
     _emailController.dispose();
     _lastNameController.dispose();
     _firstNameController.dispose();
@@ -102,9 +104,6 @@ class RegistrationViewModel extends ChangeNotifier {
   final _emailController = TextEditingController();
   TextEditingController get emailController => _emailController;
 
-  final _passwordController = TextEditingController();
-  TextEditingController get passwordController => _passwordController;
-
   String _selectedCity = 'Воронеж';
   String get selectedCity => _selectedCity;
 
@@ -112,15 +111,14 @@ class RegistrationViewModel extends ChangeNotifier {
   UnmodifiableListView<String> get cities => UnmodifiableListView(_cities);
 
   List<Genre> _allGenres = [];
-  UnmodifiableListView<Genre> get allGenres => UnmodifiableListView(_allGenres);
+  List<Genre> get allGenres => _allGenres;
 
   List<Genre> _selectedGenres = [];
-  UnmodifiableListView<Genre> get selectedGenres => UnmodifiableListView(_selectedGenres);
+  List<Genre> get selectedGenres => _selectedGenres;
 
   List<int> _selectedGenreIndexes = [];
   List<String> _selectedGenreNames = [];
 
   String _errorMessage = '';
   String get errorMessage => _errorMessage;
-
 }

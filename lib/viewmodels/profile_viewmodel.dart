@@ -1,9 +1,12 @@
 import 'package:booktalk_frontend/data/api_exceptions.dart';
 import 'package:booktalk_frontend/data/repositories/auth_repository.dart';
 import 'package:booktalk_frontend/main.dart';
+import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/models/login.dart';
 import 'package:booktalk_frontend/models/user.dart';
+import 'package:booktalk_frontend/utils/city_fias.dart';
 import 'package:booktalk_frontend/utils/secure_storage.dart';
+import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:booktalk_frontend/viewmodels/book_club_list_viewmodel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +24,11 @@ class ProfileViewModel extends ChangeNotifier {
   String get email => _email;
   String _city = '';
   String get city => _city;
+  List<String> _genres = [];
+  List<String> get genres => _genres;
+
+  late User _user;
+  User get user => _user;
 
   String? _profilePicture;
   String? get profilePicture => _profilePicture;
@@ -28,11 +36,13 @@ class ProfileViewModel extends ChangeNotifier {
   Future<void> loadUserData(userId) async {
     try {
       // todo: add profile picture
-      User user = await _repository.getUserData(userId);
-      _firstName = user.firstName;
-      _lastName = user.lastName;
-      _email = user.email;
-      _city = 'г. ${user.city}';
+      _user = await _repository.getUserData(userId);
+      _firstName = _user.firstName;
+      _lastName = _user.lastName;
+      _email = _user.email;
+      //_city = 'г. ${user.city}';
+      _city = CityFias.cityFias.keys.firstWhere((element) => CityFias.cityFias[element] == _user.city, orElse: () => '');
+      getGenres(_user.interests);
       print(user);
     } on ApiException catch (e) {
       debugPrint(e.message);
@@ -56,6 +66,14 @@ class ProfileViewModel extends ChangeNotifier {
       debugPrint(e.message);
     } finally {
       notifyListeners();
+    }
+  }
+
+  void getGenres(List<Genre> genres) async {
+    if (_genres.isEmpty) {
+      for (var genre in genres) {
+        _genres.add(StringFormatting.getFormattedTag(genre.name));
+      }
     }
   }
 

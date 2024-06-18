@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:booktalk_frontend/pages/registration_interests_page/registration_interests_page.dart';
+import 'package:booktalk_frontend/pages/interests_page/registration_interests_page.dart';
 import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/widgets/dropdown_list_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/edit_avatar_widget.dart';
@@ -22,19 +22,12 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
 
-  late RegistrationViewModel viewModel;
-
-  @override
-  void initState() {
-    viewModel = Provider.of<RegistrationViewModel>(context, listen: false);
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    viewModel.loadGenres();
+    RegistrationViewModel provider = Provider.of<RegistrationViewModel>(context, listen: false);
+    provider.loadGenres();
     return Consumer<RegistrationViewModel>(
       builder: (context, provider, child) {
         return Scaffold(

@@ -33,6 +33,8 @@ mixin _$User {
   String get email => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  List<Genre> get interests => throw _privateConstructorUsedError;
   @JsonKey(name: 'refresh_token')
   String get refresh_token => throw _privateConstructorUsedError;
 
@@ -56,6 +58,8 @@ abstract class $UserCopyWith<$Res> {
       String email,
       String city,
       String uuid,
+      String password,
+      List<Genre> interests,
       @JsonKey(name: 'refresh_token') String refresh_token});
 }
 
@@ -81,6 +85,8 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? email = null,
     Object? city = null,
     Object? uuid = null,
+    Object? password = null,
+    Object? interests = null,
     Object? refresh_token = null,
   }) {
     return _then(_value.copyWith(
@@ -120,6 +126,14 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      interests: null == interests
+          ? _value.interests
+          : interests // ignore: cast_nullable_to_non_nullable
+              as List<Genre>,
       refresh_token: null == refresh_token
           ? _value.refresh_token
           : refresh_token // ignore: cast_nullable_to_non_nullable
@@ -145,6 +159,8 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String email,
       String city,
       String uuid,
+      String password,
+      List<Genre> interests,
       @JsonKey(name: 'refresh_token') String refresh_token});
 }
 
@@ -167,6 +183,8 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? email = null,
     Object? city = null,
     Object? uuid = null,
+    Object? password = null,
+    Object? interests = null,
     Object? refresh_token = null,
   }) {
     return _then(_$UserImpl(
@@ -206,6 +224,14 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      interests: null == interests
+          ? _value._interests
+          : interests // ignore: cast_nullable_to_non_nullable
+              as List<Genre>,
       refresh_token: null == refresh_token
           ? _value.refresh_token
           : refresh_token // ignore: cast_nullable_to_non_nullable
@@ -227,7 +253,10 @@ class _$UserImpl implements _User {
       required this.email,
       required this.city,
       required this.uuid,
-      @JsonKey(name: 'refresh_token') required this.refresh_token});
+      required this.password,
+      required final List<Genre> interests,
+      @JsonKey(name: 'refresh_token') required this.refresh_token})
+      : _interests = interests;
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -255,12 +284,22 @@ class _$UserImpl implements _User {
   @override
   final String uuid;
   @override
+  final String password;
+  final List<Genre> _interests;
+  @override
+  List<Genre> get interests {
+    if (_interests is EqualUnmodifiableListView) return _interests;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_interests);
+  }
+
+  @override
   @JsonKey(name: 'refresh_token')
   final String refresh_token;
 
   @override
   String toString() {
-    return 'User(id: $id, isSuperuser: $isSuperuser, username: $username, firstName: $firstName, lastName: $lastName, dateJoined: $dateJoined, email: $email, city: $city, uuid: $uuid, refresh_token: $refresh_token)';
+    return 'User(id: $id, isSuperuser: $isSuperuser, username: $username, firstName: $firstName, lastName: $lastName, dateJoined: $dateJoined, email: $email, city: $city, uuid: $uuid, password: $password, interests: $interests, refresh_token: $refresh_token)';
   }
 
   @override
@@ -282,14 +321,30 @@ class _$UserImpl implements _User {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.uuid, uuid) || other.uuid == uuid) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            const DeepCollectionEquality()
+                .equals(other._interests, _interests) &&
             (identical(other.refresh_token, refresh_token) ||
                 other.refresh_token == refresh_token));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, isSuperuser, username,
-      firstName, lastName, dateJoined, email, city, uuid, refresh_token);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      isSuperuser,
+      username,
+      firstName,
+      lastName,
+      dateJoined,
+      email,
+      city,
+      uuid,
+      password,
+      const DeepCollectionEquality().hash(_interests),
+      refresh_token);
 
   @JsonKey(ignore: true)
   @override
@@ -316,6 +371,8 @@ abstract class _User implements User {
       required final String email,
       required final String city,
       required final String uuid,
+      required final String password,
+      required final List<Genre> interests,
       @JsonKey(name: 'refresh_token')
       required final String refresh_token}) = _$UserImpl;
 
@@ -343,6 +400,10 @@ abstract class _User implements User {
   String get city;
   @override
   String get uuid;
+  @override
+  String get password;
+  @override
+  List<Genre> get interests;
   @override
   @JsonKey(name: 'refresh_token')
   String get refresh_token;

@@ -46,7 +46,7 @@ class _AuthClient implements AuthClient {
   }
 
   @override
-  Future<UserCreate> createUser(
+  Future<User> createUser(
     String uuid,
     Map<String, dynamic> userCreate,
   ) async {
@@ -55,8 +55,8 @@ class _AuthClient implements AuthClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(userCreate);
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<UserCreate>(Options(
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<User>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -72,7 +72,7 @@ class _AuthClient implements AuthClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = UserCreate.fromJson(_result.data!);
+    final value = User.fromJson(_result.data!);
     return value;
   }
 
@@ -159,6 +159,37 @@ class _AuthClient implements AuthClient {
               baseUrl,
             ))));
     final value = FreeToken.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<User> editUser(
+    Map<String, dynamic> userPatch,
+    int userId,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'user_id': userId};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(userPatch);
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<User>(Options(
+      method: 'PATCH',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/auth/user/',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = User.fromJson(_result.data!);
     return value;
   }
 

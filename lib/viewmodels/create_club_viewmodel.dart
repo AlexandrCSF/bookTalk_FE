@@ -23,7 +23,7 @@ class CreateClubViewModel extends ChangeNotifier {
         description: _descriptionController.text,
         adminId: userId,
         cityFias: CityFias.cityFias[_selectedCity]!,
-        interests: _selectedGenreIndexes,
+        interests: _selectedGenreNames,
       );
       createdClub = await _repository.createClub(clubCreate);
     } on ApiException catch (e) {
@@ -43,12 +43,13 @@ class CreateClubViewModel extends ChangeNotifier {
   void addGenre(Genre genre) {
     _selectedGenres.add(genre);
     _selectedGenreIndexes.add(genre.id);
+    _selectedGenreNames.add(genre.name);
     notifyListeners();
   }
 
   void removeGenre(Genre genre) {
     _selectedGenres.remove(genre);
-    _selectedGenreIndexes.remove(genre.id);
+    _selectedGenreNames.remove(genre.name);
     notifyListeners();
   }
 
@@ -83,4 +84,5 @@ class CreateClubViewModel extends ChangeNotifier {
   UnmodifiableListView<Genre> get selectedGenres => UnmodifiableListView(_selectedGenres);
 
   List<int> _selectedGenreIndexes = [];
+  List<String> _selectedGenreNames = [];
 }

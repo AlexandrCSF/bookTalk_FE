@@ -21,6 +21,7 @@ class BadCertificateError extends ApiException {
 abstract class HandleException {
 
   static ApiException handleException(DioException e) {
+    print(e.message);
     switch(e.type) {
       case DioExceptionType.connectionError:
         return const NetworkConnectionError();

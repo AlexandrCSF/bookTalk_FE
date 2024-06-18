@@ -3,6 +3,7 @@ import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/pages/interests_page/widgets/clickable_tag_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:booktalk_frontend/utils/navigation/app_router.dart';
+import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:booktalk_frontend/viewmodels/create_club_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/registration_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,6 +22,7 @@ class RegistrationInterestsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    RegistrationViewModel provider = Provider.of<RegistrationViewModel>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -34,31 +36,28 @@ class RegistrationInterestsPage extends StatelessWidget {
                   style: text.titleMedium?.copyWith(color: colors.onBackground),
                   textAlign: TextAlign.center,
                 ),
-                Consumer<RegistrationViewModel>(
-                    builder: (context, provider, child) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 39),
-                    child: Wrap(
-                      alignment: WrapAlignment.spaceBetween,
-                      spacing: 8,
-                      runSpacing: 7,
-                      children: [
-                        for (Genre genre in provider.allGenres)
-                          ClickableTagWidget(
-                            tag: genre.name,
-                            isChosen: provider.selectedGenres.contains(genre),
-                            onTap: () {
-                              if (provider.selectedGenres.contains(genre)) {
-                                provider.removeGenre(genre);
-                              } else {
-                                provider.addGenre(genre);
-                              }
-                            },
-                          ),
-                      ],
-                    ),
-                  );
-                }),
+                Padding(
+                  padding: const EdgeInsets.only(top: 39),
+                  child: Wrap(
+                    alignment: WrapAlignment.spaceBetween,
+                    spacing: 8,
+                    runSpacing: 7,
+                    children: [
+                      for (Genre genre in provider.allGenres)
+                        ClickableTagWidget(
+                          tag: StringFormatting.getFormattedTag(genre.name),
+                          isChosen: provider.selectedGenres.contains(genre),
+                          onTap: () {
+                            if (provider.selectedGenres.contains(genre)) {
+                              provider.removeGenre(genre);
+                            } else {
+                              provider.addGenre(genre);
+                            }
+                          },
+                        ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
@@ -70,7 +69,7 @@ class RegistrationInterestsPage extends StatelessWidget {
           label: "Подтвердить",
           icon: MdiIcons.arrowRight,
           onTap: () {
-            context.router.navigate(AuthorizationRoute());
+            provider.signUp().then((value) => context.router.navigate(AuthorizationRoute()));
           },
         ),
       ),

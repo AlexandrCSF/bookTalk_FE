@@ -2,8 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/pages/interests_page/widgets/clickable_tag_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
+import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/utils/string_formatting.dart';
-import 'package:booktalk_frontend/viewmodels/create_club_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/edit_profile_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -13,14 +14,14 @@ import '../widgets/chosen_tag_widget.dart';
 import '../widgets/tag_widget.dart';
 
 @RoutePage()
-class InterestsPage extends StatelessWidget {
-  const InterestsPage({super.key});
+class EditProfileInterestsPage extends StatelessWidget {
+  const EditProfileInterestsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    CreateClubViewModel provider = Provider.of<CreateClubViewModel>(context);
+    EditProfileViewModel provider = Provider.of<EditProfileViewModel>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -30,7 +31,7 @@ class InterestsPage extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "Расскажите нам об интересах вашего клуба",
+                  "Расскажите нам о своих интересах",
                   style: text.titleMedium?.copyWith(color: colors.onBackground),
                   textAlign: TextAlign.center,
                 ),

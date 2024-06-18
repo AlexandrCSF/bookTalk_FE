@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 abstract class StringFormatting {
@@ -87,6 +89,14 @@ abstract class StringFormatting {
         break;
     }
     return stringMonth;
+  }
+
+  static String generateRandomSequence(int length) {
+    String chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    Random rnd = Random();
+    String randomString = String.fromCharCodes(Iterable.generate(
+        length, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
+    return randomString;
   }
 
 }

@@ -11,6 +11,7 @@ abstract class ClubPatch with _$ClubPatch {
     required String description,
     @JsonKey(name: 'city_fias') required String cityFias,
     required int admin,
+    required List<String> interests,
   }) = _ClubPatch;
 
   factory ClubPatch.fromJson(Map<String, dynamic> json) => _$ClubPatchFromJson(json);

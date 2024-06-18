@@ -1,4 +1,5 @@
 import 'package:booktalk_frontend/data/urls/base_url.dart';
+import 'package:booktalk_frontend/viewmodels/edit_profile_viewmodel.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -78,6 +79,12 @@ Future<void> main() async {
             ),
             ChangeNotifierProvider(
               create: (context) => AuthorizationViewModel(),
+            ),
+            ChangeNotifierProvider(
+              create: (context) => CreateClubViewModel(),
+            ),
+            ChangeNotifierProvider(
+              create: (context) => EditProfileViewModel(),
             ),
           ],
           child: BookTalkApp(),

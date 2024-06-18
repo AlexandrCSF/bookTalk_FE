@@ -157,7 +157,6 @@ class TokenInterceptor extends Interceptor {
     if (accessToken != null) {
       options.headers['Authorization'] = 'Bearer $accessToken';
     }
-    print('SS SET INTERCEPTOR');
     return handler.next(options);
   }
 

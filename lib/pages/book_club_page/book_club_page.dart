@@ -71,7 +71,7 @@ class _BookClubPageState extends State<BookClubPage> {
                                 Positioned.fill(
                                   // todo: change to imageUrl
                                   child: Image.asset(
-                                    'lib/utils/resources/images/hist_map.jpg',
+                                    'lib/utils/resources/images/base_club_avatar.png',
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -141,7 +141,7 @@ class _BookClubPageState extends State<BookClubPage> {
                                   label: 'Обсуждения',
                                   icon: MdiIcons.arrowRight,
                                   onTap: () {
-                                    context.navigateTo(
+                                    context.router.navigate(
                                         DiscussionListRoute(clubId: widget.id));
                                   },
                                 ),

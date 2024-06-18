@@ -26,7 +26,7 @@ mixin _$ClubCreate {
   int get adminId => throw _privateConstructorUsedError;
   @JsonKey(name: 'city_fias')
   String get cityFias => throw _privateConstructorUsedError;
-  List<int> get interests => throw _privateConstructorUsedError;
+  List<String> get interests => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +45,7 @@ abstract class $ClubCreateCopyWith<$Res> {
       String description,
       @JsonKey(name: 'admin_id') int adminId,
       @JsonKey(name: 'city_fias') String cityFias,
-      List<int> interests});
+      List<String> interests});
 }
 
 /// @nodoc
@@ -87,7 +87,7 @@ class _$ClubCreateCopyWithImpl<$Res, $Val extends ClubCreate>
       interests: null == interests
           ? _value.interests
           : interests // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<String>,
     ) as $Val);
   }
 }
@@ -105,7 +105,7 @@ abstract class _$$ClubCreateImplCopyWith<$Res>
       String description,
       @JsonKey(name: 'admin_id') int adminId,
       @JsonKey(name: 'city_fias') String cityFias,
-      List<int> interests});
+      List<String> interests});
 }
 
 /// @nodoc
@@ -145,7 +145,7 @@ class __$$ClubCreateImplCopyWithImpl<$Res>
       interests: null == interests
           ? _value._interests
           : interests // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<String>,
     ));
   }
 }
@@ -158,7 +158,7 @@ class _$ClubCreateImpl implements _ClubCreate {
       required this.description,
       @JsonKey(name: 'admin_id') required this.adminId,
       @JsonKey(name: 'city_fias') required this.cityFias,
-      required final List<int> interests})
+      required final List<String> interests})
       : _interests = interests;
 
   factory _$ClubCreateImpl.fromJson(Map<String, dynamic> json) =>
@@ -174,9 +174,9 @@ class _$ClubCreateImpl implements _ClubCreate {
   @override
   @JsonKey(name: 'city_fias')
   final String cityFias;
-  final List<int> _interests;
+  final List<String> _interests;
   @override
-  List<int> get interests {
+  List<String> get interests {
     if (_interests is EqualUnmodifiableListView) return _interests;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_interests);
@@ -227,7 +227,7 @@ abstract class _ClubCreate implements ClubCreate {
       required final String description,
       @JsonKey(name: 'admin_id') required final int adminId,
       @JsonKey(name: 'city_fias') required final String cityFias,
-      required final List<int> interests}) = _$ClubCreateImpl;
+      required final List<String> interests}) = _$ClubCreateImpl;
 
   factory _ClubCreate.fromJson(Map<String, dynamic> json) =
       _$ClubCreateImpl.fromJson;
@@ -243,7 +243,7 @@ abstract class _ClubCreate implements ClubCreate {
   @JsonKey(name: 'city_fias')
   String get cityFias;
   @override
-  List<int> get interests;
+  List<String> get interests;
   @override
   @JsonKey(ignore: true)
   _$$ClubCreateImplCopyWith<_$ClubCreateImpl> get copyWith =>

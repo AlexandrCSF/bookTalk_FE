@@ -47,7 +47,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _authorizedProfilePage(TextTheme text, ColorScheme colors) {
     Image? img;
-    List<String> tags = ["#детектив", "#исторический_роман", "#юмор"];
     provider.profilePicture != null
         ? img = Image.network(provider.profilePicture!)
         : img = null;
@@ -65,7 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
               onPressed: () {
-                context.router.navigate(const EditProfileRoute());
+                context.router.navigate(EditProfileRoute(user: provider.user));
               },
               icon: Icon(
                 MdiIcons.pencil,
@@ -128,7 +127,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           spacing: 8,
                           runSpacing: 7,
                           children: [
-                            for (String tag in tags)
+                            for (String tag in provider.genres)
                               TagWidget(
                                 tag: tag,
                               ),

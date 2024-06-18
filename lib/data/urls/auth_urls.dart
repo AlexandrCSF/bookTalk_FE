@@ -9,4 +9,7 @@ abstract class AuthUrls {
   static const String createUser = '/auth/user/';
   static const String logIn = '/auth/auth/';
 
+  /// PATCH
+  static const String editUser = '/auth/user/';
+
 }
