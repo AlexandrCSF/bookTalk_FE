@@ -48,6 +48,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    CreateClubInterestsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CreateClubInterestsPage(),
+      );
+    },
     CreateClubRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -87,10 +93,20 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    EditClubRoute.name: (routeData) {
+    EditClubInterestsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const EditClubPage(),
+        child: const EditClubInterestsPage(),
+      );
+    },
+    EditClubRoute.name: (routeData) {
+      final args = routeData.argsAs<EditClubRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EditClubPage(
+          key: args.key,
+          club: args.club,
+        ),
       );
     },
     EditEventRoute.name: (routeData) {
@@ -136,16 +152,14 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomePage(),
       );
     },
-    InterestsRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const InterestsPage(),
-      );
-    },
     MemberListRoute.name: (routeData) {
+      final args = routeData.argsAs<MemberListRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const MemberListPage(),
+        child: MemberListPage(
+          key: args.key,
+          members: args.members,
+        ),
       );
     },
     MyEventsRoute.name: (routeData) {
@@ -293,6 +307,20 @@ class BookClubRouteArgs {
 }
 
 /// generated route for
+/// [CreateClubInterestsPage]
+class CreateClubInterestsRoute extends PageRouteInfo<void> {
+  const CreateClubInterestsRoute({List<PageRouteInfo>? children})
+      : super(
+          CreateClubInterestsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CreateClubInterestsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [CreateClubPage]
 class CreateClubRoute extends PageRouteInfo<void> {
   const CreateClubRoute({List<PageRouteInfo>? children})
@@ -436,17 +464,55 @@ class DiscussionRouteArgs {
 }
 
 /// generated route for
-/// [EditClubPage]
-class EditClubRoute extends PageRouteInfo<void> {
-  const EditClubRoute({List<PageRouteInfo>? children})
+/// [EditClubInterestsPage]
+class EditClubInterestsRoute extends PageRouteInfo<void> {
+  const EditClubInterestsRoute({List<PageRouteInfo>? children})
       : super(
+          EditClubInterestsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EditClubInterestsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EditClubPage]
+class EditClubRoute extends PageRouteInfo<EditClubRouteArgs> {
+  EditClubRoute({
+    Key? key,
+    required ClubCard club,
+    List<PageRouteInfo>? children,
+  }) : super(
           EditClubRoute.name,
+          args: EditClubRouteArgs(
+            key: key,
+            club: club,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'EditClubRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<EditClubRouteArgs> page =
+      PageInfo<EditClubRouteArgs>(name);
+}
+
+class EditClubRouteArgs {
+  const EditClubRouteArgs({
+    this.key,
+    required this.club,
+  });
+
+  final Key? key;
+
+  final ClubCard club;
+
+  @override
+  String toString() {
+    return 'EditClubRouteArgs{key: $key, club: $club}';
+  }
 }
 
 /// generated route for
@@ -597,31 +663,41 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [InterestsPage]
-class InterestsRoute extends PageRouteInfo<void> {
-  const InterestsRoute({List<PageRouteInfo>? children})
-      : super(
-          InterestsRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'InterestsRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [MemberListPage]
-class MemberListRoute extends PageRouteInfo<void> {
-  const MemberListRoute({List<PageRouteInfo>? children})
-      : super(
+class MemberListRoute extends PageRouteInfo<MemberListRouteArgs> {
+  MemberListRoute({
+    Key? key,
+    required List<User> members,
+    List<PageRouteInfo>? children,
+  }) : super(
           MemberListRoute.name,
+          args: MemberListRouteArgs(
+            key: key,
+            members: members,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'MemberListRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<MemberListRouteArgs> page =
+      PageInfo<MemberListRouteArgs>(name);
+}
+
+class MemberListRouteArgs {
+  const MemberListRouteArgs({
+    this.key,
+    required this.members,
+  });
+
+  final Key? key;
+
+  final List<User> members;
+
+  @override
+  String toString() {
+    return 'MemberListRouteArgs{key: $key, members: $members}';
+  }
 }
 
 /// generated route for

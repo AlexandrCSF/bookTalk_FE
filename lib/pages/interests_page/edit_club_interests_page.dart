@@ -2,10 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/pages/interests_page/widgets/clickable_tag_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
-import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:booktalk_frontend/viewmodels/create_club_viewmodel.dart';
-import 'package:booktalk_frontend/viewmodels/registration_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/edit_club_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -15,14 +14,14 @@ import '../widgets/chosen_tag_widget.dart';
 import '../widgets/tag_widget.dart';
 
 @RoutePage()
-class RegistrationInterestsPage extends StatelessWidget {
-  const RegistrationInterestsPage({super.key});
+class EditClubInterestsPage extends StatelessWidget {
+  const EditClubInterestsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    RegistrationViewModel provider = Provider.of<RegistrationViewModel>(context);
+    EditClubViewModel provider = Provider.of<EditClubViewModel>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -32,7 +31,7 @@ class RegistrationInterestsPage extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "Расскажите нам о своих интересах",
+                  "Расскажите нам об интересах вашего клуба",
                   style: text.titleMedium?.copyWith(color: colors.onBackground),
                   textAlign: TextAlign.center,
                 ),
@@ -72,7 +71,7 @@ class RegistrationInterestsPage extends StatelessWidget {
           label: "Подтвердить",
           icon: MdiIcons.arrowRight,
           onTap: () {
-            provider.signUp().then((value) => context.router.navigate(AuthorizationRoute()));
+            context.router.maybePop();
           },
         ),
       ),

@@ -10,6 +10,7 @@ import 'package:booktalk_frontend/models/user_patch.dart';
 import 'package:booktalk_frontend/utils/city_fias.dart';
 import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EditProfileViewModel extends ChangeNotifier {
 
@@ -81,6 +82,7 @@ class EditProfileViewModel extends ChangeNotifier {
     _firstNameController.text = user.firstName;
     _lastNameController.text = user.lastName;
     _emailController.text = user.email;
+    _selectedCity = CityFias.cityFias.keys.firstWhere((element) => CityFias.cityFias[element] == user.city, orElse: () => '');;
     for (Genre genre in user.interests) {
       _selectedGenres.add(genre);
     }

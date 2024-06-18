@@ -16,21 +16,27 @@ class RegistrationViewModel extends ChangeNotifier {
   final _genreRepository = getIt.get<GenreRepository>();
 
   Future<void> signUp() async {
-    try {
-      UserCreate userCreate = UserCreate(
-        username: StringFormatting.generateRandomSequence(15),
-        firstName: _firstNameController.text,
-        lastName: _lastNameController.text,
-        email: _emailController.text,
-        city: CityFias.cityFias[_selectedCity]!,
-        interests: _selectedGenreNames,
-        password: _passwordController.text,
-      );
-      print(userCreate);
-      await _repository.signUp(userCreate);
-    } on ApiException catch (e) {
-      debugPrint(e.message);
-    } finally {
+    _errorMessage = '';
+    if (checkFields()) {
+      try {
+        UserCreate userCreate = UserCreate(
+          username: StringFormatting.generateRandomSequence(15),
+          firstName: _firstNameController.text,
+          lastName: _lastNameController.text,
+          email: _emailController.text,
+          city: CityFias.cityFias[_selectedCity]!,
+          interests: _selectedGenreNames,
+          password: _passwordController.text,
+        );
+        print(userCreate);
+        await _repository.signUp(userCreate);
+      } on ApiException catch (e) {
+        debugPrint(e.message);
+      } finally {
+        notifyListeners();
+      }
+    } else {
+      _errorMessage = 'Все поля должны быть заполнены';
       notifyListeners();
     }
   }
@@ -62,13 +68,13 @@ class RegistrationViewModel extends ChangeNotifier {
   }
 
   bool checkFields() {
-    _errorMessage = '';
+    //_errorMessage = '';
     if (_firstNameController.text.isEmpty
         || _lastNameController.text.isEmpty
         || _emailController.text.isEmpty
         || _passwordController.text.isEmpty) {
-      _errorMessage = 'Все поля должны быть заполнены';
-      notifyListeners();
+      /*_errorMessage = 'Все поля должны быть заполнены';
+      notifyListeners();*/
       return false;
     } else {
       return true;

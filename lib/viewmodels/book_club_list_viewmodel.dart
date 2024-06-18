@@ -15,13 +15,14 @@ class BookClubListViewModel extends ChangeNotifier {
 
   Future<void> loadClubs(int userId) async {
     await getSubscriptionList(userId);
-    await getRecommendationList(userId);
-    await getAdministratedList(userId);
+    //await getRecommendationList(userId);
+    //await getAdministratedList(userId);
     _setLoading(false);
   }
 
   Future<void> getSubscriptionList(int userId) async {
     try {
+      print('request');
       final result = await _repository.getSubscriptionList(userId);
       print(result);
       _subscriptionsList = result;
@@ -33,6 +34,7 @@ class BookClubListViewModel extends ChangeNotifier {
 
   Future<void> getRecommendationList(int userId) async {
     try {
+      print('request');
       final result = await _repository.getRecommendationList(userId);
       print(result);
       _recommendationList = result;
@@ -44,6 +46,7 @@ class BookClubListViewModel extends ChangeNotifier {
 
   Future<void> getAdministratedList(int userId) async {
     try {
+      print('request');
       final result = await _repository.getAdministratedList(userId);
       print(result);
       _administratedList = result;

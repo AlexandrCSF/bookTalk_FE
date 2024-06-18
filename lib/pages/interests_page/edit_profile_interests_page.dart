@@ -37,24 +37,27 @@ class EditProfileInterestsPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 39),
-                  child: Wrap(
-                    alignment: WrapAlignment.spaceBetween,
-                    spacing: 8,
-                    runSpacing: 7,
-                    children: [
-                      for (Genre genre in provider.allGenres)
-                        ClickableTagWidget(
-                          tag: StringFormatting.getFormattedTag(genre.name),
-                          isChosen: provider.selectedGenres.contains(genre),
-                          onTap: () {
-                            if (provider.selectedGenres.contains(genre)) {
-                              provider.removeGenre(genre);
-                            } else {
-                              provider.addGenre(genre);
-                            }
-                          },
-                        ),
-                    ],
+                  child: Container(
+                    width: double.infinity,
+                    child: Wrap(
+                      alignment: WrapAlignment.start,
+                      spacing: 8,
+                      runSpacing: 7,
+                      children: [
+                        for (Genre genre in provider.allGenres)
+                          ClickableTagWidget(
+                            tag: StringFormatting.getFormattedTag(genre.name),
+                            isChosen: provider.selectedGenres.contains(genre),
+                            onTap: () {
+                              if (provider.selectedGenres.contains(genre)) {
+                                provider.removeGenre(genre);
+                              } else {
+                                provider.addGenre(genre);
+                              }
+                            },
+                          ),
+                      ],
+                    ),
                   ),
                 ),
               ],

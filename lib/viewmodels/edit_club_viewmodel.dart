@@ -18,9 +18,7 @@ class EditClubViewModel extends ChangeNotifier {
   final _repository = getIt.get<ClubRepository>();
   final _genreRepository = getIt.get<GenreRepository>();
 
-  EditClubViewModel({required this.initialClub});
-
-  final ClubCard initialClub;
+  late ClubCard initialClub;
 
   Future<void> editClub() async {
     _errorMessage = '';
@@ -33,6 +31,7 @@ class EditClubViewModel extends ChangeNotifier {
           cityFias: CityFias.cityFias[_selectedCity]!,
           interests: _selectedGenreNames,
         );
+        print(clubPatch);
         await _repository.editClub(clubPatch, '${initialClub.id}');
       } on ApiException catch (e) {
         debugPrint(e.message);
@@ -41,6 +40,16 @@ class EditClubViewModel extends ChangeNotifier {
       }
     } else {
       _errorMessage = 'Все поля должны быть заполнены';
+      notifyListeners();
+    }
+  }
+
+  Future<void> deleteClub() async {
+    try {
+      await _repository.deleteClub('${initialClub.id}');
+    } on ApiException catch (e) {
+      debugPrint(e.message);
+    } finally {
       notifyListeners();
     }
   }
@@ -94,14 +103,22 @@ class EditClubViewModel extends ChangeNotifier {
   String _errorMessage = '';
   String get errorMessage => _errorMessage;
 
-  void initEditClub() {
+  void getGenreNames() {
+    for (Genre genre in _selectedGenres) {
+      _selectedGenreNames.add(genre.name);
+    }
+  }
+
+  void initEditClub(ClubCard club) {
+    initialClub = club;
     _nameController.text = initialClub.name;
     _descriptionController.text = initialClub.description;
     _selectedCity = initialClub.city;
     _selectedGenres = initialClub.interests;
-    for (var genre in _selectedGenres) {
-      _selectedGenreIndexes.add(genre.id);
+    for (var genre in club.interests) {
+      _selectedGenres.add(genre);
     }
+    getGenreNames();
   }
 
 }

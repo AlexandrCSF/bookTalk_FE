@@ -34,6 +34,9 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    if(provider.authorized) {
+      provider.loadUserData(provider.userId);
+    }
     return Consumer<ProfileViewModel>(
       builder: (context, provider, child) {
         if(provider.authorized) {
@@ -122,16 +125,19 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 9),
-                        child: Wrap(
-                          alignment: WrapAlignment.spaceBetween,
-                          spacing: 8,
-                          runSpacing: 7,
-                          children: [
-                            for (String tag in provider.genres)
-                              TagWidget(
-                                tag: tag,
-                              ),
-                          ],
+                        child: Container(
+                          width: double.infinity,
+                          child: Wrap(
+                            alignment: WrapAlignment.start,
+                            spacing: 8,
+                            runSpacing: 7,
+                            children: [
+                              for (String tag in provider.genres)
+                                TagWidget(
+                                  tag: tag,
+                                ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

@@ -5,6 +5,7 @@ import 'package:booktalk_frontend/data/repositories/book_club_repository.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
 import 'package:booktalk_frontend/models/genre.dart';
+import 'package:booktalk_frontend/models/user.dart';
 import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class BookClubViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getGenres(List<Genre> genreIds) async {
+  void getGenres(List<Genre> genreIds) {
     if (_genres.isEmpty) {
       for (var genre in genreIds) {
         _genres.add(StringFormatting.getFormattedTag(genre.name));
@@ -36,6 +37,7 @@ class BookClubViewModel extends ChangeNotifier {
       }
       getGenres(_club!.interests);
       getEvents();
+      getListOfMembers();
     } on ApiException catch (e) {
       debugPrint(e.message);
     } finally {
@@ -49,6 +51,14 @@ class BookClubViewModel extends ChangeNotifier {
         _events.add(
             '${event.name} · ${StringFormatting.getFormattedDateFromString(event.date)} · ${StringFormatting.getFormattedTimeFromString(event.time)} · ${event.location}');
       }
+    }
+  }
+
+  Future<void> getListOfMembers() async {
+    try {
+      _members = await _repository.getListOfClubMembers('$clubId');
+    } on ApiException catch (e) {
+      debugPrint(e.message);
     }
   }
 
@@ -72,8 +82,8 @@ class BookClubViewModel extends ChangeNotifier {
 
   BookClubViewModel({required this.clubId});
 
-  ClubCard? _club;
-  ClubCard? get club => _club;
+  late ClubCard _club;
+  ClubCard get club => _club;
 
   bool _isSubscribed = false;
   bool get isSubscribed => _isSubscribed;
@@ -92,5 +102,8 @@ class BookClubViewModel extends ChangeNotifier {
 
   List<String> _events = [];
   List<String> get events => _events;
+
+  List<User> _members = [];
+  List<User> get members => _members;
 
 }

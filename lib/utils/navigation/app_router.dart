@@ -3,6 +3,7 @@ import 'package:booktalk_frontend/models/club_card.dart';
 import 'package:booktalk_frontend/models/club_meeting.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
 import 'package:booktalk_frontend/models/user.dart';
+import 'package:booktalk_frontend/pages/interests_page/edit_club_interests_page.dart';
 import 'package:booktalk_frontend/pages/interests_page/edit_profile_interests_page.dart';
 import 'package:booktalk_frontend/pages/interests_page/registration_interests_page.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ import 'package:booktalk_frontend/pages/edit_profile_page/edit_profile_page.dart
 import 'package:booktalk_frontend/pages/event_list_page/event_list_page.dart';
 import 'package:booktalk_frontend/pages/book_club_page/book_club_page.dart';
 import 'package:booktalk_frontend/pages/book_club_list_page/book_club_list_page.dart';
-import 'package:booktalk_frontend/pages/interests_page/interests_page.dart';
+import 'package:booktalk_frontend/pages/interests_page/create_club_interests_page.dart';
 import 'package:booktalk_frontend/pages/member_list_page/member_list_page.dart';
 import 'package:booktalk_frontend/pages/my_events_page/my_events_page.dart';
 import 'package:booktalk_frontend/pages/profile_page/profile_page.dart';
@@ -104,8 +105,12 @@ class AppRouter extends _$AppRouter {
           page: EditProfileRoute.page,
         ),
         AutoRoute(
-          path: '/interests',
-          page: InterestsRoute.page,
+          path: '/create-club-interests',
+          page: CreateClubInterestsRoute.page,
+        ),
+        AutoRoute(
+          path: '/edit-club-interests',
+          page: EditClubInterestsRoute.page,
         ),
         AutoRoute(
           path: '/create-club',

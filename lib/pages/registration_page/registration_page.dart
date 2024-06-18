@@ -31,60 +31,67 @@ class _RegistrationPageState extends State<RegistrationPage> {
     return Consumer<RegistrationViewModel>(
       builder: (context, provider, child) {
         return Scaffold(
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 60, right: 60, top: 45),
-              child: Align(
-                alignment: Alignment.center,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 45),
-                      child: Text(
-                        "Добро пожаловать!",
-                        style: text.titleMedium
-                            ?.copyWith(color: colors.onBackground),
-                        textAlign: TextAlign.center,
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 60, right: 60, bottom: 30),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 45),
+                        child: Text(
+                          "Добро пожаловать!",
+                          style: text.titleMedium
+                              ?.copyWith(color: colors.onBackground),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 19, bottom: 19),
-                      child: EditAvatarWidget(
-                        img: Image.asset(
-                            'lib/utils/resources/images/base_avatar.png'),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 19, bottom: 19),
+                        child: EditAvatarWidget(
+                          img: Image.asset(
+                              'lib/utils/resources/images/base_avatar.png'),
+                        ),
                       ),
-                    ),
-                    TextFieldWidget(
-                      label: "Имя",
-                      hintText: "Введите имя",
-                      maxLines: 1,
-                      controller: provider.firstNameController,
-                    ),
-                    TextFieldWidget(
-                      label: "Фамилия",
-                      hintText: "Введите фамилию",
-                      maxLines: 1,
-                      controller: provider.lastNameController,
-                    ),
-                    DropdownListWidget(
-                      value: provider.selectedCity,
-                      values: provider.cities,
-                      onChooseItem: provider.setCity,
-                      label: "Город",
-                    ),
-                    TextFieldWidget(
-                      label: "Почта",
-                      hintText: "Введите почту",
-                      maxLines: 1,
-                      controller: provider.emailController,
-                    ),
-                    TextFieldWidget(
-                      label: "Пароль",
-                      hintText: "Придумайте пароль",
-                      maxLines: 1,
-                      controller: provider.passwordController,
-                    ),
-                  ],
+                      TextFieldWidget(
+                        label: "Имя",
+                        hintText: "Введите имя",
+                        maxLines: 1,
+                        controller: provider.firstNameController,
+                      ),
+                      TextFieldWidget(
+                        label: "Фамилия",
+                        hintText: "Введите фамилию",
+                        maxLines: 1,
+                        controller: provider.lastNameController,
+                      ),
+                      DropdownListWidget(
+                        value: provider.selectedCity,
+                        values: provider.cities,
+                        onChooseItem: provider.setCity,
+                        label: "Город",
+                      ),
+                      TextFieldWidget(
+                        label: "Почта",
+                        hintText: "Введите почту",
+                        maxLines: 1,
+                        controller: provider.emailController,
+                      ),
+                      TextFieldWidget(
+                        label: "Пароль",
+                        hintText: "Придумайте пароль",
+                        maxLines: 1,
+                        controller: provider.passwordController,
+                      ),
+                      if (provider.errorMessage.isNotEmpty)
+                        Text(
+                          provider.errorMessage,
+                          style: text.headlineSmall?.copyWith(color: colors.error),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),

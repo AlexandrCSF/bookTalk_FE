@@ -35,33 +35,38 @@ class _DropdownListWidgetState extends State<DropdownListWidget> {
               style: text.headlineLarge?.copyWith(color: colors.onBackground),
             ),
           ),
-          DropdownButtonFormField<String>(
-            value: widget.value,
-            onChanged: (String? newValue) => widget.onChooseItem(newValue),
-            items: widget.values.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-            style: text.labelMedium?.copyWith(color: colors.onBackground),
-            decoration: InputDecoration(
-              hintStyle: text.labelMedium?.copyWith(color: colors.outline),
-              fillColor: colors.onInverseSurface,
-              filled: true,
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  width: 2,
-                  color: colors.inversePrimary,
+          Container(
+            height: 52,
+            width: double.infinity,
+            child: DropdownButtonFormField<String>(
+              value: widget.value,
+              onChanged: (String? newValue) => widget.onChooseItem(newValue),
+              items: widget.values.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              style: text.labelMedium?.copyWith(color: colors.onBackground),
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+                hintStyle: text.labelMedium?.copyWith(color: colors.outline),
+                fillColor: colors.onInverseSurface,
+                filled: true,
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 2,
+                    color: colors.inversePrimary,
+                  ),
+                  borderRadius: BorderRadius.circular(22),
                 ),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  width: 2,
-                  color: colors.inversePrimary,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 2,
+                    color: colors.inversePrimary,
+                  ),
+                  borderRadius: BorderRadius.circular(16),
                 ),
-                borderRadius: BorderRadius.circular(16),
               ),
             ),
           ),

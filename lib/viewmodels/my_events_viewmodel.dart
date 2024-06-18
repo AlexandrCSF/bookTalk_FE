@@ -31,7 +31,7 @@ class MyEventsViewModel extends ChangeNotifier {
 
   void loadEvents(int userId) async {
     await getAllMeetings(userId);
-    await getTodayMeetings(userId);
+    //await getTodayMeetings(userId);
     notifyListeners();
   }
 
@@ -54,10 +54,10 @@ class MyEventsViewModel extends ChangeNotifier {
     }
   }
 
-  Future<void> getTodayMeetings(int userId) async {
-    /*if(!_isLoading) {
+  /*Future<void> getTodayMeetings(int userId) async {
+    *//*if(!_isLoading) {
       _setLoadingStatus(true);
-    }*/
+    }*//*
     try {
       List<Meeting> meetings = await _repository.getMeetingsForUser(userId);
       _allMeetings = getEvents(meetings);
@@ -68,7 +68,7 @@ class MyEventsViewModel extends ChangeNotifier {
     } finally {
       //_setLoadingStatus(false);
     }
-  }
+  }*/
 
   List<String> getEvents(List<Meeting> meetingList) {
     List<String> result = [];

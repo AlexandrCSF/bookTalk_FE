@@ -16,7 +16,6 @@ import 'widgets/calendar.dart';
 
 @RoutePage()
 class MyEventsPage extends StatefulWidget {
-
   MyEventsPage({super.key});
 
   @override
@@ -24,7 +23,6 @@ class MyEventsPage extends StatefulWidget {
 }
 
 class _MyEventsPageState extends State<MyEventsPage> {
-
   /*late MyEventsViewModel provider;
   late ProfileViewModel profileProvider;
 
@@ -36,29 +34,29 @@ class _MyEventsPageState extends State<MyEventsPage> {
 
   @override
   Widget build(BuildContext context) {
-    MyEventsViewModel provider = Provider.of<MyEventsViewModel>(context, listen: false);
+    MyEventsViewModel provider =
+        Provider.of<MyEventsViewModel>(context, listen: false);
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
     ProfileViewModel profileProvider = Provider.of<ProfileViewModel>(context);
-    if(profileProvider.authorized) {
+    if (profileProvider.authorized) {
       provider.loadEvents(profileProvider.userId);
       provider.authorize();
     } else {
       provider.unauthorize();
     }
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: colors.background,
-        surfaceTintColor: colors.background,
-        elevation: 0,
-        title: Text(
-          'Мероприятия',
-          style: text.headlineLarge?.copyWith(color: colors.primary),
+        appBar: AppBar(
+          backgroundColor: colors.background,
+          surfaceTintColor: colors.background,
+          elevation: 0,
+          title: Text(
+            'Мероприятия',
+            style: text.headlineLarge?.copyWith(color: colors.primary),
+          ),
         ),
-      ),
-      body: Consumer<MyEventsViewModel>(
-        builder: (context, provider, child) {
-          if(provider.authorized) {
+        body: Consumer<MyEventsViewModel>(builder: (context, provider, child) {
+          if (provider.authorized) {
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -68,8 +66,15 @@ class _MyEventsPageState extends State<MyEventsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Calendar(events: provider.meetingMarkers),
-                    if(provider.todayMeetings.isNotEmpty) EventListWidget(events: provider.todayMeetings, title: "Мероприятия сегодня"),
-                    EventListWidget(events: provider.allMeetings, title: "Ближайшие мероприятия"),
+                    if (provider.todayMeetings.isNotEmpty)
+                      EventListWidget(
+                        events: provider.todayMeetings,
+                        title: "Мероприятия сегодня",
+                      ),
+                    EventListWidget(
+                      events: provider.allMeetings,
+                      title: "Ближайшие мероприятия",
+                    ),
                   ],
                 ),
               ),
@@ -77,9 +82,7 @@ class _MyEventsPageState extends State<MyEventsPage> {
           } else {
             return _unauthorizedEvents();
           }
-        }
-      )
-    );
+        }));
   }
 
   Widget _unauthorizedEvents() {
@@ -99,12 +102,11 @@ class _MyEventsPageState extends State<MyEventsPage> {
             label: 'Авторизоваться',
             icon: MdiIcons.arrowRight,
             onTap: () {
-              context.navigateTo(ProfileTab(children: [ ProfileRoute() ]));
+              context.navigateTo(ProfileTab(children: [ProfileRoute()]));
             },
           )
         ],
       ),
     );
   }
-
 }

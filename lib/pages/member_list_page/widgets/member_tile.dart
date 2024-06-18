@@ -1,7 +1,11 @@
+import 'package:booktalk_frontend/models/user.dart';
 import 'package:flutter/material.dart';
 
 class MemberTile extends StatelessWidget {
-  const MemberTile({super.key});
+
+  final User user;
+
+  const MemberTile({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +20,13 @@ class MemberTile extends StatelessWidget {
           CircleAvatar(
             radius: 20,
             backgroundImage: Image
-                .asset('lib/images/base_avatar.png')
+                .asset('lib/utils/resources/images/base_avatar.png')
                 .image,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 15.0),
             child: Text(
-              'Имя Фамилия',
+              '${user.firstName} ${user.lastName}',
               style: text.headlineLarge
                   ?.copyWith(color: colors.onSurface),
               overflow: TextOverflow.ellipsis,

@@ -33,137 +33,136 @@ class _BookClubPageState extends State<BookClubPage> {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
     final profileProvider = Provider.of<ProfileViewModel>(context);
-    return Scaffold(
-        appBar: AppBar(
-          surfaceTintColor: colors.background,
-          elevation: 0,
-          leading: AutoLeadingButton(color: colors.primary),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: IconButton(
-                icon: Icon(MdiIcons.accountMultipleOutline),
-                color: colors.primary,
-                onPressed: () {
-                  // todo: add clubId to MemberListRoute
-                  context.router.navigate(const MemberListRoute());
-                },
-              ),
-            )
-          ],
-        ),
-        body: ChangeNotifierProvider<BookClubViewModel>(
-          create: (BuildContext context) =>
-              BookClubViewModel(clubId: widget.id)..getClubData(profileProvider.userId),
-          child: Consumer<BookClubViewModel>(
-            builder: (context, provider, child) {
-              return provider.isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  : CustomScrollView(
-                      slivers: [
-                        SliverAppBar(
-                          expandedHeight: 400,
-                          automaticallyImplyLeading: false,
-                          flexibleSpace: FlexibleSpaceBar(
-                            collapseMode: CollapseMode.pin,
-                            background: Stack(
-                              children: [
-                                Positioned.fill(
-                                  // todo: change to imageUrl
-                                  child: Image.asset(
-                                    'lib/utils/resources/images/base_club_avatar.png',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: Container(
-                                    height: 120,
-                                    decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(32),
-                                          topRight: Radius.circular(32)),
-                                      color: colors.background,
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 40.0),
-                                      child: Text(
-                                        provider.club!.name,
-                                        textAlign: TextAlign.center,
-                                        style: text.titleLarge?.copyWith(
-                                            color: colors.onBackground),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        SliverPadding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          sliver: SliverList.list(
+    return ChangeNotifierProvider<BookClubViewModel>(
+      create: (BuildContext context) => BookClubViewModel(clubId: widget.id)
+        ..getClubData(profileProvider.userId),
+      child: Consumer<BookClubViewModel>(
+        builder: (context, provider, child) {
+          return Scaffold(
+            appBar: AppBar(
+              surfaceTintColor: colors.background,
+              elevation: 0,
+              leading: AutoLeadingButton(color: colors.primary),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: IconButton(
+                    icon: Icon(MdiIcons.accountMultipleOutline),
+                    color: colors.primary,
+                    onPressed: () {
+                      context.router
+                          .navigate(MemberListRoute(members: provider.members));
+                    },
+                  ),
+                )
+              ],
+            ),
+            body: provider.isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : CustomScrollView(
+                    slivers: [
+                      SliverAppBar(
+                        expandedHeight: 400,
+                        automaticallyImplyLeading: false,
+                        flexibleSpace: FlexibleSpaceBar(
+                          collapseMode: CollapseMode.pin,
+                          background: Stack(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10.0),
-                                child: provider.isAdministrator
-                                    ? MainPrimaryButton(
-                                        label: 'Редактировать',
-                                        icon: MdiIcons.pencil,
-                                        onTap: () {
-                                          context.router
-                                              .navigate(const EditClubRoute());
-                                        },
-                                      )
-                                    : provider.isSubscribed
-                                        ? MainOutlineButton(
-                                            label: 'Вы вступили',
-                                            icon: MdiIcons.check,
-                                            onTap: () => provider
-                                                .unsubscribe(),
-                                          )
-                                        : MainPrimaryButton(
-                                            label: 'Вступить',
-                                            icon: MdiIcons.plus,
-                                            onTap: () => provider
-                                                .subscribe(),
-                                          ),
-                              ),
-                              ClubDescription(
-                                description: provider.club!.description,
-                              ),
-                              ClubTags(tags: provider.genres),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 20.0),
-                                child: MainPrimaryButton(
-                                  label: 'Обсуждения',
-                                  icon: MdiIcons.arrowRight,
-                                  onTap: () {
-                                    context.router.navigate(
-                                        DiscussionListRoute(clubId: widget.id));
-                                  },
+                              Positioned.fill(
+                                // todo: change to imageUrl
+                                child: Image.asset(
+                                  'lib/utils/resources/images/base_club_avatar.png',
+                                  fit: BoxFit.cover,
                                 ),
                               ),
-                              EventListWidget(
-                                events: provider.events,
-                                onTap: () {
-                                  context.router.navigate(
-                                    EventListRoute(
-                                      clubId: widget.id,
-                                      isAdministrator: provider.isAdministrator,
+                              Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Container(
+                                  height: 120,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(32),
+                                        topRight: Radius.circular(32)),
+                                    color: colors.background,
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 40.0),
+                                    child: Text(
+                                      provider.club!.name,
+                                      textAlign: TextAlign.center,
+                                      style: text.titleLarge?.copyWith(
+                                          color: colors.onBackground),
                                     ),
-                                  );
-                                },
-                              ),
+                                  ),
+                                ),
+                              )
                             ],
                           ),
                         ),
-                      ],
-                    );
-            },
-          ),
-        ));
+                      ),
+                      SliverPadding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        sliver: SliverList.list(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: provider.isAdministrator
+                                  ? MainPrimaryButton(
+                                      label: 'Редактировать',
+                                      icon: MdiIcons.pencil,
+                                      onTap: () {
+                                        context.router
+                                            .navigate(EditClubRoute(club: provider.club));
+                                      },
+                                    )
+                                  : provider.isSubscribed
+                                      ? MainOutlineButton(
+                                          label: 'Вы вступили',
+                                          icon: MdiIcons.check,
+                                          onTap: () => provider.unsubscribe(),
+                                        )
+                                      : MainPrimaryButton(
+                                          label: 'Вступить',
+                                          icon: MdiIcons.plus,
+                                          onTap: () => provider.subscribe(),
+                                        ),
+                            ),
+                            ClubDescription(
+                              description: provider.club!.description,
+                            ),
+                            ClubTags(tags: provider.genres),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20.0),
+                              child: MainPrimaryButton(
+                                label: 'Обсуждения',
+                                icon: MdiIcons.arrowRight,
+                                onTap: () {
+                                  context.router.navigate(
+                                      DiscussionListRoute(clubId: widget.id));
+                                },
+                              ),
+                            ),
+                            EventListWidget(
+                              events: provider.events,
+                              onTap: () {
+                                context.router.navigate(
+                                  EventListRoute(
+                                    clubId: widget.id,
+                                    isAdministrator: provider.isAdministrator,
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+          );
+        },
+      ),
+    );
   }
 }

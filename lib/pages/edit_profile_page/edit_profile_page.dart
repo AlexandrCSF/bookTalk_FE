@@ -8,6 +8,7 @@ import 'package:booktalk_frontend/pages/widgets/main_outline_button.dart';
 import 'package:booktalk_frontend/pages/widgets/textfield_widget.dart';
 import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:booktalk_frontend/viewmodels/edit_profile_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -34,6 +35,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     EditProfileViewModel provider = Provider.of<EditProfileViewModel>(context, listen: false);
     provider.initEditProfile(widget.user);
     provider.loadGenres();
+    ProfileViewModel profileProvider = Provider.of<ProfileViewModel>(context, listen: false);
     Image? img/*= Image.asset('lib/images/avatar.jpg')*/;
     //List<String> tags = ["#детектив", "#исторический_роман", "#юмор"];
     return Consumer<EditProfileViewModel>(
@@ -53,7 +55,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 padding: const EdgeInsets.only(right: 10),
                 child: IconButton(
                   onPressed: () {
-                    provider.editProfile().then(
+                    provider.editProfile().then((value) => profileProvider.loadUserData(profileProvider.userId)).then(
                         (value) => context.router.maybePop(ProfileRoute()));
                   },
                   icon: Icon(
@@ -140,7 +142,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         label: "Добавить",
                         icon: MdiIcons.arrowRight,
                         onTap: () {
-                          context.router.navigate(EditProfileInterestsRoute());
+                          context.router.navigate(const EditProfileInterestsRoute());
                         },
                       ),
                     ),

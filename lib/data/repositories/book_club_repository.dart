@@ -8,6 +8,7 @@ import 'package:booktalk_frontend/models/club_create.dart';
 import 'package:booktalk_frontend/models/club_patch.dart';
 import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/models/subscribe.dart';
+import 'package:booktalk_frontend/models/user.dart';
 import 'package:dio/dio.dart';
 
 class ClubRepository {
@@ -116,6 +117,23 @@ class ClubRepository {
     try {
       final result = await _client.editClub(clubPatch.toJson(), clubId);
       return result;
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
+
+  Future<List<User>> getListOfClubMembers(String clubId) async {
+    try {
+      final result = await _client.getListOfClubMembers(clubId);
+      return result;
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
+
+  Future<void> deleteClub(String clubId) async {
+    try {
+      await _client.deleteClub(clubId);
     } on DioException catch (e) {
       throw HandleException.handleException(e);
     }
