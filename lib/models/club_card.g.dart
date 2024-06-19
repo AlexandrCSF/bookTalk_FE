@@ -19,6 +19,7 @@ _$ClubCardImpl _$$ClubCardImplFromJson(Map<String, dynamic> json) =>
       meetings: (json['meetings'] as List<dynamic>)
           .map((e) => Meeting.fromJson(e as Map<String, dynamic>))
           .toList(),
+      numOfSubscribers: (json['numOfSubscribers'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$ClubCardImplToJson(_$ClubCardImpl instance) =>
@@ -30,4 +31,5 @@ Map<String, dynamic> _$$ClubCardImplToJson(_$ClubCardImpl instance) =>
       'city': instance.city,
       'interests': instance.interests,
       'meetings': instance.meetings,
+      'numOfSubscribers': instance.numOfSubscribers,
     };

@@ -47,9 +47,8 @@ class _RecommendationsTabState extends State<RecommendationsTab> {
                     return ClubCard(
                       title: club.name,
                       description: club.description,
-                      // todo: add member count
-                      members: 15,
-                      // todo: and image
+                      members: club.numOfSubscribers ?? 0,
+                      // todo: add image
                       imageUrl: '',
                       onTap: () {
                         context.router.navigate(BookClubRoute(id: club.id));

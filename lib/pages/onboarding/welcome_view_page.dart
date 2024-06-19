@@ -29,7 +29,7 @@ class _WelcomeViewPageState extends State<WelcomeViewPage> {
           WelcomePage(
             onTap: () {
               _controller.animateToPage(1,
-                  duration: Duration(milliseconds: 500), curve: Curves.ease);
+                  duration: const Duration(milliseconds: 500), curve: Curves.ease);
             },
             imagePath: 'lib/utils/resources/images/welcome_picture1.png',
             title: 'Читай',
@@ -39,7 +39,7 @@ class _WelcomeViewPageState extends State<WelcomeViewPage> {
           WelcomePage(
             onTap: () {
               _controller.animateToPage(2,
-                  duration: Duration(milliseconds: 500), curve: Curves.ease);
+                  duration: const Duration(milliseconds: 500), curve: Curves.ease);
             },
             imagePath: 'lib/utils/resources/images/welcome_picture2.png',
             title: 'Общайся',

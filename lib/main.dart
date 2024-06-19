@@ -53,6 +53,9 @@ Future<void> main() async {
   getIt.registerSingleton(ConversationRepository());
   getIt.registerSingleton(GenreRepository());
 
+  /// free token for unauthorized requests
+  getIt.get<AuthRepository>().freeToken();
+
   /// data formatting
   initializeDateFormatting().then(
     (_) => runApp(

@@ -12,7 +12,6 @@ import 'package:booktalk_frontend/models/user.dart';
 import 'package:dio/dio.dart';
 
 class ClubRepository {
-
   final _client = getIt.get<ClubClient>();
   final _userClient = getIt.get<AuthClient>();
   final _genreClient = getIt.get<GenreClient>();
@@ -39,7 +38,7 @@ class ClubRepository {
     try {
       final club = await _client.getClub(clubId);
       final administratedList = await _client.getAdministratedList(userId);
-      if(administratedList.contains(club)) {
+      if (administratedList.contains(club)) {
         return true;
       } else {
         return false;
@@ -52,6 +51,13 @@ class ClubRepository {
   Future<List<ClubCard>> getAdministratedList(int userId) async {
     try {
       final result = await _client.getAdministratedList(userId);
+      for (int i = 0; i < result.length; i++) {
+        result[i] = result[i].copyWith(
+          numOfSubscribers: await getNumberOfClubMembers(
+            '${result[i].id}',
+          ),
+        );
+      }
       return result;
     } on DioException catch (e) {
       throw HandleException.handleException(e);
@@ -61,6 +67,13 @@ class ClubRepository {
   Future<List<ClubCard>> getRecommendationList(int userId) async {
     try {
       final result = await _client.getRecommendationList(userId);
+      for (int i = 0; i < result.length; i++) {
+        result[i] = result[i].copyWith(
+          numOfSubscribers: await getNumberOfClubMembers(
+            '${result[i].id}',
+          ),
+        );
+      }
       return result;
     } on DioException catch (e) {
       throw HandleException.handleException(e);
@@ -70,6 +83,13 @@ class ClubRepository {
   Future<List<ClubCard>> getSubscriptionList(int userId) async {
     try {
       final result = await _client.getMembershipList(userId);
+      for (int i = 0; i < result.length; i++) {
+        result[i] = result[i].copyWith(
+          numOfSubscribers: await getNumberOfClubMembers(
+            '${result[i].id}',
+          ),
+        );
+      }
       return result;
     } on DioException catch (e) {
       throw HandleException.handleException(e);
@@ -97,7 +117,7 @@ class ClubRepository {
     final allGenres = await _genreClient.getGenreList();
     List<Genre> clubGenres = [];
     for (var genre in allGenres) {
-      if(club.interests.contains(genre.id)) {
+      if (club.interests.contains(genre.id)) {
         clubGenres.add(genre);
       }
     }
@@ -122,6 +142,15 @@ class ClubRepository {
     }
   }
 
+  Future<int> getNumberOfClubMembers(String clubId) async {
+    try {
+      final listOfMembers = await getListOfClubMembers(clubId);
+      return listOfMembers.length;
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
+
   Future<List<User>> getListOfClubMembers(String clubId) async {
     try {
       final result = await _client.getListOfClubMembers(clubId);
@@ -138,5 +167,4 @@ class ClubRepository {
       throw HandleException.handleException(e);
     }
   }
-
 }

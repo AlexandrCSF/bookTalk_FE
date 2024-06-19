@@ -103,8 +103,7 @@ class _MyEventsPageState extends State<MyEventsPage> {
             label: 'Авторизоваться',
             icon: MdiIcons.arrowRight,
             onTap: () {
-              //context.navigateTo(ProfileTab(children: [ProfileRoute()]));
-              context.navigateTo(WelcomeViewRoute());
+              context.navigateTo(ProfileTab(children: [ProfileRoute()]));
             },
           )
         ],

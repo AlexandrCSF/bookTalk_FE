@@ -27,6 +27,7 @@ mixin _$ClubCard {
   String get city => throw _privateConstructorUsedError;
   List<Genre> get interests => throw _privateConstructorUsedError;
   List<Meeting> get meetings => throw _privateConstructorUsedError;
+  int? get numOfSubscribers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,7 +47,8 @@ abstract class $ClubCardCopyWith<$Res> {
       User admin,
       String city,
       List<Genre> interests,
-      List<Meeting> meetings});
+      List<Meeting> meetings,
+      int? numOfSubscribers});
 
   $UserCopyWith<$Res> get admin;
 }
@@ -71,6 +73,7 @@ class _$ClubCardCopyWithImpl<$Res, $Val extends ClubCard>
     Object? city = null,
     Object? interests = null,
     Object? meetings = null,
+    Object? numOfSubscribers = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -101,6 +104,10 @@ class _$ClubCardCopyWithImpl<$Res, $Val extends ClubCard>
           ? _value.meetings
           : meetings // ignore: cast_nullable_to_non_nullable
               as List<Meeting>,
+      numOfSubscribers: freezed == numOfSubscribers
+          ? _value.numOfSubscribers
+          : numOfSubscribers // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 
@@ -128,7 +135,8 @@ abstract class _$$ClubCardImplCopyWith<$Res>
       User admin,
       String city,
       List<Genre> interests,
-      List<Meeting> meetings});
+      List<Meeting> meetings,
+      int? numOfSubscribers});
 
   @override
   $UserCopyWith<$Res> get admin;
@@ -152,6 +160,7 @@ class __$$ClubCardImplCopyWithImpl<$Res>
     Object? city = null,
     Object? interests = null,
     Object? meetings = null,
+    Object? numOfSubscribers = freezed,
   }) {
     return _then(_$ClubCardImpl(
       id: null == id
@@ -182,6 +191,10 @@ class __$$ClubCardImplCopyWithImpl<$Res>
           ? _value._meetings
           : meetings // ignore: cast_nullable_to_non_nullable
               as List<Meeting>,
+      numOfSubscribers: freezed == numOfSubscribers
+          ? _value.numOfSubscribers
+          : numOfSubscribers // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -196,7 +209,8 @@ class _$ClubCardImpl implements _ClubCard {
       required this.admin,
       required this.city,
       required final List<Genre> interests,
-      required final List<Meeting> meetings})
+      required final List<Meeting> meetings,
+      this.numOfSubscribers})
       : _interests = interests,
         _meetings = meetings;
 
@@ -230,8 +244,11 @@ class _$ClubCardImpl implements _ClubCard {
   }
 
   @override
+  final int? numOfSubscribers;
+
+  @override
   String toString() {
-    return 'ClubCard(id: $id, name: $name, description: $description, admin: $admin, city: $city, interests: $interests, meetings: $meetings)';
+    return 'ClubCard(id: $id, name: $name, description: $description, admin: $admin, city: $city, interests: $interests, meetings: $meetings, numOfSubscribers: $numOfSubscribers)';
   }
 
   @override
@@ -247,7 +264,9 @@ class _$ClubCardImpl implements _ClubCard {
             (identical(other.city, city) || other.city == city) &&
             const DeepCollectionEquality()
                 .equals(other._interests, _interests) &&
-            const DeepCollectionEquality().equals(other._meetings, _meetings));
+            const DeepCollectionEquality().equals(other._meetings, _meetings) &&
+            (identical(other.numOfSubscribers, numOfSubscribers) ||
+                other.numOfSubscribers == numOfSubscribers));
   }
 
   @JsonKey(ignore: true)
@@ -260,7 +279,8 @@ class _$ClubCardImpl implements _ClubCard {
       admin,
       city,
       const DeepCollectionEquality().hash(_interests),
-      const DeepCollectionEquality().hash(_meetings));
+      const DeepCollectionEquality().hash(_meetings),
+      numOfSubscribers);
 
   @JsonKey(ignore: true)
   @override
@@ -284,7 +304,8 @@ abstract class _ClubCard implements ClubCard {
       required final User admin,
       required final String city,
       required final List<Genre> interests,
-      required final List<Meeting> meetings}) = _$ClubCardImpl;
+      required final List<Meeting> meetings,
+      final int? numOfSubscribers}) = _$ClubCardImpl;
 
   factory _ClubCard.fromJson(Map<String, dynamic> json) =
       _$ClubCardImpl.fromJson;
@@ -303,6 +324,8 @@ abstract class _ClubCard implements ClubCard {
   List<Genre> get interests;
   @override
   List<Meeting> get meetings;
+  @override
+  int? get numOfSubscribers;
   @override
   @JsonKey(ignore: true)
   _$$ClubCardImplCopyWith<_$ClubCardImpl> get copyWith =>
