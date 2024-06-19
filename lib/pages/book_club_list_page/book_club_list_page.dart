@@ -30,7 +30,7 @@ class _BookClubListPageState extends State<BookClubListPage> {
     final text = Theme.of(context).textTheme;
     ProfileViewModel profileProvider = Provider.of<ProfileViewModel>(context);
     if(profileProvider.authorized) {
-      //provider.loadClubs(profileProvider.userId);
+      provider.loadClubs();
       provider.authorize();
     } else {
       provider.unauthorize();

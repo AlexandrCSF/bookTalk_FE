@@ -134,7 +134,7 @@ class _DiscussionPageState extends State<DiscussionPage> {
                           builder: (context) {
                             return CreateCommentDialog(
                               controller: provider.messageController,
-                              onTap: () => provider.createComment(profileProvider.userId),
+                              onTap: () => provider.createComment(profileProvider.userId).then((value) => provider.loadMessages()),
                             );
                           },
                         );

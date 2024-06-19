@@ -1,6 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
+import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:booktalk_frontend/viewmodels/event_list_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/my_events_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -29,7 +32,10 @@ class _EventListPageState extends State<EventListPage> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    getIt.get<Analytics>().openEventList();
     ProfileViewModel profileProvider = Provider.of<ProfileViewModel>(context);
+    MyEventsViewModel myEventsProvider =
+    Provider.of<MyEventsViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colors.background,
@@ -38,7 +44,6 @@ class _EventListPageState extends State<EventListPage> {
         leading: AutoLeadingButton(
           color: colors.primary,
         ),
-        // todo: check if is administrator
         actions: [
           if (widget.isAdministrator) Padding(
             padding: const EdgeInsets.only(right: 10.0),
@@ -55,7 +60,6 @@ class _EventListPageState extends State<EventListPage> {
         ],
       ),
       body: ChangeNotifierProvider<EventListViewModel>(
-        // todo: change userId
         create: (BuildContext context) => EventListViewModel(
             clubId: widget.clubId, isAdministrated: widget.isAdministrator)
           ..loadMeetings(profileProvider.userId),
@@ -80,10 +84,9 @@ class _EventListPageState extends State<EventListPage> {
                       meeting: provider.fromClubMeeting(provider.clubMeetingList[index-1]),
                       clubMeeting: provider.clubMeetingList[index-1],
                       onSubscribe: () => provider
-                          .subscribe(provider.clubMeetingList[index-1].id),
-                      /*todo: change to unsubscribe*/
+                          .subscribe(provider.clubMeetingList[index-1].id).then((value) => myEventsProvider.loadEvents(profileProvider.userId)),
                       onUnsubscribe: () => provider
-                          .subscribe(provider.clubMeetingList[index-1].id),
+                          .unsubscribe(provider.clubMeetingList[index-1].id).then((value) => myEventsProvider.loadEvents(profileProvider.userId)),
                     );
                   }
                 },

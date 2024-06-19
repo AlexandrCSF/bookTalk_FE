@@ -35,8 +35,7 @@ mixin _$User {
   String get uuid => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   List<Genre> get interests => throw _privateConstructorUsedError;
-  @JsonKey(name: 'refresh_token')
-  String get refresh_token => throw _privateConstructorUsedError;
+  String get picture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -60,7 +59,7 @@ abstract class $UserCopyWith<$Res> {
       String uuid,
       String password,
       List<Genre> interests,
-      @JsonKey(name: 'refresh_token') String refresh_token});
+      String picture});
 }
 
 /// @nodoc
@@ -87,7 +86,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? uuid = null,
     Object? password = null,
     Object? interests = null,
-    Object? refresh_token = null,
+    Object? picture = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -134,9 +133,9 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.interests
           : interests // ignore: cast_nullable_to_non_nullable
               as List<Genre>,
-      refresh_token: null == refresh_token
-          ? _value.refresh_token
-          : refresh_token // ignore: cast_nullable_to_non_nullable
+      picture: null == picture
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -161,7 +160,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String uuid,
       String password,
       List<Genre> interests,
-      @JsonKey(name: 'refresh_token') String refresh_token});
+      String picture});
 }
 
 /// @nodoc
@@ -185,7 +184,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? uuid = null,
     Object? password = null,
     Object? interests = null,
-    Object? refresh_token = null,
+    Object? picture = null,
   }) {
     return _then(_$UserImpl(
       id: null == id
@@ -232,9 +231,9 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value._interests
           : interests // ignore: cast_nullable_to_non_nullable
               as List<Genre>,
-      refresh_token: null == refresh_token
-          ? _value.refresh_token
-          : refresh_token // ignore: cast_nullable_to_non_nullable
+      picture: null == picture
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -255,7 +254,7 @@ class _$UserImpl implements _User {
       required this.uuid,
       required this.password,
       required final List<Genre> interests,
-      @JsonKey(name: 'refresh_token') required this.refresh_token})
+      required this.picture})
       : _interests = interests;
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
@@ -294,12 +293,11 @@ class _$UserImpl implements _User {
   }
 
   @override
-  @JsonKey(name: 'refresh_token')
-  final String refresh_token;
+  final String picture;
 
   @override
   String toString() {
-    return 'User(id: $id, isSuperuser: $isSuperuser, username: $username, firstName: $firstName, lastName: $lastName, dateJoined: $dateJoined, email: $email, city: $city, uuid: $uuid, password: $password, interests: $interests, refresh_token: $refresh_token)';
+    return 'User(id: $id, isSuperuser: $isSuperuser, username: $username, firstName: $firstName, lastName: $lastName, dateJoined: $dateJoined, email: $email, city: $city, uuid: $uuid, password: $password, interests: $interests, picture: $picture)';
   }
 
   @override
@@ -325,8 +323,7 @@ class _$UserImpl implements _User {
                 other.password == password) &&
             const DeepCollectionEquality()
                 .equals(other._interests, _interests) &&
-            (identical(other.refresh_token, refresh_token) ||
-                other.refresh_token == refresh_token));
+            (identical(other.picture, picture) || other.picture == picture));
   }
 
   @JsonKey(ignore: true)
@@ -344,7 +341,7 @@ class _$UserImpl implements _User {
       uuid,
       password,
       const DeepCollectionEquality().hash(_interests),
-      refresh_token);
+      picture);
 
   @JsonKey(ignore: true)
   @override
@@ -373,8 +370,7 @@ abstract class _User implements User {
       required final String uuid,
       required final String password,
       required final List<Genre> interests,
-      @JsonKey(name: 'refresh_token')
-      required final String refresh_token}) = _$UserImpl;
+      required final String picture}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -405,8 +401,7 @@ abstract class _User implements User {
   @override
   List<Genre> get interests;
   @override
-  @JsonKey(name: 'refresh_token')
-  String get refresh_token;
+  String get picture;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

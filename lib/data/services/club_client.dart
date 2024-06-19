@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:booktalk_frontend/data/urls/club_urls.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
 import 'package:booktalk_frontend/models/club_create.dart';
@@ -20,19 +22,13 @@ abstract class ClubClient {
   );
 
   @GET(ClubUrls.getMembershipForUser)
-  Future<List<ClubCard>> getMembershipList(
-    @Query('user_id') int userId,
-  );
+  Future<List<ClubCard>> getMembershipList();
 
   @GET(ClubUrls.getRecommendationForUser)
-  Future<List<ClubCard>> getRecommendationList(
-    @Query('user_id') int userId,
-  );
+  Future<List<ClubCard>> getRecommendationList();
 
   @GET(ClubUrls.getAdministratedClubsForUser)
-  Future<List<ClubCard>> getAdministratedList(
-    @Query('user_id') int userId,
-  );
+  Future<List<ClubCard>> getAdministratedList();
 
   @GET(ClubUrls.getMeetingsByClubId)
   Future<List<Meeting>> getMeetingsList(
@@ -68,5 +64,17 @@ abstract class ClubClient {
   @POST(ClubUrls.subscribeToClub)
   Future<void> unsubscribeFromClub(
     @Query('club_id') String clubId,
+  );
+
+  @POST(ClubUrls.searchClubs)
+  Future<List<ClubCard>> searchClubs(
+    @Body() Map<String, dynamic> clubSearch,
+  );
+
+  @POST(ClubUrls.uploadClubPicture)
+  @MultiPart()
+  Future<void> uploadImage(
+    @Part() File picture,
+      //@Part() int club_id,
   );
 }

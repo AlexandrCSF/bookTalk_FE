@@ -39,7 +39,19 @@ abstract class StringFormatting {
     List<String> parts = time.split(':');
     int hour = int.parse(parts[0]);
     int minute = int.parse(parts[1]);
-    return '$hour:$minute';
+    String stringMinute;
+    String stringHour;
+    if (minute < 10) {
+      stringMinute = '0$minute';
+    } else {
+      stringMinute = '$minute';
+    }
+    if (hour < 10) {
+      stringHour = '0$hour';
+    } else {
+      stringHour = '$hour';
+    }
+    return '$stringHour:$stringMinute';
   }
 
   static String getFormattedTag(String tag) {

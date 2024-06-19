@@ -34,10 +34,10 @@ class ClubRepository {
     }
   }
 
-  Future<bool> isAdministrator(String clubId, int userId) async {
+  Future<bool> isAdministrator(String clubId) async {
     try {
       final club = await _client.getClub(clubId);
-      final administratedList = await _client.getAdministratedList(userId);
+      final administratedList = await _client.getAdministratedList();
       if (administratedList.contains(club)) {
         return true;
       } else {
@@ -48,9 +48,9 @@ class ClubRepository {
     }
   }
 
-  Future<List<ClubCard>> getAdministratedList(int userId) async {
+  Future<List<ClubCard>> getAdministratedList() async {
     try {
-      final result = await _client.getAdministratedList(userId);
+      final result = await _client.getAdministratedList();
       for (int i = 0; i < result.length; i++) {
         result[i] = result[i].copyWith(
           numOfSubscribers: await getNumberOfClubMembers(
@@ -64,9 +64,9 @@ class ClubRepository {
     }
   }
 
-  Future<List<ClubCard>> getRecommendationList(int userId) async {
+  Future<List<ClubCard>> getRecommendationList() async {
     try {
-      final result = await _client.getRecommendationList(userId);
+      final result = await _client.getRecommendationList();
       for (int i = 0; i < result.length; i++) {
         result[i] = result[i].copyWith(
           numOfSubscribers: await getNumberOfClubMembers(
@@ -80,9 +80,9 @@ class ClubRepository {
     }
   }
 
-  Future<List<ClubCard>> getSubscriptionList(int userId) async {
+  Future<List<ClubCard>> getSubscriptionList() async {
     try {
-      final result = await _client.getMembershipList(userId);
+      final result = await _client.getMembershipList();
       for (int i = 0; i < result.length; i++) {
         result[i] = result[i].copyWith(
           numOfSubscribers: await getNumberOfClubMembers(

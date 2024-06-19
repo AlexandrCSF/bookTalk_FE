@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/pages/interests_page/widgets/clickable_tag_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
+import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:booktalk_frontend/viewmodels/create_club_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
@@ -71,6 +73,7 @@ class CreateClubInterestsPage extends StatelessWidget {
           icon: MdiIcons.arrowRight,
           onTap: () {
             context.router.maybePop();
+            getIt.get<Analytics>().chooseClubTags();
           },
         ),
       ),

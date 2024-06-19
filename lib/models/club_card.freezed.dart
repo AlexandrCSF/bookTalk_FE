@@ -27,6 +27,7 @@ mixin _$ClubCard {
   String get city => throw _privateConstructorUsedError;
   List<Genre> get interests => throw _privateConstructorUsedError;
   List<Meeting> get meetings => throw _privateConstructorUsedError;
+  String get picture => throw _privateConstructorUsedError;
   int? get numOfSubscribers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,6 +49,7 @@ abstract class $ClubCardCopyWith<$Res> {
       String city,
       List<Genre> interests,
       List<Meeting> meetings,
+      String picture,
       int? numOfSubscribers});
 
   $UserCopyWith<$Res> get admin;
@@ -73,6 +75,7 @@ class _$ClubCardCopyWithImpl<$Res, $Val extends ClubCard>
     Object? city = null,
     Object? interests = null,
     Object? meetings = null,
+    Object? picture = null,
     Object? numOfSubscribers = freezed,
   }) {
     return _then(_value.copyWith(
@@ -104,6 +107,10 @@ class _$ClubCardCopyWithImpl<$Res, $Val extends ClubCard>
           ? _value.meetings
           : meetings // ignore: cast_nullable_to_non_nullable
               as List<Meeting>,
+      picture: null == picture
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as String,
       numOfSubscribers: freezed == numOfSubscribers
           ? _value.numOfSubscribers
           : numOfSubscribers // ignore: cast_nullable_to_non_nullable
@@ -136,6 +143,7 @@ abstract class _$$ClubCardImplCopyWith<$Res>
       String city,
       List<Genre> interests,
       List<Meeting> meetings,
+      String picture,
       int? numOfSubscribers});
 
   @override
@@ -160,6 +168,7 @@ class __$$ClubCardImplCopyWithImpl<$Res>
     Object? city = null,
     Object? interests = null,
     Object? meetings = null,
+    Object? picture = null,
     Object? numOfSubscribers = freezed,
   }) {
     return _then(_$ClubCardImpl(
@@ -191,6 +200,10 @@ class __$$ClubCardImplCopyWithImpl<$Res>
           ? _value._meetings
           : meetings // ignore: cast_nullable_to_non_nullable
               as List<Meeting>,
+      picture: null == picture
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as String,
       numOfSubscribers: freezed == numOfSubscribers
           ? _value.numOfSubscribers
           : numOfSubscribers // ignore: cast_nullable_to_non_nullable
@@ -210,6 +223,7 @@ class _$ClubCardImpl implements _ClubCard {
       required this.city,
       required final List<Genre> interests,
       required final List<Meeting> meetings,
+      required this.picture,
       this.numOfSubscribers})
       : _interests = interests,
         _meetings = meetings;
@@ -244,11 +258,13 @@ class _$ClubCardImpl implements _ClubCard {
   }
 
   @override
+  final String picture;
+  @override
   final int? numOfSubscribers;
 
   @override
   String toString() {
-    return 'ClubCard(id: $id, name: $name, description: $description, admin: $admin, city: $city, interests: $interests, meetings: $meetings, numOfSubscribers: $numOfSubscribers)';
+    return 'ClubCard(id: $id, name: $name, description: $description, admin: $admin, city: $city, interests: $interests, meetings: $meetings, picture: $picture, numOfSubscribers: $numOfSubscribers)';
   }
 
   @override
@@ -265,6 +281,7 @@ class _$ClubCardImpl implements _ClubCard {
             const DeepCollectionEquality()
                 .equals(other._interests, _interests) &&
             const DeepCollectionEquality().equals(other._meetings, _meetings) &&
+            (identical(other.picture, picture) || other.picture == picture) &&
             (identical(other.numOfSubscribers, numOfSubscribers) ||
                 other.numOfSubscribers == numOfSubscribers));
   }
@@ -280,6 +297,7 @@ class _$ClubCardImpl implements _ClubCard {
       city,
       const DeepCollectionEquality().hash(_interests),
       const DeepCollectionEquality().hash(_meetings),
+      picture,
       numOfSubscribers);
 
   @JsonKey(ignore: true)
@@ -305,6 +323,7 @@ abstract class _ClubCard implements ClubCard {
       required final String city,
       required final List<Genre> interests,
       required final List<Meeting> meetings,
+      required final String picture,
       final int? numOfSubscribers}) = _$ClubCardImpl;
 
   factory _ClubCard.fromJson(Map<String, dynamic> json) =
@@ -324,6 +343,8 @@ abstract class _ClubCard implements ClubCard {
   List<Genre> get interests;
   @override
   List<Meeting> get meetings;
+  @override
+  String get picture;
   @override
   int? get numOfSubscribers;
   @override

@@ -98,6 +98,11 @@ class EventListViewModel extends ChangeNotifier {
   Future<void> subscribe(int meetingId) async {
     try {
       await _repository.attendMeeting(meetingId);
+      for (int i = 0; i < _clubMeetingList.length; i++) {
+        if (_clubMeetingList[i].id == meetingId) {
+          _clubMeetingList[i] = _clubMeetingList[i].copyWith(isSubscribed: true);
+        }
+      }
       await _analytics.checkEvent();
     } on ApiException catch (e) {
       debugPrint(e.message);
@@ -109,6 +114,11 @@ class EventListViewModel extends ChangeNotifier {
   Future<void> unsubscribe(int meetingId) async {
     try {
       await _repository.wontAttendMeeting(meetingId);
+      for (int i = 0; i < _clubMeetingList.length; i++) {
+        if (_clubMeetingList[i].id == meetingId) {
+          _clubMeetingList[i] = _clubMeetingList[i].copyWith(isSubscribed: false);
+        }
+      }
     } on ApiException catch (e) {
       debugPrint(e.message);
     } finally {

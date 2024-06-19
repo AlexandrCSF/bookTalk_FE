@@ -17,6 +17,7 @@ abstract class ClubCard with _$ClubCard {
     required String city,
     required List<Genre> interests,
     required List<Meeting> meetings,
+    required String picture,
     int? numOfSubscribers,
   }) = _ClubCard;
 

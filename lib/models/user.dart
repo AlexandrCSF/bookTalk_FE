@@ -19,7 +19,8 @@ abstract class User with _$User {
     required String uuid,
     required String password,
     required List<Genre> interests,
-    @JsonKey(name: 'refresh_token') required String refresh_token,
+    required String picture,
+    //@JsonKey(name: 'refresh_token') required String refreshToken,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

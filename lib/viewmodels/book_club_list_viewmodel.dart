@@ -13,17 +13,17 @@ class BookClubListViewModel extends ChangeNotifier {
 
   final ClubRepository _repository = getIt.get<ClubRepository>();
 
-  Future<void> loadClubs(int userId) async {
-    await getSubscriptionList(userId);
-    //await getRecommendationList(userId);
-    //await getAdministratedList(userId);
+  Future<void> loadClubs() async {
+    await getSubscriptionList();
+    await getRecommendationList();
+    await getAdministratedList();
     _setLoading(false);
   }
 
-  Future<void> getSubscriptionList(int userId) async {
+  Future<void> getSubscriptionList() async {
     try {
       print('request');
-      final result = await _repository.getSubscriptionList(userId);
+      final result = await _repository.getSubscriptionList();
       print(result);
       _subscriptionsList = result;
     } on ApiException catch (e) {
@@ -32,10 +32,10 @@ class BookClubListViewModel extends ChangeNotifier {
     }
   }
 
-  Future<void> getRecommendationList(int userId) async {
+  Future<void> getRecommendationList() async {
     try {
       print('request');
-      final result = await _repository.getRecommendationList(userId);
+      final result = await _repository.getRecommendationList();
       print(result);
       _recommendationList = result;
     } on ApiException catch (e) {
@@ -44,10 +44,10 @@ class BookClubListViewModel extends ChangeNotifier {
     }
   }
 
-  Future<void> getAdministratedList(int userId) async {
+  Future<void> getAdministratedList() async {
     try {
       print('request');
-      final result = await _repository.getAdministratedList(userId);
+      final result = await _repository.getAdministratedList();
       print(result);
       _administratedList = result;
     } on ApiException catch (e) {

@@ -20,5 +20,7 @@ abstract class ClubUrls {
   /// POST
   static const String subscribeToClub = '/clubs/subscribe/';
   static const String unsubscribeFromClub = '/clubs/unsubscribe/';
+  static const String searchClubs = '/clubs/club/';
+  static const String uploadClubPicture = '/clubs/upload_image/';
 
 }

@@ -46,9 +46,9 @@ class _ClubClient implements ClubClient {
   }
 
   @override
-  Future<List<ClubCard>> getMembershipList(int userId) async {
+  Future<List<ClubCard>> getMembershipList() async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'user_id': userId};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =
@@ -75,9 +75,9 @@ class _ClubClient implements ClubClient {
   }
 
   @override
-  Future<List<ClubCard>> getRecommendationList(int userId) async {
+  Future<List<ClubCard>> getRecommendationList() async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'user_id': userId};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =
@@ -104,9 +104,9 @@ class _ClubClient implements ClubClient {
   }
 
   @override
-  Future<List<ClubCard>> getAdministratedList(int userId) async {
+  Future<List<ClubCard>> getAdministratedList() async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'user_id': userId};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =
@@ -314,6 +314,68 @@ class _ClubClient implements ClubClient {
         .compose(
           _dio.options,
           '/clubs/subscribe/',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+  }
+
+  @override
+  Future<List<ClubCard>> searchClubs(Map<String, dynamic> clubSearch) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(clubSearch);
+    final _result =
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<ClubCard>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/clubs/club/',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map((dynamic i) => ClubCard.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
+  Future<void> uploadImage(File picture) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.files.add(MapEntry(
+      'picture',
+      MultipartFile.fromFileSync(
+        picture.path,
+        filename: picture.path.split(Platform.pathSeparator).last,
+      ),
+    ));
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+        .compose(
+          _dio.options,
+          '/clubs/upload_image/',
           queryParameters: queryParameters,
           data: _data,
         )

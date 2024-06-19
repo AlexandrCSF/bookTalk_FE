@@ -82,7 +82,7 @@ class EditProfileViewModel extends ChangeNotifier {
     _firstNameController.text = user.firstName;
     _lastNameController.text = user.lastName;
     _emailController.text = user.email;
-    _selectedCity = CityFias.cityFias.keys.firstWhere((element) => CityFias.cityFias[element] == user.city, orElse: () => '');;
+    _selectedCity = CityFias.cityFias.keys.firstWhere((element) => CityFias.cityFias[element] == user.city, orElse: () => '');
     for (Genre genre in user.interests) {
       _selectedGenres.add(genre);
     }

@@ -75,4 +75,12 @@ class AuthRepository {
     }
   }
 
+  Future<void> deleteUser() async {
+    try {
+      await _client.deleteUser();
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
+
 }

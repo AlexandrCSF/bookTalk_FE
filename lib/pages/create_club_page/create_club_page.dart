@@ -1,12 +1,15 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/pages/widgets/dropdown_list_widget.dart';
+import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/widgets/edit_avatar_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/main_outline_button.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
 import 'package:booktalk_frontend/pages/widgets/textfield_widget.dart';
 import 'package:booktalk_frontend/utils/string_formatting.dart';
+import 'package:booktalk_frontend/viewmodels/book_club_list_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/create_club_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +26,11 @@ class CreateClubPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    getIt.get<Analytics>().openCreateClubPage();
     CreateClubViewModel provider = Provider.of<CreateClubViewModel>(context, listen: false);
     provider.loadGenres();
     ProfileViewModel profileProvider = Provider.of<ProfileViewModel>(context);
+    BookClubListViewModel clubListProvider = Provider.of<BookClubListViewModel>(context, listen: false);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -131,7 +136,7 @@ class CreateClubPage extends StatelessWidget {
                                   provider.createClub(profileProvider.userId).then((value) => context.router.navigate(BookClubRoute(
                                     id: provider.createdClub.id,
                                     clubCard: provider.createdClub,
-                                  )));
+                                  ))).then((value) => clubListProvider.loadClubs());
                                 },
                               ),
                             ),

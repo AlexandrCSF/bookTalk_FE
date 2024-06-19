@@ -34,7 +34,7 @@ class BookClubViewModel extends ChangeNotifier {
     try {
       _club = await _repository.getClubData(id);
       print(_club);
-      _isAdministrator = await _repository.isAdministrator(id, userId);
+      _isAdministrator = await _repository.isAdministrator(id);
       if(!_isAdministrator) {
         _isSubscribed = await _repository.isSubscribed(id, userId);
       }

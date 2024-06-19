@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/main.dart';
+import 'package:booktalk_frontend/pages/widgets/main_error_button.dart';
+import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/widgets/avatar_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/main_outline_button.dart';
@@ -34,6 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    getIt.get<Analytics>().openProfilePage();
     if(provider.authorized) {
       provider.loadUserData(provider.userId);
     }
@@ -159,8 +162,19 @@ class _ProfilePageState extends State<ProfilePage> {
                     label: "Выйти",
                     icon: MdiIcons.logout,
                     onTap: () {
-                      // todo: change the route
                       provider.signOut();
+                      //context.router.navigate(RegistrationRoute());
+                      //context.router.navigate(AuthorizationRoute());
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: MainErrorButton(
+                    label: "Удалить аккаунт",
+                    icon: MdiIcons.logout,
+                    onTap: () {
+                      provider.deleteUser();
                       //context.router.navigate(RegistrationRoute());
                       //context.router.navigate(AuthorizationRoute());
                     },

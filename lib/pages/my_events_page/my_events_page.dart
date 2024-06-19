@@ -24,14 +24,6 @@ class MyEventsPage extends StatefulWidget {
 }
 
 class _MyEventsPageState extends State<MyEventsPage> {
-  /*late MyEventsViewModel provider;
-  late ProfileViewModel profileProvider;
-
-  @override
-  void initState() {
-    provider = Provider.of<MyEventsViewModel>(context, listen: false);
-    super.initState();
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +95,8 @@ class _MyEventsPageState extends State<MyEventsPage> {
             label: 'Авторизоваться',
             icon: MdiIcons.arrowRight,
             onTap: () {
-              context.navigateTo(ProfileTab(children: [ProfileRoute()]));
+              //context.navigateTo(ProfileTab(children: [ProfileRoute()]));
+              context.router.navigate(const WelcomeViewRoute());
             },
           )
         ],

@@ -27,7 +27,7 @@ class MainErrorButton extends StatelessWidget {
               color: colors.outline.withOpacity(0.7),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 1),
+              offset: const Offset(0, 2),
             ),
           ],
         ),

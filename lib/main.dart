@@ -1,4 +1,5 @@
 import 'package:booktalk_frontend/data/urls/base_url.dart';
+import 'package:booktalk_frontend/viewmodels/edit_club_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/edit_profile_viewmodel.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:dio/dio.dart';
@@ -29,7 +30,8 @@ Future<void> main() async {
 
   /// firebase analytics
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  getIt.registerSingleton<Analytics>(Analytics(analytics: FirebaseAnalytics.instance));
+  getIt.registerSingleton<Analytics>(
+      Analytics(analytics: FirebaseAnalytics.instance));
 
   /// dio
   Dio dio = Dio();
@@ -40,7 +42,8 @@ Future<void> main() async {
   getIt.registerSingleton(AuthClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(GenreClient(getIt.get<Dio>(), baseUrl: baseUrl));
   getIt.registerSingleton(MeetingClient(getIt.get<Dio>(), baseUrl: baseUrl));
-  getIt.registerSingleton(ConversationClient(getIt.get<Dio>(), baseUrl: baseUrl));
+  getIt.registerSingleton(
+      ConversationClient(getIt.get<Dio>(), baseUrl: baseUrl));
 
   /// secure storage
   final secureStorage = SecureStorage();
@@ -85,6 +88,9 @@ Future<void> main() async {
             ),
             ChangeNotifierProvider(
               create: (context) => EditProfileViewModel(),
+            ),
+            ChangeNotifierProvider(
+              create: (context) => EditClubViewModel(),
             ),
           ],
           child: BookTalkApp(),

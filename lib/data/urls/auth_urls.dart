@@ -12,4 +12,7 @@ abstract class AuthUrls {
   /// PATCH
   static const String editUser = '/auth/user/';
 
+  /// DELETE
+  static const String deleteUser = '/auth/user/';
+
 }

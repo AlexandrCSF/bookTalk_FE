@@ -2,9 +2,9 @@ abstract class CityFias {
 
   static const Map<String, String> cityFias = {
     'Воронеж' : '5bf5ddff-6353-4a3d-80c4-6fb27f00c6c1',
-    'Россошь' : '1ed74fcf-2dd0-460a-99b9-029ca382517d',
-    'Борисоглебск' : 'e5c49f70-5235-49ef-a16b-816114b36566',
-    'Острогожск' : '8434550d-dd9b-4bc7-8e5b-d43a991753e2',
+    'Казань' : '93b3df57-4c89-44df-ac42-96f05e9cd3b9',
+    'Тула' : 'b2601b18-6da2-4789-9fbe-800dde06a2bb',
+    'Екатеринбург' : 'e48a89cd-267d-480b-b002-2cc3ab7df604',
     'Республика Крым' : 'bd8e6511-e4b9-4841-90de-6bbc231a789e',
   };
 

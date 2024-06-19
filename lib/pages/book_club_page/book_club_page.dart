@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
+import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/book_club_page/widgets/club_description.dart';
 import 'package:booktalk_frontend/pages/book_club_page/widgets/club_tags.dart';
@@ -32,6 +34,7 @@ class _BookClubPageState extends State<BookClubPage> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
+    getIt.get<Analytics>().openClubPage();
     final profileProvider = Provider.of<ProfileViewModel>(context);
     return ChangeNotifierProvider<BookClubViewModel>(
       create: (BuildContext context) => BookClubViewModel(clubId: widget.id)

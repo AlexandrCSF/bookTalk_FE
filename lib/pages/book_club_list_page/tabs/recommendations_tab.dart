@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/pages/my_events_page/widgets/info_text.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
+import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:booktalk_frontend/viewmodels/book_club_list_viewmodel.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +23,7 @@ class _RecommendationsTabState extends State<RecommendationsTab> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final colors = Theme.of(context).colorScheme;
+    getIt.get<Analytics>().openRecommendationList();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
       child: Consumer<BookClubListViewModel>(

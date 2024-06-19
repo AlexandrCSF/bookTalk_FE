@@ -61,6 +61,8 @@ class _EventCardState extends State<EventCard> {
                       widget.clubMeeting.name,
                       style: text.headlineMedium
                           ?.copyWith(color: colors.onSurface),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Text(
                       'Дата: ',
@@ -71,6 +73,8 @@ class _EventCardState extends State<EventCard> {
                       StringFormatting.getFormattedDateFromString(widget.clubMeeting.date),
                       style: text.headlineMedium
                           ?.copyWith(color: colors.onSurface),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Text(
                       'Время: ',
@@ -81,6 +85,8 @@ class _EventCardState extends State<EventCard> {
                       StringFormatting.getFormattedTimeFromString(widget.clubMeeting.time),
                       style: text.headlineMedium
                           ?.copyWith(color: colors.onSurface),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Text(
                       'Место: ',
@@ -91,6 +97,8 @@ class _EventCardState extends State<EventCard> {
                       widget.clubMeeting.location,
                       style: text.headlineMedium
                           ?.copyWith(color: colors.onSurface),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),

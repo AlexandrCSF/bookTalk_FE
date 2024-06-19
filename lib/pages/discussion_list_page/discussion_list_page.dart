@@ -55,7 +55,7 @@ class _DiscussionListPageState extends State<DiscussionListPage> {
                             titleController: provider.titleController,
                             descriptionController:
                                 provider.descriptionController,
-                            onTap: () => provider.createDiscussion(profileProvider.userId),
+                            onTap: () => provider.createDiscussion(profileProvider.userId).then((value) => provider.loadConversations()),
                           );
                         },
                       );

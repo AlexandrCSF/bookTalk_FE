@@ -26,7 +26,7 @@ class MemberListPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5),
         child: ListView.builder(
-          itemCount: 1 + 20,
+          itemCount: 1 + members.length,
           itemBuilder: (context, index) {
             if (index == 0) {
               return Padding(
@@ -38,7 +38,7 @@ class MemberListPage extends StatelessWidget {
               );
             }
             else {
-              return MemberTile(user: members[index]);
+              return MemberTile(user: members[index-1]);
             }
           },
         ),

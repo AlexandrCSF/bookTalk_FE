@@ -69,6 +69,16 @@ class ProfileViewModel extends ChangeNotifier {
     }
   }
 
+  Future<void> deleteUser() async {
+    try {
+      await _repository.deleteUser();
+    } on ApiException catch (e) {
+      debugPrint(e.message);
+    } finally {
+      notifyListeners();
+    }
+  }
+
   void getGenres(List<Genre> genres) async {
     if (_genres.isEmpty) {
       for (var genre in genres) {

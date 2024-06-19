@@ -42,4 +42,7 @@ abstract class AuthClient {
     @Body() Map<String, dynamic> userPatch,
     @Query('user_id') int userId,
   );
+
+  @DELETE(AuthUrls.deleteUser)
+  Future<void> deleteUser();
 }

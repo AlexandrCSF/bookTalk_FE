@@ -8,7 +8,7 @@ class DeviceInformation {
     var deviceInfo = DeviceInfoPlugin();
     if(Platform.isAndroid) {
       var androidDeviceInfo = await deviceInfo.androidInfo;
-      return androidDeviceInfo.id; // unique ID on Android
+      return androidDeviceInfo.id;
     }
     return '';
   }
