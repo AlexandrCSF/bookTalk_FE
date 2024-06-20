@@ -80,6 +80,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     Padding(
                       padding: const EdgeInsets.only(top: 40, bottom: 10),
                       child: EditAvatarWidget(
+                        onTap: () => provider.choosePicture(),
                         img: provider.newAvatar == null
                             ? provider.avatarUrl.isEmpty
                                 ? Image.asset(

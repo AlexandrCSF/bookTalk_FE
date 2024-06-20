@@ -9,7 +9,6 @@ import 'package:booktalk_frontend/models/club_card.dart';
 import 'package:booktalk_frontend/models/club_patch.dart';
 import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/utils/city_fias.dart';
-import 'package:booktalk_frontend/utils/secure_storage.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

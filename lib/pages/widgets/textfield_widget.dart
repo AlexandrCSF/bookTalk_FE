@@ -6,6 +6,7 @@ class TextFieldWidget extends StatefulWidget {
   final String hintText;
   final int maxLines;
   final TextEditingController? controller;
+  final bool? isObscure;
 
   const TextFieldWidget({
     super.key,
@@ -13,6 +14,7 @@ class TextFieldWidget extends StatefulWidget {
     required this.hintText,
     required this.maxLines,
     this.controller,
+    this.isObscure,
   });
 
   @override
@@ -43,6 +45,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             textAlignVertical: TextAlignVertical.center,
             maxLines: widget.maxLines,
             style: text.headlineSmall?.copyWith(color: colors.onBackground),
+            obscureText: widget.isObscure ?? false,
+            obscuringCharacter: '*',
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
               hintText: widget.hintText,

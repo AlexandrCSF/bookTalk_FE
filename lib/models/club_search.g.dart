@@ -8,10 +8,10 @@ part of 'club_search.dart';
 
 _$ClubSearchImpl _$$ClubSearchImplFromJson(Map<String, dynamic> json) =>
     _$ClubSearchImpl(
-      name: json['name'] as String,
+      search: json['search'] as String,
     );
 
 Map<String, dynamic> _$$ClubSearchImplToJson(_$ClubSearchImpl instance) =>
     <String, dynamic>{
-      'name': instance.name,
+      'search': instance.search,
     };

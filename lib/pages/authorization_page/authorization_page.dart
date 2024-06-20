@@ -61,6 +61,7 @@ class AuthorizationPage extends StatelessWidget {
                         hintText: "Введите пароль",
                         maxLines: 1,
                         controller: provider.passwordController,
+                        isObscure: true,
                       ),
                     ),
                   ],

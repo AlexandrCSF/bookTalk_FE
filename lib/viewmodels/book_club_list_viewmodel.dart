@@ -32,12 +32,32 @@ class BookClubListViewModel extends ChangeNotifier {
     }
   }
 
-  Future<void> getRecommendationList() async {
+  Future<void> getUnauthorizedRecommendationList() async {
     try {
       print('request');
       final result = await _repository.getRecommendationList();
       print(result);
       _recommendationList = result;
+    } on ApiException catch (e) {
+      _setError(e.message);
+      _setLoading(false);
+    } finally {
+      _setLoading(false);
+      notifyListeners();
+    }
+  }
+
+  Future<void> getRecommendationList() async {
+    try {
+      print('request');
+      final result = await _repository.getRecommendationList();
+      print(result);
+      for(ClubCard clubCard in result) {
+        if (!_recommendationList.contains(clubCard)) {
+          _recommendationList.add(clubCard);
+        }
+      }
+      //_recommendationList = result;
     } on ApiException catch (e) {
       _setError(e.message);
       _setLoading(false);

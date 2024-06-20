@@ -3,6 +3,7 @@ import 'package:booktalk_frontend/models/club_card.dart';
 import 'package:booktalk_frontend/models/club_meeting.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
 import 'package:booktalk_frontend/models/user.dart';
+import 'package:booktalk_frontend/pages/book_club_list_page/search_results_page.dart';
 import 'package:booktalk_frontend/pages/interests_page/edit_club_interests_page.dart';
 import 'package:booktalk_frontend/pages/interests_page/edit_profile_interests_page.dart';
 import 'package:booktalk_frontend/pages/interests_page/registration_interests_page.dart';
@@ -26,6 +27,7 @@ import 'package:booktalk_frontend/pages/registration_page/registration_page.dart
 import 'package:booktalk_frontend/pages/create_event_page/create_event_page.dart';
 import 'package:booktalk_frontend/pages/edit_club_page/edit_club_page.dart';
 import 'package:booktalk_frontend/pages/edit_event_page/edit_event_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'app_router.gr.dart';
 
@@ -34,8 +36,9 @@ class AppRouter extends _$AppRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           path: '/',
-          initial: true,
           page: HomeRoute.page,
+          initial: true,
+          guards: [AuthGuard()],
           children: [
             AutoRoute(
               path: 'my-events-tab',
@@ -85,6 +88,10 @@ class AppRouter extends _$AppRouter {
                 AutoRoute(
                   path: 'edit-event',
                   page: EditEventRoute.page,
+                ),
+                AutoRoute(
+                  path: 'search-results',
+                  page: SearchResultsRoute.page,
                 ),
               ],
             ),
@@ -142,6 +149,22 @@ class AppRouter extends _$AppRouter {
           page: WelcomeViewRoute.page,
         ),
       ];
+}
+
+class AuthGuard extends AutoRouteGuard {
+  @override
+  Future<void> onNavigation(NavigationResolver resolver, StackRouter router) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstLaunch = prefs.getBool('isFirstLaunch') ?? true;
+
+    if (isFirstLaunch) {
+      router.push(WelcomeViewRoute());
+      await prefs.setBool('isFirstLaunch', false);
+    } else {
+      resolver.next(true);
+      //await prefs.remove('isFirstLaunch');
+    }
+  }
 }
 
 @RoutePage(name: 'MyEventsTab')

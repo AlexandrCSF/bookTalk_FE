@@ -1,6 +1,7 @@
 import 'package:booktalk_frontend/data/urls/base_url.dart';
 import 'package:booktalk_frontend/viewmodels/edit_club_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/edit_profile_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/search_viewmodel.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -16,6 +17,7 @@ import 'package:booktalk_frontend/data/services/services.dart';
 import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:booktalk_frontend/utils/secure_storage.dart';
 import 'package:booktalk_frontend/viewmodels/viewmodels.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'booktalk_app.dart';
 
@@ -57,7 +59,10 @@ Future<void> main() async {
   getIt.registerSingleton(GenreRepository());
 
   /// free token for unauthorized requests
-  getIt.get<AuthRepository>().freeToken();
+  await getIt.get<AuthRepository>().freeToken().then((value) => ProfileViewModel().setUserId(value.userId));
+
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.remove('isFirstLaunch');
 
   /// data formatting
   initializeDateFormatting().then(
@@ -94,7 +99,10 @@ Future<void> main() async {
             ),
             ChangeNotifierProvider(
               create: (context) => BookClubViewModel(),
-            )
+            ),
+            ChangeNotifierProvider(
+              create: (context) => SearchViewModel(),
+            ),
           ],
           child: BookTalkApp(),
         ),
@@ -102,3 +110,14 @@ Future<void> main() async {
     ),
   );
 }
+
+/*Future<bool> isFirstOpen() async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool firstOpen = prefs.getBool('first_open') ?? true;
+  if (firstOpen) {
+    await prefs.setBool('first_open', false);
+    return true;
+  } else {
+    return false;
+  }
+}*/

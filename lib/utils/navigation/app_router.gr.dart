@@ -202,6 +202,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const RegistrationPage(),
       );
     },
+    SearchResultsRoute.name: (routeData) {
+      final args = routeData.argsAs<SearchResultsRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: SearchResultsPage(
+          key: args.key,
+          result: args.result,
+        ),
+      );
+    },
     WelcomeViewRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -818,6 +828,44 @@ class RegistrationRoute extends PageRouteInfo<void> {
   static const String name = 'RegistrationRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SearchResultsPage]
+class SearchResultsRoute extends PageRouteInfo<SearchResultsRouteArgs> {
+  SearchResultsRoute({
+    Key? key,
+    required List<ClubCard> result,
+    List<PageRouteInfo>? children,
+  }) : super(
+          SearchResultsRoute.name,
+          args: SearchResultsRouteArgs(
+            key: key,
+            result: result,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'SearchResultsRoute';
+
+  static const PageInfo<SearchResultsRouteArgs> page =
+      PageInfo<SearchResultsRouteArgs>(name);
+}
+
+class SearchResultsRouteArgs {
+  const SearchResultsRouteArgs({
+    this.key,
+    required this.result,
+  });
+
+  final Key? key;
+
+  final List<ClubCard> result;
+
+  @override
+  String toString() {
+    return 'SearchResultsRouteArgs{key: $key, result: $result}';
+  }
 }
 
 /// generated route for

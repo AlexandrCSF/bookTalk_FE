@@ -168,7 +168,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   padding: const EdgeInsets.only(top: 12),
                   child: MainErrorButton(
                     label: "Удалить аккаунт",
-                    icon: MdiIcons.logout,
+                    icon: MdiIcons.close,
                     onTap: () {
                       provider.deleteUser();
                       //context.router.navigate(RegistrationRoute());

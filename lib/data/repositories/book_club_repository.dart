@@ -8,6 +8,7 @@ import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
 import 'package:booktalk_frontend/models/club_create.dart';
 import 'package:booktalk_frontend/models/club_patch.dart';
+import 'package:booktalk_frontend/models/club_search.dart';
 import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/models/subscribe.dart';
 import 'package:booktalk_frontend/models/user.dart';
@@ -173,6 +174,22 @@ class ClubRepository {
   Future<void> uploadClubImage(File picture, int clubId) async {
     try {
       await _client.uploadImage(picture, clubId);
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
+  
+  Future<List<ClubCard>> searchClubs(ClubSearch clubSearch) async {
+    try {
+      final result = await _client.searchClubs(clubSearch.toJson());
+      for (int i = 0; i < result.length; i++) {
+        result[i] = result[i].copyWith(
+          numOfSubscribers: await getNumberOfClubMembers(
+            '${result[i].id}',
+          ),
+        );
+      }
+      return result;
     } on DioException catch (e) {
       throw HandleException.handleException(e);
     }

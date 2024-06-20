@@ -41,21 +41,25 @@ class _SubscriptionsTabState extends State<SubscriptionsTab> {
                   ),
                 );
               } else {
-                return ListView.builder(
-                  itemCount: provider.subscriptionList.length,
-                  itemBuilder: (context, index) {
-                    final club = provider.subscriptionList[index];
-                    return ClubCard(
-                      title: club.name,
-                      description: club.description,
-                      members: club.numOfSubscribers ?? 0,
-                      imageUrl: club.picture,
-                      onTap: () {
-                        context.router.navigate(BookClubRoute(id: club.id));
-                      },
-                    );
-                  },
-                );
+                if (provider.subscriptionList.isEmpty) {
+                  return Center(child: Text('Список подписок пуст', style: textTheme.headlineMedium,),);
+                } else {
+                  return ListView.builder(
+                    itemCount: provider.subscriptionList.length,
+                    itemBuilder: (context, index) {
+                      final club = provider.subscriptionList[index];
+                      return ClubCard(
+                        title: club.name,
+                        description: club.description,
+                        members: club.numOfSubscribers ?? 0,
+                        imageUrl: club.picture,
+                        onTap: () {
+                          context.router.navigate(BookClubRoute(id: club.id));
+                        },
+                      );
+                    },
+                  );
+                }
               }
             }
           } else {

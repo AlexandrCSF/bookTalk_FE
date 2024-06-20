@@ -41,21 +41,25 @@ class _MyClubsTabState extends State<MyClubsTab> {
                   ),
                 );
               } else {
-                return ListView.builder(
-                  itemCount: provider.administratedList.length,
-                  itemBuilder: (context, index) {
-                    final club = provider.administratedList[index];
-                    return ClubCard(
-                      title: club.name,
-                      description: club.description,
-                      members: club.numOfSubscribers ?? 0,
-                      imageUrl: club.picture,
-                      onTap: () {
-                        context.router.navigate(BookClubRoute(id: club.id));
-                      },
-                    );
-                  },
-                );
+                if(provider.administratedList.isEmpty) {
+                  return Center(child: Text('Вы ещё не создали ни одного клуба', style: textTheme.headlineMedium,),);
+                } else {
+                  return ListView.builder(
+                    itemCount: provider.administratedList.length,
+                    itemBuilder: (context, index) {
+                      final club = provider.administratedList[index];
+                      return ClubCard(
+                        title: club.name,
+                        description: club.description,
+                        members: club.numOfSubscribers ?? 0,
+                        imageUrl: club.picture,
+                        onTap: () {
+                          context.router.navigate(BookClubRoute(id: club.id));
+                        },
+                      );
+                    },
+                  );
+                }
               }
             }
           } else {

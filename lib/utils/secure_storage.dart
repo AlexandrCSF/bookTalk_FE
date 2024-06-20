@@ -15,6 +15,24 @@ class SecureStorage {
     return _isAuthorized;
   }
 
+  Future<void> writeFreeTokens(FreeToken freeToken) async {
+    await _secureStorage.write(
+      key: 'accessToken',
+      value: freeToken.accessToken,
+    );
+    await _secureStorage.write(
+      key: 'refreshToken',
+      value: freeToken.refreshToken,
+    );
+    await _secureStorage.write(
+      key: 'userId',
+      value: '${freeToken.userId}',
+    );
+    print(freeToken);
+    dio.interceptors.add(_tokenInterceptor);
+    //_authorize();
+  }
+
   Future<void> writeTokens(FreeToken freeToken) async {
     await _secureStorage.write(
       key: 'accessToken',
@@ -28,6 +46,7 @@ class SecureStorage {
       key: 'userId',
       value: '${freeToken.userId}',
     );
+    print(freeToken);
     dio.interceptors.add(_tokenInterceptor);
     _authorize();
   }
@@ -82,6 +101,7 @@ class TokenInterceptor extends Interceptor {
     if (accessToken != null) {
       options.headers['Authorization'] = 'Bearer $accessToken';
     }
+    print('SS set access_token');
     return handler.next(options);
   }
 

@@ -10,7 +10,7 @@ part 'club_search.g.dart';
 abstract class ClubSearch with _$ClubSearch {
 
   const factory ClubSearch({
-    required String name,
+    required String search,
   }) = _ClubSearch;
 
   factory ClubSearch.fromJson(Map<String, dynamic> json) => _$ClubSearchFromJson(json);

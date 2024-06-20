@@ -12,6 +12,7 @@ import 'package:booktalk_frontend/viewmodels/book_club_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/edit_club_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/edit_profile_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
+import 'package:booktalk_frontend/viewmodels/viewmodels.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -44,6 +45,8 @@ class _EditClubPageState extends State<EditClubPage> {
         Provider.of<BookClubViewModel>(context, listen: false);
     ProfileViewModel profileProvider =
         Provider.of<ProfileViewModel>(context, listen: false);
+    BookClubListViewModel clubListProvider =
+        Provider.of<BookClubListViewModel>(context, listen: false);
     return Consumer<EditClubViewModel>(builder: (context, provider, child) {
       return Scaffold(
         appBar: AppBar(
@@ -62,8 +65,9 @@ class _EditClubPageState extends State<EditClubPage> {
                 onPressed: () {
                   provider
                       .editClub()
-                      .then((value) =>
-                          clubProvider.getClubData(profileProvider.userId, clubProvider.club.id))
+                      .then((value) => clubProvider.getClubData(
+                          profileProvider.userId, clubProvider.club.id))
+                      .then((value) => clubListProvider.loadClubs())
                       .then((value) => context.router
                           .maybePop(BookClubRoute(id: widget.id)));
                 },
@@ -85,6 +89,7 @@ class _EditClubPageState extends State<EditClubPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 40, bottom: 10),
                     child: EditAvatarWidget(
+                      onTap: () => provider.choosePicture(),
                       img: provider.newClubAvatar == null
                           ? provider.clubAvatarUrl.isEmpty
                               ? Image.asset(

@@ -28,40 +28,36 @@ class _RecommendationsTabState extends State<RecommendationsTab> {
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
       child: Consumer<BookClubListViewModel>(
         builder: (context, provider, child) {
-          if (provider.authorized) {
-            if (provider.isLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
+          if (provider.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            if (provider.onError.isNotEmpty) {
+              return Center(
+                child: Text(
+                  provider.onError,
+                  style:
+                      textTheme.headlineMedium?.copyWith(color: colors.outline),
+                ),
               );
             } else {
-              if (provider.onError.isNotEmpty) {
-                return Center(
-                  child: Text(
-                    provider.onError,
-                    style: textTheme.headlineMedium
-                        ?.copyWith(color: colors.outline),
-                  ),
-                );
-              } else {
-                return ListView.builder(
-                  itemCount: provider.recommendationList.length,
-                  itemBuilder: (context, index) {
-                    final club = provider.recommendationList[index];
-                    return ClubCard(
-                      title: club.name,
-                      description: club.description,
-                      members: club.numOfSubscribers ?? 0,
-                      imageUrl: club.picture,
-                      onTap: () {
-                        context.router.navigate(BookClubRoute(id: club.id));
-                      },
-                    );
-                  },
-                );
-              }
+              return ListView.builder(
+                itemCount: provider.recommendationList.length,
+                itemBuilder: (context, index) {
+                  final club = provider.recommendationList[index];
+                  return ClubCard(
+                    title: club.name,
+                    description: club.description,
+                    members: club.numOfSubscribers ?? 0,
+                    imageUrl: club.picture,
+                    onTap: () {
+                      context.router.navigate(BookClubRoute(id: club.id));
+                    },
+                  );
+                },
+              );
             }
-          } else {
-            return _unauthorizedRecommendations();
           }
         },
       ),
@@ -73,8 +69,7 @@ class _RecommendationsTabState extends State<RecommendationsTab> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         const InfoText(
-          regularText:
-          'Чтобы просматривать рекомендованные клубы, нужно ',
+          regularText: 'Чтобы просматривать рекомендованные клубы, нужно ',
           boldText: 'войти или зарегистрироваться',
         ),
         MainPrimaryButton(
@@ -93,5 +88,4 @@ class _RecommendationsTabState extends State<RecommendationsTab> {
       ],
     );
   }
-
 }

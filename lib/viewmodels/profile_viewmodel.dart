@@ -93,6 +93,7 @@ class ProfileViewModel extends ChangeNotifier {
     try {
       await _repository.signOut();
       _unauthorize();
+      await _repository.freeToken();
     } on ApiException catch (e) {
       debugPrint(e.message);
     } finally {
@@ -126,7 +127,11 @@ class ProfileViewModel extends ChangeNotifier {
   bool _authorized = getIt.get<SecureStorage>().isAuthorized();
   bool get authorized => _authorized;
 
-  late int _userId;
+  int _userId = 0;
   int get userId => _userId;
+
+  void setUserId(int userId) {
+    _userId = userId;
+  }
 
 }

@@ -20,7 +20,7 @@ ClubSearch _$ClubSearchFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ClubSearch {
-  String get name => throw _privateConstructorUsedError;
+  String get search => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $ClubSearchCopyWith<$Res> {
           ClubSearch value, $Res Function(ClubSearch) then) =
       _$ClubSearchCopyWithImpl<$Res, ClubSearch>;
   @useResult
-  $Res call({String name});
+  $Res call({String search});
 }
 
 /// @nodoc
@@ -50,12 +50,12 @@ class _$ClubSearchCopyWithImpl<$Res, $Val extends ClubSearch>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? search = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      search: null == search
+          ? _value.search
+          : search // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -69,7 +69,7 @@ abstract class _$$ClubSearchImplCopyWith<$Res>
       __$$ClubSearchImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name});
+  $Res call({String search});
 }
 
 /// @nodoc
@@ -83,12 +83,12 @@ class __$$ClubSearchImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? search = null,
   }) {
     return _then(_$ClubSearchImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      search: null == search
+          ? _value.search
+          : search // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -97,17 +97,17 @@ class __$$ClubSearchImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ClubSearchImpl implements _ClubSearch {
-  const _$ClubSearchImpl({required this.name});
+  const _$ClubSearchImpl({required this.search});
 
   factory _$ClubSearchImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClubSearchImplFromJson(json);
 
   @override
-  final String name;
+  final String search;
 
   @override
   String toString() {
-    return 'ClubSearch(name: $name)';
+    return 'ClubSearch(search: $search)';
   }
 
   @override
@@ -115,12 +115,12 @@ class _$ClubSearchImpl implements _ClubSearch {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClubSearchImpl &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.search, search) || other.search == search));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name);
+  int get hashCode => Object.hash(runtimeType, search);
 
   @JsonKey(ignore: true)
   @override
@@ -137,13 +137,13 @@ class _$ClubSearchImpl implements _ClubSearch {
 }
 
 abstract class _ClubSearch implements ClubSearch {
-  const factory _ClubSearch({required final String name}) = _$ClubSearchImpl;
+  const factory _ClubSearch({required final String search}) = _$ClubSearchImpl;
 
   factory _ClubSearch.fromJson(Map<String, dynamic> json) =
       _$ClubSearchImpl.fromJson;
 
   @override
-  String get name;
+  String get search;
   @override
   @JsonKey(ignore: true)
   _$$ClubSearchImplCopyWith<_$ClubSearchImpl> get copyWith =>

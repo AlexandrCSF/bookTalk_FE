@@ -54,8 +54,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       Padding(
                         padding: const EdgeInsets.only(top: 19, bottom: 19),
                         child: EditAvatarWidget(
-                          img: Image.asset(
-                              'lib/utils/resources/images/base_avatar.png'),
+                          onTap: () => provider.choosePicture(),
+                          img: provider.avatar == null
+                              ? Image.asset(
+                              'lib/utils/resources/images/base_club_avatar.png')
+                              : Image.file(provider.avatar!),
                         ),
                       ),
                       TextFieldWidget(

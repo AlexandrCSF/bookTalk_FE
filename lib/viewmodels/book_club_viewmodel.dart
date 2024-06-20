@@ -50,6 +50,23 @@ class BookClubViewModel extends ChangeNotifier {
     }
   }
 
+  Future<void> getUnauthorizedClubData(int clubId) async {
+    _clubId = clubId;
+    String id = '$clubId';
+    try {
+      _club = await _repository.getClubData(id);
+      print(_club);
+      _imageUrl = _club.picture;
+      getGenres(_club!.interests);
+      getEvents();
+      getListOfMembers();
+    } on ApiException catch (e) {
+      debugPrint(e.message);
+    } finally {
+      _setLoadingStatus(false);
+    }
+  }
+
   void getEvents() {
     _events.clear();
     for (var event in _club!.meetings) {

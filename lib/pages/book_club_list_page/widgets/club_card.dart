@@ -46,12 +46,6 @@ class ClubCard extends StatelessWidget {
                   children: [
                     ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        /*child: Image.network(
-                        imageUrl,
-                        width: 80,
-                        height: 120,
-                        fit: BoxFit.fitHeight,
-                      ),*/
                         child: imageUrl.isEmpty
                             ? Image.asset(
                                 'lib/utils/resources/images/base_club_avatar.png',

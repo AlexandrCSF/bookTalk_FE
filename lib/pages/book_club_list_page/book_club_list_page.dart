@@ -34,6 +34,8 @@ class _BookClubListPageState extends State<BookClubListPage> {
       provider.authorize();
     } else {
       provider.unauthorize();
+      profileProvider.setUserId(0);
+      provider.getUnauthorizedRecommendationList();
     }
     return DefaultTabController(
       length: 3,

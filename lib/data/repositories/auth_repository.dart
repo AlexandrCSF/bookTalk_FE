@@ -20,14 +20,15 @@ class AuthRepository {
   final _client = getIt.get<AuthClient>();
   final _secureStorage = getIt.get<SecureStorage>();
 
-  Future<void> freeToken() async {
+  Future<FreeToken> freeToken() async {
     String uuid = await DeviceInformation.getId();
     if (uuid.isEmpty) {
       uuid = '';
     }
     UserUuidSerializerRequest uusr = UserUuidSerializerRequest(uuid: uuid);
     FreeToken freeToken = await _client.freeToken(uusr.toJson());
-    await _secureStorage.writeTokens(freeToken);
+    await _secureStorage.writeFreeTokens(freeToken);
+    return freeToken;
   }
 
   Future<int> signIn(Login login) async {
