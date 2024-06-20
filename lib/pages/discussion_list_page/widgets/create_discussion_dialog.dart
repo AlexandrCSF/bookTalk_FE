@@ -4,11 +4,24 @@ import 'package:booktalk_frontend/pages/widgets/textfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../../../analytics/analytics.dart';
 
-class CreateDiscussionDialog extends StatelessWidget {
-  const CreateDiscussionDialog({super.key});
+class CreateDiscussionDialog extends StatefulWidget {
+  final TextEditingController titleController;
+  final TextEditingController descriptionController;
+  final VoidCallback onTap;
 
+  const CreateDiscussionDialog({
+    super.key,
+    required this.titleController,
+    required this.descriptionController,
+    required this.onTap,
+  });
+
+  @override
+  State<CreateDiscussionDialog> createState() => _CreateDiscussionDialogState();
+}
+
+class _CreateDiscussionDialogState extends State<CreateDiscussionDialog> {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -20,22 +33,24 @@ class CreateDiscussionDialog extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const TextFieldWidget(
-                label: 'Тема обсуждения',
-                hintText: 'Введите тему',
-                text: '',
-                maxLines: 1),
-            const TextFieldWidget(
-                label: 'Описание',
-                hintText: 'Введите описание',
-                text: '',
-                maxLines: 6),
+            TextFieldWidget(
+              label: 'Тема обсуждения',
+              hintText: 'Введите тему',
+              maxLines: 1,
+              controller: widget.titleController,
+            ),
+            TextFieldWidget(
+              label: 'Описание',
+              hintText: 'Введите описание',
+              maxLines: 6,
+              controller: widget.descriptionController,
+            ),
             MainPrimaryButton(
               label: 'Добавить',
               icon: MdiIcons.check,
               onTap: () {
-                Navigator.of(context).pop;
-                getIt.get<Analytics>().createDiscussion();
+                widget.onTap();
+                Navigator.pop(context);
               },
             ),
           ],

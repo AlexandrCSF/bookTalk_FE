@@ -16,7 +16,11 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       email: json['email'] as String,
       city: json['city'] as String,
       uuid: json['uuid'] as String,
-      refresh_token: json['refresh_token'] as String,
+      password: json['password'] as String,
+      interests: (json['interests'] as List<dynamic>)
+          .map((e) => Genre.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      picture: json['picture'] as String,
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
@@ -30,5 +34,7 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'email': instance.email,
       'city': instance.city,
       'uuid': instance.uuid,
-      'refresh_token': instance.refresh_token,
+      'password': instance.password,
+      'interests': instance.interests,
+      'picture': instance.picture,
     };

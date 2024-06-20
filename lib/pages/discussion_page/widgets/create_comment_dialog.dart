@@ -4,14 +4,29 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../../../analytics/analytics.dart';
 
-class CreateCommentDialog extends StatelessWidget {
-  const CreateCommentDialog({super.key});
+class CreateCommentDialog extends StatefulWidget {
+
+  final TextEditingController controller;
+  final VoidCallback onTap;
+
+  const CreateCommentDialog({
+    super.key,
+    required this.controller,
+    required this.onTap,
+  });
+
+  @override
+  State<CreateCommentDialog> createState() => _CreateCommentDialogState();
+}
+
+class _CreateCommentDialogState extends State<CreateCommentDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
+    final colors = Theme
+        .of(context)
+        .colorScheme;
     return AlertDialog(
       surfaceTintColor: colors.surface,
       content: Container(
@@ -20,16 +35,18 @@ class CreateCommentDialog extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const TextFieldWidget(
-                label: 'Добавить комментарий',
-                hintText: 'Введите комментарий',
-                text: '',
-                maxLines: 6),
+            TextFieldWidget(
+              label: 'Добавить комментарий',
+              hintText: 'Введите комментарий',
+              maxLines: 6,
+              controller: widget.controller,
+            ),
             MainPrimaryButton(
               label: 'Добавить',
               icon: MdiIcons.check,
               onTap: () {
-                Navigator.of(context).pop;
+                widget.onTap();
+                Navigator.pop(context);
               },
             ),
           ],

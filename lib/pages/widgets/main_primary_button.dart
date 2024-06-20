@@ -21,7 +21,15 @@ class MainPrimaryButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: colors.primary,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(22),
+          boxShadow: [
+            BoxShadow(
+              color: colors.outline.withOpacity(0.7),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2),
+            ),
+          ],
         ),
         child: Padding(
           padding:

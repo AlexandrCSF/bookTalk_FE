@@ -20,7 +20,6 @@ MeetingCreate _$MeetingCreateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MeetingCreate {
-  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
   String get time => throw _privateConstructorUsedError;
@@ -38,7 +37,7 @@ abstract class $MeetingCreateCopyWith<$Res> {
           MeetingCreate value, $Res Function(MeetingCreate) then) =
       _$MeetingCreateCopyWithImpl<$Res, MeetingCreate>;
   @useResult
-  $Res call({int id, String name, String date, String time, String location});
+  $Res call({String name, String date, String time, String location});
 }
 
 /// @nodoc
@@ -54,17 +53,12 @@ class _$MeetingCreateCopyWithImpl<$Res, $Val extends MeetingCreate>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? name = null,
     Object? date = null,
     Object? time = null,
     Object? location = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -93,7 +87,7 @@ abstract class _$$MeetingCreateImplCopyWith<$Res>
       __$$MeetingCreateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String date, String time, String location});
+  $Res call({String name, String date, String time, String location});
 }
 
 /// @nodoc
@@ -107,17 +101,12 @@ class __$$MeetingCreateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? name = null,
     Object? date = null,
     Object? time = null,
     Object? location = null,
   }) {
     return _then(_$MeetingCreateImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -142,8 +131,7 @@ class __$$MeetingCreateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MeetingCreateImpl implements _MeetingCreate {
   const _$MeetingCreateImpl(
-      {required this.id,
-      required this.name,
+      {required this.name,
       required this.date,
       required this.time,
       required this.location});
@@ -151,8 +139,6 @@ class _$MeetingCreateImpl implements _MeetingCreate {
   factory _$MeetingCreateImpl.fromJson(Map<String, dynamic> json) =>
       _$$MeetingCreateImplFromJson(json);
 
-  @override
-  final int id;
   @override
   final String name;
   @override
@@ -164,7 +150,7 @@ class _$MeetingCreateImpl implements _MeetingCreate {
 
   @override
   String toString() {
-    return 'MeetingCreate(id: $id, name: $name, date: $date, time: $time, location: $location)';
+    return 'MeetingCreate(name: $name, date: $date, time: $time, location: $location)';
   }
 
   @override
@@ -172,7 +158,6 @@ class _$MeetingCreateImpl implements _MeetingCreate {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MeetingCreateImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.time, time) || other.time == time) &&
@@ -182,7 +167,7 @@ class _$MeetingCreateImpl implements _MeetingCreate {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, date, time, location);
+  int get hashCode => Object.hash(runtimeType, name, date, time, location);
 
   @JsonKey(ignore: true)
   @override
@@ -200,8 +185,7 @@ class _$MeetingCreateImpl implements _MeetingCreate {
 
 abstract class _MeetingCreate implements MeetingCreate {
   const factory _MeetingCreate(
-      {required final int id,
-      required final String name,
+      {required final String name,
       required final String date,
       required final String time,
       required final String location}) = _$MeetingCreateImpl;
@@ -209,8 +193,6 @@ abstract class _MeetingCreate implements MeetingCreate {
   factory _MeetingCreate.fromJson(Map<String, dynamic> json) =
       _$MeetingCreateImpl.fromJson;
 
-  @override
-  int get id;
   @override
   String get name;
   @override

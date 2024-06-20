@@ -1,5 +1,5 @@
 abstract class BaseUrl {
 
-  static const String baseUrl = '810b-176-214-49-85.ngrok-free.app/';
+  static const String baseUrl = 'http://158.160.29.190:8000';
 
 }

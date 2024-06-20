@@ -11,14 +11,16 @@ _$ClubCardImpl _$$ClubCardImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       description: json['description'] as String,
-      admin: (json['admin'] as num).toInt(),
+      admin: User.fromJson(json['admin'] as Map<String, dynamic>),
       city: json['city'] as String,
       interests: (json['interests'] as List<dynamic>)
-          .map((e) => (e as num).toInt())
+          .map((e) => Genre.fromJson(e as Map<String, dynamic>))
           .toList(),
       meetings: (json['meetings'] as List<dynamic>)
           .map((e) => Meeting.fromJson(e as Map<String, dynamic>))
           .toList(),
+      picture: json['picture'] as String,
+      numOfSubscribers: (json['numOfSubscribers'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$ClubCardImplToJson(_$ClubCardImpl instance) =>
@@ -30,4 +32,6 @@ Map<String, dynamic> _$$ClubCardImplToJson(_$ClubCardImpl instance) =>
       'city': instance.city,
       'interests': instance.interests,
       'meetings': instance.meetings,
+      'picture': instance.picture,
+      'numOfSubscribers': instance.numOfSubscribers,
     };

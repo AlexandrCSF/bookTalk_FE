@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:booktalk_frontend/data/urls/club_urls.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
 import 'package:booktalk_frontend/models/club_create.dart';
@@ -12,7 +14,6 @@ part 'club_client.g.dart';
 
 @RestApi()
 abstract class ClubClient {
-
   factory ClubClient(Dio dio, {String baseUrl}) = _ClubClient;
 
   @GET(ClubUrls.getClubById)
@@ -21,14 +22,13 @@ abstract class ClubClient {
   );
 
   @GET(ClubUrls.getMembershipForUser)
-  Future<List<ClubCard>> getMembershipList(
-    @Query('user_id') int userId,
-  );
+  Future<List<ClubCard>> getMembershipList();
+
+  @GET(ClubUrls.getRecommendationForUser)
+  Future<List<ClubCard>> getRecommendationList();
 
   @GET(ClubUrls.getAdministratedClubsForUser)
-  Future<List<ClubCard>> getAdministratedList(
-    @Query('user_id') int userId,
-  );
+  Future<List<ClubCard>> getAdministratedList();
 
   @GET(ClubUrls.getMeetingsByClubId)
   Future<List<Meeting>> getMeetingsList(
@@ -41,13 +41,13 @@ abstract class ClubClient {
   );
 
   @PUT(ClubUrls.createClub)
-  Future<ClubCreate> createClub(
-    @Body() ClubCreate clubCreate,
+  Future<ClubCard> createClub(
+    @Body() Map<String, dynamic> clubCreate,
   );
 
   @PATCH(ClubUrls.editClub)
-  Future<ClubPatch> editClub(
-    @Body() ClubPatch clubPatch,
+  Future<ClubCard> editClub(
+    @Body() Map<String, dynamic> clubPatch,
     @Query('club_id') String clubId,
   );
 
@@ -57,10 +57,24 @@ abstract class ClubClient {
   );
 
   @POST(ClubUrls.subscribeToClub)
-  Future<Subscribe> subscribeToClub(
-    @Body() Subscribe subscribe,
-    @Query('user_id') int userId,
-    @Query('club_id') int clubId,
+  Future<void> subscribeToClub(
+    @Query('club_id') String clubId,
   );
 
+  @POST(ClubUrls.unsubscribeFromClub)
+  Future<void> unsubscribeFromClub(
+    @Query('club_id') String clubId,
+  );
+
+  @POST(ClubUrls.searchClubs)
+  Future<List<ClubCard>> searchClubs(
+    @Body() Map<String, dynamic> clubSearch,
+  );
+
+  @POST(ClubUrls.uploadClubPicture)
+  @MultiPart()
+  Future<void> uploadImage(
+    @Part() File picture,
+      @Part() int club_id,
+  );
 }

@@ -1,10 +1,14 @@
+import 'package:booktalk_frontend/models/user.dart';
 import 'package:booktalk_frontend/pages/member_list_page/widgets/member_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
 class MemberListPage extends StatelessWidget {
-  const MemberListPage({super.key});
+
+  final List<User> members;
+
+  const MemberListPage({super.key, required this.members});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class MemberListPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5),
         child: ListView.builder(
-          itemCount: 1 + 20,
+          itemCount: 1 + members.length,
           itemBuilder: (context, index) {
             if (index == 0) {
               return Padding(
@@ -34,7 +38,7 @@ class MemberListPage extends StatelessWidget {
               );
             }
             else {
-              return const MemberTile();
+              return MemberTile(user: members[index-1]);
             }
           },
         ),

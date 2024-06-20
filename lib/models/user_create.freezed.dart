@@ -25,10 +25,10 @@ mixin _$UserCreate {
   String get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_name')
   String get lastName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'date_joined')
-  String get dateJoined => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  List<String> get interests => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,9 +46,10 @@ abstract class $UserCreateCopyWith<$Res> {
       {String username,
       @JsonKey(name: 'first_name') String firstName,
       @JsonKey(name: 'last_name') String lastName,
-      @JsonKey(name: 'date_joined') String dateJoined,
       String email,
-      String city});
+      String city,
+      String password,
+      List<String> interests});
 }
 
 /// @nodoc
@@ -67,9 +68,10 @@ class _$UserCreateCopyWithImpl<$Res, $Val extends UserCreate>
     Object? username = null,
     Object? firstName = null,
     Object? lastName = null,
-    Object? dateJoined = null,
     Object? email = null,
     Object? city = null,
+    Object? password = null,
+    Object? interests = null,
   }) {
     return _then(_value.copyWith(
       username: null == username
@@ -84,10 +86,6 @@ class _$UserCreateCopyWithImpl<$Res, $Val extends UserCreate>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      dateJoined: null == dateJoined
-          ? _value.dateJoined
-          : dateJoined // ignore: cast_nullable_to_non_nullable
-              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -96,6 +94,14 @@ class _$UserCreateCopyWithImpl<$Res, $Val extends UserCreate>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      interests: null == interests
+          ? _value.interests
+          : interests // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -112,9 +118,10 @@ abstract class _$$UserCreateImplCopyWith<$Res>
       {String username,
       @JsonKey(name: 'first_name') String firstName,
       @JsonKey(name: 'last_name') String lastName,
-      @JsonKey(name: 'date_joined') String dateJoined,
       String email,
-      String city});
+      String city,
+      String password,
+      List<String> interests});
 }
 
 /// @nodoc
@@ -131,9 +138,10 @@ class __$$UserCreateImplCopyWithImpl<$Res>
     Object? username = null,
     Object? firstName = null,
     Object? lastName = null,
-    Object? dateJoined = null,
     Object? email = null,
     Object? city = null,
+    Object? password = null,
+    Object? interests = null,
   }) {
     return _then(_$UserCreateImpl(
       username: null == username
@@ -148,10 +156,6 @@ class __$$UserCreateImplCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      dateJoined: null == dateJoined
-          ? _value.dateJoined
-          : dateJoined // ignore: cast_nullable_to_non_nullable
-              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -160,6 +164,14 @@ class __$$UserCreateImplCopyWithImpl<$Res>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      interests: null == interests
+          ? _value._interests
+          : interests // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -171,9 +183,11 @@ class _$UserCreateImpl implements _UserCreate {
       {required this.username,
       @JsonKey(name: 'first_name') required this.firstName,
       @JsonKey(name: 'last_name') required this.lastName,
-      @JsonKey(name: 'date_joined') required this.dateJoined,
       required this.email,
-      required this.city});
+      required this.city,
+      required this.password,
+      required final List<String> interests})
+      : _interests = interests;
 
   factory _$UserCreateImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserCreateImplFromJson(json);
@@ -187,16 +201,22 @@ class _$UserCreateImpl implements _UserCreate {
   @JsonKey(name: 'last_name')
   final String lastName;
   @override
-  @JsonKey(name: 'date_joined')
-  final String dateJoined;
-  @override
   final String email;
   @override
   final String city;
+  @override
+  final String password;
+  final List<String> _interests;
+  @override
+  List<String> get interests {
+    if (_interests is EqualUnmodifiableListView) return _interests;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_interests);
+  }
 
   @override
   String toString() {
-    return 'UserCreate(username: $username, firstName: $firstName, lastName: $lastName, dateJoined: $dateJoined, email: $email, city: $city)';
+    return 'UserCreate(username: $username, firstName: $firstName, lastName: $lastName, email: $email, city: $city, password: $password, interests: $interests)';
   }
 
   @override
@@ -210,16 +230,18 @@ class _$UserCreateImpl implements _UserCreate {
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
-            (identical(other.dateJoined, dateJoined) ||
-                other.dateJoined == dateJoined) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.city, city) || other.city == city));
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            const DeepCollectionEquality()
+                .equals(other._interests, _interests));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, username, firstName, lastName, dateJoined, email, city);
+  int get hashCode => Object.hash(runtimeType, username, firstName, lastName,
+      email, city, password, const DeepCollectionEquality().hash(_interests));
 
   @JsonKey(ignore: true)
   @override
@@ -240,9 +262,10 @@ abstract class _UserCreate implements UserCreate {
       {required final String username,
       @JsonKey(name: 'first_name') required final String firstName,
       @JsonKey(name: 'last_name') required final String lastName,
-      @JsonKey(name: 'date_joined') required final String dateJoined,
       required final String email,
-      required final String city}) = _$UserCreateImpl;
+      required final String city,
+      required final String password,
+      required final List<String> interests}) = _$UserCreateImpl;
 
   factory _UserCreate.fromJson(Map<String, dynamic> json) =
       _$UserCreateImpl.fromJson;
@@ -256,12 +279,13 @@ abstract class _UserCreate implements UserCreate {
   @JsonKey(name: 'last_name')
   String get lastName;
   @override
-  @JsonKey(name: 'date_joined')
-  String get dateJoined;
-  @override
   String get email;
   @override
   String get city;
+  @override
+  String get password;
+  @override
+  List<String> get interests;
   @override
   @JsonKey(ignore: true)
   _$$UserCreateImplCopyWith<_$UserCreateImpl> get copyWith =>

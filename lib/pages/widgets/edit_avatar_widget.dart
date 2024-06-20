@@ -4,15 +4,16 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 class EditAvatarWidget extends StatelessWidget {
   final Image img;
+  final VoidCallback? onTap;
 
-  const EditAvatarWidget({super.key, required this.img});
+  const EditAvatarWidget({super.key, required this.img, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Stack(
         alignment: Alignment.bottomRight,
         children: [

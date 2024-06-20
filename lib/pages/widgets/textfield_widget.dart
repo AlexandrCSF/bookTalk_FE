@@ -4,18 +4,24 @@ import 'package:flutter/material.dart';
 class TextFieldWidget extends StatefulWidget {
   final String label;
   final String hintText;
-  final String text;
   final int maxLines;
+  final TextEditingController? controller;
+  final bool? isObscure;
 
-
-  const TextFieldWidget({super.key, required this.label, required this.hintText, required this.text, required this.maxLines});
+  const TextFieldWidget({
+    super.key,
+    required this.label,
+    required this.hintText,
+    required this.maxLines,
+    this.controller,
+    this.isObscure,
+  });
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
 }
 
 class _TextFieldWidgetState extends State<TextFieldWidget> {
-  final controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +36,21 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             padding: const EdgeInsets.only(bottom: 10),
             child: Text(
               widget.label,
-              style: text.headlineLarge
-                  ?.copyWith(color: colors.onBackground),
+              style: text.headlineLarge?.copyWith(color: colors.onBackground),
             ),
           ),
           TextFormField(
-            /*controller: controller,*/
+            controller: widget.controller,
             textAlign: TextAlign.start,
             textAlignVertical: TextAlignVertical.center,
-            initialValue: widget.text,
             maxLines: widget.maxLines,
-            style: text.labelMedium
-                ?.copyWith(color: colors.onBackground),
+            style: text.headlineSmall?.copyWith(color: colors.onBackground),
+            obscureText: widget.isObscure ?? false,
+            obscuringCharacter: '*',
             decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
               hintText: widget.hintText,
-              hintStyle:
-              text.labelMedium?.copyWith(color: colors.outline),
+              hintStyle: text.headlineSmall?.copyWith(color: colors.outline),
               fillColor: colors.onInverseSurface,
               filled: true,
               enabledBorder: OutlineInputBorder(
@@ -53,14 +58,14 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                   width: 2,
                   color: colors.inversePrimary,
                 ),
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(22),
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                   width: 2,
                   color: colors.inversePrimary,
                 ),
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(22),
               ),
             ),
           ),

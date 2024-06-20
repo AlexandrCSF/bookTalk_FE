@@ -1,6 +1,8 @@
 import 'package:booktalk_frontend/data/urls/conversation_urls.dart';
 import 'package:booktalk_frontend/models/conversation.dart';
+import 'package:booktalk_frontend/models/conversation_create.dart';
 import 'package:booktalk_frontend/models/message.dart';
+import 'package:booktalk_frontend/models/message_create.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -21,13 +23,13 @@ abstract class ConversationClient {
   );
 
   @POST(ConversationUrls.createConversation)
-  Future<Conversation> createConversation(
-    @Body() Conversation conversation,
+  Future<ConversationCreate> createConversation(
+    @Body() Map<String, dynamic> conversationCreate,
   );
 
   @POST(ConversationUrls.createMessage)
-  Future<Message> createMessage(
-    @Body() Message message,
+  Future<MessageCreate> createMessage(
+    @Body() Map<String, dynamic> messageCreate,
   );
 
 }

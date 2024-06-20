@@ -6,6 +6,7 @@ abstract class MeetingUrls {
 
   /// POST
   static const String attendMeeting = '/meetings/attend/';
+  static const String wontAttendMeeting = '/meetings/wont_attend/';
 
   /// PUT
   static const String createMeeting = '/meetings/meeting/';

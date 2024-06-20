@@ -1,3 +1,4 @@
+import 'package:booktalk_frontend/models/genre.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user.freezed.dart';
@@ -16,7 +17,10 @@ abstract class User with _$User {
     required String email,
     required String city,
     required String uuid,
-    @JsonKey(name: 'refresh_token') required String refresh_token,
+    required String password,
+    required List<Genre> interests,
+    required String picture,
+    //@JsonKey(name: 'refresh_token') required String refreshToken,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

@@ -1,0 +1,12 @@
+export 'authorization_viewmodel.dart';
+export 'book_club_list_viewmodel.dart';
+export 'book_club_viewmodel.dart';
+export 'create_club_viewmodel.dart';
+export 'create_event_viewmodel.dart';
+export 'discussion_list_viewmodel.dart';
+export 'discussion_viewmodel.dart';
+export 'edit_event_viewmodel.dart';
+export 'event_list_viewmodel.dart';
+export 'my_events_viewmodel.dart';
+export 'profile_viewmodel.dart';
+export 'registration_viewmodel.dart';

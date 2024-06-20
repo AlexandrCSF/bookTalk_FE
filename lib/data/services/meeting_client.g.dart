@@ -19,13 +19,13 @@ class _MeetingClient implements MeetingClient {
   String? baseUrl;
 
   @override
-  Future<List<Meeting>> getListOfAttenders(int userId) async {
+  Future<List<User>> getListOfAttenders(int meetingId) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'user_id': userId};
+    final queryParameters = <String, dynamic>{r'meeting_id': meetingId};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<Meeting>>(Options(
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<User>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -42,15 +42,15 @@ class _MeetingClient implements MeetingClient {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) => Meeting.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => User.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<List<Meeting>> getListOfMeeting(int meetingId) async {
+  Future<List<Meeting>> getListOfMeetingsForUser(int userId) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'meeting_id': meetingId};
+    final queryParameters = <String, dynamic>{r'user_id': userId};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =
@@ -77,48 +77,63 @@ class _MeetingClient implements MeetingClient {
   }
 
   @override
-  Future<Meeting> attendMeeting(
-    Meeting meeting,
-    int userId,
-    int meetingId,
-  ) async {
+  Future<void> attendMeeting(int meetingId) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'user_id': userId,
-      r'meeting_id': meetingId,
-    };
+    final queryParameters = <String, dynamic>{r'meeting_id': meetingId};
     final _headers = <String, dynamic>{};
-    final _data = meeting;
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Meeting>(Options(
+    const Map<String, dynamic>? _data = null;
+    await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/meetings/attend/',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = Meeting.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/meetings/attend/',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+  }
+
+  @override
+  Future<void> wontAttendMeeting(int meetingId) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'meeting_id': meetingId};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/meetings/wont_attend/',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
   }
 
   @override
   Future<MeetingCreate> createMeeting(
-    MeetingCreate meetingCreate,
+    Map<String, dynamic> meetingCreate,
     String clubId,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'club_id': clubId};
     final _headers = <String, dynamic>{};
-    final _data = meetingCreate;
+    final _data = <String, dynamic>{};
+    _data.addAll(meetingCreate);
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<MeetingCreate>(Options(
       method: 'PUT',
@@ -142,13 +157,14 @@ class _MeetingClient implements MeetingClient {
 
   @override
   Future<Meeting> editMeeting(
-    MeetingPatch meetingPatch,
+    Map<String, dynamic> meetingPatch,
     int meetingId,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'meeting_id': meetingId};
     final _headers = <String, dynamic>{};
-    final _data = meetingPatch;
+    final _data = <String, dynamic>{};
+    _data.addAll(meetingPatch);
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<Meeting>(Options(
       method: 'PATCH',

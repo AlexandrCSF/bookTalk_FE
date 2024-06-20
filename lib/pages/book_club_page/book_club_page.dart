@@ -1,30 +1,30 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/club_card.dart';
-import 'package:booktalk_frontend/navigation/app_router.dart';
+import 'package:booktalk_frontend/pages/widgets/main_disabled_button.dart';
+import 'package:booktalk_frontend/utils/analytics/analytics.dart';
+import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/book_club_page/widgets/club_description.dart';
 import 'package:booktalk_frontend/pages/book_club_page/widgets/club_tags.dart';
 import 'package:booktalk_frontend/pages/book_club_page/widgets/event_list_widget.dart';
 import 'package:booktalk_frontend/pages/widgets/main_outline_button.dart';
 import 'package:booktalk_frontend/pages/widgets/main_primary_button.dart';
+import 'package:booktalk_frontend/viewmodels/book_club_list_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/book_club_viewmodel.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
-
-import '../widgets/event_widget.dart';
-import '../widgets/tag_widget.dart';
 
 @RoutePage()
 class BookClubPage extends StatefulWidget {
   final int id;
+  final ClubCard? clubCard;
 
   const BookClubPage({
     super.key,
     @PathParam('id') required this.id,
+    this.clubCard,
   });
 
   @override
@@ -32,47 +32,43 @@ class BookClubPage extends StatefulWidget {
 }
 
 class _BookClubPageState extends State<BookClubPage> {
-  /*bool _isSubscribed = false;
-
-  void _toggleSubscribe() {
-    setState(() {
-      _isSubscribed = !_isSubscribed;
-    });
-  }*/
-
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    /*List<String> tags = ["#детектив", "#исторический_роман", "#юмор"];
-    List<String> events = [
-      "Исторические романы · Наследник из Калькутты · 15 июля 2024 · 14:00 · кафе Жёлтый носорог",
-      "Ещё какой-нибудь клуб · Ещё какая-нибудь книга · 29 августа 2024 · 16:30 · кафе G. Shelter"
-    ];*/
-    return Scaffold(
-      appBar: AppBar(
-        surfaceTintColor: colors.background,
-        elevation: 0,
-        leading: AutoLeadingButton(color: colors.primary),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: IconButton(
-              icon: Icon(MdiIcons.accountMultipleOutline),
-              color: colors.primary,
-              onPressed: () {
-                // todo: add clubId to MemberListRoute
-                context.router.navigate(const MemberListRoute());
-              },
-            ),
-          )
-        ],
-      ),
-      body: Consumer<BookClubViewModel>(
-        builder: (context, provider, child) {
-          // todo: change userId
-          provider.getClubData('${widget.id}', 1);
-          return provider.isLoading
+    getIt.get<Analytics>().openClubPage();
+    final profileProvider = Provider.of<ProfileViewModel>(context);
+    BookClubViewModel provider =
+        Provider.of<BookClubViewModel>(context, listen: false);
+    BookClubListViewModel clubListProvider =
+    Provider.of<BookClubListViewModel>(context, listen: false);
+    if (profileProvider.authorized) {
+      provider.getClubData(profileProvider.userId, widget.id);
+    } else {
+      provider.getUnauthorizedClubData(widget.id);
+    }
+    return Consumer<BookClubViewModel>(
+      builder: (context, provider, child) {
+        return Scaffold(
+          appBar: AppBar(
+            surfaceTintColor: colors.background,
+            elevation: 0,
+            leading: AutoLeadingButton(color: colors.primary),
+            actions: [
+              if(profileProvider.authorized) Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: IconButton(
+                  icon: Icon(MdiIcons.accountMultipleOutline),
+                  color: colors.primary,
+                  onPressed: () {
+                    context.router
+                        .navigate(MemberListRoute(members: provider.members));
+                  },
+                ),
+              )
+            ],
+          ),
+          body: provider.isLoading
               ? const Center(child: CircularProgressIndicator())
               : CustomScrollView(
                   slivers: [
@@ -84,11 +80,15 @@ class _BookClubPageState extends State<BookClubPage> {
                         background: Stack(
                           children: [
                             Positioned.fill(
-                              // todo: change to imageUrl
-                              child: Image.asset(
-                                'lib/images/hist_map.jpg',
-                                fit: BoxFit.cover,
-                              ),
+                              child: provider.imageUrl.isEmpty
+                                  ? Image.asset(
+                                      'lib/utils/resources/images/base_club_avatar.png',
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Image.network(
+                                      provider.imageUrl,
+                                      fit: BoxFit.cover,
+                                    ),
                             ),
                             Align(
                               alignment: Alignment.bottomCenter,
@@ -123,56 +123,75 @@ class _BookClubPageState extends State<BookClubPage> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 10.0),
-                            child: provider.isAdministrator
-                                ? MainPrimaryButton(
-                                    label: 'Редактировать',
-                                    icon: MdiIcons.pencil,
-                                    onTap: () {
-                                      context.router
-                                          .navigate(const EditClubRoute());
-                                    },
-                                  )
-                                : provider.isSubscribed
-                                    ? MainOutlineButton(
-                                        label: 'Вы вступили',
-                                        icon: MdiIcons.check,
-                                        onTap: () =>
-                                            provider.subscribe(widget.id as String),
+                            child: profileProvider.authorized
+                                ? provider.isAdministrator
+                                    ? MainPrimaryButton(
+                                        label: 'Редактировать',
+                                        icon: MdiIcons.pencil,
+                                        onTap: () {
+                                          context.router.navigate(
+                                              EditClubRoute(id: widget.id));
+                                        },
                                       )
-                                    : MainPrimaryButton(
-                                        label: 'Вступить',
-                                        icon: MdiIcons.plus,
-                                        onTap: () =>
-                                            provider.subscribe(widget.id as String),
-                                      ),
+                                    : provider.isSubscribed
+                                        ? MainOutlineButton(
+                                            label: 'Вы вступили',
+                                            icon: MdiIcons.check,
+                                            onTap: () => provider.unsubscribe().then((value) => clubListProvider.loadClubs()),
+                                          )
+                                        : MainPrimaryButton(
+                                            label: 'Вступить',
+                                            icon: MdiIcons.plus,
+                                            onTap: () => provider.subscribe().then((value) => clubListProvider.loadClubs()),
+                                          )
+                                : MainDisabledButton(
+                                    label: 'Вступить',
+                                    icon: MdiIcons.close,
+                                    onTap: () => context.router
+                                        .navigate(ProfileTab(children: [ProfileRoute()])),
+                                  ),
                           ),
                           ClubDescription(
                             description: provider.club!.description,
                           ),
                           ClubTags(tags: provider.genres),
                           Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: MainPrimaryButton(
-                              label: 'Обсуждения',
-                              icon: MdiIcons.arrowRight,
-                              onTap: () {
-                                context.navigateTo(DiscussionListRoute());
-                              },
-                            ),
-                          ),
-                          EventListWidget(
-                            events: provider.genres,
+                              padding: const EdgeInsets.only(top: 20.0),
+                              child: profileProvider.authorized
+                                  ? MainPrimaryButton(
+                                      label: 'Обсуждения',
+                                      icon: MdiIcons.arrowRight,
+                                      onTap: () {
+                                        context.router.navigate(
+                                            DiscussionListRoute(
+                                                clubId: widget.id));
+                                      },
+                                    )
+                                  : MainDisabledButton(
+                                      label: 'Обсуждения',
+                                      icon: MdiIcons.close,
+                                      onTap: () => context.router
+                                          .navigate(ProfileTab(children: [ProfileRoute()])),
+                                    )),
+                          if (profileProvider.authorized) EventListWidget(
+                            events: provider.events,
                             onTap: () {
-                              context.router.navigate(const EventListRoute());
+                              context.router.navigate(
+                                EventListRoute(
+                                  clubId: widget.id,
+                                  isAdministrator: provider.isAdministrator,
+                                  isSubscribed: provider.isSubscribed,
+                                ),
+                              );
                             },
                           ),
                         ],
                       ),
                     ),
                   ],
-                );
-        },
-      ),
+                ),
+        );
+      },
     );
   }
 }

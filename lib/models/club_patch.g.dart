@@ -12,6 +12,8 @@ _$ClubPatchImpl _$$ClubPatchImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
       cityFias: json['city_fias'] as String,
       admin: (json['admin'] as num).toInt(),
+      interests:
+          (json['interests'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$ClubPatchImplToJson(_$ClubPatchImpl instance) =>
@@ -20,4 +22,5 @@ Map<String, dynamic> _$$ClubPatchImplToJson(_$ClubPatchImpl instance) =>
       'description': instance.description,
       'city_fias': instance.cityFias,
       'admin': instance.admin,
+      'interests': instance.interests,
     };

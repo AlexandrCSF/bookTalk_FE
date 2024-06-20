@@ -1,9 +1,9 @@
+import 'dart:io';
+
 import 'package:booktalk_frontend/data/urls/auth_urls.dart';
 import 'package:booktalk_frontend/models/free_token.dart';
-import 'package:booktalk_frontend/models/token_refresh_serializer_request.dart';
 import 'package:booktalk_frontend/models/user.dart';
 import 'package:booktalk_frontend/models/user_create.dart';
-import 'package:booktalk_frontend/models/user_uuid_serializer_request.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -19,18 +19,40 @@ abstract class AuthClient {
   );
 
   @POST(AuthUrls.createUser)
-  Future<UserCreate> createUser(
+  Future<User> createUser(
     @Query('uuid') String uuid,
-    @Body() UserCreate userCreate,
+    @Body() Map<String, dynamic> userCreate,
   );
 
   @POST(AuthUrls.freeToken)
   Future<FreeToken> freeToken(
-    @Body() UserUuidSerializerRequest userUuidSerializerRequest,
+    @Body() Map<String, dynamic> userUuidSerializerRequest,
   );
 
   @POST(AuthUrls.refreshToken)
   Future<FreeToken> refreshToken(
-    @Body() TokenRefreshSerializerRequest tokenRefreshSerializerRequest,
+    @Body() Map<String, dynamic> tokenRefreshSerializerRequest,
   );
+
+  @POST(AuthUrls.logIn)
+  Future<FreeToken> logIn(
+    @Body() Map<String, dynamic> login,
+  );
+
+  @PATCH(AuthUrls.editUser)
+  Future<User> editUser(
+    @Body() Map<String, dynamic> userPatch,
+    @Query('user_id') int userId,
+  );
+
+  @DELETE(AuthUrls.deleteUser)
+  Future<void> deleteUser();
+
+  @POST(AuthUrls.uploadProfilePicture)
+  @MultiPart()
+  Future<void> uploadImage(
+      @Part() File picture,
+      @Part() int user_id,
+      );
+
 }

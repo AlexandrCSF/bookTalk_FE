@@ -23,10 +23,12 @@ mixin _$ClubCard {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  int get admin => throw _privateConstructorUsedError;
+  User get admin => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
-  List<int> get interests => throw _privateConstructorUsedError;
+  List<Genre> get interests => throw _privateConstructorUsedError;
   List<Meeting> get meetings => throw _privateConstructorUsedError;
+  String get picture => throw _privateConstructorUsedError;
+  int? get numOfSubscribers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,10 +45,14 @@ abstract class $ClubCardCopyWith<$Res> {
       {int id,
       String name,
       String description,
-      int admin,
+      User admin,
       String city,
-      List<int> interests,
-      List<Meeting> meetings});
+      List<Genre> interests,
+      List<Meeting> meetings,
+      String picture,
+      int? numOfSubscribers});
+
+  $UserCopyWith<$Res> get admin;
 }
 
 /// @nodoc
@@ -69,6 +75,8 @@ class _$ClubCardCopyWithImpl<$Res, $Val extends ClubCard>
     Object? city = null,
     Object? interests = null,
     Object? meetings = null,
+    Object? picture = null,
+    Object? numOfSubscribers = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -86,7 +94,7 @@ class _$ClubCardCopyWithImpl<$Res, $Val extends ClubCard>
       admin: null == admin
           ? _value.admin
           : admin // ignore: cast_nullable_to_non_nullable
-              as int,
+              as User,
       city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -94,12 +102,28 @@ class _$ClubCardCopyWithImpl<$Res, $Val extends ClubCard>
       interests: null == interests
           ? _value.interests
           : interests // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<Genre>,
       meetings: null == meetings
           ? _value.meetings
           : meetings // ignore: cast_nullable_to_non_nullable
               as List<Meeting>,
+      picture: null == picture
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as String,
+      numOfSubscribers: freezed == numOfSubscribers
+          ? _value.numOfSubscribers
+          : numOfSubscribers // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get admin {
+    return $UserCopyWith<$Res>(_value.admin, (value) {
+      return _then(_value.copyWith(admin: value) as $Val);
+    });
   }
 }
 
@@ -115,10 +139,15 @@ abstract class _$$ClubCardImplCopyWith<$Res>
       {int id,
       String name,
       String description,
-      int admin,
+      User admin,
       String city,
-      List<int> interests,
-      List<Meeting> meetings});
+      List<Genre> interests,
+      List<Meeting> meetings,
+      String picture,
+      int? numOfSubscribers});
+
+  @override
+  $UserCopyWith<$Res> get admin;
 }
 
 /// @nodoc
@@ -139,6 +168,8 @@ class __$$ClubCardImplCopyWithImpl<$Res>
     Object? city = null,
     Object? interests = null,
     Object? meetings = null,
+    Object? picture = null,
+    Object? numOfSubscribers = freezed,
   }) {
     return _then(_$ClubCardImpl(
       id: null == id
@@ -156,7 +187,7 @@ class __$$ClubCardImplCopyWithImpl<$Res>
       admin: null == admin
           ? _value.admin
           : admin // ignore: cast_nullable_to_non_nullable
-              as int,
+              as User,
       city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -164,11 +195,19 @@ class __$$ClubCardImplCopyWithImpl<$Res>
       interests: null == interests
           ? _value._interests
           : interests // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<Genre>,
       meetings: null == meetings
           ? _value._meetings
           : meetings // ignore: cast_nullable_to_non_nullable
               as List<Meeting>,
+      picture: null == picture
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as String,
+      numOfSubscribers: freezed == numOfSubscribers
+          ? _value.numOfSubscribers
+          : numOfSubscribers // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -182,8 +221,10 @@ class _$ClubCardImpl implements _ClubCard {
       required this.description,
       required this.admin,
       required this.city,
-      required final List<int> interests,
-      required final List<Meeting> meetings})
+      required final List<Genre> interests,
+      required final List<Meeting> meetings,
+      required this.picture,
+      this.numOfSubscribers})
       : _interests = interests,
         _meetings = meetings;
 
@@ -197,12 +238,12 @@ class _$ClubCardImpl implements _ClubCard {
   @override
   final String description;
   @override
-  final int admin;
+  final User admin;
   @override
   final String city;
-  final List<int> _interests;
+  final List<Genre> _interests;
   @override
-  List<int> get interests {
+  List<Genre> get interests {
     if (_interests is EqualUnmodifiableListView) return _interests;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_interests);
@@ -217,8 +258,13 @@ class _$ClubCardImpl implements _ClubCard {
   }
 
   @override
+  final String picture;
+  @override
+  final int? numOfSubscribers;
+
+  @override
   String toString() {
-    return 'ClubCard(id: $id, name: $name, description: $description, admin: $admin, city: $city, interests: $interests, meetings: $meetings)';
+    return 'ClubCard(id: $id, name: $name, description: $description, admin: $admin, city: $city, interests: $interests, meetings: $meetings, picture: $picture, numOfSubscribers: $numOfSubscribers)';
   }
 
   @override
@@ -234,7 +280,10 @@ class _$ClubCardImpl implements _ClubCard {
             (identical(other.city, city) || other.city == city) &&
             const DeepCollectionEquality()
                 .equals(other._interests, _interests) &&
-            const DeepCollectionEquality().equals(other._meetings, _meetings));
+            const DeepCollectionEquality().equals(other._meetings, _meetings) &&
+            (identical(other.picture, picture) || other.picture == picture) &&
+            (identical(other.numOfSubscribers, numOfSubscribers) ||
+                other.numOfSubscribers == numOfSubscribers));
   }
 
   @JsonKey(ignore: true)
@@ -247,7 +296,9 @@ class _$ClubCardImpl implements _ClubCard {
       admin,
       city,
       const DeepCollectionEquality().hash(_interests),
-      const DeepCollectionEquality().hash(_meetings));
+      const DeepCollectionEquality().hash(_meetings),
+      picture,
+      numOfSubscribers);
 
   @JsonKey(ignore: true)
   @override
@@ -268,10 +319,12 @@ abstract class _ClubCard implements ClubCard {
       {required final int id,
       required final String name,
       required final String description,
-      required final int admin,
+      required final User admin,
       required final String city,
-      required final List<int> interests,
-      required final List<Meeting> meetings}) = _$ClubCardImpl;
+      required final List<Genre> interests,
+      required final List<Meeting> meetings,
+      required final String picture,
+      final int? numOfSubscribers}) = _$ClubCardImpl;
 
   factory _ClubCard.fromJson(Map<String, dynamic> json) =
       _$ClubCardImpl.fromJson;
@@ -283,13 +336,17 @@ abstract class _ClubCard implements ClubCard {
   @override
   String get description;
   @override
-  int get admin;
+  User get admin;
   @override
   String get city;
   @override
-  List<int> get interests;
+  List<Genre> get interests;
   @override
   List<Meeting> get meetings;
+  @override
+  String get picture;
+  @override
+  int? get numOfSubscribers;
   @override
   @JsonKey(ignore: true)
   _$$ClubCardImplCopyWith<_$ClubCardImpl> get copyWith =>
