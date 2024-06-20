@@ -102,8 +102,6 @@ class BookClubViewModel extends ChangeNotifier {
 
   late int _clubId;
 
-  //BookClubViewModel({required this.clubId});
-
   late ClubCard _club;
 
   ClubCard get club => _club;

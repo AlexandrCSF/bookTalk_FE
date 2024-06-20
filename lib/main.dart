@@ -17,7 +17,6 @@ import 'package:booktalk_frontend/data/services/services.dart';
 import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:booktalk_frontend/utils/secure_storage.dart';
 import 'package:booktalk_frontend/viewmodels/viewmodels.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'booktalk_app.dart';
 
@@ -60,9 +59,6 @@ Future<void> main() async {
 
   /// free token for unauthorized requests
   await getIt.get<AuthRepository>().freeToken().then((value) => ProfileViewModel().setUserId(value.userId));
-
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.remove('isFirstLaunch');
 
   /// data formatting
   initializeDateFormatting().then(

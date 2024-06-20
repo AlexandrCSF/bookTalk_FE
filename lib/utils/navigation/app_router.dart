@@ -162,7 +162,6 @@ class AuthGuard extends AutoRouteGuard {
       await prefs.setBool('isFirstLaunch', false);
     } else {
       resolver.next(true);
-      //await prefs.remove('isFirstLaunch');
     }
   }
 }
