@@ -23,9 +23,9 @@ mixin _$MessageCard {
   int get id => throw _privateConstructorUsedError;
   int get conversation => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
-  String get lastName =>
-      throw _privateConstructorUsedError; //todo: add profile image
+  String get lastName => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
+  String get picture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +44,8 @@ abstract class $MessageCardCopyWith<$Res> {
       int conversation,
       String firstName,
       String lastName,
-      String text});
+      String text,
+      String picture});
 }
 
 /// @nodoc
@@ -65,6 +66,7 @@ class _$MessageCardCopyWithImpl<$Res, $Val extends MessageCard>
     Object? firstName = null,
     Object? lastName = null,
     Object? text = null,
+    Object? picture = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -87,6 +89,10 @@ class _$MessageCardCopyWithImpl<$Res, $Val extends MessageCard>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
+      picture: null == picture
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -104,7 +110,8 @@ abstract class _$$MessageCardImplCopyWith<$Res>
       int conversation,
       String firstName,
       String lastName,
-      String text});
+      String text,
+      String picture});
 }
 
 /// @nodoc
@@ -123,6 +130,7 @@ class __$$MessageCardImplCopyWithImpl<$Res>
     Object? firstName = null,
     Object? lastName = null,
     Object? text = null,
+    Object? picture = null,
   }) {
     return _then(_$MessageCardImpl(
       id: null == id
@@ -145,6 +153,10 @@ class __$$MessageCardImplCopyWithImpl<$Res>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
+      picture: null == picture
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -157,7 +169,8 @@ class _$MessageCardImpl implements _MessageCard {
       required this.conversation,
       required this.firstName,
       required this.lastName,
-      required this.text});
+      required this.text,
+      required this.picture});
 
   factory _$MessageCardImpl.fromJson(Map<String, dynamic> json) =>
       _$$MessageCardImplFromJson(json);
@@ -170,13 +183,14 @@ class _$MessageCardImpl implements _MessageCard {
   final String firstName;
   @override
   final String lastName;
-//todo: add profile image
   @override
   final String text;
+  @override
+  final String picture;
 
   @override
   String toString() {
-    return 'MessageCard(id: $id, conversation: $conversation, firstName: $firstName, lastName: $lastName, text: $text)';
+    return 'MessageCard(id: $id, conversation: $conversation, firstName: $firstName, lastName: $lastName, text: $text, picture: $picture)';
   }
 
   @override
@@ -191,13 +205,14 @@ class _$MessageCardImpl implements _MessageCard {
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
-            (identical(other.text, text) || other.text == text));
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.picture, picture) || other.picture == picture));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, conversation, firstName, lastName, text);
+  int get hashCode => Object.hash(
+      runtimeType, id, conversation, firstName, lastName, text, picture);
 
   @JsonKey(ignore: true)
   @override
@@ -219,7 +234,8 @@ abstract class _MessageCard implements MessageCard {
       required final int conversation,
       required final String firstName,
       required final String lastName,
-      required final String text}) = _$MessageCardImpl;
+      required final String text,
+      required final String picture}) = _$MessageCardImpl;
 
   factory _MessageCard.fromJson(Map<String, dynamic> json) =
       _$MessageCardImpl.fromJson;
@@ -232,8 +248,10 @@ abstract class _MessageCard implements MessageCard {
   String get firstName;
   @override
   String get lastName;
-  @override //todo: add profile image
+  @override
   String get text;
+  @override
+  String get picture;
   @override
   @JsonKey(ignore: true)
   _$$MessageCardImplCopyWith<_$MessageCardImpl> get copyWith =>

@@ -61,7 +61,7 @@ abstract class ClubClient {
     @Query('club_id') String clubId,
   );
 
-  @POST(ClubUrls.subscribeToClub)
+  @POST(ClubUrls.unsubscribeFromClub)
   Future<void> unsubscribeFromClub(
     @Query('club_id') String clubId,
   );

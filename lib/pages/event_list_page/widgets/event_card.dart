@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booktalk_frontend/models/club_meeting.dart';
 import 'package:booktalk_frontend/models/meeting.dart';
+import 'package:booktalk_frontend/pages/widgets/small_disabled_button.dart';
 import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/widgets/small_primary_button.dart';
 import 'package:booktalk_frontend/utils/string_formatting.dart';
@@ -15,6 +16,7 @@ class EventCard extends StatefulWidget {
   final VoidCallback onSubscribe;
   final VoidCallback onUnsubscribe;
   final Meeting meeting;
+  final bool isSubscribedToClub;
 
   const EventCard({
     super.key,
@@ -22,6 +24,7 @@ class EventCard extends StatefulWidget {
     required this.onSubscribe,
     required this.onUnsubscribe,
     required this.meeting,
+    required this.isSubscribedToClub,
   });
 
   @override
@@ -120,15 +123,15 @@ class _EventCardState extends State<EventCard> {
                                 EditEventRoute(meeting: widget.clubMeeting));
                           },
                         )
-                      : widget.clubMeeting.isSubscribed
-                          ? SmallOutlineButton(
-                              icon: MdiIcons.check,
+                      : widget.isSubscribedToClub ? widget.clubMeeting.isSubscribed
+                      ? SmallOutlineButton(
+                    icon: MdiIcons.check,
                     onTap: widget.onUnsubscribe,
-                            )
-                          : SmallPrimaryButton(
-                              icon: MdiIcons.plus,
+                  )
+                      : SmallPrimaryButton(
+                    icon: MdiIcons.plus,
                     onTap: widget.onSubscribe,
-                            ),
+                  ) : SmallDisabledButton(icon: MdiIcons.close),
                 ),
               ],
             ),

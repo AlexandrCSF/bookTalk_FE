@@ -180,6 +180,7 @@ class _BookClubPageState extends State<BookClubPage> {
                                 EventListRoute(
                                   clubId: widget.id,
                                   isAdministrator: provider.isAdministrator,
+                                  isSubscribed: provider.isSubscribed,
                                 ),
                               );
                             },

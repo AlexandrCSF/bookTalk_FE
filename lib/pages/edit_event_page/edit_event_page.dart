@@ -15,7 +15,6 @@ import '../widgets/main_primary_button.dart';
 
 @RoutePage()
 class EditEventPage extends StatefulWidget {
-
   final ClubMeeting meeting;
 
   const EditEventPage({
@@ -32,35 +31,37 @@ class _EditEventPageState extends State<EditEventPage> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    return Scaffold(
-      appBar: AppBar(
-        surfaceTintColor: colors.background,
-        leading: AutoLeadingButton(
-          color: colors.primary,
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(MdiIcons.trashCanOutline),
-              color: colors.primary,
+    return ChangeNotifierProvider<EditEventViewModel>(
+      create: (BuildContext context) =>
+          EditEventViewModel(initialMeeting: widget.meeting)..initEditEvent(),
+      child: Consumer<EditEventViewModel>(
+        builder: (context, provider, child) {
+          return Scaffold(
+            appBar: AppBar(
+              surfaceTintColor: colors.background,
+              leading: AutoLeadingButton(
+                color: colors.primary,
+              ),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: IconButton(
+                    onPressed: () {
+                      provider.deleteEvent();
+                      context.router.maybePop();
+                    },
+                    icon: Icon(MdiIcons.trashCanOutline),
+                    color: colors.primary,
+                  ),
+                )
+              ],
             ),
-          )
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 60),
-          child: Align(
-            alignment: Alignment.center,
-            child: ChangeNotifierProvider<EditEventViewModel>(
-              create: (BuildContext context) =>
-                  EditEventViewModel(initialMeeting: widget.meeting)
-                    ..initEditEvent(),
-              child: Consumer<EditEventViewModel>(
-                builder: (context, provider, child) {
-                  return Column(
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 60),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Column(
                     children: [
                       TextFieldWidget(
                         label: 'Тема мероприятия',
@@ -70,7 +71,8 @@ class _EditEventPageState extends State<EditEventPage> {
                       ),
                       PickerButton(
                         label: 'Дата',
-                        value: StringFormatting.getFormattedDateFromDate(provider.selectedDate),
+                        value: StringFormatting.getFormattedDateFromDate(
+                            provider.selectedDate),
                         icon: MdiIcons.calendar,
                         onTap: () {
                           showDatePicker(
@@ -87,7 +89,8 @@ class _EditEventPageState extends State<EditEventPage> {
                       ),
                       PickerButton(
                         label: 'Время',
-                        value: StringFormatting.getFormattedTimeFromTime(provider.selectedTime),
+                        value: StringFormatting.getFormattedTimeFromTime(
+                            provider.selectedTime),
                         icon: MdiIcons.clock,
                         onTap: () {
                           showTimePicker(
@@ -125,12 +128,12 @@ class _EditEventPageState extends State<EditEventPage> {
                         ),
                       ),
                     ],
-                  );
-                },
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

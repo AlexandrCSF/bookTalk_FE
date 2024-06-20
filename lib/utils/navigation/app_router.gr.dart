@@ -143,6 +143,7 @@ abstract class _$AppRouter extends RootStackRouter {
           key: args.key,
           clubId: args.clubId,
           isAdministrator: args.isAdministrator,
+          isSubscribed: args.isSubscribed,
         ),
       );
     },
@@ -628,6 +629,7 @@ class EventListRoute extends PageRouteInfo<EventListRouteArgs> {
     Key? key,
     required int clubId,
     required bool isAdministrator,
+    required bool isSubscribed,
     List<PageRouteInfo>? children,
   }) : super(
           EventListRoute.name,
@@ -635,6 +637,7 @@ class EventListRoute extends PageRouteInfo<EventListRouteArgs> {
             key: key,
             clubId: clubId,
             isAdministrator: isAdministrator,
+            isSubscribed: isSubscribed,
           ),
           initialChildren: children,
         );
@@ -650,6 +653,7 @@ class EventListRouteArgs {
     this.key,
     required this.clubId,
     required this.isAdministrator,
+    required this.isSubscribed,
   });
 
   final Key? key;
@@ -658,9 +662,11 @@ class EventListRouteArgs {
 
   final bool isAdministrator;
 
+  final bool isSubscribed;
+
   @override
   String toString() {
-    return 'EventListRouteArgs{key: $key, clubId: $clubId, isAdministrator: $isAdministrator}';
+    return 'EventListRouteArgs{key: $key, clubId: $clubId, isAdministrator: $isAdministrator, isSubscribed: $isSubscribed}';
   }
 }
 

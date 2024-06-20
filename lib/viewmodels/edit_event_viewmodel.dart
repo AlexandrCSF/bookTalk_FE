@@ -37,6 +37,16 @@ class EditEventViewModel extends ChangeNotifier {
     }
   }
 
+  Future<void> deleteEvent() async {
+    try {
+      await _repository.deleteEvent(initialMeeting.id);
+    } on ApiException catch (e) {
+      debugPrint(e.message);
+    } finally {
+      notifyListeners();
+    }
+  }
+
   final _topicController = TextEditingController();
   TextEditingController get topicController => _topicController;
 

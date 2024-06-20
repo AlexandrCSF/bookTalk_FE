@@ -83,4 +83,12 @@ class MeetingRepository {
     }
   }
 
+  Future<void> deleteEvent(int meetingId) async {
+    try {
+      await _client.deleteMeeting(meetingId);
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
+
 }

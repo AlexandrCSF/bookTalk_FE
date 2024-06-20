@@ -16,11 +16,13 @@ import 'widgets/event_card.dart';
 class EventListPage extends StatefulWidget {
   final int clubId;
   final bool isAdministrator;
+  final bool isSubscribed;
 
   const EventListPage({
     super.key,
     required this.clubId,
     required this.isAdministrator,
+    required this.isSubscribed,
   });
 
   @override
@@ -82,6 +84,7 @@ class _EventListPageState extends State<EventListPage> {
                   } else {
                     return EventCard(
                       meeting: provider.fromClubMeeting(provider.clubMeetingList[index-1]),
+                      isSubscribedToClub: widget.isSubscribed,
                       clubMeeting: provider.clubMeetingList[index-1],
                       onSubscribe: () => provider
                           .subscribe(provider.clubMeetingList[index-1].id).then((value) => myEventsProvider.loadEvents(profileProvider.userId)),

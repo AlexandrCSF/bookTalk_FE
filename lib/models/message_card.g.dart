@@ -13,6 +13,7 @@ _$MessageCardImpl _$$MessageCardImplFromJson(Map<String, dynamic> json) =>
       firstName: json['firstName'] as String,
       lastName: json['lastName'] as String,
       text: json['text'] as String,
+      picture: json['picture'] as String,
     );
 
 Map<String, dynamic> _$$MessageCardImplToJson(_$MessageCardImpl instance) =>
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$MessageCardImplToJson(_$MessageCardImpl instance) =>
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'text': instance.text,
+      'picture': instance.picture,
     };

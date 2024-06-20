@@ -11,8 +11,8 @@ abstract class MessageCard with _$MessageCard {
     required int conversation,
     required String firstName,
     required String lastName,
-    //todo: add profile image
     required String text,
+    required String picture,
   }) = _MessageCard;
 
   factory MessageCard.fromJson(Map<String, dynamic> json) => _$MessageCardFromJson(json);

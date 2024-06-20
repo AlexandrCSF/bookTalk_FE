@@ -29,6 +29,9 @@ class DiscussionViewModel extends ChangeNotifier {
   String _lastName = '';
   String get lastName => _lastName;
 
+  String _profilePicture = '';
+  String get profilePicture => _profilePicture;
+
   final _messageController = TextEditingController();
   TextEditingController get messageController => _messageController;
 
@@ -48,6 +51,7 @@ class DiscussionViewModel extends ChangeNotifier {
       final conversationAuthor = await _authRepository.getUserData(createdBy);
       _firstName = conversationAuthor.firstName;
       _lastName = conversationAuthor.lastName;
+      _profilePicture = conversationAuthor.picture;
       notifyListeners();
       final result =
           await _repository.getMessagesForConversation(conversationId);
@@ -58,7 +62,9 @@ class DiscussionViewModel extends ChangeNotifier {
             conversation: message.conversation,
             firstName: author.firstName,
             lastName: author.lastName,
-            text: message.text));
+            text: message.text,
+          picture: author.picture,
+        ));
       }
       print(_messages);
     } on ApiException catch (e) {

@@ -34,8 +34,10 @@ class CommentCard extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundImage:
-                        Image.asset('lib/utils/resources/images/base_avatar.png').image,
+                    backgroundImage: message.picture.isEmpty
+                        ? Image.asset('lib/utils/resources/images/base_avatar.png')
+                        .image
+                        : Image.network(message.picture).image,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0),

@@ -74,10 +74,10 @@ class _DiscussionPageState extends State<DiscussionPage> {
                             children: [
                               CircleAvatar(
                                 radius: 30,
-                                backgroundImage:
-                                Image
-                                    .asset('lib/utils/resources/images/base_avatar.png')
-                                    .image,
+                                backgroundImage: provider.profilePicture.isEmpty
+                                    ? Image.asset('lib/utils/resources/images/base_avatar.png')
+                                    .image
+                                    : Image.network(provider.profilePicture).image,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
