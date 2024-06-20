@@ -1,14 +1,17 @@
 import 'dart:collection';
+import 'dart:io';
 
 import 'package:booktalk_frontend/data/api_exceptions.dart';
 import 'package:booktalk_frontend/data/repositories/auth_repository.dart';
 import 'package:booktalk_frontend/data/repositories/genre_repository.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/genre.dart';
+import 'package:booktalk_frontend/models/user.dart';
 import 'package:booktalk_frontend/models/user_create.dart';
 import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:booktalk_frontend/utils/city_fias.dart';
 import 'package:booktalk_frontend/utils/string_formatting.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 
 class RegistrationViewModel extends ChangeNotifier {
@@ -32,8 +35,11 @@ class RegistrationViewModel extends ChangeNotifier {
           password: _passwordController.text,
         );
         print(userCreate);
-        await _repository.signUp(userCreate);
+        User createdUser = await _repository.signUp(userCreate);
         await _analytics.signUp();
+        if (_avatar != null) {
+          await _repository.uploadProfileImage(_avatar!, createdUser.id);
+        }
       } on ApiException catch (e) {
         debugPrint(e.message);
       } finally {
@@ -63,6 +69,15 @@ class RegistrationViewModel extends ChangeNotifier {
     _selectedGenres.remove(genre);
     _selectedGenreIndexes.remove(genre.id);
     _selectedGenreNames.remove(genre.name);
+    notifyListeners();
+  }
+
+  Future<void> choosePicture() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      File file = File(result.files.single.path!);
+      _avatar = file;
+    }
     notifyListeners();
   }
 
@@ -132,5 +147,8 @@ class RegistrationViewModel extends ChangeNotifier {
 
   String _errorMessage = '';
   String get errorMessage => _errorMessage;
+
+  File? _avatar;
+  File? get avatar => _avatar;
 
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:booktalk_frontend/data/urls/auth_urls.dart';
 import 'package:booktalk_frontend/models/free_token.dart';
 import 'package:booktalk_frontend/models/user.dart';
@@ -45,4 +47,12 @@ abstract class AuthClient {
 
   @DELETE(AuthUrls.deleteUser)
   Future<void> deleteUser();
+
+  @POST(AuthUrls.uploadProfilePicture)
+  @MultiPart()
+  Future<void> uploadImage(
+      @Part() File picture,
+      @Part() int user_id,
+      );
+
 }

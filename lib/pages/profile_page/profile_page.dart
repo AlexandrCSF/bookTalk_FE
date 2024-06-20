@@ -37,25 +37,19 @@ class _ProfilePageState extends State<ProfilePage> {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
     getIt.get<Analytics>().openProfilePage();
-    if(provider.authorized) {
+    if (provider.authorized) {
       provider.loadUserData(provider.userId);
     }
-    return Consumer<ProfileViewModel>(
-      builder: (context, provider, child) {
-        if(provider.authorized) {
-          return _authorizedProfilePage(text, colors);
-        } else {
-          return _unathorizedProfilePage(text, colors);
-        }
+    return Consumer<ProfileViewModel>(builder: (context, provider, child) {
+      if (provider.authorized) {
+        return _authorizedProfilePage(text, colors);
+      } else {
+        return _unathorizedProfilePage(text, colors);
       }
-    );
+    });
   }
 
   Widget _authorizedProfilePage(TextTheme text, ColorScheme colors) {
-    Image? img;
-    provider.profilePicture != null
-        ? img = Image.network(provider.profilePicture!)
-        : img = null;
     return Scaffold(
       appBar: AppBar(
         surfaceTintColor: colors.background,
@@ -89,10 +83,12 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 37),
-                  // todo: add image
                   child: AvatarWidget(
-                      img: img ??= Image.asset(
-                          'lib/utils/resources/images/base_avatar.png')),
+                    img: provider.profilePicture == null
+                        ? Image.asset(
+                            'lib/utils/resources/images/base_avatar.png')
+                        : Image.network(provider.profilePicture!),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 16),
@@ -212,8 +208,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   padding: const EdgeInsets.only(top: 17),
                   child: Text(
                     "Читай, общайся, развивайся вместе с bookTalk",
-                    style:
-                        text.titleMedium?.copyWith(color: colors.onBackground, height: 1.2),
+                    style: text.titleMedium
+                        ?.copyWith(color: colors.onBackground, height: 1.2),
                     textAlign: TextAlign.center,
                   ),
                 ),

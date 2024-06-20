@@ -105,7 +105,7 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: EditClubPage(
           key: args.key,
-          club: args.club,
+          id: args.id,
         ),
       );
     },
@@ -488,13 +488,13 @@ class EditClubInterestsRoute extends PageRouteInfo<void> {
 class EditClubRoute extends PageRouteInfo<EditClubRouteArgs> {
   EditClubRoute({
     Key? key,
-    required ClubCard club,
+    required int id,
     List<PageRouteInfo>? children,
   }) : super(
           EditClubRoute.name,
           args: EditClubRouteArgs(
             key: key,
-            club: club,
+            id: id,
           ),
           initialChildren: children,
         );
@@ -508,16 +508,16 @@ class EditClubRoute extends PageRouteInfo<EditClubRouteArgs> {
 class EditClubRouteArgs {
   const EditClubRouteArgs({
     this.key,
-    required this.club,
+    required this.id,
   });
 
   final Key? key;
 
-  final ClubCard club;
+  final int id;
 
   @override
   String toString() {
-    return 'EditClubRouteArgs{key: $key, club: $club}';
+    return 'EditClubRouteArgs{key: $key, id: $id}';
   }
 }
 

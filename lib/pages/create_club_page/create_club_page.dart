@@ -27,10 +27,12 @@ class CreateClubPage extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
     getIt.get<Analytics>().openCreateClubPage();
-    CreateClubViewModel provider = Provider.of<CreateClubViewModel>(context, listen: false);
+    CreateClubViewModel provider =
+        Provider.of<CreateClubViewModel>(context, listen: false);
     provider.loadGenres();
     ProfileViewModel profileProvider = Provider.of<ProfileViewModel>(context);
-    BookClubListViewModel clubListProvider = Provider.of<BookClubListViewModel>(context, listen: false);
+    BookClubListViewModel clubListProvider =
+        Provider.of<BookClubListViewModel>(context, listen: false);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -53,9 +55,11 @@ class CreateClubPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 18, bottom: 12),
                         child: EditAvatarWidget(
-                          img: Image.asset(
-                              'lib/utils/resources/images/base_club_avatar.png'),
-                        ),
+                          onTap: () => provider.choosePicture(),
+                            img: provider.clubAvatar == null
+                                ? Image.asset(
+                                    'lib/utils/resources/images/base_club_avatar.png')
+                                : Image.file(provider.clubAvatar!),),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 60, right: 60),
@@ -73,11 +77,6 @@ class CreateClubPage extends StatelessWidget {
                               onChooseItem: provider.setCity,
                               label: "Город",
                             ),
-                            /*const TextFieldWidget(
-                              label: "Город",
-                              hintText: "Введите город",
-                              maxLines: 1,
-                            ),*/
                             TextFieldWidget(
                               label: "Описание клуба",
                               hintText: "Введите описание",
@@ -102,13 +101,13 @@ class CreateClubPage extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    for (Genre genre
-                                        in provider.selectedGenres)
+                                    for (Genre genre in provider.selectedGenres)
                                       Padding(
                                         padding:
                                             const EdgeInsets.only(bottom: 5),
                                         child: TagWidget(
-                                          tag: StringFormatting.getFormattedTag(genre.name),
+                                          tag: StringFormatting.getFormattedTag(
+                                              genre.name),
                                         ),
                                       ),
                                   ],
@@ -121,8 +120,8 @@ class CreateClubPage extends StatelessWidget {
                                 label: "Выбрать",
                                 icon: MdiIcons.arrowRight,
                                 onTap: () {
-                                  context.router
-                                      .navigate(const CreateClubInterestsRoute());
+                                  context.router.navigate(
+                                      const CreateClubInterestsRoute());
                                 },
                               ),
                             ),
@@ -133,10 +132,15 @@ class CreateClubPage extends StatelessWidget {
                                 label: "Создать клуб",
                                 icon: MdiIcons.check,
                                 onTap: () {
-                                  provider.createClub(profileProvider.userId).then((value) => context.router.navigate(BookClubRoute(
-                                    id: provider.createdClub.id,
-                                    clubCard: provider.createdClub,
-                                  ))).then((value) => clubListProvider.loadClubs());
+                                  provider
+                                      .createClub(profileProvider.userId)
+                                      .then((value) =>
+                                          context.router.navigate(BookClubRoute(
+                                            id: provider.createdClub.id,
+                                            clubCard: provider.createdClub,
+                                          )))
+                                      .then((value) =>
+                                          clubListProvider.loadClubs());
                                 },
                               ),
                             ),

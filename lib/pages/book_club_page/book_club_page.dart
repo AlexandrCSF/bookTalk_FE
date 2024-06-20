@@ -36,10 +36,9 @@ class _BookClubPageState extends State<BookClubPage> {
     final text = Theme.of(context).textTheme;
     getIt.get<Analytics>().openClubPage();
     final profileProvider = Provider.of<ProfileViewModel>(context);
-    return ChangeNotifierProvider<BookClubViewModel>(
-      create: (BuildContext context) => BookClubViewModel(clubId: widget.id)
-        ..getClubData(profileProvider.userId),
-      child: Consumer<BookClubViewModel>(
+    BookClubViewModel provider = Provider.of<BookClubViewModel>(context, listen: false);
+    provider.getClubData(profileProvider.userId, widget.id);
+    return Consumer<BookClubViewModel>(
         builder: (context, provider, child) {
           return Scaffold(
             appBar: AppBar(
@@ -72,11 +71,15 @@ class _BookClubPageState extends State<BookClubPage> {
                           background: Stack(
                             children: [
                               Positioned.fill(
-                                // todo: change to imageUrl
-                                child: Image.asset(
-                                  'lib/utils/resources/images/base_club_avatar.png',
-                                  fit: BoxFit.cover,
-                                ),
+                                child: provider.imageUrl.isEmpty
+                                    ? Image.asset(
+                                        'lib/utils/resources/images/base_club_avatar.png',
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Image.network(
+                                        provider.imageUrl,
+                                        fit: BoxFit.cover,
+                                      ),
                               ),
                               Align(
                                 alignment: Alignment.bottomCenter,
@@ -116,8 +119,8 @@ class _BookClubPageState extends State<BookClubPage> {
                                       label: 'Редактировать',
                                       icon: MdiIcons.pencil,
                                       onTap: () {
-                                        context.router
-                                            .navigate(EditClubRoute(club: provider.club));
+                                        context.router.navigate(
+                                            EditClubRoute(id: widget.id));
                                       },
                                     )
                                   : provider.isSubscribed
@@ -165,7 +168,6 @@ class _BookClubPageState extends State<BookClubPage> {
                   ),
           );
         },
-      ),
-    );
+      );
   }
 }

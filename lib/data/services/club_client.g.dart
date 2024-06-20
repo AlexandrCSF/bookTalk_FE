@@ -355,7 +355,10 @@ class _ClubClient implements ClubClient {
   }
 
   @override
-  Future<void> uploadImage(File picture) async {
+  Future<void> uploadImage(
+    File picture,
+    int club_id,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -366,6 +369,10 @@ class _ClubClient implements ClubClient {
         picture.path,
         filename: picture.path.split(Platform.pathSeparator).last,
       ),
+    ));
+    _data.fields.add(MapEntry(
+      'club_id',
+      club_id.toString(),
     ));
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',

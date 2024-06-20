@@ -15,16 +15,13 @@ class DiscussionListViewModel extends ChangeNotifier {
   DiscussionListViewModel({required this.clubId});
 
   List<Conversation> _conversationList = [];
-
   UnmodifiableListView<Conversation> get conversationList =>
       UnmodifiableListView(_conversationList);
 
   final _titleController = TextEditingController();
-
   TextEditingController get titleController => _titleController;
 
   final _descriptionController = TextEditingController();
-
   TextEditingController get descriptionController => _descriptionController;
 
   @override

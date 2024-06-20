@@ -92,6 +92,9 @@ Future<void> main() async {
             ChangeNotifierProvider(
               create: (context) => EditClubViewModel(),
             ),
+            ChangeNotifierProvider(
+              create: (context) => BookClubViewModel(),
+            )
           ],
           child: BookTalkApp(),
         ),

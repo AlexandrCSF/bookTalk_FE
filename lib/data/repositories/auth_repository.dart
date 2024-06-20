@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:booktalk_frontend/data/api_exceptions.dart';
 import 'package:booktalk_frontend/data/services/auth_client.dart';
 import 'package:booktalk_frontend/main.dart';
@@ -39,7 +41,7 @@ class AuthRepository {
     }
   }
 
-  Future<void> signUp(UserCreate userCreate) async {
+  Future<User> signUp(UserCreate userCreate) async {
     try {
       /*String uuid = await DeviceInformation.getId();
       if (uuid.isEmpty) {
@@ -50,6 +52,7 @@ class AuthRepository {
       print(userCreate.toJson());
       User user = await _client.createUser(uuid, userCreate.toJson());
       print(user);
+      return user;
     } on DioException catch (e) {
       throw HandleException.handleException(e);
     }
@@ -78,6 +81,14 @@ class AuthRepository {
   Future<void> deleteUser() async {
     try {
       await _client.deleteUser();
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
+
+  Future<void> uploadProfileImage(File picture, int userId) async {
+    try {
+      await _client.uploadImage(picture, userId);
     } on DioException catch (e) {
       throw HandleException.handleException(e);
     }

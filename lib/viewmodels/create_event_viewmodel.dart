@@ -57,4 +57,11 @@ class CreateEventViewModel extends ChangeNotifier {
   String _errorMessage = '';
   String get errorMessage => _errorMessage;
 
+  @override
+  void dispose() {
+    super.dispose();
+    _topicController.dispose();
+    _placeController.dispose();
+  }
+
 }

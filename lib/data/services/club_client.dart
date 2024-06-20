@@ -75,6 +75,6 @@ abstract class ClubClient {
   @MultiPart()
   Future<void> uploadImage(
     @Part() File picture,
-      //@Part() int club_id,
+      @Part() int club_id,
   );
 }

@@ -74,4 +74,11 @@ class EditEventViewModel extends ChangeNotifier {
     _selectedTime = initialTimeOfDay;
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _topicController.dispose();
+    _placeController.dispose();
+  }
+
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:booktalk_frontend/data/api_exceptions.dart';
 import 'package:booktalk_frontend/data/services/auth_client.dart';
 import 'package:booktalk_frontend/data/services/club_client.dart';
@@ -167,4 +169,13 @@ class ClubRepository {
       throw HandleException.handleException(e);
     }
   }
+
+  Future<void> uploadClubImage(File picture, int clubId) async {
+    try {
+      await _client.uploadImage(picture, clubId);
+    } on DioException catch (e) {
+      throw HandleException.handleException(e);
+    }
+  }
+
 }

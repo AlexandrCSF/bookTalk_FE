@@ -32,12 +32,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
-    EditProfileViewModel provider = Provider.of<EditProfileViewModel>(context, listen: false);
+    EditProfileViewModel provider =
+        Provider.of<EditProfileViewModel>(context, listen: false);
     provider.initEditProfile(widget.user);
     provider.loadGenres();
-    ProfileViewModel profileProvider = Provider.of<ProfileViewModel>(context, listen: false);
-    Image? img/*= Image.asset('lib/images/avatar.jpg')*/;
-    //List<String> tags = ["#детектив", "#исторический_роман", "#юмор"];
+    ProfileViewModel profileProvider =
+        Provider.of<ProfileViewModel>(context, listen: false);
     return Consumer<EditProfileViewModel>(
       builder: (context, provider, child) {
         return Scaffold(
@@ -55,8 +55,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 padding: const EdgeInsets.only(right: 10),
                 child: IconButton(
                   onPressed: () {
-                    provider.editProfile().then((value) => profileProvider.loadUserData(profileProvider.userId)).then(
-                        (value) => context.router.maybePop(ProfileRoute()));
+                    provider
+                        .editProfile()
+                        .then((value) => profileProvider
+                            .loadUserData(profileProvider.userId))
+                        .then(
+                            (value) => context.router.maybePop(ProfileRoute()));
                   },
                   icon: Icon(
                     MdiIcons.check,
@@ -76,8 +80,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     Padding(
                       padding: const EdgeInsets.only(top: 40, bottom: 10),
                       child: EditAvatarWidget(
-                          img: img ??=
-                              Image.asset('lib/utils/resources/images/base_avatar.png')),
+                        img: provider.newAvatar == null
+                            ? provider.avatarUrl.isEmpty
+                                ? Image.asset(
+                                    'lib/utils/resources/images/base_avatar.png')
+                                : Image.network(provider.avatarUrl)
+                            : Image.file(provider.newAvatar!),
+                      ),
                     ),
                     TextFieldWidget(
                       label: "Имя",
@@ -127,7 +136,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   Padding(
                                     padding: const EdgeInsets.only(bottom: 5),
                                     child: TagWidget(
-                                      tag: StringFormatting.getFormattedTag(genre.name),
+                                      tag: StringFormatting.getFormattedTag(
+                                          genre.name),
                                     ),
                                   ),
                               ],
@@ -142,7 +152,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         label: "Добавить",
                         icon: MdiIcons.arrowRight,
                         onTap: () {
-                          context.router.navigate(const EditProfileInterestsRoute());
+                          context.router
+                              .navigate(const EditProfileInterestsRoute());
                         },
                       ),
                     ),

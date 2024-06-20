@@ -22,9 +22,10 @@ import '../widgets/tag_widget.dart';
 
 @RoutePage()
 class EditClubPage extends StatefulWidget {
-  final ClubCard club;
+  //final ClubCard club;
+  final int id;
 
-  const EditClubPage({super.key, required this.club});
+  const EditClubPage({super.key, required this.id});
 
   @override
   State<EditClubPage> createState() => _EditClubPageState();
@@ -37,13 +38,12 @@ class _EditClubPageState extends State<EditClubPage> {
     final text = Theme.of(context).textTheme;
     EditClubViewModel provider =
         Provider.of<EditClubViewModel>(context, listen: false);
-    provider.initEditClub(widget.club);
+    provider.initEditClub(widget.id);
     provider.loadGenres();
     BookClubViewModel clubProvider =
         Provider.of<BookClubViewModel>(context, listen: false);
     ProfileViewModel profileProvider =
         Provider.of<ProfileViewModel>(context, listen: false);
-    Image? img;
     return Consumer<EditClubViewModel>(builder: (context, provider, child) {
       return Scaffold(
         appBar: AppBar(
@@ -63,9 +63,9 @@ class _EditClubPageState extends State<EditClubPage> {
                   provider
                       .editClub()
                       .then((value) =>
-                          clubProvider.getClubData(profileProvider.userId))
+                          clubProvider.getClubData(profileProvider.userId, clubProvider.club.id))
                       .then((value) => context.router
-                          .maybePop(BookClubRoute(id: widget.club.id)));
+                          .maybePop(BookClubRoute(id: widget.id)));
                 },
                 icon: Icon(
                   MdiIcons.check,
@@ -85,8 +85,12 @@ class _EditClubPageState extends State<EditClubPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 40, bottom: 10),
                     child: EditAvatarWidget(
-                      img: img ??= Image.asset(
-                          'lib/utils/resources/images/base_club_avatar.png'),
+                      img: provider.newClubAvatar == null
+                          ? provider.clubAvatarUrl.isEmpty
+                              ? Image.asset(
+                                  'lib/utils/resources/images/base_club_avatar.png')
+                              : Image.network(provider.clubAvatarUrl)
+                          : Image.file(provider.newClubAvatar!),
                     ),
                   ),
                   TextFieldWidget(

@@ -40,6 +40,7 @@ class ProfileViewModel extends ChangeNotifier {
       _firstName = _user.firstName;
       _lastName = _user.lastName;
       _email = _user.email;
+      _profilePicture = _user.picture;
       //_city = 'г. ${user.city}';
       _city = CityFias.cityFias.keys.firstWhere((element) => CityFias.cityFias[element] == _user.city, orElse: () => '');
       getGenres(_user.interests);
@@ -72,6 +73,7 @@ class ProfileViewModel extends ChangeNotifier {
   Future<void> deleteUser() async {
     try {
       await _repository.deleteUser();
+      _unauthorize();
     } on ApiException catch (e) {
       debugPrint(e.message);
     } finally {
@@ -106,6 +108,13 @@ class ProfileViewModel extends ChangeNotifier {
   void _unauthorize() async {
     _authorized = false;
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _passwordController.dispose();
+    _emailController.dispose();
   }
 
   final TextEditingController _emailController = TextEditingController();

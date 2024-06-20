@@ -8,6 +8,7 @@ abstract class AuthUrls {
   static const String refreshToken = '/auth/token/refresh/';
   static const String createUser = '/auth/user/';
   static const String logIn = '/auth/auth/';
+  static const String uploadProfilePicture = '/clubs/upload_image/';
 
   /// PATCH
   static const String editUser = '/auth/user/';

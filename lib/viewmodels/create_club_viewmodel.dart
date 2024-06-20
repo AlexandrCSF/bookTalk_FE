@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:io';
 
 import 'package:booktalk_frontend/data/api_exceptions.dart';
 import 'package:booktalk_frontend/data/repositories/book_club_repository.dart';
@@ -9,6 +10,7 @@ import 'package:booktalk_frontend/models/club_create.dart';
 import 'package:booktalk_frontend/models/genre.dart';
 import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:booktalk_frontend/utils/city_fias.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class CreateClubViewModel extends ChangeNotifier {
@@ -30,6 +32,9 @@ class CreateClubViewModel extends ChangeNotifier {
       );
       createdClub = await _repository.createClub(clubCreate);
       await _analytics.createClub();
+      if (clubAvatar != null) {
+        await _repository.uploadClubImage(clubAvatar!, createdClub.id);
+      }
     } on ApiException catch (e) {
       debugPrint(e.message);
     } finally {
@@ -62,6 +67,15 @@ class CreateClubViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> choosePicture() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      File file = File(result.files.single.path!);
+      _clubAvatar = file;
+    }
+    notifyListeners();
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -89,4 +103,7 @@ class CreateClubViewModel extends ChangeNotifier {
 
   List<int> _selectedGenreIndexes = [];
   List<String> _selectedGenreNames = [];
+
+  File? _clubAvatar;
+  File? get clubAvatar => _clubAvatar;
 }

@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:io';
 
 import 'package:booktalk_frontend/data/api_exceptions.dart';
 import 'package:booktalk_frontend/data/repositories/auth_repository.dart';
@@ -9,6 +10,7 @@ import 'package:booktalk_frontend/models/user.dart';
 import 'package:booktalk_frontend/models/user_patch.dart';
 import 'package:booktalk_frontend/utils/city_fias.dart';
 import 'package:booktalk_frontend/utils/string_formatting.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,6 +37,9 @@ class EditProfileViewModel extends ChangeNotifier {
         );
         print(userPatch);
         await _repository.editUser(userPatch, initialProfile.id);
+        if (_newAvatar != null) {
+          await _repository.uploadProfileImage(_newAvatar!, initialProfile.id);
+        }
       } on ApiException catch (e) {
         debugPrint(e.message);
       } finally {
@@ -64,6 +69,15 @@ class EditProfileViewModel extends ChangeNotifier {
     }
   }
 
+  Future<void> choosePicture() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      File file = File(result.files.single.path!);
+      _newAvatar = file;
+    }
+    notifyListeners();
+  }
+
   void addGenre(Genre genre) {
     _selectedGenres.add(genre);
     _selectedGenreIndexes.add(genre.id);
@@ -83,6 +97,7 @@ class EditProfileViewModel extends ChangeNotifier {
     _lastNameController.text = user.lastName;
     _emailController.text = user.email;
     _selectedCity = CityFias.cityFias.keys.firstWhere((element) => CityFias.cityFias[element] == user.city, orElse: () => '');
+    _avatarUrl = user.picture;
     for (Genre genre in user.interests) {
       _selectedGenres.add(genre);
     }
@@ -123,4 +138,10 @@ class EditProfileViewModel extends ChangeNotifier {
 
   String _errorMessage = '';
   String get errorMessage => _errorMessage;
+
+  String _avatarUrl = '';
+  String get avatarUrl => _avatarUrl;
+
+  File? _newAvatar;
+  File? get newAvatar => _newAvatar;
 }

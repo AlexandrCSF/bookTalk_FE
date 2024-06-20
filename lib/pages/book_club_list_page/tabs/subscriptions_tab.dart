@@ -49,8 +49,7 @@ class _SubscriptionsTabState extends State<SubscriptionsTab> {
                       title: club.name,
                       description: club.description,
                       members: club.numOfSubscribers ?? 0,
-                      // todo: add image
-                      imageUrl: '',
+                      imageUrl: club.picture,
                       onTap: () {
                         context.router.navigate(BookClubRoute(id: club.id));
                       },

@@ -24,19 +24,15 @@ class DiscussionViewModel extends ChangeNotifier {
   });
 
   String _firstName = '';
-
   String get firstName => _firstName;
 
   String _lastName = '';
-
   String get lastName => _lastName;
 
   final _messageController = TextEditingController();
-
   TextEditingController get messageController => _messageController;
 
   List<MessageCard> _messages = [];
-
   UnmodifiableListView<MessageCard> get messages =>
       UnmodifiableListView(_messages);
 

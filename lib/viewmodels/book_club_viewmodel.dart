@@ -11,7 +11,6 @@ import 'package:booktalk_frontend/utils/string_formatting.dart';
 import 'package:flutter/material.dart';
 
 class BookClubViewModel extends ChangeNotifier {
-
   final _repository = getIt.get<ClubRepository>();
 
   final _analytics = getIt.get<Analytics>();
@@ -22,6 +21,7 @@ class BookClubViewModel extends ChangeNotifier {
   }
 
   void getGenres(List<Genre> genreIds) {
+    _genres.clear();
     if (_genres.isEmpty) {
       for (var genre in genreIds) {
         _genres.add(StringFormatting.getFormattedTag(genre.name));
@@ -29,15 +29,17 @@ class BookClubViewModel extends ChangeNotifier {
     }
   }
 
-  Future<void> getClubData(int userId) async {
+  Future<void> getClubData(int userId, int clubId) async {
+    _clubId = clubId;
     String id = '$clubId';
     try {
       _club = await _repository.getClubData(id);
       print(_club);
       _isAdministrator = await _repository.isAdministrator(id);
-      if(!_isAdministrator) {
+      if (!_isAdministrator) {
         _isSubscribed = await _repository.isSubscribed(id, userId);
       }
+      _imageUrl = _club.picture;
       getGenres(_club!.interests);
       getEvents();
       getListOfMembers();
@@ -49,17 +51,16 @@ class BookClubViewModel extends ChangeNotifier {
   }
 
   void getEvents() {
-    if (_events.isEmpty) {
-      for (var event in _club!.meetings) {
-        _events.add(
-            '${event.name} · ${StringFormatting.getFormattedDateFromString(event.date)} · ${StringFormatting.getFormattedTimeFromString(event.time)} · ${event.location}');
-      }
+    _events.clear();
+    for (var event in _club!.meetings) {
+      _events.add(
+          '${event.name} · ${StringFormatting.getFormattedDateFromString(event.date)} · ${StringFormatting.getFormattedTimeFromString(event.time)} · ${event.location}');
     }
   }
 
   Future<void> getListOfMembers() async {
     try {
-      _members = await _repository.getListOfClubMembers('$clubId');
+      _members = await _repository.getListOfClubMembers('$_clubId');
     } on ApiException catch (e) {
       debugPrint(e.message);
     }
@@ -70,44 +71,55 @@ class BookClubViewModel extends ChangeNotifier {
   }
 
   Future<void> subscribe() async {
-    await _repository.subscribeToClub('$clubId');
+    await _repository.subscribeToClub('$_clubId');
     _isSubscribed = true;
     _analytics.clubSubscription();
     notifyListeners();
   }
 
   Future<void> unsubscribe() async {
-    await _repository.unsubscribeFromClub('$clubId');
+    await _repository.unsubscribeFromClub('$_clubId');
     _isSubscribed = false;
     notifyListeners();
   }
 
-  final int clubId;
+  late int _clubId;
 
-  BookClubViewModel({required this.clubId});
+  //BookClubViewModel({required this.clubId});
 
   late ClubCard _club;
+
   ClubCard get club => _club;
 
   bool _isSubscribed = false;
+
   bool get isSubscribed => _isSubscribed;
 
   bool _isAdministrator = false;
+
   bool get isAdministrator => _isAdministrator;
 
   bool _isLoading = true;
+
   bool get isLoading => _isLoading;
 
   String _onErrorMessage = '';
+
   String get onErrorMessage => _onErrorMessage;
 
   List<String> _genres = [];
+
   List<String> get genres => _genres;
 
   List<String> _events = [];
+
   List<String> get events => _events;
 
   List<User> _members = [];
+
   List<User> get members => _members;
 
+  String _imageUrl = '';
+
+  String get imageUrl => _imageUrl;
 }

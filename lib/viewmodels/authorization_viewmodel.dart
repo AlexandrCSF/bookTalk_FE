@@ -2,7 +2,6 @@ import 'package:booktalk_frontend/data/api_exceptions.dart';
 import 'package:booktalk_frontend/data/repositories/auth_repository.dart';
 import 'package:booktalk_frontend/main.dart';
 import 'package:booktalk_frontend/models/login.dart';
-import 'package:booktalk_frontend/utils/analytics/analytics.dart';
 import 'package:flutter/material.dart';
 
 class AuthorizationViewModel extends ChangeNotifier {
@@ -29,4 +28,12 @@ class AuthorizationViewModel extends ChangeNotifier {
 
   final TextEditingController _passwordController = TextEditingController();
   TextEditingController get passwordController => _passwordController;
+
+  @override
+  void dispose() {
+    super.dispose();
+    _passwordController.dispose();
+    _emailController.dispose();
+  }
+
 }
