@@ -3,7 +3,6 @@ import 'package:booktalk_frontend/utils/navigation/app_router.dart';
 import 'package:booktalk_frontend/pages/discussion_list_page/widgets/create_discussion_dialog.dart';
 import 'package:booktalk_frontend/viewmodels/discussion_list_viewmodel.dart';
 import 'package:booktalk_frontend/viewmodels/profile_viewmodel.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
